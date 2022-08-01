@@ -1,0 +1,38 @@
+:root {
+    --primary: #3B5998;
+    --primary200: #1D2C4C;
+    --primary175: #213256;
+    --primary150: #273B65;
+    --primary125: #2F4779;
+    --primary110: #35508A;
+    --primary90: #4E69A2;
+    --primary80: #627AAC;
+    --primary60: #899BC1;
+    --primary50: #9DACCC;
+    --primary40: #B1BDD6;
+    --primary30: #C4CDE0;
+    --primary20: #D8DEEB;
+    --primary10: #ECEFF5;
+
+    --secondary: #B1A03F;
+    --secondary200: #58501F;
+    --secondary175: #655B24;
+    --secondary150: #766A2A;
+    --secondary125: #8D8032;
+    --secondary110: #A09139;
+    --secondary90: #B8A952;
+    --secondary80: #C0B365;
+    --secondary60: #D0C68C;
+    --secondary50: #D8D09F;
+    --secondary40: #E0D9B2;
+    --secondary30: #E8E3C6;
+    --secondary20: #F0ECD9;
+    --secondary10: #F8F6EC;
+}
+body {
+    font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
