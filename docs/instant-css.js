@@ -41,22 +41,41 @@ ol,ul,menu,dir{list-style:none;}`
 		}
 		let parseValue = (() => {
 			let ariasKey = (() => {
-				let o = {
+				let o = JSON.parse(`{
 					"bg": "background-color",
-					"c": "color"
-				}
-				let r = new RegExp(["(?<=^|\/|;)", Object.keys(o).join("|"), "(?=:)"].join(""), "g")
+					"c": "color",
+					"w": "width",
+					"h": "height",
+					"m": "margin",
+					"p": "padding"
+				}`)
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(o).join("|"), ")(?=:)"].join(""), "g")
 				return t => t.replace(r, s => o[s])
 			})()
 			let ariasValue = (() => {
-				let o = {
+				let o = JSON.parse(`{
 					"block": "display:block",
 					"pointer": "cursor:pointer"
-				}
-				let r = new RegExp(["(?<=^|\/|;)", Object.keys(o).join("|"), "(?=;|$)"].join(""), "g")
+				}`)
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(o).join("|"), ")(?=;|$)"].join(""), "g")
 				return t => t.replace(r, s => o[s])
 			})()
-			return t => ariasKey(ariasValue(t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, "")))
+			let ariasCalc = (() => {
+				let r = /(?<=calc\(.+)[+\-*/](?=.+\))/g
+				return t => t.replace(r, s => [" ", s, " "].join(""))
+			})()
+			let ariasPx = (() => {
+				let r = /(?<=width|height|margin|padding):\d+(?=;|$)/g
+				return t => t.replace(r, s => s + "px")
+			})()
+			return t => {
+				t = t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, "");
+				t = ariasKey(t)
+				t = ariasValue(t)
+				t = ariasCalc(t)
+				t = ariasPx(t)
+				return t
+			}
 		})()
 		let parseQuery = t => {
 			t = t.replace(/^!/, "not ").replace(/&/g, " and ")

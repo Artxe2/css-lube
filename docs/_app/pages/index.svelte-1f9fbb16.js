@@ -1,21 +1,4 @@
-<script lang="ts">
-import { onMount } from "svelte"
-
-onMount(() => {
-    const editor = document.querySelector("#editor") as HTMLInputElement
-    const view = document.querySelector("#view")
-    view.innerHTML = editor.value
-    editor.addEventListener("input", e => {
-        view.innerHTML = editor.value
-    })
-    document.querySelectorAll("div[class]").forEach(e => {
-        e.setAttribute("title", e.getAttribute("class"))
-    })
-})
-</script>
-
-<div id="root" class="bg=#dddddd;w=100%;h=100%;display:flex">
-    <textarea id="editor" class="bg=#00000000;w=50%;border=1px_solid_black">{`<div id="view">
+import{S as u,i as p,s as h,e as t,k as w,c as s,a as n,d as l,m as _,b as o,g as x,J as v,K as b,v as k}from"../chunks/vendor-f0095a1c.js";function f(g){let e,d,i,r;return{c(){e=t("div"),d=t("textarea"),i=w(),r=t("div"),this.h()},l(c){e=s(c,"DIV",{id:!0,class:!0});var a=n(e);d=s(a,"TEXTAREA",{id:!0,class:!0}),n(d).forEach(l),i=_(a),r=s(a,"DIV",{id:!0,class:!0}),n(r).forEach(l),a.forEach(l),this.h()},h(){o(d,"id","editor"),o(d,"class","bg=#00000000;w=50%;border=1px_solid_black"),d.value=`<div id="view">
     <div class="display=flex;border=1px_solid_black _div/m=10px">
         <div class="bg=violet!!!!!! bg=navy!!!!! bg=blue!!!! bg=green!!! bg=yellow!! bg=orange! bg=red c=white">div</div>
         <div class="bg=navy!!!!! bg=blue!!!! bg=green!!! bg=yellow!! bg=orange! bg=red c=white">div</div>
@@ -36,6 +19,4 @@ onMount(() => {
         <div class="background-color=red @!screen&width=400~600@background-color=green!">div</div>
         <div class="background-color=red @min-width=400px@:active/pointer;background-color=blue @!screen&width=400~600@:active/background-color=green;pointer">active</div>
     </div>
-</div>`}</textarea>
-    <div id="view" class="width=50%;border=1px_solid_black"></div>
-</div>
+</div>`,o(r,"id","view"),o(r,"class","width=50%;border=1px_solid_black"),o(e,"id","root"),o(e,"class","bg=#dddddd;w=100%;h=100%;display:flex")},m(c,a){x(c,e,a),v(e,d),v(e,i),v(e,r)},p:b,i:b,o:b,d(c){c&&l(e)}}}function m(g){return k(()=>{const e=document.querySelector("#editor"),d=document.querySelector("#view");d.innerHTML=e.value,e.addEventListener("input",i=>{d.innerHTML=e.value}),document.querySelectorAll("div[class]").forEach(i=>{i.setAttribute("title",i.getAttribute("class"))})}),[]}class E extends u{constructor(e){super();p(this,e,m,f,h,{})}}export{E as default};
