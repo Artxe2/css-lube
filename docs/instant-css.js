@@ -8,11 +8,6 @@ button{background:none;border:0;cursor:pointer;}
 a{text-decoration:none;}
 table{border-collapse:collapse;border-spacing:0;}
 ol,ul,menu,dir{list-style:none;}`
-	let ARIAS = {
-		"bg": "background-color",
-		"c": "color"
-	}
-	let ARIAS_REGEX = new RegExp(["(?<=^|;)", Object.keys(ARIAS).join("|"), "(?=:)"].join(""), "g")
 	let set = new Set()
 	let media = {}
 	let css = {}
@@ -44,8 +39,25 @@ ol,ul,menu,dir{list-style:none;}`
 			}
 			return array.join("")
 		}
-		let arias = t => t.replace(ARIAS_REGEX, s => ARIAS[s])
-		let parseValue = t => arias(t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, ""))
+		let parseValue = (() => {
+			let ariasKey = (() => {
+				let o = {
+					"bg": "background-color",
+					"c": "color"
+				}
+				let r = new RegExp(["(?<=^|\/|;)", Object.keys(o).join("|"), "(?=:)"].join(""), "g")
+				return t => t.replace(r, s => o[s])
+			})()
+			let ariasValue = (() => {
+				let o = {
+					"block": "display:block",
+					"pointer": "cursor:pointer"
+				}
+				let r = new RegExp(["(?<=^|\/|;)", Object.keys(o).join("|"), "(?=;|$)"].join(""), "g")
+				return t => t.replace(r, s => o[s])
+			})()
+			return t => ariasKey(ariasValue(t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, "")))
+		})()
 		let parseQuery = t => {
 			t = t.replace(/^!/, "not ").replace(/&/g, " and ")
 				.replace(/[^ ]+=[^ ]+/g, s => {
