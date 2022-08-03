@@ -67,7 +67,7 @@ ol,ul,menu,dir{list-style:none;}`
 				return t => t.replace(r, s => [" ", s, " "].join(""))
 			})()
 			let w/*ariasPx*/ = (() => {
-				let r = /(?<=width|height|margin|padding|border-radius):\d+(?=;|$)/g
+				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom):-?\d+(?=;|$)/g
 				return t => t.replace(r, s => s + "px")
 			})()
 			return t => w(x(y(z(
@@ -107,10 +107,11 @@ ol,ul,menu,dir{list-style:none;}`
 			].join("")
 		}
 		return (() => {
-			let r = new RegExp([";|=|:", ...Object.keys(V)].join("|"))
+			let r = new RegExp(["[;=:]", ...Object.keys(V)].join("|"))
 			return t => {
-				if (C[t] || !r.test(t)) return
-				if (/^[^a-z]/.test(t)) {
+				if (C[t]) return
+				if (!r.test(t) || /\([^)]*$/.test(t)) C[t] = ""
+				else if (/^[^a-z]/.test(t)) {
 					if (/@.+@.+/.test(t)) {
 						f(t)
 					} else {
@@ -122,7 +123,13 @@ ol,ul,menu,dir{list-style:none;}`
 	})()
 	let d/*compileStyles*/ = () => {
 		set.forEach(t => e(t))
-		S.innerHTML = ["/*reset↘*/", R, `/*↖reset\ninstant↘*/`, ...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")), ...Object.values(C), "/*↖instant*/"].join("\n")
+		S.innerHTML = [
+			"/*reset↘*/",
+			R,
+			`/*↖reset\ninstant↘*/`,
+			...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
+			...Object.values(C).filter(v => v), "/*↖instant*/"
+		].join("\n")
 	}
 	let c/*readClasslist*/ = () => {
 		let size = set.size
