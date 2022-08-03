@@ -67,7 +67,7 @@ ol,ul,menu,dir{list-style:none;}`
 				return t => t.replace(r, s => [" ", s, " "].join(""))
 			})()
 			let w/*ariasPx*/ = (() => {
-				let r = /(?<=width|height|margin|padding|border-radius):\d+(?=;|$)/g
+				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom):\d+(?=;|$)/g
 				return t => t.replace(r, s => s + "px")
 			})()
 			return t => w(x(y(z(
