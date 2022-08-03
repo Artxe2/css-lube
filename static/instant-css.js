@@ -122,7 +122,13 @@ ol,ul,menu,dir{list-style:none;}`
 	})()
 	let d/*compileStyles*/ = () => {
 		set.forEach(t => e(t))
-		S.innerHTML = ["/*reset↘*/", R, `/*↖reset\ninstant↘*/`, ...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")), ...Object.values(C), "/*↖instant*/"].join("\n")
+		S.innerHTML = [
+			"/*reset↘*/",
+			R,
+			`/*↖reset\ninstant↘*/`,
+			...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
+			...Object.values(C), "/*↖instant*/"
+		].join("\n")
 	}
 	let c/*readClasslist*/ = () => {
 		let size = set.size
