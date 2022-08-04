@@ -82,7 +82,7 @@ onMount(() => {
 
 <div class="text-align=center">
     <div class="inline-block w=300 h=150">
-        <H3>ImportantExample</H3>
+        <H3>Important</H3>
         <span bind:this={word}></span>
     </div>
 </div>

@@ -23,8 +23,8 @@ onMount(() => {
 			t2.className = t2.className.replace(/transition\=1s/, "transition=0s")
 				.replace(/filter\=blur\(0px\)/, "filter=blur(0.5rem)")
 			t1.innerHTML = array[index]
-		}, 1000)
-        setTimeout(animation, 2000)
+		}, 500)
+        setTimeout(animation, 2500)
     }
     animation()
 })
