@@ -21,6 +21,7 @@ ol,ul,menu,dir{list-style:none;}`
 "block":"display:block",
 "flex":"display:flex",
 "inline-block":"display:inline-block",
+"inlineBlock":"display:inline-block",
 "pointer":"cursor:pointer",
 "column":"flex-direction:column",
 "row":"flex-direction:row",
@@ -54,23 +55,23 @@ ol,ul,menu,dir{list-style:none;}`
 			return D.join("")
 		}
 		let h/*parseValue*/ = (() => {
-			let z/*ariasKey*/ = (() => {
-				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(K).join("|"), ")(?=:)"].join(""), "g")
-				return t => t.replace(r, s => K[s])
-			})()
-			let y/*ariasValue*/ = (() => {
-				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(V).join("|"), ")(?=;|$)"].join(""), "g")
-				return t => t.replace(r, s => V[s])
-			})()
-			let x/*ariasCalc*/ = (() => {
-				let r = /(?<=calc\(.+?) *[+\-*/] *(?=.+?\))/g
-				return t => t.replace(r, s => [" ", s, " "].join(""))
-			})()
-			let w/*ariasUpper*/ = (() => {
+			let z/*ariasUpper*/ = (() => {
 				let r = /[A-Z]/g
 				return t => t.replace(r, s => "-" + s.toLowerCase())
 			})()
-			let v/*ariasPx*/ = (() => {
+			let y/*ariasKey*/ = (() => {
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(K).join("|"), ")(?=:)"].join(""), "g")
+				return t => t.replace(r, s => K[s])
+			})()
+			let x/*ariasValue*/ = (() => {
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(V).join("|"), ")(?=;|$)"].join(""), "g")
+				return t => t.replace(r, s => V[s])
+			})()
+			let v/*ariasCalc*/ = (() => {
+				let r = /(?<=calc\(.+?) *[+\-*/] *(?=.+?\))/g
+				return t => t.replace(r, s => [" ", s, " "].join(""))
+			})()
+			let w/*ariasPx*/ = (() => {
 				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom):-?\d+(?=;|$)/g
 				return t => t.replace(r, s => s + "px")
 			})()
@@ -137,8 +138,9 @@ ol,ul,menu,dir{list-style:none;}`
 	}
 	let c/*readClasslist*/ = () => {
 		let size = set.size
-		Array.from(document.querySelectorAll("*[class]"))
-			.forEach(A => Array.from(A.classList).forEach(B => set.add(B)))
+		document.querySelectorAll("*[class]").forEach(
+			A => A.classList.forEach(B => set.add(B))
+		)
 		set.size - size && d() && S.parentNode !== document.head && document.head.appendChild(S)
 	}
 	let b/*observe*/ = () => document.body && new MutationObserver(c)

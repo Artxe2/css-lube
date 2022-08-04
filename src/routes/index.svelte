@@ -8,7 +8,7 @@ import SelectorExample from "src/components/molecules/example/SelectorExample.sv
 import MediaExample from "src/components/molecules/example/MediaExample.svelte";
 import AriasExample from "src/components/molecules/example/AriasExample.svelte";
 </script>
-<div id="root" class="flex column bg=var(--background) h=100%">
+<div id="root" class="flex column bg=var(--background) min-height=100%">
     <AppBar></AppBar>
     <div class="text-align=center">
         <H1>Build modern websites on the spot!</H1>
