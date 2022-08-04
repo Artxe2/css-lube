@@ -49,5 +49,9 @@ let wordflick = function () {
 onMount(wordflick)
 </script>
 
-<span bind:this={word}></span>
-<span class="font-size=1.5rem font-weight=bold">|</span>
+<div class="text-align=center">
+  <div class="inline-block w=300 h=150">
+    <span bind:this={word}></span>
+    <span class="font-size=1.5rem font-weight=bold">|</span>
+  </div>
+</div>

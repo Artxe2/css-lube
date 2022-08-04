@@ -66,13 +66,17 @@ ol,ul,menu,dir{list-style:none;}`
 				let r = /(?<=calc\(.+?) *[+\-*/] *(?=.+?\))/g
 				return t => t.replace(r, s => [" ", s, " "].join(""))
 			})()
-			let w/*ariasPx*/ = (() => {
+			let w/*ariasUpper*/ = (() => {
+				let r = /[A-Z]/g
+				return t => t.replace(r, s => "-" + s.toLowerCase())
+			})()
+			let v/*ariasPx*/ = (() => {
 				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom):-?\d+(?=;|$)/g
 				return t => t.replace(r, s => s + "px")
 			})()
-			return t => w(x(y(z(
+			return t => v(w(x(y(z(
 				t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, "")
-			))))
+			)))))
 		})()
 		let g/*parseQuery*/ = t => {
 			t = t.replace(/^!/, "not ").replace(/&/g, " and ")
@@ -111,7 +115,7 @@ ol,ul,menu,dir{list-style:none;}`
 			return t => {
 				if (C[t]) return
 				if (!r.test(t) || /\([^)]*$/.test(t)) C[t] = ""
-				else if (/^[^a-z]/.test(t)) {
+				else if (/^[^A-Za-z]/.test(t)) {
 					if (/@.+@.+/.test(t)) {
 						f(t)
 					} else {

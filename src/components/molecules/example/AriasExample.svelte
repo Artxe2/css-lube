@@ -9,7 +9,7 @@ import TypingText from "src/components/atoms/texts/TypingText.svelte";
         words={[
             "bg:red",
             "bg=blue c=white",
-            "inline-block bg=green c=white w=calc(20px*20)"
+            "pointer bg=green c=white padding-right=calc(50px+40px-30px*0.2/1)"
         ]}
     />
 </div>
