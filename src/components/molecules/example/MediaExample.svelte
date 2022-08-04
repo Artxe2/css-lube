@@ -6,8 +6,8 @@ import MorphingText from "src/components/atoms/animation/MorphingText.svelte";
     <H3>Media</H3>
     <MorphingText
         array={[
-            `<span class="c=violet">@max-width=800px@</span><span class="c=red">bg=red</span>`,
-            `<span class="c=violet">@media (max-width:800px){</span> .bg\\=red{<span class="c=red">background-color:red</span>} <span class="c=violet">}</span>`
+            `<span class="c=violet">@maxWidth=800px@</span><span class="c=red">bg=red</span>`,
+            `<span class="c=violet">@media (max-width:800px){</span> .\\@maxWidth\\=800px\\@bg\\=red{<span class="c=red">background-color:red</span>} <span class="c=violet">}</span>`
         ]}
     />
 </div>

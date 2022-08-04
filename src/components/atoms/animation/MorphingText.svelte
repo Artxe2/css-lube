@@ -14,14 +14,26 @@ onMount(() => {
 		}
 		t2.innerHTML = array[index]
 		t1.className = t1.className.replace(/transition\=0s/, "transition=1s")
-			.replace(/filter\=blur\(0px\)/, "filter=blur(0.5rem)")
+			.replace(
+				"filter=blur(0px)",
+				"filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"
+			)
 		t2.className = t2.className.replace(/transition\=0s/, "transition=1s")
-			.replace(/filter\=blur\(0.5rem\)/, "filter=blur(0px)")
+			.replace(
+				"filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)",
+				"filter=blur(0px)",
+			)
 		setTimeout(() => {
 			t1.className = t1.className.replace(/transition\=1s/, "transition=0s")
-				.replace(/filter\=blur\(0.5rem\)/, "filter=blur(0px)")
+				.replace(
+					"filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)",
+					"filter=blur(0px)",
+				)
 			t2.className = t2.className.replace(/transition\=1s/, "transition=0s")
-				.replace(/filter\=blur\(0px\)/, "filter=blur(0.5rem)")
+				.replace(
+					"filter=blur(0px)",
+					"filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"
+				)
 			t1.innerHTML = array[index]
 		}, 500)
         setTimeout(animation, 2500)
@@ -30,9 +42,9 @@ onMount(() => {
 })
 </script>
 
-<div class="w=100% h=2rem fontSize=1.5rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none">
+<div class="w=100% h=2rem fontSize=1.5rem @maxWidth=800@fontSize=0.75rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none ">
 	<span class="transition=1s filter=blur(0px)" bind:this={t1}></span>
-	<span class="transition=1s filter=blur(0.5rem)" bind:this={t2}></span>
+	<span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)" bind:this={t2}></span>
 	<svg class="display=none">
 		<defs>
 			<filter id="filter">

@@ -36,6 +36,6 @@ onMount(() => {
 <div class="text-align=center">
   <div class="inlineBlock w=300 h=5rem">
     <span bind:this={word}></span>
-    <span class="font-size=1.5rem font-weight=bold">|</span>
+    <span class="fontSize=1.5rem fontWeight=bold">|</span>
   </div>
 </div>

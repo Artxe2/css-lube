@@ -19,8 +19,8 @@ import TypingText from "src/components/atoms/animation/TypingText.svelte";
     <TypingText
         array={[
             "background-color:red",
-            "background-color=blue",
-            "background-color=green;color=white"
+            "bg=blue;c=white",
+            "bg=green c=white :after/content='';w=50;h=10;bg=#ff0;inlineBlock"
         ]}
     />
     <div class="h=10"></div>

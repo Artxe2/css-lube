@@ -115,7 +115,12 @@ ol,ul,menu,dir{list-style:none;}`
 			let r = new RegExp(["[;=:]", ...Object.keys(V)].join("|"))
 			return t => {
 				if (C[t]) return
-				if (!r.test(t) || /\([^)]*$/.test(t)) C[t] = ""
+				if (
+					!r.test(t)
+					|| !/^([^']*\'[^']*\'[^']*|[^'])*$/.test(t)
+					|| !/^([^"]*\"[^"]*\"[^"]*|[^"])*$/.test(t)
+					|| /\([^)]*$/.test(t)
+				) C[t] = ""
 				else if (/^[^A-Za-z]/.test(t)) {
 					if (/@.+@.+/.test(t)) {
 						f(t)
@@ -132,8 +137,9 @@ ol,ul,menu,dir{list-style:none;}`
 			"/*reset↘*/",
 			R,
 			`/*↖reset\ninstant↘*/`,
+			...Object.values(C).filter(v => v),
 			...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
-			...Object.values(C).filter(v => v), "/*↖instant*/"
+			"/*↖instant*/"
 		].join("\n")
 	}
 	let c/*readClasslist*/ = () => {
