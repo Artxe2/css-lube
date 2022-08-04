@@ -47,12 +47,9 @@ ol,ul,menu,dir{list-style:none;}`
 		let i/*important*/ = t => {
 			if (!/\!$/.test(t)) return ""
 			let A/*index*/ = t.length - 2
-			let B/*count*/ = 1
-			while (t.charAt(A--) === "!") B++
-			let D/*prefix*/ = [B % 3 == 2 ? "html " : "", B % 3 ? "body " : ""]
-			B = parseInt(B / 3)
-			while (B--) D.push("[class]")
-			return D.join("")
+			let B/*prefix*/ = ["[class]"]
+			while (t.charAt(A--) === "!") B.push("[class]")
+			return B.join("")
 		}
 		let h/*parseValue*/ = (() => {
 			let z/*ariasUpper*/ = (() => {
