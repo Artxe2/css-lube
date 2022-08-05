@@ -21,7 +21,7 @@ import MorphingText from "src/components/atoms/animation/MorphingText.svelte";
         ]}
     />
     <div class="h=15"></div>
-    <span>클래스명이 그대로 스타일에 적용되기 때문에 ";"를 사용하면 클래스명 하나에 여러 스타일을 적용할 수 있습니다.</span>
+    <span>클래스명이 그대로 스타일에 적용되기 때문에 ";"를 사용하면 클래스명 하나에 여러 스타일을 적용할 수도 있습니다.</span>
     <MorphingText
         array={[
             `<span class="c=red">color:blue;font-size:14px</span>`,

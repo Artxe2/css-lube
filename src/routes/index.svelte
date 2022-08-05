@@ -1,6 +1,6 @@
 <script lang="ts">
 import AppBar from "src/components/molecules/AppBar.svelte";
-import ImportantExample from "src/components/molecules/example/ImportantExample.svelte";
+import PriorityExample from "src/components/molecules/example/PriorityExample.svelte";
 import H1 from "src/components/atoms/texts/H1.svelte";
 import SimpleButton from "src/components/atoms/buttons/SimpleButton.svelte";
 import BasicExample from "src/components/molecules/example/BasicExample.svelte";
@@ -37,7 +37,7 @@ import HowToUse from "src/components/molecules/example/HowToUse.svelte";
     <div class="h=50"></div>
     <SelectorExample />
     <div class="h=50"></div>
-    <ImportantExample />
+    <PriorityExample />
     <div class="h=50"></div>
     <MediaExample />
     <div class="h=100"></div>

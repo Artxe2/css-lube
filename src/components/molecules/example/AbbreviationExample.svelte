@@ -6,7 +6,7 @@ import MorphingText from "src/components/atoms/animation/MorphingText.svelte";
 <div class="text-align=center">
     <H3>Abbreviation</H3>
     <span>instant-css는 개발 속도 향상을 위해 여러가지 방식의 약어를 지원합니다.</span><br />
-    <span>자세한 명세서는 <a href="./grammar" class="c=blue fw=bold">추가 문법 페이지</a>에서 확인이 가능합니다.</span><br /><br />
+    <span>자세한 명세서는 </span><a href="./grammar" class="c=blue fw=bold">추가 문법 페이지</a><span>에서 확인이 가능합니다.</span><br /><br />
     <span>":" 대신 "=" 사용 가능</span>
     <MorphingText
         array={[

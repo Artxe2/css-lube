@@ -8,10 +8,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="./app.css" />
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="./_app/start-44a75e7f.js">
+	<link rel="modulepreload" href="./_app/start-238b5486.js">
 	<link rel="modulepreload" href="./_app/chunks/vendor-830d03de.js">
 	<link rel="modulepreload" href="./_app/layout.svelte-a0279574.js">
-	<link rel="modulepreload" href="./_app/pages/index.svelte-97e15bc4.js">
+	<link rel="modulepreload" href="./_app/pages/index.svelte-c9181350.js">
 	<link rel="modulepreload" href="./_app/chunks/H1-12d331b2.js">
 	</head>
 	<body>
@@ -30,12 +30,12 @@
     <div class="textAlign=center @maxWidth=800@>span/fs=0.75rem"><h2 class="fs=2.5rem fw=bold @maxWidth=800@fs=1.25rem">How to use</h2>
     <span>사용하고 있는 JS 라이브러리와 상관없이 HTML 파일에 instant-css를 스크립트 태그로 추가하세요.</span><br>
     <span>instant-css가 자동으로 적용됩니다.</span><br>
-    <div class="bg=#bbb inlineBlock textAlign=left fw=bold">&lt;body&gt;<br>
+    <div class="bg=#bbb inlineBlock textAlign=left fw=bold p=10">&lt;body&gt;<br>
             ...<br>
             &lt;script src=<span class="c=#f40">&quot;./instant-css.js&quot;</span>&gt;&lt;/script&gt;<br>
         &lt;/body&gt;
     </div><br>
-    <span><a href="./test" class="c=blue fw=bold">기능 테스트 페이지</a>에서 미리 사용해보실 수도 있습니다.</span></div>
+    <a href="./test" class="c=blue fw=bold">기능 테스트 페이지</a><span>에서 미리 사용해보실 수도 있습니다.</span></div>
     <div class="h=50"></div>
     <div class="textAlign=center @maxWidth=800@>span/fs=0.75rem"><h2 class="fs=2.5rem fw=bold @maxWidth=800@fs=1.25rem">Basic</h2>
     <span>instant-css를 사용하면 클래스명 그대로 스타일에 적용해줍니다.</span>
@@ -54,7 +54,7 @@
 					  0 0 1 0 0
 					  0 0 0 255 -140"></feColorMatrix></filter></defs></svg></div>
     <div class="h=15"></div>
-    <span>클래스명이 그대로 스타일에 적용되기 때문에 &quot;;&quot;를 사용하면 클래스명 하나에 여러 스타일을 적용할 수 있습니다.</span>
+    <span>클래스명이 그대로 스타일에 적용되기 때문에 &quot;;&quot;를 사용하면 클래스명 하나에 여러 스타일을 적용할 수도 있습니다.</span>
     <div class="w=100% h=3rem fontSize=1.5rem @maxWidth=800@h=2.25rem;fontSize=0.75rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none "><span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"></span>
 	<span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"></span>
 	<svg class="display=none"><defs><filter id="filter"><feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
@@ -78,7 +78,7 @@
     <div class="h=50"></div>
     <div class="text-align=center"><h3 class="fs=2rem fw=bold @maxWidth=800@fs=1rem">Abbreviation</h3>
     <span>instant-css는 개발 속도 향상을 위해 여러가지 방식의 약어를 지원합니다.</span><br>
-    <span>자세한 명세서는 <a href="./grammar" class="c=blue fw=bold">추가 문법 페이지</a>에서 확인이 가능합니다.</span><br><br>
+    <span>자세한 명세서는 </span><a href="./grammar" class="c=blue fw=bold">추가 문법 페이지</a><span>에서 확인이 가능합니다.</span><br><br>
     <span>&quot;:&quot; 대신 &quot;=&quot; 사용 가능</span>
     <div class="w=100% h=3rem fontSize=1.5rem @maxWidth=800@h=2.25rem;fontSize=0.75rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none "><span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"></span>
 	<span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"></span>
@@ -152,8 +152,19 @@
 					  0 0 1 0 0
 					  0 0 0 255 -140"></feColorMatrix></filter></defs></svg></div></div>
     <div class="h=50"></div>
-    <div class="text-align=center"><div class="inline-block w=300 h=150"><h3 class="fs=2rem fw=bold @maxWidth=800@fs=1rem">Important</h3>
-        <span></span></div></div>
+    <div class="text-align=center"><h3 class="fs=2rem fw=bold @maxWidth=800@fs=1rem">Important</h3>
+    <span>기본 문법으로 직접 스타일에 important를 선언해줄 수도 있지만</span><br>
+    <span>instant-css에서는 클래스명 뒤에 !를 붙이는 것으로 우선순위를 높일 수 있습니다.</span><br>
+    <br>
+    <div class="bg=#bbb inlineBlock textAlign=left fw=bold p=10">&lt;style&gt;<br>
+            ...<br>
+            [class][class][class].c\=yellow\!\!\!{color:yellow}<br>
+            [class][class].c\=orange\!\!{color:orange}<br>
+            [class].c\=red\!{color:red}<br>
+        &lt;/style&gt;
+    </div><br>
+    <br>
+    <div class=""><span></span></div></div>
     <div class="h=50"></div>
     <div class="textAlign=center"><h3 class="fs=2rem fw=bold @maxWidth=800@fs=1rem">Media</h3>
     <div class="w=100% h=3rem fontSize=1.5rem @maxWidth=800@h=2.25rem;fontSize=0.75rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none "><span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)"></span>
@@ -165,10 +176,10 @@
     <div class="h=100"></div></div>
 
 
-		<script type="module" data-hydrate="13gt0gj">
-		import { start } from "./_app/start-44a75e7f.js";
+		<script type="module" data-hydrate="1ro2ai0">
+		import { start } from "./_app/start-238b5486.js";
 		start({
-			target: document.querySelector('[data-hydrate="13gt0gj"]').parentNode,
+			target: document.querySelector('[data-hydrate="1ro2ai0"]').parentNode,
 			paths: {"base":"","assets":""},
 			session: {},
 			route: true,
@@ -179,7 +190,7 @@
 				error: null,
 				nodes: [
 					import("./_app/layout.svelte-a0279574.js"),
-						import("./_app/pages/index.svelte-97e15bc4.js")
+						import("./_app/pages/index.svelte-c9181350.js")
 				],
 				params: {}
 			}

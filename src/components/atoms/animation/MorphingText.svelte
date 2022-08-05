@@ -9,7 +9,6 @@ let index = array.length - 2
 onMount(() => {
     const animation = () => {
 		if (!t1) return
-		t1.innerHTML = array[index]
 		if (++index == array.length) {
 			index = 0
 		}
@@ -21,7 +20,7 @@ onMount(() => {
 			)
 		t2.className = t2.className.replace(/transition\=0s/, "transition=1s")
 			.replace(
-				"filter=blur(0.5rem) filter=blur(0.25rem)",
+				"filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)",
 				"filter=blur(0px)",
 			)
 		setTimeout(() => {
