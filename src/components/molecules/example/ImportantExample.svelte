@@ -37,11 +37,13 @@ onMount(() => {
         "bg=red!"
     ].join(" ")
     const setText = (a, b) => {
+		if (!word) return
         text = text.replace(a, b)
         word.innerText = text
         word.className = text
     }
     const animation = () => {
+		if (!word) return
     	let time = 10
         setTimeout(() => setText(/.+/, start), time)
         setTimeout(() => setText(/red/, "red!"), time = 900)

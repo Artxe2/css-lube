@@ -1,3 +1,3 @@
-<h1 class="font-size=2rem;font-weight=bold @maxWidth=800@fontSize=1rem">
+<h3 class="fs=2rem fw=bold @maxWidth=800@fs=1rem">
     <slot></slot>
-</h1>
+</h3>

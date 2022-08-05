@@ -1,5 +1,5 @@
 (() => {
-	let R/*RESET*/ = `*{margin:0;padding:0;font:inherit;color:inherit;}
+	const RESET = `*{margin:0;padding:0;font:inherit;color:inherit;}
 *,:after,:before{box-sizing:border-box;flex-shrink:0;}
 :root{-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;word-break:break-word;tab-size:2}
 html,body{height:100%;}
@@ -8,16 +8,20 @@ button{background:none;border:0;cursor:pointer;}
 a{text-decoration:none;}
 table{border-collapse:collapse;border-spacing:0;}
 ol,ul,menu,dir{list-style:none;}`
-	let K/*ARIAS_KEYS*/ = JSON.parse(`{
+	const abbrKeys = JSON.parse(`{
 "bg":"background-color",
+"br":"border-radius",
 "c":"color",
-"w":"width",
+"fs":"font-size",
+"ff":"font-family",
+"fw":"font-weight",
 "h":"height",
+"lh":"line-height",
 "m":"margin",
 "p":"padding",
-"br":"border-radius"
+"w":"width"
 }`)
-	let V/*ARIAS_VALUES*/ = JSON.parse(`{
+	const abbrValues = JSON.parse(`{
 "block":"display:block",
 "flex":"display:flex",
 "inline-block":"display:inline-block",
@@ -28,134 +32,154 @@ ol,ul,menu,dir{list-style:none;}`
 "absolute":"position:absolute",
 "relative":"position:relative"
 }`)
-	let S/*styles*/ = document.createElement("style")
-	S.innerHTML = "body{display:none!important}"
-	document.head.appendChild(S)
-	let set = new Set()
-	let M/*media*/ = {}
-	let C/*css*/ = {}
-	let e/*compileStyle*/ = (() => {
-		let k/*raw*/ = t => [
+	const styleSheet = document.createElement("style")
+	styleSheet.innerHTML = "body{display:none!important}"
+	document.head.appendChild(styleSheet)
+	const set = new Set()
+	const media = {}
+	const css = {}
+	const compileStyle = (() => {
+		const compileRaw = t => [
 			CSS.escape(t),
-			"{", h(t), "}"
+			"{", parseValue(t), "}"
 		].join("")
-		let j/*special*/ = t => [
+		const compileSpecial = t => [
 			CSS.escape(t),
 			t.replace(/\/.+/, "").replace(/_/g, " "),
-			"{", h(t.replace(/.+?\//, "")), "}"
+			"{", parseValue(t.replace(/.+?\//, "")), "}"
 		].join("")
-		let i/*important*/ = t => {
+		const parsePriority = t => {
 			if (!/\!$/.test(t)) return ""
-			let A/*index*/ = t.length - 2
-			let B/*prefix*/ = ["[class]"]
-			while (t.charAt(A--) === "!") B.push("[class]")
-			return B.join("")
+			let index = t.length - 2
+			let prefix = ["[class]"]
+			while (t.charAt(index--) === "!") prefix.push("[class]")
+			return prefix.join("")
 		}
-		let h/*parseValue*/ = (() => {
-			let z/*ariasUpper*/ = (() => {
+		const parseValue = (() => {
+			let abbrEqual = t => t.replace(/=/g, ":")
+			let abbrUpper = (() => {
 				let r = /[A-Z]/g
 				return t => t.replace(r, s => "-" + s.toLowerCase())
 			})()
-			let y/*ariasKey*/ = (() => {
-				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(K).join("|"), ")(?=:)"].join(""), "g")
-				return t => t.replace(r, s => K[s])
+			let abbrKey = (() => {
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(abbrKeys).join("|"), ")(?=:)"].join(""), "g")
+				return t => t.replace(r, s => abbrKeys[s])
 			})()
-			let x/*ariasValue*/ = (() => {
-				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(V).join("|"), ")(?=;|$)"].join(""), "g")
-				return t => t.replace(r, s => V[s])
+			let abbrValue = (() => {
+				let r = new RegExp(["(?<=^|\/|;)(", Object.keys(abbrValues).join("|"), ")(?=;|$)"].join(""), "g")
+				return t => t.replace(r, s => abbrValues[s])
 			})()
-			let v/*ariasCalc*/ = (() => {
+			let abbrPx = (() => {
+				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom|font-size):-?\d+(?=;|$)/g
+				return t => t.replace(r, s => s + "px")
+			})()
+			let abbrCalc = (() => {
 				let r = /(?<=calc\(.+?) *[+\-*/] *(?=.+?\))/g
 				return t => t.replace(r, s => [" ", s, " "].join(""))
 			})()
-			let w/*ariasPx*/ = (() => {
-				let r = /(?<=width|height|margin|padding|border-radius|left|right|top|bottom):-?\d+(?=;|$)/g
-				return t => t.replace(r, s => s + "px")
+			let abbrVar = (() => {
+				let r = /(?<=:)--[^ ;]+(?=;|$)/g
+				return t => t.replace(r, s => ["var(", s, ")"].join(""))
 			})()
-			return t => v(w(x(y(z(
-				t.replace(/=/g, ":").replace(/_/g, " ").replace(/\!+$/, "")
-			)))))
+			return t => abbrVar(
+				abbrCalc(
+					abbrPx(
+						abbrValue(
+							abbrKey(
+								abbrUpper(
+									abbrEqual(
+										t.replace(/_/g, " ").replace(/\!+$/, "")
+									)
+								)
+							)
+						)
+					)
+				)
+			)
 		})()
-		let g/*parseQuery*/ = t => {
+		const parseQuery = t => {
 			t = t.replace(/^!/, "not ").replace(/&/g, " and ")
 				.replace(/[^ ]+=[^ ]+/g, s => {
 					if (/~/.test(s)) {
-						let A/*name*/ = s.replace(/=.+/, "")
-						let B/*unit*/ = s.replace(/.+~\d+/, "") || "px"
+						let name = s.replace(/=.+/, "")
+						let unit = s.replace(/.+~\d+/, "") || "px"
 						return [
 							"(min-",
-							A, ":", s.replace(/.+=|~.+/g, ""), B,
+							name, ":", s.replace(/.+=|~.+/g, ""), unit,
 							") and (max-",
-							A, ":", s.replace(/.+~|[^\d]+/g, ""), B,
+							name, ":", s.replace(/.+~|[^\d]+/g, ""), unit,
 							")"
 						].join("")
 					}
-					return ["(", h(s), ")"].join("")
+					return ["(", parseValue(s), ")"].join("")
 				})
 			return ["@media ", t, "{"].join("")
 		}
-		let f/*compileMedia*/ = t => {
-			let A/*query*/ = t.replace(/^@|@.+/g, "")
-			let B/*group*/ = M[A]
-			if (!B) {
-				M[A] = [g(A), {}]
-				B = M[A]
-			} else if (B[t]) return
-			let D/*name*/ = t.replace(/.+@/, "")
-			B[1][t] = [
-				"	", i(D), ".",
+		const compileMedia = t => {
+			let query = t.replace(/^@|@.+/g, "")
+			let group = media[query]
+			if (!group) {
+				media[query] = [parseQuery(query), {}]
+				group = media[query]
+			} else if (group[t]) return
+			let name = t.replace(/.+@/, "")
+			group[1][t] = [
+				"	", parsePriority(name), ".",
 				CSS.escape(t.replace(/(?<=.+@).+/, "")),
-				/^[^a-z]/.test(D) ? j(D) : k(D)
+				/^[^a-z]/.test(name) ? compileSpecial(name) : compileRaw(name)
 			].join("")
 		}
 		return (() => {
-			let r = new RegExp(["[;=:]", ...Object.keys(V)].join("|"))
+			let r = new RegExp(["[;=:]", ...Object.keys(abbrValues)].join("|"))
 			return t => {
-				if (C[t]) return
+				if (css[t]) return
 				if (
 					!r.test(t)
 					|| !/^([^']*\'[^']*\'[^']*|[^'])*$/.test(t)
 					|| !/^([^"]*\"[^"]*\"[^"]*|[^"])*$/.test(t)
 					|| /\([^)]*$/.test(t)
-				) C[t] = ""
+				) css[t] = ""
 				else if (/^[^A-Za-z]/.test(t)) {
 					if (/@.+@.+/.test(t)) {
-						f(t)
+						compileMedia(t)
 					} else {
-						C[t] = [i(t), ".", j(t)].join("")
+						css[t] = [parsePriority(t), ".", compileSpecial(t)].join("")
 					}
-				} else C[t] = [i(t), ".", k(t)].join("")
+				} else css[t] = [parsePriority(t), ".", compileRaw(t)].join("")
 			}
 		})()
 	})()
-	let d/*compileStyles*/ = () => {
-		set.forEach(t => e(t))
-		S.innerHTML = [
+	const buildStyleSheet = () => {
+		set.forEach(t => compileStyle(t))
+		styleSheet.innerHTML = [
 			"/*reset↘*/",
-			R,
+			RESET,
 			`/*↖reset\ninstant↘*/`,
-			...Object.values(C).filter(v => v),
-			...Object.values(M).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
+			...Object.values(css).filter(v => v),
+			...Object.values(media).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
 			"/*↖instant*/"
 		].join("\n")
 	}
-	let c/*readClasslist*/ = () => {
+	const colectClassList = () => {
 		let size = set.size
 		document.querySelectorAll("*[class]").forEach(
 			A => A.classList.forEach(B => set.add(B))
 		)
-		set.size - size && d() && S.parentNode !== document.head && document.head.appendChild(S)
+		set.size - size && buildStyleSheet()
+			&& styleSheet.parentNode !== document.head 
+			&& document.head.appendChild(styleSheet)
 	}
-	let b/*observe*/ = () => document.body && new MutationObserver(c)
-		.observe(document.body, {
-			attributeFilter: ["class"],
-			childList: 1,
-			subtree: 1,
-		})
-	let a/*onReady*/ = () => {
-		c()
-		b()
-		document.removeEventListener("readystatechange", a)
+	const observeClassList = () => document.body
+		&& new MutationObserver(colectClassList)
+			.observe(document.body, {
+				attributeFilter: ["class"],
+				childList: 1,
+				subtree: 1,
+			})
+	const onReady = () => {
+		colectClassList()
+		observeClassList()
+		document.removeEventListener("readystatechange", onReady)
 	}
-	document.addEventListener("readystatechange", a)
+	document.addEventListener("readystatechange", onReady)
 })()
