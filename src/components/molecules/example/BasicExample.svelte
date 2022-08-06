@@ -3,7 +3,7 @@ import H2 from "src/components/atoms/texts/H2.svelte";
 import MorphingText from "src/components/atoms/animation/MorphingText.svelte";
 </script>
 
-<div class="textAlign=center @maxWidth=800@>span/fs=0.75rem">
+<div class="@maxWidth=800@_span/fs=0.75rem">
     <H2>Basic</H2>
     <span>instant-css를 사용하면 클래스명 그대로 스타일에 적용해줍니다.</span>
     <MorphingText

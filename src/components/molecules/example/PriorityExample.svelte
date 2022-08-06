@@ -3,8 +3,8 @@ import PriorityText from "src/components/atoms/animation/PriorityText.svelte";
 import H3 from "src/components/atoms/texts/H3.svelte";
 </script>
 
-<div class="text-align=center">
-    <H3>Important</H3>
+<div class="@maxWidth=800@_span/fs=0.75rem">
+    <H3>Priority</H3>
     <span>기본 문법으로 직접 스타일에 important를 선언해줄 수도 있지만</span><br />
     <span>instant-css에서는 클래스명 뒤에 !를 붙이는 것으로 우선순위를 높일 수 있습니다.</span><br />
     <br />

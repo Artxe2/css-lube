@@ -9,36 +9,56 @@ import MediaExample from "src/components/molecules/example/MediaExample.svelte";
 import AbbreviationExample from "src/components/molecules/example/AbbreviationExample.svelte";
 import TypingText from "src/components/atoms/animation/TypingText.svelte";
 import HowToUse from "src/components/molecules/example/HowToUse.svelte";
+import CenterWidth80 from "src/components/atoms/layout/CenterWidth80.svelte";
+import DarkModeExample from "src/components/molecules/example/DarkModeExample.svelte";
 </script>
-<div id="root" class="flex column bg=var(--background) min-height=100%">
+<div id="root" class="flex column bg=--background @prefersColorScheme=dark@bg=--backgroundD min-height=100%">
     <AppBar></AppBar>
-    <div class="text-align=center">
+    <CenterWidth80>
         <H1>Build modern websites on the spot!</H1>
         <H1>Takes only 3 minutes to learn.</H1>
-    </div>
+    </CenterWidth80>
     <div class="h=30"></div>
-    <TypingText
-        array={[
-            "background-color:red",
-            "bg=blue;c=white",
-            "bg=green c=white :after/content='';w=25;h=10;bg=#ff0;inlineBlock"
-        ]}
-    />
-    <div class="text-align=center">
+    <CenterWidth80>
+        <TypingText
+            array={[
+                "background-color:red",
+                "bg=blue;c=white",
+                "bg=green c=white :after/content='';w=25;h=10;bg=#ff0;inlineBlock"
+            ]}
+        />
+    </CenterWidth80>
+    <div class="textAlign=center">
         <SimpleButton href="https://raw.githubusercontent.com/Artxe2/instant-css/main/instant-css-0.2.0.min.js"
         >Download</SimpleButton>
     </div>
     <div class="h=10"></div>
-    <HowToUse />
+    <CenterWidth80>
+        <HowToUse />
+    </CenterWidth80>
     <div class="h=50"></div>
-    <BasicExample />
+    <CenterWidth80>
+        <BasicExample />
+    </CenterWidth80>
+    <div class="h=70"></div>
+    <CenterWidth80>
+        <AbbreviationExample />
+    </CenterWidth80>
     <div class="h=50"></div>
-    <AbbreviationExample />
+    <CenterWidth80>
+        <SelectorExample />
+    </CenterWidth80>
     <div class="h=50"></div>
-    <SelectorExample />
+    <CenterWidth80>
+        <PriorityExample />
+    </CenterWidth80>
     <div class="h=50"></div>
-    <PriorityExample />
+    <CenterWidth80>
+        <MediaExample />
+    </CenterWidth80>
     <div class="h=50"></div>
-    <MediaExample />
+    <CenterWidth80>
+        <DarkModeExample />
+    </CenterWidth80>
     <div class="h=100"></div>
 </div>

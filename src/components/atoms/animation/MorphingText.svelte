@@ -48,7 +48,7 @@ onMount(() => {
 })
 </script>
 
-<div class="w=100% h=3rem fontSize=1.5rem @maxWidth=800@h=2.25rem;fontSize=0.75rem fontWeight=bold textAlign=left filter=url(#filter) >span/absolute;w=100%;textAlign=center;user-select=none ">
+<div class="w=100% h=3rem textAlign=center fs=1.5rem @maxWidth=800@h=2.25rem;fs=0.75rem fw=bold filter=url(#filter) >span/absolute;w=100%;transform=translateX(-50%);user-select=none">
 	<span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)" bind:this={t1}></span>
 	<span class="transition=1s filter=blur(0.5rem) @maxWidth=800@filter=blur(0.25rem)" bind:this={t2}></span>
 	<svg class="display=none">

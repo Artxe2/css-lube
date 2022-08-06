@@ -1,14 +1,15 @@
 (() => {
-	const RESET = `*{margin:0;padding:0;font:inherit;color:inherit;}
-*,:after,:before{box-sizing:border-box;flex-shrink:0;}
+	const RESET = `*{margin:0;padding:0;font:inherit;color:inherit}
+*,:after,:before{box-sizing:border-box;flex-shrink:0}
 :root{-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;word-break:break-word;tab-size:2}
-html,body{height:100%;}
-img,picture,video,canvas{display:block;max-width:100%;}
-button{background:none;border:0;cursor:pointer;}
-a{text-decoration:none;}
-table{border-collapse:collapse;border-spacing:0;}
-ol,ul,menu,dir{list-style:none;}`
+html,body{height:100%}
+img,picture,video,canvas{display:block;max-width:100%}
+button{background:none;border:0;cursor:pointer}
+a{text-decoration:none}
+table{border-collapse:collapse;border-spacing:0}
+ol,ul,menu,dir{list-style:none}`
 	const abbrKeys = JSON.parse(`{
+"b":"border",
 "bg":"background-color",
 "br":"border-radius",
 "c":"color",
@@ -58,7 +59,7 @@ ol,ul,menu,dir{list-style:none;}`
 		const parseValue = (() => {
 			let abbrEqual = t => t.replace(/=/g, ":")
 			let abbrUpper = (() => {
-				let r = /[A-Z]/g
+				let r = /[A-Z](?!\()/g
 				return t => t.replace(r, s => "-" + s.toLowerCase())
 			})()
 			let abbrKey = (() => {
@@ -138,10 +139,11 @@ ol,ul,menu,dir{list-style:none;}`
 					|| !/^([^']*\'[^']*\'[^']*|[^'])*$/.test(t)
 					|| !/^([^"]*\"[^"]*\"[^"]*|[^"])*$/.test(t)
 					|| /\([^)]*$/.test(t)
-				) css[t] = ""
+				) css[t] = " "
 				else if (/^[^A-Za-z]/.test(t)) {
 					if (/@.+@.+/.test(t)) {
 						compileMedia(t)
+						css[t] = " "
 					} else {
 						css[t] = [parsePriority(t), ".", compileSpecial(t)].join("")
 					}
@@ -155,7 +157,7 @@ ol,ul,menu,dir{list-style:none;}`
 			"/*reset↘*/",
 			RESET,
 			`/*↖reset\ninstant↘*/`,
-			...Object.values(css).filter(v => v),
+			...Object.values(css).filter(v => v !== " "),
 			...Object.values(media).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
 			"/*↖instant*/"
 		].join("\n")

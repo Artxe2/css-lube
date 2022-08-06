@@ -36,11 +36,7 @@ onMount(() => {
 })
 </script>
 
-<div class="text-align=center">
-  <div class="inlineBlock w=400 h=5rem fw=bold @maxWidth=800@fs=0.75rem">
-	<span bind:this={wrap}>
-		&lt;span class="<span bind:this={word}></span>
-		<span class="absolute transform=translate(-5px,-5px) fontSize=1.2rem @maxWidth=800@fs=0.9rem;transform=translate(-4px,-4px) fw=bold">|</span>"&gt;&lt;/span&gt;
-	</span>
-  </div>
-</div>
+<span bind:this={wrap} class="fw=bold @maxWidth=800@fs=0.75rem">
+	&lt;span class="<span bind:this={word}></span>
+	<span class="absolute transform=translate(-5px,-5px) fontSize=1.2rem @maxWidth=800@fs=0.9rem;transform=translate(-4px,-4px) fw=bold">|</span>"&gt;&lt;/span&gt;
+</span>

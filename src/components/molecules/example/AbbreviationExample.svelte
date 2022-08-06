@@ -3,7 +3,7 @@ import H3 from "src/components/atoms/texts/H3.svelte";
 import MorphingText from "src/components/atoms/animation/MorphingText.svelte";
 </script>
 
-<div class="text-align=center">
+<div class="@maxWidth=800@_span/fs=0.75rem">
     <H3>Abbreviation</H3>
     <span>instant-css는 개발 속도 향상을 위해 여러가지 방식의 약어를 지원합니다.</span><br />
     <span>자세한 명세서는 </span><a href="./grammar" class="c=blue fw=bold">추가 문법 페이지</a><span>에서 확인이 가능합니다.</span><br /><br />
