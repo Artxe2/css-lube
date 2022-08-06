@@ -30,6 +30,7 @@ import FloatingButton from "src/components/molecules/FloatingButton.svelte";
             ]}
         />
     </CenterWidth80>
+    <div class="h=10"></div>
     <div class="textAlign=center">
         <SimpleButton href="https://raw.githubusercontent.com/Artxe2/instant-css/main/instant-css-0.2.0.min.js"
         >Download</SimpleButton>

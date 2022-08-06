@@ -36,7 +36,7 @@ onMount(() => {
 })
 </script>
 
-<span bind:this={wrap} class="fw=bold @maxWidth=800@fs=0.75rem">
+<span bind:this={wrap} class="relative fw=bold @maxWidth=800@fs=0.75rem">
 	&lt;span class="<span bind:this={word}></span>
-	<span class="absolute transform=translate(-5px,-5px) fontSize=1.2rem @maxWidth=800@fs=0.9rem;transform=translate(-4px,-4px) fw=bold">|</span>"&gt;&lt;/span&gt;
+	<span class="marginLeft=-5px fs=1.2rem @maxWidth=800@marginLeft=-4px;fs=0.9rem fw=bold">|</span>"&gt;&lt;/span&gt;
 </span>

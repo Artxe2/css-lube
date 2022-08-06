@@ -11,6 +11,5 @@ import H2 from "src/components/atoms/texts/H2.svelte";
         &nbsp;&nbsp;&nbsp;&nbsp;...<br />
         &nbsp;&nbsp;&nbsp;&nbsp;&lt;script src=<span class="c=#f40">"./instant-css.js"</span>&gt;&lt;/script&gt;<br />
         &lt;/body&gt;
-    </div><br />
-    <a href="./test" class="c=blue fw=bold">기능 테스트 페이지</a><span>에서 미리 사용해보실 수도 있습니다.</span>
+    </div>
 </div>
