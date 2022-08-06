@@ -16,7 +16,7 @@ onMount(() => {
 
 <div id="root" class="bg=#dddddd;w=100%;min-height=100%;display:flex">
     <textarea id="editor" class="bg=#00000000;w=50%;border=1px_solid_black">{`<div id="view">
-    <div class="display=flex;flexWrap=wrap;border=1px_solid_black _div/inlineBlock;m=10px">
+    <div class="flex flexWrap=wrap;border=1px_solid_black _div/inlineBlock;m=10px">
         <div class="bg=red c=white">div</div>
         <div class="bg=orange! bg=red c=white">div</div>
         <div class="bg=yellow!! bg=orange! bg=red c=white">div</div>

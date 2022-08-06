@@ -23,14 +23,16 @@ ol,ul,menu,dir{list-style:none}`
 "w":"width"
 }`)
 	const abbrValues = JSON.parse(`{
+"absolute":"position:absolute",
 "block":"display:block",
+"column":"flex-direction:column",
 "flex":"display:flex",
+"fixed":"position:fixed",
 "inline-block":"display:inline-block",
 "inlineBlock":"display:inline-block",
+"none":"display:none",
 "pointer":"cursor:pointer",
-"column":"flex-direction:column",
 "row":"flex-direction:row",
-"absolute":"position:absolute",
 "relative":"position:relative"
 }`)
 	const styleSheet = document.createElement("style")
@@ -158,7 +160,22 @@ ol,ul,menu,dir{list-style:none}`
 			RESET,
 			`/*↖reset\ninstant↘*/`,
 			...Object.values(css).filter(v => v !== " "),
-			...Object.values(media).map(v => [v[0], ...Object.values(v[1]), "}"].join("\n")),
+			...Object.values(media).map(v => {
+                if (
+                    window["PREFERS_COLOR_SCHEME"]
+                    && /prefers-color-scheme:dark/.test(v[0])
+                ) {
+                    let substr = v[0].slice(0, v[0].length - 1)
+                    return window["PREFERS_COLOR_SCHEME"] === "DARK"
+                        ? [
+                            ["/* ", substr, "is ignored */"].join(""),
+                            ...Object.values(v[1]),
+                            ""
+                        ].join("\n")
+                        : ["/* ", substr, "is ignored */"].join("")
+                }
+                return [v[0], ...Object.values(v[1]), "}"].join("\n")
+            }),
 			"/*↖instant*/"
 		].join("\n")
 	}
@@ -168,7 +185,7 @@ ol,ul,menu,dir{list-style:none}`
 			A => A.classList.forEach(B => set.add(B))
 		)
 		set.size - size && buildStyleSheet()
-			&& styleSheet.parentNode !== document.head 
+		styleSheet.parentNode !== document.head 
 			&& document.head.appendChild(styleSheet)
 	}
 	const observeClassList = () => document.body
@@ -183,5 +200,9 @@ ol,ul,menu,dir{list-style:none}`
 		observeClassList()
 		document.removeEventListener("readystatechange", onReady)
 	}
+    window["setPrefersColorScheme"] = type => {
+        window["PREFERS_COLOR_SCHEME"] = type
+        buildStyleSheet()
+    }
 	document.addEventListener("readystatechange", onReady)
 })()

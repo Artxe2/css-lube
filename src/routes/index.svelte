@@ -1,5 +1,5 @@
 <script lang="ts">
-import AppBar from "src/components/molecules/AppBar.svelte";
+import AppBar from "src/components/molecules/appbar/AppBar.svelte";
 import PriorityExample from "src/components/molecules/example/PriorityExample.svelte";
 import H1 from "src/components/atoms/texts/H1.svelte";
 import SimpleButton from "src/components/atoms/buttons/SimpleButton.svelte";
@@ -11,9 +11,13 @@ import TypingText from "src/components/atoms/animation/TypingText.svelte";
 import HowToUse from "src/components/molecules/example/HowToUse.svelte";
 import CenterWidth80 from "src/components/atoms/layout/CenterWidth80.svelte";
 import DarkModeExample from "src/components/molecules/example/DarkModeExample.svelte";
+import FloatingButton from "src/components/atoms/buttons/FloatingButton.svelte";
+import TestEditor from "src/components/organisms/index/TestEditor.svelte";
+
+let toggleView
 </script>
-<div id="root" class="flex column bg=--background @prefersColorScheme=dark@bg=--backgroundD min-height=100%">
-    <AppBar></AppBar>
+<AppBar></AppBar>
+<div id="root" class="flex column bg=--background @prefersColorScheme=dark@bg=--backgroundD h=calc(100vh-60px) overflow=scroll overflowX=hidden">
     <CenterWidth80>
         <H1>Build modern websites on the spot!</H1>
         <H1>Takes only 3 minutes to learn.</H1>
@@ -62,3 +66,5 @@ import DarkModeExample from "src/components/molecules/example/DarkModeExample.sv
     </CenterWidth80>
     <div class="h=100"></div>
 </div>
+<FloatingButton onClick={toggleView}>test</FloatingButton>
+<TestEditor bind:toggleView={toggleView} />
