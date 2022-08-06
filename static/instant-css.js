@@ -154,6 +154,7 @@ ol,ul,menu,dir{list-style:none}`
 		})()
 	})()
 	const buildStyleSheet = () => {
+		// console.log("instant-css:", set.size)
 		set.forEach(t => compileStyle(t))
 		styleSheet.innerHTML = [
 			"/*reset↘*/",
