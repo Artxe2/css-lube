@@ -23,7 +23,7 @@ onMount(() => _root.addEventListener("scroll", e => checkScroll(e.target.scrollT
 <AppBar
     bind:checkScroll={checkScroll}
 ></AppBar>
-<div bind:this={_root} class="flex column bg=white h=100vh overflowX=hidden ::-webkit-scrollbar/w=0.75 ::-webkit-scrollbar-track/bg=#3b599850 ::-webkit-scrollbar-thumb/bg=--primary;br=0.25">
+<div bind:this={_root} class="flex column bg=white w=100% h=100% overflowX=hidden ::-webkit-scrollbar/w=0.75 ::-webkit-scrollbar-track/bg=#3b599850 ::-webkit-scrollbar-thumb/bg=--primary;br=0.25">
     <PaperAndToolsImgSection>
         <div class="h=9"></div>
         <CenterWidth80>

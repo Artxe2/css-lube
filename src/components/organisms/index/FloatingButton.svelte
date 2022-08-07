@@ -7,7 +7,7 @@ let modalOut
 let modal
 let isOpen = false
 const css1 = "z=1100 fixed bg=var(--primary) color=white br=0.25 opacity=0.75 transition=0.5s "
-const css2 = "top=calc(100vh-4em) left=calc(100vw-4em) right=-1.25 bottom=-1.25 :hover/top=calc(100vh-5em) :hover/left=calc(100vw-5em) :hover/fs=1.25em;opacity=1 :hover_span/opacity=1"
+const css2 = "top=calc(100vh-8em) left=calc(100vw-2em) right=-1.25 bottom=-1.25 :hover/top=calc(100vh-10em) :hover/left=calc(100vw-5em) :hover/fs=1.25em;opacity=1 :hover_span/opacity=1"
 const css3 = "top=5vh left=5vw right=5vw bottom=5vh opacity=1!"
 const openEditor = () => {
     if (!isOpen) {
@@ -39,7 +39,7 @@ const closeEditor = () => {
         </div>
     {:else}
         <div class="pointer flex height=100%">
-            <span class="opacity=0 fs=1.25em margin=auto">Test</span>
+            <span class="opacity=0 fs=1.25em margin=auto">TEST<br /><br /><br /></span>
         </div>
     {/if}
 </div>

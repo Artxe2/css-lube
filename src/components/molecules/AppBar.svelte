@@ -14,7 +14,9 @@ let css3 = "bg=#3b599825 c=#00000050 @dark@c=#ffffff50 boxShadow=0px_5px_5px_#3b
 
 <div bind:this={_appBar} class={css1 + css2}>
     <div class="w=1"></div>
-    <span class="font=3em_'sans-serif' fw=bold">InstantCSS</span>
+    <div class="flex">
+        <span class="font=3em_'sans-serif' fw=bold lh=1 m=auto">InstantCSS</span>
+    </div>
     <div class="flexGrow=1"></div>
     <div class="flex alignItems=center">
         <ThemeSelector />
