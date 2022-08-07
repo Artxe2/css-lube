@@ -15,6 +15,6 @@ onMount(() => {
 </script>
 
 <div class="flex h=100% bg=--background c=black >*/width=50%;b=1px_solid_black">
-    <div bind:this={view}></div>
-    <textarea bind:this={editor} class="bg=inherit resize=none">{`<span class="c=red">hello world</span>`}</textarea>
+    <div bind:this={view} class="p=1"></div>
+    <textarea bind:this={editor} class="p=1 bg=inherit resize=none">{`<span class="c=red">hello world</span>`}</textarea>
 </div>

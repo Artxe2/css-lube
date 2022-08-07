@@ -1,14 +1,14 @@
 <script lang="ts">
-import TestEditor from "./TestEditor.svelte";
+import TestEditor from "../../molecules./../molecules/TestEditor.svelte";
 
 
 
 let modalOut
 let modal
 let isOpen = false
-const css1 = "fixed bg=var(--primary) color=white br=0.25 transition=0.5s "
-const css2 = "top=calc(100vh-4em) left=calc(100vw-4em) right=-1.25 bottom=-1.25 :hover/top=calc(100vh-5em) :hover/left=calc(100vw-5em) :hover/fs=1.25em :hover_span/opacity=1"
-const css3 = "top=5vh left=5vw right=5vw bottom=5vh"
+const css1 = "z=1001 fixed bg=var(--primary) color=white br=0.25 opacity=0.75 transition=0.5s "
+const css2 = "top=calc(100vh-4em) left=calc(100vw-4em) right=-1.25 bottom=-1.25 :hover/top=calc(100vh-5em) :hover/left=calc(100vw-5em) :hover/fs=1.25em;opacity=1 :hover_span/opacity=1"
+const css3 = "top=5vh left=5vw right=5vw bottom=5vh opacity=1!"
 const openEditor = () => {
     if (!isOpen) {
         isOpen = true

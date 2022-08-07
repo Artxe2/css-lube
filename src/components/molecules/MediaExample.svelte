@@ -7,16 +7,16 @@ import MorphingText from "src/components/atoms/animations/MorphingText.svelte";
     <span>미디어 쿼리를 적용하기 위해서는 "@" 두 개 사이에 조건문을 작성하면 됩니다.</span>
     <MorphingText
         array={[
-            `<span class="c=violet">@maxWidth=800px@</span><span class="c=blue">:active/</span><span class="c=red">bg=red</span>`,
-            `<span class="c=violet">@media (max-width:800px){&nbsp;&nbsp;</span>.\\@maxWidth\\=800px\\@bg\\=red<span class="c=blue">:active</span>{<span class="c=red">background-color:red</span>}&nbsp;&nbsp;<span class="c=violet">}</span>`
+            `<span class="c=violet">@maxWidth=768px@</span><span class="c=blue">:active/</span><span class="c=red">bg=red</span>`,
+            `<span class="c=violet">@media (max-width:768px){&nbsp;&nbsp;</span>.\\@maxWidth\\=768px\\@bg\\=red<span class="c=blue">:active</span>{<span class="c=red">background-color:red</span>}&nbsp;&nbsp;<span class="c=violet">}</span>`
         ]}
     />
     <div class="h=7"></div>
     <span>not 또는 and 조건을 추가하고 싶다면 not 대신 "!", and 대신 "&"를 사용해야하며 ","는 지원하지 않습니다.</span>
     <MorphingText
         array={[
-            `<span class="c=violet">@!screen&minWidth=400px&maxWidth=800px@</span><span class="c=red">bg=red</span>`,
-            `<span class="c=violet">@media not screen and (min-width:400px) and (max-width:800px){&nbsp;&nbsp;</span>.\\@\\!screen\\&minWidth\\=400px\\&maxWidth\\=800px\\@bg\\=red{<span class="c=red">background-color:red</span>}&nbsp;&nbsp;<span class="c=violet">}</span>`
+            `<span class="c=violet">@!screen&minWidth=400px&maxWidth=768px@</span><span class="c=red">bg=red</span>`,
+            `<span class="c=violet">@media not screen and (min-width:400px) and (max-width:768px){&nbsp;&nbsp;</span>.\\@\\!screen\\&minWidth\\=400px\\&maxWidth\\=768px\\@bg\\=red{<span class="c=red">background-color:red</span>}&nbsp;&nbsp;<span class="c=violet">}</span>`
         ]}
     />
     <div class="h=11.5"></div>
@@ -34,9 +34,9 @@ import MorphingText from "src/components/atoms/animations/MorphingText.svelte";
         &lt;style&gt;<br />
         &nbsp;&nbsp;&nbsp;&nbsp;...<br />
         &nbsp;&nbsp;&nbsp;&nbsp;.bg\=red{"{background-color:red}"}<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;@media {"(max-width: 800px) {"}<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.\@maxWidth\=800\@bg\=blue{"{background-color:blue}"}<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.\@maxWidth\=800\@c\=white{"{color:white}"}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;@media {"(max-width: 768px) {"}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.\@maxWidth\=768\@bg\=blue{"{background-color:blue}"}<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.\@maxWidth\=768\@c\=white{"{color:white}"}<br />
         &nbsp;&nbsp;&nbsp;&nbsp;{"}"}<br />
         &lt;/style&gt;
     </div>

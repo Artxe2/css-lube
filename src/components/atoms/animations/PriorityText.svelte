@@ -46,7 +46,7 @@ onMount(() => {
 		let time = 10
 		setTimeout(() => setText(/.+/, start), time)
 		setTimeout(() => setText(/red/, "red!"), time = 900)
-		setTimeout(() => setText(/orange/, "orange!"), time += 800)
+		setTimeout(() => setText(/orange/, "orange!"), time += 768)
 		setTimeout(() => setText(/orange/, "orange!"), time += 100)
 		setTimeout(() => setText(/yellow/, "yellow!"), time += 700)
 		setTimeout(() => setText(/yellow/, "yellow!"), time += 100)

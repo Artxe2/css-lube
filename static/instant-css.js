@@ -20,7 +20,8 @@ ol,ul,menu,dir{list-style:none}`
 "lh":"line-height",
 "m":"margin",
 "p":"padding",
-"w":"width"
+"w":"width",
+"z":"z-index"
 }`)
 	const abbrValues = JSON.parse(`{
 "absolute":"position:absolute",
