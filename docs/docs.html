@@ -8,11 +8,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="./app.css" />
 		<meta http-equiv="content-security-policy" content="">
-	<link rel="modulepreload" href="./_app/start-c567b1e9.js">
+	<link rel="modulepreload" href="./_app/start-b550779a.js">
 	<link rel="modulepreload" href="./_app/chunks/vendor-aa867c43.js">
 	<link rel="modulepreload" href="./_app/layout.svelte-9e0406f6.js">
-	<link rel="modulepreload" href="./_app/pages/docs.svelte-b8b8231a.js">
-	<link rel="modulepreload" href="./_app/chunks/H1-aae77f8e.js">
+	<link rel="modulepreload" href="./_app/pages/docs.svelte-0ae8d6ec.js">
+	<link rel="modulepreload" href="./_app/chunks/AppBar-4501d1c1.js">
 	</head>
 	<body class="fs=16px @maxWidth=768px@fs=10px">
         
@@ -29,14 +29,228 @@
     <div class="w=1.5"></div>
     <div class="flex alignItems=center b=1px_solid_black"><svg class="w=2.5 h=2.5 b=1px_solid_black"><svg id="git-icon"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></svg></div>
     <div class="w=1.5"></div></div>
-<div id="root" class="flex column bg=var(--background) min-height=100%"><h1 class="fs=3em fw=bold">기본 문법</h1>
-    <h1 class="fs=3em fw=bold">약어</h1></div>
+<div class="flex column bg=--primary50 h=100vh overflowX=hidden ::-webkit-scrollbar/w=0.75 ::-webkit-scrollbar-track/bg=#3b599850 ::-webkit-scrollbar-thumb/bg=--primary;br=0.25"><div class="h=4"></div>
+    <div class="p=1"><pre>(() =&gt; {
+	const RESET = `*{margin:0;padding:0;font:inherit;color:inherit}
+*,:after,:before{box-sizing:border-box;flex-shrink:0}
+:root{-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;word-break:break-word;tab-size:2}
+html,body{height:100%;overflow:hidden}
+img,picture,video,canvas{display:block;max-width:100%}
+button{background:none;border:0;cursor:pointer}
+a{text-decoration:none}
+table{border-collapse:collapse;border-spacing:0}
+ol,ul,menu,dir{list-style:none}`
+	const abbrKeys = JSON.parse(`{
+&quot;b&quot;:&quot;border&quot;,
+&quot;bg&quot;:&quot;background-color&quot;,
+&quot;br&quot;:&quot;border-radius&quot;,
+&quot;c&quot;:&quot;color&quot;,
+&quot;fs&quot;:&quot;font-size&quot;,
+&quot;ff&quot;:&quot;font-family&quot;,
+&quot;fw&quot;:&quot;font-weight&quot;,
+&quot;h&quot;:&quot;height&quot;,
+&quot;lh&quot;:&quot;line-height&quot;,
+&quot;m&quot;:&quot;margin&quot;,
+&quot;p&quot;:&quot;padding&quot;,
+&quot;w&quot;:&quot;width&quot;,
+&quot;z&quot;:&quot;z-index&quot;
+}`)
+	const abbrValues = JSON.parse(`{
+&quot;absolute&quot;:&quot;position:absolute&quot;,
+&quot;block&quot;:&quot;display:block&quot;,
+&quot;column&quot;:&quot;flex-direction:column&quot;,
+&quot;flex&quot;:&quot;display:flex&quot;,
+&quot;fixed&quot;:&quot;position:fixed&quot;,
+&quot;inline-block&quot;:&quot;display:inline-block&quot;,
+&quot;inlineBlock&quot;:&quot;display:inline-block&quot;,
+&quot;none&quot;:&quot;display:none&quot;,
+&quot;pointer&quot;:&quot;cursor:pointer&quot;,
+&quot;row&quot;:&quot;flex-direction:row&quot;,
+&quot;relative&quot;:&quot;position:relative&quot;
+}`)
+	const styleSheet = document.createElement(&quot;style&quot;)
+	styleSheet.innerHTML = &quot;body{display:none!important}&quot;
+	document.head.appendChild(styleSheet)
+	const set = new Set()
+	const media = {}
+	const css = {}
+
+	const compileStyle = (() =&gt; {
+		const compileRaw = t =&gt; [
+			CSS.escape(t),
+			&quot;{&quot;, parseValue(t), &quot;}&quot;
+		].join(&quot;&quot;)
+		const compileSpecial = t =&gt; [
+			CSS.escape(t),
+			t.replace(//.+/, &quot;&quot;).replace(/_/g, &quot; &quot;),
+			&quot;{&quot;, parseValue(t.replace(/.+?//, &quot;&quot;)), &quot;}&quot;
+		].join(&quot;&quot;)
+		const compileMedia = t =&gt; {
+			let query = t.replace(/^@|@.+/g, &quot;&quot;)
+			let group = media[query]
+			if (!group) {
+				media[query] = [parseQuery(query), {}]
+				group = media[query]
+			} else if (group[t]) return
+			let name = t.replace(/.+@/, &quot;&quot;)
+			group[1][t] = [
+				&quot;	&quot;, parsePriority(name), &quot;.&quot;,
+				CSS.escape(t.replace(/(?&lt;=.+@).+/, &quot;&quot;)),
+				/^[^a-z]/.test(name) ? compileSpecial(name) : compileRaw(name)
+			].join(&quot;&quot;)
+		}
+		const parsePriority = t =&gt; {
+			if (!/!$/.test(t)) return &quot;&quot;
+			let index = t.length - 2
+			let prefix = [&quot;[class]&quot;]
+			while (t.charAt(index--) === &quot;!&quot;) prefix.push(&quot;[class]&quot;)
+			return prefix.join(&quot;&quot;)
+		}
+		const parseQuery = t =&gt; {
+			const func = t =&gt; t.replace(/=/g, &quot;:&quot;)
+				.replace(/[A-Z](?!()/g, s =&gt; &quot;-&quot; + s.toLowerCase())
+			t = t.replace(/^!/, &quot;not &quot;).replace(/&amp;/g, &quot; and &quot;)
+				.replace(/[^ ]+=[^ ]+/g, s =&gt; {
+					if (/~/.test(s)) {
+						let name = s.replace(/=.+/, &quot;&quot;)
+						let unit = s.replace(/.+~d+/, &quot;&quot;)
+						return [
+							&quot;(min-&quot;,
+							name, &quot;:&quot;, s.replace(/.+=|~.+/g, &quot;&quot;), unit,
+							&quot;) and (max-&quot;,
+							name, &quot;:&quot;, s.replace(/.+~|[^d]+/g, &quot;&quot;), unit,
+							&quot;)&quot;
+						].join(&quot;&quot;)
+					}
+					return [&quot;(&quot;, func(s), &quot;)&quot;].join(&quot;&quot;)
+				})
+				.replace(/dark/, &quot;(prefers-color-scheme:dark)&quot;)
+			return [&quot;@media &quot;, t, &quot;{&quot;].join(&quot;&quot;)
+		}
+		const parseValue = (() =&gt; {
+			const abbrEqual = t =&gt; t.replace(/=/g, &quot;:&quot;)
+			const abbrUpper = t =&gt; t.replace(/[A-Z](?!()/g, s =&gt; &quot;-&quot; + s.toLowerCase())
+			const abbrKey = (() =&gt; {
+				let r = new RegExp([&quot;(?&lt;=^|/|;)(&quot;, Object.keys(abbrKeys).join(&quot;|&quot;), &quot;)(?=:)&quot;].join(&quot;&quot;), &quot;g&quot;)
+				return t =&gt; t.replace(r, s =&gt; abbrKeys[s])
+			})()
+			const abbrValue = (() =&gt; {
+				let r = new RegExp([&quot;(?&lt;=^|/|;)(&quot;, Object.keys(abbrValues).join(&quot;|&quot;), &quot;)(?=;|$)&quot;].join(&quot;&quot;), &quot;g&quot;)
+				return t =&gt; t.replace(r, s =&gt; abbrValues[s])
+			})()
+			const abbrEm = (() =&gt; {
+				return t =&gt; t.replace(/(?&lt;=(^|;)(border-radius|bottom|font-size|height|left|margin|padding|right|top|width)):-?d+.?d*(?=;|$)/g, s =&gt; s + &quot;em&quot;)
+			})()
+			const abbrCalc = (() =&gt; {
+				let r = /(?&lt;=calc(.+?) *[+-*/] *(?=.+?))/g
+				return t =&gt; t.replace(r, s =&gt; [&quot; &quot;, s, &quot; &quot;].join(&quot;&quot;))
+			})()
+			const abbrVar = (() =&gt; {
+				let r = /(?&lt;=:)--[^ ;]+(?=;|$)/g
+				return t =&gt; t.replace(r, s =&gt; [&quot;var(&quot;, s, &quot;)&quot;].join(&quot;&quot;))
+			})()
+			return t =&gt; abbrVar(
+				abbrCalc(
+					abbrEm(
+						abbrValue(
+							abbrKey(
+								abbrUpper(
+									abbrEqual(
+										t.replace(/_/g, &quot; &quot;).replace(/!+$/, &quot;&quot;)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		})()
+		return (() =&gt; {
+			let r = new RegExp([&quot;[;=:]&quot;, ...Object.keys(abbrValues)].join(&quot;|&quot;))
+			return t =&gt; {
+				if (css[t]) return
+				if (
+					!r.test(t)
+					|| !/^([^&#39;]*&#39;[^&#39;]*&#39;[^&#39;]*|[^&#39;])*$/.test(t)
+					|| !/^([^&quot;]*&quot;[^&quot;]*&quot;[^&quot;]*|[^&quot;])*$/.test(t)
+					|| /([^)]*$/.test(t)
+				) css[t] = &quot; &quot;
+				else if (/^[^A-Za-z]/.test(t)) {
+					if (/@.+@.+/.test(t)) {
+						compileMedia(t)
+						css[t] = &quot; &quot;
+					} else {
+						css[t] = [parsePriority(t), &quot;.&quot;, compileSpecial(t)].join(&quot;&quot;)
+					}
+				} else css[t] = [parsePriority(t), &quot;.&quot;, compileRaw(t)].join(&quot;&quot;)
+			}
+		})()
+	})()
+
+	const buildStyleSheet = () =&gt; {
+		let theme = localStorage.getItem(&quot;THEME&quot;)
+		set.forEach(t =&gt; compileStyle(t))
+		styleSheet.innerHTML = [
+			&quot;/*reset↘*/&quot;,
+			RESET,
+			`/*↖reset
+instant↘*/`,
+			...Object.values(css).filter(v =&gt; v !== &quot; &quot;),
+			...Object.values(media).map(v =&gt; {
+                if (
+                    theme
+                    &amp;&amp; /prefers-color-scheme:dark/.test(v[0])
+                ) {
+                    let substr = v[0].slice(0, v[0].length - 1)
+                    return theme === &quot;DARK&quot;
+                        ? [
+                            [&quot;/* &quot;, substr, &quot;is enabled */&quot;].join(&quot;&quot;),
+                            ...Object.values(v[1]),
+                            &quot;&quot;
+                        ].join(&quot;
+&quot;)
+                        : [&quot;/* &quot;, substr, &quot;is ignored */&quot;].join(&quot;&quot;)
+                }
+                return [v[0], ...Object.values(v[1]), &quot;}&quot;].join(&quot;
+&quot;)
+            }),
+			&quot;/*↖instant*/&quot;
+		].join(&quot;
+&quot;)
+	}
+
+	const colectClassList = () =&gt; {
+		let size = set.size
+		document.querySelectorAll(&quot;*[class]&quot;).forEach(
+			A =&gt; A.classList.forEach(B =&gt; set.add(B))
+		)
+		set.size - size &amp;&amp; buildStyleSheet()
+		styleSheet.parentNode !== document.head 
+			&amp;&amp; document.head.appendChild(styleSheet)
+	}
+
+	const observeClassList = () =&gt; document.body
+		&amp;&amp; new MutationObserver(colectClassList)
+			.observe(document.body, {
+				attributeFilter: [&quot;class&quot;],
+				childList: 1,
+				subtree: 1,
+			})
+
+	const onReady = () =&gt; {
+		colectClassList()
+		observeClassList()
+		document.removeEventListener(&quot;readystatechange&quot;, onReady)
+	}
+	window.instantCss = () =&gt; buildStyleSheet()
+	document.addEventListener(&quot;readystatechange&quot;, onReady)
+})()</pre></div></div>
 
 
-		<script type="module" data-hydrate="17e3qyb">
-		import { start } from "./_app/start-c567b1e9.js";
+		<script type="module" data-hydrate="119eq0s">
+		import { start } from "./_app/start-b550779a.js";
 		start({
-			target: document.querySelector('[data-hydrate="17e3qyb"]').parentNode,
+			target: document.querySelector('[data-hydrate="119eq0s"]').parentNode,
 			paths: {"base":"","assets":""},
 			session: {},
 			route: true,
@@ -47,7 +261,7 @@
 				error: null,
 				nodes: [
 					import("./_app/layout.svelte-9e0406f6.js"),
-						import("./_app/pages/docs.svelte-b8b8231a.js")
+						import("./_app/pages/docs.svelte-0ae8d6ec.js")
 				],
 				params: {}
 			}

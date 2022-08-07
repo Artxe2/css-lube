@@ -34,6 +34,7 @@ import MorphingText from "../atoms/animations/MorphingText.svelte";
         &nbsp;&nbsp;&nbsp;&nbsp;localStorage.setItem{"(\"THEME\", \"LIGHT\")"} // LIGHT MODE<br />
         &nbsp;&nbsp;&nbsp;&nbsp;localStorage.setItem{"(\"THEME\", \"DARK\")"} // DARK MODE<br />
         &nbsp;&nbsp;&nbsp;&nbsp;localStorage.removeItem{"(\"THEME\")"} // SYSTEM MODE<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;window{"[\"instantCss\"]() // update style sheet"}  <br />
         &lt;/script&gt;
     </div>
 </div>
