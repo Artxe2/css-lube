@@ -19,19 +19,6 @@ let checkScroll = null
 let _root
 
 onMount(() => _root.addEventListener("scroll", e => checkScroll(e.target.scrollTop)))
-// ::-webkit-scrollbar{width: 스크롤바 넓이px;}
-
-// ::-webkit-scrollbar-track {background-color:트랙 배경 색상;}
-
-// ::-webkit-scrollbar-thumb {background-color:바 색상;border-radius: 바 둥근 모서리 정도px;}
-
-// ::-webkit-scrollbar-thumb:hover {background: 마우스를 올렸을 때 색상;}
-
-// ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
-
-// width:버튼 넓이px(보통 스크롤바 넓이랑 같이 맞춰줘요);height:버튼 높이px;background:버튼 색상;} 
-
-
 </script>
 <AppBar
     bind:checkScroll={checkScroll}
@@ -55,7 +42,7 @@ onMount(() => _root.addEventListener("scroll", e => checkScroll(e.target.scrollT
         </CenterWidth80>
         <div class="h=0.5"></div>
         <CenterWidth80>
-            <SimpleButton href="https://raw.githubusercontent.com/Artxe2/instant-css/main/instant-css-0.2.0.min.js"
+            <SimpleButton href="https://cdn.jsdelivr.net/gh/artxe2/instant-css@main/instant-css-0.2.0.min.js"
             >Download</SimpleButton>
         </CenterWidth80>
         <div class="h=10"></div>
