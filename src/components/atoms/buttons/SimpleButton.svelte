@@ -3,7 +3,7 @@ export let href = null
 export let onClick = null
 </script>
 <a class="inline-block" href={href}>
-    <button class="bg=var(--primary) color=white w=100 h=40 br=5px"
+    <button class="bg=var(--primary) w=6.25 h=2.5 br=0.25"
         on:click={onClick}
     >
         <span>

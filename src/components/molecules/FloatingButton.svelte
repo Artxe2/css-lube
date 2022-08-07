@@ -6,8 +6,8 @@ import TestEditor from "./TestEditor.svelte";
 let modalOut
 let modal
 let isOpen = false
-const css1 = "fixed bg=var(--primary) color=white br=5 transition=0.5s "
-const css2 = "top=calc(100vh-60px) left=calc(100vw-60px) right=-20 bottom=-20 :hover/top=calc(100vh-80px);left=calc(100vw-80px);fs=1.25rem"
+const css1 = "fixed bg=var(--primary) color=white br=0.25 transition=0.5s "
+const css2 = "top=calc(100vh-4em) left=calc(100vw-4em) right=-1.25 bottom=-1.25 :hover/top=calc(100vh-5em) :hover/left=calc(100vw-5em) :hover/fs=1.25em :hover_span/opacity=1"
 const css3 = "top=5vh left=5vw right=5vw bottom=5vh"
 const openEditor = () => {
     if (!isOpen) {
@@ -29,17 +29,17 @@ const closeEditor = () => {
     bind:this={modalOut}
     on:click={closeEditor}
 ></div>
-<div class="fixed bg=var(--primary) color=white br=5 transition=0.5s top=calc(100vh-45px) left=calc(100vw-45px) right=-15 bottom=-15 :hover/top=calc(100vh-80px);left=calc(100vw-80px);fs=1.25rem"
+<div class={css1 + css2}
     bind:this={modal}
     on:click={openEditor}
 >
     {#if isOpen}
-        <div class="p=5 height=100%">
+        <div class="p=0.5 height=100%">
             <TestEditor />
         </div>
     {:else}
         <div class="pointer flex height=100%">
-            <span class="margin=auto">Test</span>
+            <span class="opacity=0 fs=1.25em margin=auto">Test</span>
         </div>
     {/if}
 </div>

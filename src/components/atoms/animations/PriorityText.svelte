@@ -82,6 +82,6 @@ onMount(() => {
 </script>
 
 
-<div class="">
+<div>
 	<span bind:this={word}></span>
 </div>

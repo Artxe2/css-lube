@@ -1,3 +1,3 @@
-<h2 class="fs=2.5rem fw=bold @maxWidth=800@fs=1.25rem">
+<h2 class="fs=2.5em fw=bold">
     <slot></slot>
 </h2>
