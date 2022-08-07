@@ -19,6 +19,7 @@ let theme
 const css1 = "bg=var(--primary) w=6.25 h=2.5 br=0.25"
 const css2 = "bg=var(--primary) w=6.25 h=2.5 br=0.25 fw=bold"
 onMount(() => {
+    _theme.set(localStorage.getItem("THEME"))
     _theme.subscribe(v => theme = v)
 })
 </script>
