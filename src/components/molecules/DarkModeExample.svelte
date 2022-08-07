@@ -27,7 +27,7 @@ import MorphingText from "../atoms/animations/MorphingText.svelte";
             `<span class="c=green">/* @media (prefers-color-scheme:dark)is enabled */</span><br />&nbsp;&nbsp;</span>.\\@dark\\@bg\\=--backgroundD{<span class="c=red">background-color:var(--background-d)</span>}`
         ]}
     />
-    <div class="h=9.5"></div>
+    <div class="h=11.5"></div>
     <div class="bg=#bbb inlineBlock textAlign=left fw=bold p=0.5">
         &lt;script&gt;<br />
         &nbsp;&nbsp;&nbsp;&nbsp;...<br />

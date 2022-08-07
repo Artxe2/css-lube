@@ -36,7 +36,11 @@ onMount(() => {
 })
 </script>
 
-<span bind:this={wrap} class="relative fw=bold">
-	&lt;span class="<span bind:this={word}></span>
-	<span class="marginLeft=-0.25em fs=1 fw=bold verticalAlign=0.125em">|</span>"&gt;&lt;/span&gt;
-</span>
+<div class="relative h=3">
+	<div class="absolute w=100%">
+		<span bind:this={wrap} class="fw=bold">
+			&lt;span class="<span bind:this={word}></span>
+			<span class="marginLeft=-0.25em fs=1 fw=bold verticalAlign=0.125em">|</span>"&gt;&lt;/span&gt;
+		</span>
+	</div>
+</div>

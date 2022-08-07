@@ -7,7 +7,7 @@ import BasicExample from "src/components/molecules/BasicExample.svelte";
 import SelectorExample from "src/components/molecules/SelectorExample.svelte";
 import MediaExample from "src/components/molecules/MediaExample.svelte";
 import AbbreviationExample from "src/components/molecules/AbbreviationExample.svelte";
-import TypingText from "src/components/atoms/animations/TypingText.svelte";
+import TypingText from "src/components/molecules/TypingExample.svelte";
 import HowToUse from "src/components/molecules/HowToUse.svelte";
 import CenterWidth80 from "src/components/atoms/layouts/CenterWidth80.svelte";
 import DarkModeExample from "src/components/molecules/DarkModeExample.svelte";
@@ -39,6 +39,7 @@ onMount(() => _root.addEventListener("scroll", e => checkScroll(e.target.scrollT
                     "bg=green c=white :after/content='';w=2;h=0.75;bg=#ff0;inlineBlock"
                 ]}
             />
+            <div class="h=3"></div>
         </CenterWidth80>
         <div class="h=0.5"></div>
         <CenterWidth80>
