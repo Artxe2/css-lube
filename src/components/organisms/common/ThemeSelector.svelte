@@ -25,7 +25,7 @@ onMount(() => {
 </script>
 
 <div class="relative tansition=0.5s w=6.25 h=2.5 overflow=hidden :hover/h=8.5;top=3">
-    <div class="absolute flex column right=0">
+    <div class={"absolute flex column right=0" + (theme ? theme === "LIGHT" ? "" : " :not(:hover)/top=-3" : " :not(:hover)/top=-6")}>
         <SimpleButton classs={theme === "LIGHT" ? css2 : css1}
             onClick={() => setTheme("LIGHT")}
         >LIGHT</SimpleButton>
