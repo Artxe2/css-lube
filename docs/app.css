@@ -1,0 +1,16 @@
+:root {
+	--black99: #00000099;
+	--primary-l: #6f9ddf;
+	--primary: #3b5998;
+	--primary80: #3b599880;
+	--primary50: #3b599850;
+	--primary20: #3b599820;
+	--primary-d: #152b4c;
+}
+body {
+	font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
