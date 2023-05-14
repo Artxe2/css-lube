@@ -1,0 +1,1 @@
+import{b as e}from"../chunks/paths.2dbd2d87.js";import{r as o}from"../chunks/index.1de1fe79.js";function r(){throw o(307,`${e}/ref/what-is-atomic`)}const i=Object.freeze(Object.defineProperty({__proto__:null,load:r},Symbol.toStringTag,{value:"Module"}));export{i as universal};
