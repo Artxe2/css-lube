@@ -1,5 +1,4 @@
 <script lang="ts">
-import { builder } from "async-sugar"
 import IRefresh from "cells/svgs/i_refresh.svelte"
 import H1 from "cells/typography/H1.svelte"
 import { contents$ } from "parts/ref/store"
@@ -13,7 +12,6 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
 
 const code1 = `${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${bracket("{")} ${name("builder")} ${bracket("}")} ${keyword("from")} ${string("async-sugar")}
 ${keyword("import")} ${name("H1")} ${keyword("from")} ${string("cells/typography/H1.svelte")}
 ${keyword("import")} ${name("InfiniteScroll")} ${keyword("from")} ${string("organs/@common/utils/InfiniteScroll.svelte")}
 ${keyword("import")} ${name("IRefresh")} ${keyword("from")} ${string("cells/svgs/i_refresh.svelte")}
@@ -23,18 +21,18 @@ ${keyword("import")} ${bracket("{")} ${name("contents$")} ${bracket("}")} ${keyw
 ${keyword("import")} ${bracket("{")} ${name("onDestroy")}, ${name("onMount")} ${bracket("}")} ${keyword("from")} ${string("svelte")}
 
 ${declare("let")} ${name("loading")} = ${number(1)} ${comment("// 0: in progress, 1: none, 2: error")}
-${declare("const")} ${name("loremApi", true)} = ${func("builder")}${bracket("(")}${bracket("(", 1)}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")", 1)} ${declare("=>")} ${declare("new")} ${type("Promise")}${bracket("(", 1)}${bracket("(", 2)}${func("resolve")}, ${func("reject")}${bracket(")", 2)}${bracket(")", 1)} ${declare("=>")} ${func("setTimeout")}${bracket("(", 2)}${bracket("()")} ${declare("=>")} ${bracket("{")}
-	${declare("const")} ${name("r", true)} = ${name("Math")}.${func("random")}${bracket("()", 1)}
-	${keyword("if")} ${bracket("(", 1)}${name("i")} && ${name("r", true)} < ${number(0.3)}${bracket(") {", 1)}
-		${func("reject")}${bracket("(", 2)}${string("`error:", false)} ${declare("${")}${name("r", true)}${declare("}")} ${string("< 0.3`", false)}${bracket(")", 2)}
-	${bracket("}", 1)} ${keyword("else")} ${bracket("{", 1)}
-		${declare("const")} ${name("contents", true)} = ${bracket("[]", 2)}
-		${keyword("while")} ${bracket("(", 2)}${name("n")}-- > ${number(0)}${bracket(") {", 2)}
-			${name("contents", true)}.${func("push")}${bracket("(")}${bracket("{", 1)} ${name("title:")} ${string("title ")} + ++${name("i")}, ${name("content:")} ${string("Lorem Ipsum is . . . . . . of Lorem Ipsum.")} ${bracket("}", 1)}${bracket(")")}
-		${bracket("}", 2)}
-		${func("resolve")}${bracket("(", 2)}${name("contents", true)}${bracket(")", 2)}
-	${bracket("}", 1)}
-${bracket("}")}, ${name("i")} ? ${number(600)} : ${number(0)}${bracket(")", 2)}${bracket(")", 1)}${bracket(")")}
+${declare("const")} ${name("loremApi", true)}: ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${type("Promise")}${bracket("<")}${type("any")}${bracket(">")} = ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${declare("new")} ${type("Promise")}${bracket("(")}${bracket("(", 1)}${func("resolve")}, ${func("reject")}${bracket(")", 1)} ${declare("=>")} ${func("setTimeout")}${bracket("(", 1)}${bracket("()", 2)} ${declare("=>")} ${bracket("{", 2)}
+	${declare("const")} ${name("r", true)} = ${name("Math")}.${func("random")}${bracket("()")}
+	${keyword("if")} ${bracket("(")}${name("i")} && ${name("r", true)} < ${number(0.3)}${bracket(") {")}
+		${func("reject")}${bracket("(", 1)}${string("`error:", false)} ${declare("${")}${name("r", true)}${declare("}")} ${string("< 0.3`", false)}${bracket(")", 1)}
+	${bracket("}")} ${keyword("else")} ${bracket("{")}
+		${declare("const")} ${name("contents", true)} = ${bracket("[]", 1)}
+		${keyword("while")} ${bracket("(", 1)}${name("n")}-- > ${number(0)}${bracket(") {", 1)}
+			${name("contents", true)}.${func("push")}${bracket("(", 2)}${bracket("{")} ${name("title:")} ${string("title ")} + ++${name("i")}, ${name("content:")} ${string("Lorem Ipsum is . . . . . . of Lorem Ipsum.")} ${bracket("}")}${bracket(")", 2)}
+		${bracket("}", 1)}
+		${func("resolve")}${bracket("(", 1)}${name("contents", true)}${bracket(")", 1)}
+	${bracket("}", 0)}
+${bracket("}", 2)}, ${name("i")} ? ${number(600)} : ${number(0)}${bracket(")", 1)}${bracket(")")}
 ${declare("const")} ${func("loadContents")} = ${bracket("()")} ${declare("=>")} ${bracket("{")}
 	${keyword("if")} ${bracket("(", 1)}${name("loading")}${bracket(") {", 1)}
 		${name("loading")} = ${number(0)}
@@ -66,7 +64,7 @@ ${html("InfiniteScroll", ` ${name("classs")}=${string('"bd=1px_solid_black xh=15
 	${bracket("{")}:${keyword("else if")} ${name("loading")} === ${number(2)}${bracket("}")}
 		${html("div", ` ${name("class")}=${string("relative flex h=6.5 jc=center ai=center")}`, `
 			${html("div", ` ${name("class")}=${string("w=6 absolute")}`, `
-				${html("IRefresh", ` ${name("classs")}=${string("f=--gray-88")}`, false)}
+				${html("IRefresh", ` ${name("classs")}=${string("f=#88888888")}`, false)}
 			`)}
 			${html("button", ` ${name("class")}=${string("absolute fs=1.5 bold")} ${keyword("on")}:${type("click")}=${bracket("{")}${func("loadContents")}${bracket("}")}`, "server error")}
 		`)}
@@ -81,12 +79,12 @@ const code3 = `
 
 ${keyword("export default")} ${bracket("{")}
 	${name("scrollbar:")} ${bracket("{", 1)}
-		${name("primary:")} ${string("::-webkit-scrollbar/w=.5 ::-webkit-scrollbar-track/bg=--chambray-55 ::-webkit-scrollbar-thumb/bg=--chambray;br=.25")}
+		${name("primary:")} ${string("::-webkit-scrollbar/w=.5 ::-webkit-scrollbar-track/bg=--primary-55 ::-webkit-scrollbar-thumb/bg=--primary;br=.25")}
 	${bracket("}", 1)}
 ${bracket("}")}`
 
 let loading = 1 // 0: in progress, 1: none, 2: error
-const loremApi = builder((i: number, n: number) => new Promise((resolve, reject) => setTimeout(() => {
+const loremApi: (i: number, n: number) => Promise<any> = (i: number, n: number) => new Promise((resolve, reject) => setTimeout(() => {
 	const r = Math.random()
 	if (i && r < 0.3) {
 		reject(`error: ${r} < 0.3`)
@@ -97,11 +95,11 @@ const loremApi = builder((i: number, n: number) => new Promise((resolve, reject)
 		}
 		resolve(contents)
 	}
-}, i ? 600 : 0)))
+}, i ? 600 : 0))
 const loadContents = () => {
 	if (loading) {
 		loading = 0
-		loremApi.promise($contents$.length, 5)
+		loremApi($contents$.length, 5)
 			.then(value => {
 				$contents$ = $contents$.concat(value)
 				loading = 1
@@ -109,7 +107,7 @@ const loadContents = () => {
 			.catch(() => loading = 2)
 	}
 }
-onMount(() => loremApi.promise(0, 10).then(value => $contents$ = value))
+onMount(() => loremApi(0, 10).then(value => $contents$ = value))
 onDestroy(() => $contents$ = [])
 </script>
 
@@ -130,7 +128,7 @@ onDestroy(() => $contents$ = [])
 		{:else if loading === 2}
 			<div class="relative flex h=6.5 jc=center ai=center">
 				<div class="w=6 absolute">
-					<IRefresh classs="f=--gray-88" />
+					<IRefresh classs="f=#88888888" />
 				</div>
 				<button class="absolute fs=1.5 bold" on:click={loadContents}>server error</button>
 			</div>

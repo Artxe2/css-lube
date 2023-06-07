@@ -6,7 +6,7 @@ import UtilityFirstExample from "organs/docs/utility-first/UtilityFirstExample.s
 </script>
 
 <svelte:head>
-	<title>Utillity-First Fundamentals | Instant CSS</title>
+	<title>Utillity-First Fundamentals | CSS Lubricant</title>
 </svelte:head>
 
 <H4>Utillity-First Fundamentals</H4>

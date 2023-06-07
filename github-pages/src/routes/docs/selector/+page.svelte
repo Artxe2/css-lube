@@ -4,7 +4,7 @@ import SelectorExample from "organs/docs/selector/SelectorExample.svelte"
 </script>
 
 <svelte:head>
-	<title>Selector & Pseudo Class | Instant CSS</title>
+	<title>Selector & Pseudo Class | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Selector & Pseudo Class</H5>

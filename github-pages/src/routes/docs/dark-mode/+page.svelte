@@ -4,7 +4,7 @@ import DarkModeExample from "organs/docs/dark-mode/DarkModeExample.svelte"
 </script>
 
 <svelte:head>
-	<title>Dark Mode | Instant CSS</title>
+	<title>Dark Mode | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Dark Mode</H5>

@@ -6,21 +6,21 @@ import styles from "styles"
 </script>
 
 <svelte:head>
-	<title>Installation | Instant CSS</title>
+	<title>Installation | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Installation</H5>
 <div class="h=1"></div>
-<span>InstantCSS can download both compressed and original files.</span><br />
+<span>CSS Lubricant can download both compressed and original files.</span><br />
 <span>The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.</span>
 <div class="h=1"></div>
-<Download url="https://raw.githubusercontent.com/Artxe2/instant-css/main/lib/instant-css.min.js">
-	<button class="bold va=bottom {styles.button.resources}">instant-css.min.js v0.6.11</button>
+<Download url="https://raw.githubusercontent.com/Artxe2/css-lubricant/main/lib/css-lubricant.min.js">
+	<button class="bold va=bottom {styles.button.resources}">css-lubricant.min.js v0.7.0</button>
 </Download>
 <span>compressed for production</span>
 <div class="h=1"></div>
-<Download url="https://raw.githubusercontent.com/Artxe2/instant-css/main/lib/instant-css.js">
-	<button class="bold va=bottom {styles.button.resources}">instant-css.js v0.6.11</button>
+<Download url="https://raw.githubusercontent.com/Artxe2/css-lubricant/main/lib/css-lubricant.js">
+	<button class="bold va=bottom {styles.button.resources}">css-lubricant.js v0.7.0</button>
 </Download>
 <span>uncompressed for development</span>
 <div class="h=1"></div>

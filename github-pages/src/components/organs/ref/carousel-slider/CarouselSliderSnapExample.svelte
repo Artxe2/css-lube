@@ -25,19 +25,19 @@ let snap: (direction: number) => void
 		<div class="h=1"></div>
 		<div class="flex jc=space-between g=1
 				>button/flex=auto">
-			<button class="bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(-1)}>PREV</button>
-			<button class="bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => { align = "start"; snap(0) }}>START</button>
-			<button class="bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => { align = "center"; snap(0) }}>CENTER</button>
-			<button class="bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => { align = "end"; snap(0) }}>END</button>
-			<button class="bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(1)}>NEXT</button>
 		</div>
@@ -66,19 +66,19 @@ ${html("div", "", `
 	${html("div", ` ${name("class")}=${string("h=1")}`, "")}
 	${html("div", ` ${name("class")}=${string(`flex jc=space-between g=1
 			>button/flex=auto`)}`, `
-		${html("button", ` ${name("class")}=${string(`bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${func("snap")}${bracket('(', 1)}${number(-1)}${bracket(')', 1)}${bracket('}')}`, "PREV")}
-		${html("button", ` ${name("class")}=${string(`bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("start")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "START")}
-		${html("button", ` ${name("class")}=${string(`bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("center")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "CENTER")}
-		${html("button", ` ${name("class")}=${string(`bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("end")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "END")}
-		${html("button", ` ${name("class")}=${string(`bg=--chambray w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${func("snap")}${bracket('(', 1)}${number(1)}${bracket(')', 1)}${bracket('}')}`, "NEXT")}
 	`)}

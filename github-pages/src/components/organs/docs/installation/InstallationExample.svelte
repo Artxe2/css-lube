@@ -1,14 +1,15 @@
 <script>
+import TypingText from "organs/@common/animations/TypingText.svelte"
 import CodePage from "organs/@common/utils/CodePage.svelte"
-import { comment, html, name, string } from "ts/highlighter"
+import { html, name, string } from "ts/highlighter"
 
 const code = `${html("head", "", `
 	. . . . . .
-	${html("script", ` ${name("src")}=${string("/instant-css.min.js")}`, "")} ${comment("/* Add instant-css inside your head tag */")}
+	${html("script", ` ${name("src")}=${string("<f>/css-lubricant.min.js</f>")}`, "")}
 `)}
 ${html("body", "", `
 	. . . . . .
 `)}`
 </script>
 
-<CodePage>{@html code}</CodePage>
+<CodePage><TypingText>{@html code}</TypingText></CodePage>

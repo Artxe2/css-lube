@@ -1,5 +1,5 @@
-# Intellisense InstantCSS
+# Intellisense CSS Lubricant
 
-This is Intellisense for InstantCSS
+This is Intellisense for CSS Lubricant
 
-[InstantCSS](https://artxe2.github.io/instant-css/)
+[CSS Lubricant](https://artxe2.github.io/css-lubricant/)

@@ -18,8 +18,8 @@ afterNavigate(() => {
 
 <div bind:this={container}
 		class="h=100% oy=auto
-		@!md@tt=.5s
-		{$naviOpen$ ? "@!md@ml=20 @!md@mr=-20" : "@!md@ml=0 @!md@mr=0"}
+		@!md@tt=transform_.5s
+		{$naviOpen$ ? "tf=translateX(20em)" : ""}
 		{styles.scrollbar.primary}"
 		on:scroll={handleScroll}>
 	<div class="w=80% h=100% m=auto">

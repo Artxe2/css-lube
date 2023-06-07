@@ -1,15 +1,14 @@
 <script lang="ts">
-import { onDestroy, onMount } from "svelte"
+import { createEventDispatcher, onDestroy, onMount } from "svelte"
 
 export let classs = ""
-export let selector = ".foldable"
+export let selector = "f"
 export let bgc = "--anakiwa"
 export let dark_bgc = "--astronaut"
 export let orders: number[] | undefined = undefined
 export let duration = 1000
-export let onstarttype: ((index: number) => any) | undefined = undefined
-export let onendtype: ((index: number) => any) | undefined = undefined
 
+const dispatch = createEventDispatcher()
 let timer: NodeJS.Timer
 let wrapper: HTMLElement
 let index = 0
@@ -46,21 +45,21 @@ const animation = async () => {
 		e.textContent = ""
 		return t
 	})
-	onstarttype?.(-1)
-	onendtype?.(-1)
+	dispatch("starttype", -1)
+	dispatch("endtype", -1)
 	index = 0
 	foldables[0].classList.add(cursor, dark_cursor, blink)
 	await sleep(duration)
 	foldables[0].classList.remove(blink)
 	while (index < length) {
-		onstarttype && onstarttype(index)
+		dispatch("starttype", index)
 		foldables[index].classList.add(cursor, dark_cursor, "bg=" + bgc, "@dark@bg=" + dark_bgc)
 		for (const t of texts[index]!) {
 			foldables[index].textContent += t
 			await sleep(30)
 		}
 		foldables[index].classList.add(blink)
-		onendtype?.(index)
+		dispatch("endtype", index)
 		await sleep(duration)
 		foldables[index].classList.remove(cursor, dark_cursor, blink, "bg=" + bgc, "@dark@bg=" + dark_bgc)
 		index++

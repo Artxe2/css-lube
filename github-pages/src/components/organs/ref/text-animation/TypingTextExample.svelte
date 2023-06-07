@@ -3,15 +3,16 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
 import TypingText from "organs/@common/animations/TypingText.svelte"
 import { bracket, declare, escapeTag, func, html, keyword, name, string } from "ts/highlighter"
+import styles from "styles"
 
 const text = `${html("body", "", `
 	. . . . . .
-	${html("span", ` ${name("class")}=${string(`<span class="foldable">Lorem Ipsum</span><span class="foldable">is simply dummy text of the printing</span><span class="foldable">and typesetting industry</span>`)}`, "duration: 1000")}
+	${html("span", ` ${name("class")}=${string(`<f>Lorem Ipsum</f><f>is simply dummy text of the printing</f><f>and typesetting industry</f>`)}`, "duration: 1000")}
 `)}`
 </script>
 
 <ComponentTabView>
-	<TypingText classs="_.foldable:not(:empty):nth-child(n+2):before/inline-block;ct='\00a0';bg=#fff @dark@_.foldable:not(:empty):nth-child(n+2):before/inline-block;ct='\00a0';bg=--cod-gray">
+	<TypingText classs={styles.util.typingText}>
 		<CodePage>{@html text}</CodePage>
 	</TypingText>
 	<CodePage isCode>{@html

@@ -2,7 +2,7 @@
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { comment, css, html, name, string } from "ts/highlighter"
 
-const code = `${html("style", ` ${name("instant-css")}=${string("v0.6.11")}`, `
+const code = `${html("style", ` ${name("css-lubricant")}=${string("v0.7.0")}`, `
 	${css("<span class='bold'>[class][class][class]</span>.c\\=yellow\\!\\!\\!", ["color", "yellow"])}
 	${css("<span class='bold'>[class][class]</span>.c\\=orange\\!\\!", ["color", "orange"])}
 	${css("<span class='bold'>[class]</span>.c\\=red\\!", ["color", "red"])}
@@ -12,11 +12,23 @@ const code = `${html("style", ` ${name("instant-css")}=${string("v0.6.11")}`, `
 `)}
 
 ${comment("<!-- If you add an exclamation point (!) after the class name, you can change the style's priority using the selector priority instead of important -->")}
-${html("span", ` ${name("class")}=${string("c=yellow!!! c=orange!! c=red!")}`, "i'm a yellow")}
+${html("span", ` ${name("class")}=${string("c=yellow!!! c=orange!! c=red!")}`, `
+	{ color: yellow }
+	<span class="td=line-through">{ color: orange }</span>
+	<span class="td=line-through">{ color: red }</span>
+`)}
 ${html("div", ` ${name("class")}=${string(">span/c=red")}`, `
-	${html("span", "", "i'm a red")}
-	${html("span", ` ${name("class")}=${string("c=blue")}`, "i'm a red")}
-	${html("span", ` ${name("class")}=${string("c=blue!")}`, "i'm a blue")}
+	${html("span", "", `
+		{ color: red }
+	`)}
+	${html("span", ` ${name("class")}=${string("c=blue")}`, `
+		{ color: red }
+		<span class="td=line-through">{ color: blue }</span>
+	`)}
+	${html("span", ` ${name("class")}=${string("c=blue!")}`, `
+		<span class="td=line-through">{ color: red }</span>
+		{ color: blue }
+	`)}
 `)}`
 </script>
 

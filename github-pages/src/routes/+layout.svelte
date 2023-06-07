@@ -1,5 +1,5 @@
 <script>
-import RootDiv from "parts/RootDiv.svelte"
+import RootDiv from "parts/@common/RootDiv.svelte"
 </script>
 
 <RootDiv>

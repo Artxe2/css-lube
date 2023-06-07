@@ -5,12 +5,12 @@ import JsMap from "cells/typography/JsMap.svelte"
 </script>
 
 <svelte:head>
-	<title>Shorthand Medias | Instant CSS</title>
+	<title>Shorthand Medias | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Shorthand Medias</H5>
 <div class="h=1"></div>
-<span>Shorthand Medias of InstantCSS.</span><br />
+<span>Shorthand Medias of CSS Lubricant.</span><br />
 <div class="h=2"></div>
 <CodePage>
 	<JsMap

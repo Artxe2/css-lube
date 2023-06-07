@@ -8,7 +8,7 @@ const useActive = (e: HTMLAnchorElement) => {
 	page.subscribe(v => {
 		let active = location.origin + v.url.pathname === e.href
 		e.classList.toggle("bold", active)
-		e.classList.toggle("c=--chambray", active)
+		e.classList.toggle("c=--primary", active)
 		e.classList.toggle("@dark@c=--havelock-blue", active)
 	})
 }
@@ -22,7 +22,7 @@ const useActive = (e: HTMLAnchorElement) => {
 		{#each list as item}
 		<li>
 			<a href="{item.href}" use:useActive>
-				<button class=":hover/c=--chambray @dark@:hover/c=--havelock-blue">{item.text}</button>
+				<button class=":hover/c=--primary @dark@:hover/c=--havelock-blue">{item.text}</button>
 			</a>
 		</li>
 		{/each}

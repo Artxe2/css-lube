@@ -8,7 +8,7 @@ let fold = true
 <CodePage>
 	<div class="flex">
 		<div class="fg=1"></div>
-		<button class="fs=1.5 bg=--chambray @dark@bg=--firefly br=.25 pl=.75 pr=.75 bd=2px_solid_--chambray :hover/bg=--havelock-blue"
+		<button class="fs=1.5 bg=--primary @dark@bg=--firefly br=.25 pl=.75 pr=.75 bd=2px_solid_--primary :hover/bg=--havelock-blue"
 				on:click={() => fold = !fold}>
 			{fold ? "+" : "ㅡ"}
 		</button>

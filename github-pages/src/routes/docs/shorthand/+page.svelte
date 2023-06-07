@@ -6,19 +6,19 @@ import styles from "styles"
 </script>
 
 <svelte:head>
-	<title>Shorthand | Instant CSS</title>
+	<title>Shorthand | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Shorthand</H5>
 <div class="h=1"></div>
 <a href="{base}/docs/shorthand-keys">
-	<button class={styles.button.text}>shorthand keys</button>
+	<button class={styles.button.link}>shorthand keys</button>
 </a><br />
 <a href="{base}/docs/shorthand-values">
-	<button class={styles.button.text}>shorthand values</button>
+	<button class={styles.button.link}>shorthand values</button>
 </a><br />
 <a href="{base}/docs/shorthand-medias">
-	<button class={styles.button.text}>shorthand medias</button>
+	<button class={styles.button.link}>shorthand medias</button>
 </a>
 <div class="h=1"></div>
 <ShorthandExample />

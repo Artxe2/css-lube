@@ -9,28 +9,28 @@ const useActive = (e: HTMLAnchorElement) => {
 	page.subscribe(v => {
 		let active = (location.origin + v.url.pathname).startsWith(e.href)
 		e.classList.toggle("bold", active)
-		e.classList.toggle("c=--chambray", active)
+		e.classList.toggle("c=--primary", active)
 		e.classList.toggle("@dark@c=--havelock-blue", active)
 	})
 }
 </script>
 
 <div class="relative">
-	<div class="h=100% bg=#fff bdr=1px_solid_--alto-55 w=20 ml=0
-			@!md@absolute @!md@tt=margin-left_.5s
-			{$naviOpen$ ? "" : "@!md@ml=-20"}
+	<div class="h=100% bg=#fff bdr=1px_solid_--alto-55 w=20 tt=transform_.5s
+			@!md@absolute
+			{$naviOpen$ ? "" : "@!md@tf=translateX(-20em)"}
 			@dark@bg=--firefly">
 		<div class="pl=1.5 h=100% oy=auto {styles.scrollbar.primary}">
 			<div class="h=2"></div>
 			<ul>
 				<li>
 					<a href="{base}/docs" use:useActive>
-						<button class=":hover/c=--chambray @dark@:hover/c=--havelock-blue">Documentation</button>
+						<button class=":hover/c=--primary @dark@:hover/c=--havelock-blue">Documentation</button>
 					</a>
 				</li>
 				<li>
 					<a href="{base}/ref" use:useActive>
-						<button class=":hover/c=--chambray @dark@:hover/c=--havelock-blue">Reference</button>
+						<button class=":hover/c=--primary @dark@:hover/c=--havelock-blue">Reference</button>
 					</a>
 				</li>
 				{#if $page.url.pathname.startsWith(base + "/docs")}
@@ -42,10 +42,8 @@ const useActive = (e: HTMLAnchorElement) => {
 					]}
 				/>
 				<NavigationSection
-					title="Core Concepts"
+					title="Syntax"
 					list={[
-						{ href: base + "/docs/utility-first", text: "Utility-First Fundamentals" },
-						{ href: base + "/docs/runtime-render", text: "Runtime Render Style" },
 						{ href: base + "/docs/basic", text: "Basic" },
 						{ href: base + "/docs/shorthand", text: "Shorthand" },
 						{ href: base + "/docs/selector", text: "Selector & Pseudo Class" },
@@ -68,9 +66,7 @@ const useActive = (e: HTMLAnchorElement) => {
 				<NavigationSection
 					title="Atomic Design"
 					list={[
-						{ href: base + "/ref/what-is-atomic", text: "What is Atomic Design" },
-						{ href: base + "/ref/problem-of-atomic", text: "Problem of Atomic" },
-						{ href: base + "/ref/atomic-for-instant", text: "Atomic for Instant CSS" }
+						{ href: base + "/ref/atomic-for-instant", text: "Atomic for CSS Lubricant" }
 					]}
 				/>
 				<NavigationSection

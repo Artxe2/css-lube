@@ -7,18 +7,18 @@ import IdeSvelte from "cells/typography/IdeSvelte.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
 import ComponentRulesExample from "organs/docs/atomic-for-instant/ComponentRulesExample.svelte"
 import ResponsiveWebDesignExample from "organs/docs/atomic-for-instant/ResponsiveWebDesignExample.svelte"
-import GithubStars from "organs/GithubStars.svelte"
+import GithubStars from "organs/index/GithubStars.svelte"
 </script>
 
 <svelte:head>
-	<title>Atomic for InstantCSS | Instant CSS</title>
+	<title>Atomic for CSS Lubricant | CSS Lubricant</title>
 </svelte:head>
 
-<H2>Atomic for InstantCSS</H2>
+<H2>Atomic for CSS Lubricant</H2>
 <div class="h=2"></div>
 <H5>Folder structure</H5><br />
 <div class="h=1"></div>
-<span>First of all, InstantCSS divides components into three layers.</span><br />
+<span>First of all, CSS Lubricant divides components into three layers.</span><br />
 <CodePage>
 	<IdeFolder name="src" />{`
 	`}<IdeFolder name="components" />{`
@@ -68,13 +68,13 @@ import GithubStars from "organs/GithubStars.svelte"
 <div class="h=2"></div>
 <H5>Component Rules</H5><br />
 <div class="h=1"></div>
-<span>By default, InstantCSS can easily customize the style of components using selectors.</span><br />
+<span>By default, CSS Lubricant can easily customize the style of components using selectors.</span><br />
 <ComponentRulesExample />
-<span>However, InstantCSS recommends separating components from layouts and delegating layouts to parent components.</span><br />
+<span>However, CSS Lubricant recommends separating components from layouts and delegating layouts to parent components.</span><br />
 <span>To do this, the "width" and "height" of the component should be "100%" or "fit-content", the "margin" should be "0", and the "position" should be any property other than "absolute".</span>
 <div class="h=2"></div>
 <H5>Responsive Web Design</H5><br />
 <div class="h=1"></div>
-<span>InstantCSS recommends using "em" as the default unit.</span><br />
+<span>CSS Lubricant recommends using "em" as the default unit.</span><br />
 <span>This website provides a responsive web by adjusting the "font size" according to "device width" as shown below.</span><br />
 <ResponsiveWebDesignExample />

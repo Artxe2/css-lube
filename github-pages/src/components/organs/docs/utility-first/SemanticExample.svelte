@@ -45,7 +45,7 @@ ${html("body", "", `
 		${html("div", ` ${name("class")}=${string("content-box")}`, `
 			${html("img", ` ${name("class")}=${string("content-icon")} ${name("src")}=${string("/favicon.png")} ${name("alt")}=${string("favicon")}`, false)}
 			${html("div", "", `
-				${html("h3", ` ${name("class")}=${string("content-subject")}`, "InstantCSS")}
+				${html("h3", ` ${name("class")}=${string("content-subject")}`, "CSS Lubricant")}
 				${html("div", ` ${name("class")}=${string("content-description")}`, `
 					${html("span", "", "easy & rapid & intuitive")}
 				`)}
@@ -96,7 +96,7 @@ ${html("body", "", `
 		<div class="content-box">
 			<img class="content-icon" src="{base}/favicon.png" alt="favicon" />
 			<div>
-				<h3 class="content-subject">InstantCSS</h3>
+				<h3 class="content-subject">CSS Lubricant</h3>
 				<div class="content-description">
 					<span>Near-Atomic CSS Library</span>
 				</div>

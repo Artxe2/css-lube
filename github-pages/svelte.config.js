@@ -20,7 +20,7 @@ const config = {
             ts: path.resolve("./src/ts")
         },
         paths: {
-            base: process.env.NODE_ENV === "production" ? "/instant-css" : ""
+            base: process.env.NODE_ENV === "production" ? "/css-lubricant" : ""
         }
     },
     preprocess: vitePreprocess()

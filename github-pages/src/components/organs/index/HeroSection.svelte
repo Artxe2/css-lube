@@ -2,21 +2,25 @@
 import { base } from "$app/paths"
 import TypingText from "organs/@common/animations/TypingText.svelte"
 import H1 from "cells/typography/H1.svelte"
-import GithubStars from "organs/GithubStars.svelte"
-import { afterUpdate } from "svelte"
+import GithubStars from "organs/index/GithubStars.svelte"
 import styles from "styles"
 
-let container: HTMLElement
-
-afterUpdate(() => container.style.minHeight = window.innerHeight + "px")
+let innerHeight: number
 </script>
 
-<div bind:this={container} class="mh=100vh relative flex column jc=center">
-	<div>
-		<TypingText selector="h1>span" bgc="" dark_bgc="">
-			<H1><span>Implement your web designs rapidly on the spot!</span></H1>
-			<H1><span>It takes only 3 minutes to learn this.</span></H1>
-		</TypingText>
+<svelte:window bind:innerHeight />
+
+<div class="relative flex column jc=center mh=100vh
+		mh={innerHeight}px!">
+	<div class="relative">
+		<H1 classs="hidden"><f>Implement your web designs rapidly on the spot!</f></H1>
+		<H1 classs="hidden"><f>It takes only 3 minutes to learn this.</f></H1>
+		<div class="absolute w=100% t=0">
+			<TypingText bgc="" dark_bgc="">
+				<H1><f>Implement your web designs rapidly on the spot!</f></H1>
+				<H1><f>It takes only 3 minutes to learn this.</f></H1>
+			</TypingText>
+		</div>
 	</div>
 	<div class="absolute b=2 w=100% flex jc=center">
 		<div class="@md@flex">

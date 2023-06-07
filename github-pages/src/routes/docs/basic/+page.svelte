@@ -4,7 +4,7 @@ import BasicExample from "organs/docs/basic/BasicExample.svelte"
 </script>
 
 <svelte:head>
-	<title>Basic | Instant CSS</title>
+	<title>Basic | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Basic</H5>

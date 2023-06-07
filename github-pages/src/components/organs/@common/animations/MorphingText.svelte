@@ -11,30 +11,30 @@ let index = 0
 let text1 = array[0][0]
 let text2 = ""
 let filter = false
-let class1 = "tt=0s ft=blur(0)"
-let class2 = "tt=0s ft=blur(0)"
+let class1 = ""
+let class2 = ""
 const sleep = async (ms: number) => new Promise(resolve => timer = setTimeout(resolve, ms))
 const animation = async () => {
 	await sleep(array[index][1] - transition)
 	filter = true
-	class2 = "tt=0s ft=blur(.5em)"
+	class2 = "ft=blur(.5em)"
 	await sleep(transition * 0.1)
 	index = ++index % array.length
 	text2 = array[index][0]
-	class1 = "tt=" + transition + "ms ft=blur(.5em)"
-	class2 = "tt=" + transition + "ms ft=blur(0px)"
+	class1 = "tt=filter_" + transition + "ms ft=blur(.5em)"
+	class2 = "tt=filter_" + transition + "ms"
 	await sleep(transition * 0.9)
 	text1 = array[index][0]
 	filter = false
-	class1 = "tt=0s ft=blur(0px)"
-	class2 = "tt=0s ft=blur(0px)"
+	class1 = ""
+	class2 = ""
 	animation()
 }
 onMount(animation)
 onDestroy(() => clearTimeout(timer))
 </script>
 
-<div class="relative ta=center
+<div class="relative ta=center va=bottom
 		{filter ? "ft=url(#ft)" : ""}
 		>span/absolute >span/w=100% >span/l=0 >span/us=none
 		{classs}">

@@ -4,11 +4,11 @@ import ShorthandKeysExample from "organs/docs/shorthand-keys/ShorthandKeysExampl
 </script>
 
 <svelte:head>
-	<title>Shorthand Keys | Instant CSS</title>
+	<title>Shorthand Keys | CSS Lubricant</title>
 </svelte:head>
 
 <H5>Shorthand Keys</H5>
 <div class="h=1"></div>
-<span>Shorthand Keys of InstantCSS.</span><br />
+<span>Shorthand Keys of CSS Lubricant.</span><br />
 <div class="h=2"></div>
 <ShorthandKeysExample />
