@@ -16,7 +16,7 @@ const useActive = (e: HTMLAnchorElement) => {
 </script>
 
 <div class="relative">
-	<div class="h=100% bg=#fff bdr=1px_solid_--alto-55 w=20 tt=transform_.5s
+	<div class="h=100% bg=#fff bdr=1px_solid_--alto-55 w=20 tt=transform_.3s
 			@!md@absolute
 			{$naviOpen$ ? "" : "@!md@tf=translateX(-20em)"}
 			@dark@bg=--firefly">
@@ -66,7 +66,7 @@ const useActive = (e: HTMLAnchorElement) => {
 				<NavigationSection
 					title="Atomic Design"
 					list={[
-						{ href: base + "/ref/atomic-for-instant", text: "Atomic for CSS Lubricant" }
+						{ href: base + "/ref/atomic-for-lube", text: "Atomic for CSS Lube" }
 					]}
 				/>
 				<NavigationSection
@@ -83,6 +83,12 @@ const useActive = (e: HTMLAnchorElement) => {
 						{ href: base + "/ref/drag-and-drop", text: "Drag and Drop" },
 						{ href: base + "/ref/infinite-scroll", text: "Infinite Scroll" },
 						{ href: base + "/ref/pagination", text: "Pagination" }
+					]}
+				/>
+				<NavigationSection
+					title="Benchmark"
+					list={[
+						{ href: base + "/ref/benchmark", text: "Benchmark" }
 					]}
 				/>
 				{/if}

@@ -7,7 +7,7 @@ import MediaQueryNotExample from "organs/docs/media-query/MediaQueryNotExample.s
 </script>
 
 <svelte:head>
-	<title>Media Query | CSS Lubricant</title>
+	<title>Media Query | CSS Lube</title>
 </svelte:head>
 
 <H5>Media Query</H5>

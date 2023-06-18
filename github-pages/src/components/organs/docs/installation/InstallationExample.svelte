@@ -5,7 +5,7 @@ import { html, name, string } from "ts/highlighter"
 
 const code = `${html("head", "", `
 	. . . . . .
-	${html("script", ` ${name("src")}=${string("<f>/css-lubricant.min.js</f>")}`, "")}
+	${html("script", ` ${name("src")}=${string("<f>/css-lube.min.js</f>")}`, "")}
 `)}
 ${html("body", "", `
 	. . . . . .

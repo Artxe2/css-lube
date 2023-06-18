@@ -1,12 +1,12 @@
 <script>
 import AppBar from "parts/@common/AppBar.svelte"
 import HeroSection from "organs/index/HeroSection.svelte"
-import WhatIsCssLubricant from "organs/index/WhatIsCssLubricant.svelte"
+import WhatIsCssLube from "organs/index/WhatIsCssLube.svelte"
 import styles from "styles";
 </script>
 
 <svelte:head>
-	<title>CSS Lubricant - Near-Atomic CSS Library</title>
+	<title>CSS Lube - JIT CSS Generator</title>
 </svelte:head>
 
 <AppBar />
@@ -22,7 +22,7 @@ import styles from "styles";
 	<div class="bg=#ffffff77 @dark@bg=#000000cc">
 		<div class="w=80% m=auto ts=0_0_.5_#fff @dark@ts=0_0_.5_#000">
 			<div class="h=3"></div>
-			<WhatIsCssLubricant />
+			<WhatIsCssLube />
 			<div class="h=10"></div>
 		</div>
 	</div>

@@ -17,7 +17,7 @@ let startX = 0
 let startTime = 0
 let accumulate = 0
 let request: number
-let timer: NodeJS.Timer
+let timer: number
 
 const handleMousedown = (event: { clientX: number }) => {
 	isDragging = true

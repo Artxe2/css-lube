@@ -4,11 +4,11 @@ import DefaultUnitExample from "organs/docs/default-unit/DefaultUnitExample.svel
 </script>
 
 <svelte:head>
-	<title>Default Unit | CSS Lubricant</title>
+	<title>Default Unit | CSS Lube</title>
 </svelte:head>
 
 <H5>Default Unit</H5>
 <div class="h=1"></div>
-<span>Default Unit of CSS Lubricant.</span><br />
+<span>Default Unit of CSS Lube.</span><br>
 <div class="h=2"></div>
 <DefaultUnitExample />

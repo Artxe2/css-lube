@@ -9,9 +9,10 @@ export let orders: number[] | undefined = undefined
 export let duration = 1000
 
 const dispatch = createEventDispatcher()
-let timer: NodeJS.Timer
+let timer: number
 let wrapper: HTMLElement
 let index = 0
+let temp = ` _${selector}/none` 
 const cursor = ":after/ct='|';c=#000;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const dark_cursor = "@dark@:after/ct='|';c=#fff;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const blink = ":after/a=blink_1s_step-end_infinite"
@@ -45,6 +46,7 @@ const animation = async () => {
 		e.textContent = ""
 		return t
 	})
+	temp = ""
 	dispatch("starttype", -1)
 	dispatch("endtype", -1)
 	index = 0
@@ -80,4 +82,4 @@ onDestroy(() => clearTimeout(timer))
 </style>
 
 <span bind:this={wrapper}
-		class={classs}><slot></slot></span>
+		class={classs + temp}><slot></slot></span>

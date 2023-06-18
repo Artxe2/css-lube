@@ -8,7 +8,7 @@ export let setDragElement: (clientX: number, clientY: number, drag: HTMLElement)
 const dispatch = createEventDispatcher()
 let container: HTMLDivElement
 let dragView: HTMLDivElement
-let timer: NodeJS.Timer
+let timer: number
 
 const handleMousedown = (event: { clientX: number, clientY: number }) => {
 	timer = setTimeout(() => {

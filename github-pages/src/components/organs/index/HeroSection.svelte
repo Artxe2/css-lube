@@ -13,8 +13,8 @@ let innerHeight: number
 <div class="relative flex column jc=center mh=100vh
 		mh={innerHeight}px!">
 	<div class="relative">
-		<H1 classs="hidden"><f>Implement your web designs rapidly on the spot!</f></H1>
-		<H1 classs="hidden"><f>It takes only 3 minutes to learn this.</f></H1>
+		<H1 classs="v=hidden"><f>Implement your web designs rapidly on the spot!</f></H1>
+		<H1 classs="v=hidden"><f>It takes only 3 minutes to learn this.</f></H1>
 		<div class="absolute w=100% t=0">
 			<TypingText bgc="" dark_bgc="">
 				<H1><f>Implement your web designs rapidly on the spot!</f></H1>

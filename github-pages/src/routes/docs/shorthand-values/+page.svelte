@@ -5,12 +5,12 @@ import JsMap from "cells/typography/JsMap.svelte"
 </script>
 
 <svelte:head>
-	<title>Shorthand Values | CSS Lubricant</title>
+	<title>Shorthand Values | CSS Lube</title>
 </svelte:head>
 
 <H5>Shorthand Values</H5>
 <div class="h=1"></div>
-<span>Shorthand Values of CSS Lubricant.</span><br />
+<span>Shorthand Values of CSS Lube.</span><br>
 <div class="h=2"></div>
 <CodePage>
 	<JsMap
@@ -40,8 +40,6 @@ import JsMap from "cells/typography/JsMap.svelte"
 	["fixed","position:fixed"],
 	["relative","position:relative"],
 	["static","position:static"],
-	["sticky","position:sticky"],
-	/* visibility */
-	["hidden","visibility:hidden"]
+	["sticky","position:sticky"]
 ]`} />
 </CodePage>

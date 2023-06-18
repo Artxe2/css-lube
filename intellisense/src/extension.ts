@@ -11,15 +11,15 @@ function getClassName(document: vscode.TextDocument, position: vscode.Position) 
 }
 const shorthandKeys = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lubricant.custom.shorthandKeys") as [string, string][]
+			.get("css-lube.custom.shorthandKeys") as [string, string][]
 );
 const shorthandValues = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lubricant.custom.shorthandValues") as [string, string][]
+			.get("css-lube.custom.shorthandValues") as [string, string][]
 );
 const shorthandMedias = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lubricant.custom.shorthandMedias") as [string, string][]
+			.get("css-lube.custom.shorthandMedias") as [string, string][]
 );
 const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"];
 const triggerCharacters = [`"`, "'", " ", "/", ";"];
@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 						const comp = new vscode.CompletionItem(v + ":?");
 						comp.insertText = k + "=";
 						comp.kind = vscode.CompletionItemKind.EnumMember;
-						comp.detail = `${k}= * * * shorthandKeys of css-lubricant`;
+						comp.detail = `${k}= * * * shorthandKeys of css-lube`;
 						comp.sortText = v;
 						return comp;
 					});
@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 						const comp = new vscode.CompletionItem(v);
 						comp.insertText = k;
 						comp.kind = vscode.CompletionItemKind.Value;
-						comp.detail = `${k} * * * shorthandValues of css-lubricant`;
+						comp.detail = `${k} * * * shorthandValues of css-lube`;
 						comp.sortText = v;
 						return comp;
 					});
@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
 						const comp = new vscode.CompletionItem("@media " + v);
 						comp.insertText = "@" + k + "@";
 						comp.kind = vscode.CompletionItemKind.Constructor;
-						comp.detail = `@${k}@ * * * shorthandMedias of css-lubricant`;
+						comp.detail = `@${k}@ * * * shorthandMedias of css-lube`;
 						comp.sortText = v;
 						comp.command = {
 							"command": "editor.action.triggerSuggest",

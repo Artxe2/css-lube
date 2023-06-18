@@ -6,21 +6,21 @@ import styles from "styles"
 </script>
 
 <svelte:head>
-	<title>Installation | CSS Lubricant</title>
+	<title>Installation | CSS Lube</title>
 </svelte:head>
 
 <H5>Installation</H5>
 <div class="h=1"></div>
-<span>CSS Lubricant can download both compressed and original files.</span><br />
+<span>CSS Lube can download both compressed and original files.</span><br>
 <span>The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.</span>
 <div class="h=1"></div>
-<Download url="https://raw.githubusercontent.com/Artxe2/css-lubricant/main/lib/css-lubricant.min.js">
-	<button class="bold va=bottom {styles.button.resources}">css-lubricant.min.js v0.7.0</button>
+<Download url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.min.js">
+	<button class="bold va=bottom {styles.button.resources}">css-lube.min.js v1.0.0</button>
 </Download>
 <span>compressed for production</span>
 <div class="h=1"></div>
-<Download url="https://raw.githubusercontent.com/Artxe2/css-lubricant/main/lib/css-lubricant.js">
-	<button class="bold va=bottom {styles.button.resources}">css-lubricant.js v0.7.0</button>
+<Download url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.js">
+	<button class="bold va=bottom {styles.button.resources}">css-lube.js v1.0.0</button>
 </Download>
 <span>uncompressed for development</span>
 <div class="h=1"></div>

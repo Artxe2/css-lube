@@ -1,5 +1,5 @@
-# Intellisense CSS Lubricant
+# Intellisense CSS Lube
 
-This is Intellisense for CSS Lubricant
+This is Intellisense for CSS Lube
 
-[CSS Lubricant](https://artxe2.github.io/css-lubricant/)
+[CSS Lube](https://artxe2.github.io/css-lube/)

@@ -13,11 +13,11 @@ function getClassName(document, position) {
         .exec(text.slice(0, index + position.character))?.[0];
 }
 const shorthandKeys = new Map(vscode.workspace.getConfiguration()
-    .get("css-lubricant.custom.shorthandKeys"));
+    .get("css-lube.custom.shorthandKeys"));
 const shorthandValues = new Map(vscode.workspace.getConfiguration()
-    .get("css-lubricant.custom.shorthandValues"));
+    .get("css-lube.custom.shorthandValues"));
 const shorthandMedias = new Map(vscode.workspace.getConfiguration()
-    .get("css-lubricant.custom.shorthandMedias"));
+    .get("css-lube.custom.shorthandMedias"));
 const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"];
 const triggerCharacters = [`"`, "'", " ", "/", ";"];
 function activate(context) {
@@ -29,7 +29,7 @@ function activate(context) {
                     const comp = new vscode.CompletionItem(v + ":?");
                     comp.insertText = k + "=";
                     comp.kind = vscode.CompletionItemKind.EnumMember;
-                    comp.detail = `${k}= * * * shorthandKeys of css-lubricant`;
+                    comp.detail = `${k}= * * * shorthandKeys of css-lube`;
                     comp.sortText = v;
                     return comp;
                 });
@@ -44,7 +44,7 @@ function activate(context) {
                     const comp = new vscode.CompletionItem(v);
                     comp.insertText = k;
                     comp.kind = vscode.CompletionItemKind.Value;
-                    comp.detail = `${k} * * * shorthandValues of css-lubricant`;
+                    comp.detail = `${k} * * * shorthandValues of css-lube`;
                     comp.sortText = v;
                     return comp;
                 });
@@ -59,7 +59,7 @@ function activate(context) {
                     const comp = new vscode.CompletionItem("@media " + v);
                     comp.insertText = "@" + k + "@";
                     comp.kind = vscode.CompletionItemKind.Constructor;
-                    comp.detail = `@${k}@ * * * shorthandMedias of css-lubricant`;
+                    comp.detail = `@${k}@ * * * shorthandMedias of css-lube`;
                     comp.sortText = v;
                     comp.command = {
                         "command": "editor.action.triggerSuggest",

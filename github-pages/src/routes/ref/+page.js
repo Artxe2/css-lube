@@ -2,5 +2,5 @@ import { base } from "$app/paths"
 import { redirect } from "@sveltejs/kit"
 
 export function load() {
-	throw redirect(307, `${base}/ref/what-is-atomic`)
+	throw redirect(307, `${base}/ref/atomic-for-lube`)
 }

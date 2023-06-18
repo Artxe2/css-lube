@@ -4,7 +4,7 @@ import TestEditor from "organs/repl/TestEditor.svelte"
 </script>
 
 <svelte:head>
-	<title>REPL | CSS Lubricant</title>
+	<title>REPL | CSS Lube</title>
 </svelte:head>
 
 <div class="h=100% xh=100% bg=--primary-55 @dark@bg=--firefly">

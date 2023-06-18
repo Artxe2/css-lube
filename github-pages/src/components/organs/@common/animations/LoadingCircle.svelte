@@ -3,7 +3,7 @@ import { onDestroy, onMount } from "svelte"
 
 export let classs = ""
 
-let timer: NodeJS.Timer
+let timer: number
 let index = 0
 onMount(() => timer = setInterval(() => index = ++index % 12, 90))
 onDestroy(() => clearInterval(timer))

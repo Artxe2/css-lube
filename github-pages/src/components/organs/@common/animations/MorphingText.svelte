@@ -6,7 +6,7 @@ export let array: [ string, number ][] = []
 export let longest: number
 export let transition = 500
 
-let timer: NodeJS.Timer
+let timer: number
 let index = 0
 let text1 = array[0][0]
 let text2 = ""
@@ -34,7 +34,7 @@ onMount(animation)
 onDestroy(() => clearTimeout(timer))
 </script>
 
-<div class="relative ta=center va=bottom
+<div class="relative ta=center
 		{filter ? "ft=url(#ft)" : ""}
 		>span/absolute >span/w=100% >span/l=0 >span/us=none
 		{classs}">

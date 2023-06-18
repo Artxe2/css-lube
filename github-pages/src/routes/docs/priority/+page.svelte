@@ -4,7 +4,7 @@ import PriorityExample from "organs/docs/priority/PriorityExample.svelte"
 </script>
 
 <svelte:head>
-	<title>Priority | CSS Lubricant</title>
+	<title>Priority | CSS Lube</title>
 </svelte:head>
 
 <H5>Priority</H5>

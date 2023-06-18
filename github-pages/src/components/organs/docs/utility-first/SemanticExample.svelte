@@ -45,7 +45,7 @@ ${html("body", "", `
 		${html("div", ` ${name("class")}=${string("content-box")}`, `
 			${html("img", ` ${name("class")}=${string("content-icon")} ${name("src")}=${string("/favicon.png")} ${name("alt")}=${string("favicon")}`, false)}
 			${html("div", "", `
-				${html("h3", ` ${name("class")}=${string("content-subject")}`, "CSS Lubricant")}
+				${html("h3", ` ${name("class")}=${string("content-subject")}`, "CSS Lube")}
 				${html("div", ` ${name("class")}=${string("content-description")}`, `
 					${html("span", "", "easy & rapid & intuitive")}
 				`)}
@@ -96,7 +96,7 @@ ${html("body", "", `
 		<div class="content-box">
 			<img class="content-icon" src="{base}/favicon.png" alt="favicon" />
 			<div>
-				<h3 class="content-subject">CSS Lubricant</h3>
+				<h3 class="content-subject">CSS Lube</h3>
 				<div class="content-description">
 					<span>Near-Atomic CSS Library</span>
 				</div>
@@ -105,6 +105,6 @@ ${html("body", "", `
 	</div>
 </CodePage>
 <div>
-	<span>In the old way, whenever you needed to style the web, you had to name a class and write CSS.</span><br />
+	<span>In the old way, whenever you needed to style the web, you had to name a class and write CSS.</span><br>
 </div>
 <CodePage>{@html code}</CodePage>

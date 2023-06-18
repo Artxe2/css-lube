@@ -3,7 +3,7 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import { bracket, comment, css, html, keyword, name, string } from "ts/highlighter"
 
 const code = `${comment("<!-- Media queries also provide some shorthands -->")}
-${html("style", ` ${name("css-lubricant")}=${string("v0.7.0")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.0.0")}`, `
 	${keyword("@media")} ${bracket("(")}${name("min-width")}:${string("640px", false)}${bracket(")")} ${keyword("and")} ${bracket("(")}${name("max-width")}:${string("767px", false)}${bracket("){")}
 		${css(".\\@\\!width\\=640\\~767px\\@fs\\=10px", ["color", "red"])}
 	${bracket("}")}

@@ -11,7 +11,7 @@ onDestroy(() => {
 </script>
 
 <div class="relative">
-	<div class="z=1 absolute h=100% flex tt=transform_.5s
+	<div class="z=1 absolute h=100% flex tt=transform_.45s
 			{$naviOpen$ ? "tf=translateX(17em)" : "tf=translateX(2em)"}
 			@md@none">
 		<button class="relative m=auto fs=5 bold lh=1 us=none"
