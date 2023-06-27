@@ -17,14 +17,14 @@ onMount(async () => {
 		getWorkerUrl: () => "https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js"
 	}
 	editor = (await import('monaco-editor')).editor.create(container, {
-        automaticLayout: true,
-        language: "html",
+		automaticLayout: true,
+		language: "html",
 		minimap: {
 			enabled: false,
 		},
-        theme: "vs-dark",
-        value: content
-    })
+		theme: "vs-dark",
+		value: content
+	})
 	isLoading = false
 	editor.getModel()?.onDidChangeContent(() => content = editor.getValue())
 	return () => editor.dispose()

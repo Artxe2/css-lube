@@ -1,16 +1,16 @@
 import{S as T,i as x,s as I,y,z as E,A as H,g as M,d as v,B as w,R as q,e as S,T as C,b as u,D as A,h as m,a as g,k as R,Q as K,c as k,l as L,m as P,n as j,q as z,r as B}from"../chunks/index.e72184b5.js";import{H as G}from"../chunks/H5.546393c9.js";import{C as Q}from"../chunks/CodePage.abe9804b.js";import{c as f,h as p,a as h,n as c,s as l,k as V,b as o,f as b}from"../chunks/highlighter.e3fc48dc.js";function F(n){let e,a;return{c(){e=new q(!1),a=S(),this.h()},l(s){e=C(s,!1),a=S(),this.h()},h(){e.a=a},m(s,r){e.m(n[0],s,r),u(s,a,r)},p:A,d(s){s&&m(a),s&&e.d()}}}function J(n){let e,a;return e=new Q({props:{$$slots:{default:[F]},$$scope:{ctx:n}}}),{c(){y(e.$$.fragment)},l(s){E(e.$$.fragment,s)},m(s,r){H(e,s,r),a=!0},p(s,[r]){const i={};r&2&&(i.$$scope={dirty:r,ctx:s}),e.$set(i)},i(s){a||(M(e.$$.fragment,s),a=!0)},o(s){v(e.$$.fragment,s),a=!1},d(s){w(e,s)}}}function N(n){return[`${f("<!-- In light theme, dark mode styles are disabled -->")}
-${p("style",` ${c("css-lube")}=${l("v1.0.0")}`,`
+${p("style",` ${c("css-lube")}=${l("v1.0.1")}`,`
 	${h(".c\\=red",["color","red"])}
 `)}
 
 ${f("<!-- In dark theme, dark mode styles are applied without media queries -->")}
-${p("style",` ${c("css-lube")}=${l("v1.0.0")}`,`
+${p("style",` ${c("css-lube")}=${l("v1.0.1")}`,`
 	${h(".c\\=red",["color","red"])}
 		${h(".\\@dark\\@c\\=blue",["color","blue"])}
 `)}
 
 ${f("<!-- In system theme, the dark mode style is applied as a media query -->")}
-${p("style",` ${c("css-lube")}=${l("v1.0.0")}`,`
+${p("style",` ${c("css-lube")}=${l("v1.0.1")}`,`
 	${h(".c\\=red",["color","red"])}
 	${V("@media")} ${o("(")}${c("prefers-color-scheme")}:${l("dark",!1)}${o("){")}
 		${h(".\\@dark\\@c\\=blue",["color","blue"])}

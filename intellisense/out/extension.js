@@ -3,74 +3,74 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode = require("vscode");
 function getClassName(document, position) {
-    const text = document.getText();
-    let index = 0;
-    for (let i = 0; i < position.line; i++) {
-        while (text.charAt(index++) !== '\n')
-            ;
-    }
-    return /(?<=class=|className=)'[-+=:;*/.,()!@#%"\w\t\r\n \\]*$|(?<=class=|className=)"[-+=:;*/.,()!@#%'\w\t\r\n \\]*$/
-        .exec(text.slice(0, index + position.character))?.[0];
+	const text = document.getText();
+	let index = 0;
+	for (let i = 0; i < position.line; i++) {
+		while (text.charAt(index++) !== '\n')
+			;
+	}
+	return /(?<=class=|className=)'[-+=:;*/.,()!@#%"\w\t\r\n \\]*$|(?<=class=|className=)"[-+=:;*/.,()!@#%'\w\t\r\n \\]*$/
+		.exec(text.slice(0, index + position.character))?.[0];
 }
 const shorthandKeys = new Map(vscode.workspace.getConfiguration()
-    .get("css-lube.custom.shorthandKeys"));
+	.get("css-lube.custom.shorthandKeys"));
 const shorthandValues = new Map(vscode.workspace.getConfiguration()
-    .get("css-lube.custom.shorthandValues"));
+	.get("css-lube.custom.shorthandValues"));
 const shorthandMedias = new Map(vscode.workspace.getConfiguration()
-    .get("css-lube.custom.shorthandMedias"));
+	.get("css-lube.custom.shorthandMedias"));
 const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"];
 const triggerCharacters = [`"`, "'", " ", "/", ";"];
 function activate(context) {
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(selector, {
-        provideCompletionItems(document, position, token, context) {
-            const className = getClassName(document, position);
-            if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
-                const keys = [...shorthandKeys].map(([k, v]) => {
-                    const comp = new vscode.CompletionItem(v + ":?");
-                    comp.insertText = k + "=";
-                    comp.kind = vscode.CompletionItemKind.EnumMember;
-                    comp.detail = `${k}= * * * shorthandKeys of css-lube`;
-                    comp.sortText = v;
-                    return comp;
-                });
-                return [...keys];
-            }
-        }
-    }, ...triggerCharacters), vscode.languages.registerCompletionItemProvider(selector, {
-        provideCompletionItems(document, position, token, context) {
-            const className = getClassName(document, position);
-            if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
-                const values = [...shorthandValues].map(([k, v]) => {
-                    const comp = new vscode.CompletionItem(v);
-                    comp.insertText = k;
-                    comp.kind = vscode.CompletionItemKind.Value;
-                    comp.detail = `${k} * * * shorthandValues of css-lube`;
-                    comp.sortText = v;
-                    return comp;
-                });
-                return [...values];
-            }
-        }
-    }, ...triggerCharacters), vscode.languages.registerCompletionItemProvider(selector, {
-        provideCompletionItems(document, position, token, context) {
-            const className = getClassName(document, position);
-            if (className != null && /(?:^.| )$/.test(className)) {
-                const medias = [...shorthandMedias].map(([k, v]) => {
-                    const comp = new vscode.CompletionItem("@media " + v);
-                    comp.insertText = "@" + k + "@";
-                    comp.kind = vscode.CompletionItemKind.Constructor;
-                    comp.detail = `@${k}@ * * * shorthandMedias of css-lube`;
-                    comp.sortText = v;
-                    comp.command = {
-                        "command": "editor.action.triggerSuggest",
-                        "title": "Re-trigger completions..."
-                    };
-                    return comp;
-                });
-                return [...medias];
-            }
-        }
-    }, ...triggerCharacters));
+	context.subscriptions.push(vscode.languages.registerCompletionItemProvider(selector, {
+		provideCompletionItems(document, position, token, context) {
+			const className = getClassName(document, position);
+			if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
+				const keys = [...shorthandKeys].map(([k, v]) => {
+					const comp = new vscode.CompletionItem(v + ":?");
+					comp.insertText = k + "=";
+					comp.kind = vscode.CompletionItemKind.EnumMember;
+					comp.detail = `${k}= * * * shorthandKeys of css-lube`;
+					comp.sortText = v;
+					return comp;
+				});
+				return [...keys];
+			}
+		}
+	}, ...triggerCharacters), vscode.languages.registerCompletionItemProvider(selector, {
+		provideCompletionItems(document, position, token, context) {
+			const className = getClassName(document, position);
+			if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
+				const values = [...shorthandValues].map(([k, v]) => {
+					const comp = new vscode.CompletionItem(v);
+					comp.insertText = k;
+					comp.kind = vscode.CompletionItemKind.Value;
+					comp.detail = `${k} * * * shorthandValues of css-lube`;
+					comp.sortText = v;
+					return comp;
+				});
+				return [...values];
+			}
+		}
+	}, ...triggerCharacters), vscode.languages.registerCompletionItemProvider(selector, {
+		provideCompletionItems(document, position, token, context) {
+			const className = getClassName(document, position);
+			if (className != null && /(?:^.| )$/.test(className)) {
+				const medias = [...shorthandMedias].map(([k, v]) => {
+					const comp = new vscode.CompletionItem("@media " + v);
+					comp.insertText = "@" + k + "@";
+					comp.kind = vscode.CompletionItemKind.Constructor;
+					comp.detail = `@${k}@ * * * shorthandMedias of css-lube`;
+					comp.sortText = v;
+					comp.command = {
+						"command": "editor.action.triggerSuggest",
+						"title": "Re-trigger completions..."
+					};
+					return comp;
+				});
+				return [...medias];
+			}
+		}
+	}, ...triggerCharacters));
 }
 exports.activate = activate;
 //# sourceMappingURL=extension.js.map

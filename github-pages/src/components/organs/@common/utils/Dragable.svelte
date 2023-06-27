@@ -24,10 +24,10 @@ const handleTouchstart = (event: TouchEvent) => {
 	handleMousedown(event.touches[0])
 }
 const handleMouseup = () => {
-    clearTimeout(timer);
+	clearTimeout(timer);
 }
 const handleTouchend = () => {
-    clearTimeout(timer);
+	clearTimeout(timer);
 }
 </script>
 
