@@ -20,7 +20,7 @@ const useActive = (e: HTMLAnchorElement) => {
 			@!md@absolute
 			{$naviOpen$ ? "" : "@!md@tf=translateX(-20em)"}
 			@dark@bg=--firefly">
-		<div class="pl=1.5 h=100% oy=auto {styles.scrollbar.primary}">
+		<nav class="pl=1.5 h=100% oy=auto {styles.scrollbar.primary}">
 			<div class="h=2"></div>
 			<ul>
 				<li>
@@ -94,6 +94,6 @@ const useActive = (e: HTMLAnchorElement) => {
 				{/if}
 			</ul>
 			<div class="h=2"></div>
-		</div>
+		</nav>
 	</div>
 </div>

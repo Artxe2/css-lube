@@ -1,0 +1,57 @@
+import{s as ct,f as v,l as D,a as Y,g as k,h as j,m as L,d as m,c as Z,j as I,i as T,y as g,r as G,u as W,G as Ct,N as zt,e as R,p as yt,n as $t,F as X,R as J,H as Et,S as pt,T as wt,M as Nt,U as Ot,J as Pt,K as It,I as Mt}from"../chunks/scheduler.37114a5d.js";import{S as ft,i as _t,b as lt,d as st,m as it,a as at,t as ot,e as rt,f as jt}from"../chunks/index.80e0ab0e.js";import{C as Ut}from"../chunks/CodePage.aad8268b.js";import{h as E,k as O,n as r,s as K,d as U,i as N,t as q,b as i,f as Q}from"../chunks/highlighter.e3fc48dc.js";import{C as Dt}from"../chunks/ComponentTabView.d9ff6e19.js";import{e as gt,u as Lt,d as Vt}from"../chunks/each.e5cbc508.js";import{s as F}from"../chunks/index.00bbd8d4.js";function bt(o,t,n){const s=o.slice();return s[17]=t[n],s}function vt(o){let t;function n(e,a){return e[17]===1&&e[17]+e[2]+1<e[0]?At:e[17]===e[4]-1&&e[17]-e[2]-1>e[0]?St:Bt}let s=n(o),l=s(o);return{c(){l.c(),t=R()},l(e){l.l(e),t=R()},m(e,a){l.m(e,a),T(e,t,a)},p(e,a){s===(s=n(e))&&l?l.p(e,a):(l.d(1),l=s(e),l&&(l.c(),l.m(t.parentNode,t)))},d(e){e&&m(t),l.d(e)}}}function Bt(o){let t,n=o[17]+1+"",s,l,e,a;function f(){return o[13](o[17])}return{c(){t=v("button"),s=D(n),this.h()},l(u){t=k(u,"BUTTON",{class:!0});var $=j(t);s=L($,n),$.forEach(m),this.h()},h(){I(t,"class",l=o[17]===o[0]?F.button.link:F.button.text)},m(u,$){T(u,t,$),g(t,s),e||(a=G(t,"click",f),e=!0)},p(u,$){o=u,$&64&&n!==(n=o[17]+1+"")&&$t(s,n),$&65&&l!==(l=o[17]===o[0]?F.button.link:F.button.text)&&I(t,"class",l)},d(u){u&&m(t),e=!1,a()}}}function St(o){let t,n,s,l;return{c(){t=v("button"),n=D("..."),this.h()},l(e){t=k(e,"BUTTON",{class:!0});var a=j(t);n=L(a,"..."),a.forEach(m),this.h()},h(){I(t,"class",F.button.text)},m(e,a){T(e,t,a),g(t,n),s||(l=G(t,"click",o[12]),s=!0)},p:W,d(e){e&&m(t),s=!1,l()}}}function At(o){let t,n,s,l;return{c(){t=v("button"),n=D("..."),this.h()},l(e){t=k(e,"BUTTON",{class:!0});var a=j(t);n=L(a,"..."),a.forEach(m),this.h()},h(){I(t,"class",F.button.text)},m(e,a){T(e,t,a),g(t,n),s||(l=G(t,"click",o[11]),s=!0)},p:W,d(e){e&&m(t),s=!1,l()}}}function kt(o,t){let n,s=t[17]<=1||t[17]>=t[4]-1||Math.abs(t[0]-t[17])<=t[2],l,e=s&&vt(t);return{key:o,first:null,c(){n=R(),e&&e.c(),l=R(),this.h()},l(a){n=R(),e&&e.l(a),l=R(),this.h()},h(){this.first=n},m(a,f){T(a,n,f),e&&e.m(a,f),T(a,l,f)},p(a,f){t=a,f&85&&(s=t[17]<=1||t[17]>=t[4]-1||Math.abs(t[0]-t[17])<=t[2]),s?e?e.p(t,f):(e=vt(t),e.c(),e.m(l.parentNode,l)):e&&(e.d(1),e=null)},d(a){a&&(m(n),m(l)),e&&e.d(a)}}}function Ht(o){let t,n,s="<",l,e,a=[],f=new Map,u,$,y=">",C,P,d,V=gt(o[6]);const z=p=>p[17];for(let p=0;p<V.length;p+=1){let _=bt(o,V,p),w=z(_);f.set(w,a[p]=kt(w,_))}return{c(){t=v("div"),n=v("button"),l=D(s),e=Y();for(let p=0;p<a.length;p+=1)a[p].c();u=Y(),$=v("button"),C=D(y),this.h()},l(p){t=k(p,"DIV",{class:!0});var _=j(t);n=k(_,"BUTTON",{class:!0});var w=j(n);l=L(w,s),w.forEach(m),e=Z(_);for(let c=0;c<a.length;c+=1)a[c].l(_);u=Z(_),$=k(_,"BUTTON",{class:!0});var A=j($);C=L(A,y),A.forEach(m),_.forEach(m),this.h()},h(){I(n,"class",F.button.text),I($,"class",F.button.text),I(t,"class",o[1])},m(p,_){T(p,t,_),g(t,n),g(n,l),g(t,e);for(let w=0;w<a.length;w+=1)a[w]&&a[w].m(t,null);g(t,u),g(t,$),g($,C),o[15](t),P||(d=[G(n,"click",o[10]),G($,"click",o[14])],P=!0)},p(p,[_]){_&221&&(V=gt(p[6]),a=Lt(a,_,z,1,p,V,f,t,Vt,kt,u,bt)),_&2&&I(t,"class",p[1])},i:W,o:W,d(p){p&&m(t);for(let _=0;_<a.length;_+=1)a[_].d();o[15](null),P=!1,Ct(d)}}}function qt(o,t,n){let s,l,{classs:e=""}=t,{size:a=10}=t,{list:f}=t,{page:u=0}=t,{offset:$=1}=t,{jump:y=5}=t;const C=zt();let P;const d=c=>{n(0,u=Math.min(Math.max(c,0),s)),C("change",{index:u*a,size:a})},V=()=>u>0&&d(u-1),z=()=>d(Math.max(u-y,1)),p=()=>d(Math.min(u+y,s-1)),_=c=>d(c),w=()=>u<s&&d(u+1);function A(c){yt[c?"unshift":"push"](()=>{P=c,n(5,P)})}return o.$$set=c=>{"classs"in c&&n(1,e=c.classs),"size"in c&&n(8,a=c.size),"list"in c&&n(9,f=c.list),"page"in c&&n(0,u=c.page),"offset"in c&&n(2,$=c.offset),"jump"in c&&n(3,y=c.jump)},o.$$.update=()=>{o.$$.dirty&768&&n(4,s=f?Math.floor(((f.length||0)+a-1)/a)-1:0),o.$$.dirty&16&&n(6,l=Array.from({length:s+1},(c,x)=>x))},[u,e,$,y,s,P,l,d,a,f,V,z,p,_,w,A]}class Rt extends ft{constructor(t){super(),_t(this,t,qt,Ht,ct,{classs:1,size:8,list:9,page:0,offset:2,jump:3})}}function Ft(o){let t;return{c(){t=D("Empty")},l(n){t=L(n,"Empty")},m(n,s){T(n,t,s)},p:W,d(n){n&&m(t)}}}function Gt(o){let t,n=o[3][0].title+"",s,l,e,a=o[3][o[3].length-1].title+"",f;return{c(){t=v("div"),s=D(n),l=D(`\r
+			. . .\r
+			`),e=v("div"),f=D(a)},l(u){t=k(u,"DIV",{});var $=j(t);s=L($,n),$.forEach(m),l=L(u,`\r
+			. . .\r
+			`),e=k(u,"DIV",{});var y=j(e);f=L(y,a),y.forEach(m)},m(u,$){T(u,t,$),g(t,s),T(u,l,$),T(u,e,$),g(e,f)},p(u,$){$&8&&n!==(n=u[3][0].title+"")&&$t(s,n),$&8&&a!==(a=u[3][u[3].length-1].title+"")&&$t(f,a)},d(u){u&&(m(t),m(l),m(e))}}}function Jt(o){let t,n=`${E("script",` ${r("lang")}=${K("ts")}`,`
+${O("import")} ${r("Pagination")} ${O("from")} ${K("src/instant-ui/components/pagination/Pagination.svelte")}
+
+${U("let")} ${r("count")} = ${N(0)}
+${U("let")} ${r("list")}: ${q("any")}${i("[]")}
+${U("let")} ${r("index")} = ${N(0)}
+${U("let")} ${r("size")} = ${N(10)}
+
+$: ${r("view")} = ${r("list")}?.${Q("slice")}${i("(")}${r("index")}, ${r("Math")}.${Q("min")}${i("(",1)}${r("index")} + ${r("size")}, ${r("list")}.${r("length")}${i(")",1)}${i(")")}
+
+${U("const")} ${Q("handleChange")} = ${i("(")}${i("{",1)} ${r("detail")} ${i("}",1)}: ${i("{",1)} ${r("detail")}: ${i("{",2)} ${r("index")}: ${q("number")}, ${r("size")}: ${q("number")} ${i("}",2)}${i("}",1)}${i(")")} ${U("=>")} ${i("{")}
+	${r("index")} = ${r("detail")}.${r("index")}
+	${r("size")} = ${r("detail")}.${r("size")}
+${i("}")}
+${U("const")} ${Q("getList")} = ${i("()")} ${U("=>")} ${i("{")}
+	${O("if")} ${i("(",1)}${r("count")} < ${N(0)}${i(") {",1)}
+		${r("count")} = ${N(0)}
+	${i("}",1)} ${O("else")} ${i("{",1)}
+		${r("count")} = ${r("Math")}.${Q("floor")}${i("(",2)}${r("count")}${i(")",2)}
+	${i("}",1)}
+	${r("list")} = ${U("new")} ${q("Array")}${i("(",1)}${r("count")}${i(")",1)}
+	${O("for")} ${i("(",1)}${U("let")} ${r("i")} = ${N(0)}; ${r("i")} < ${r("list")}?.${r("length")}; ${r("i")}++${i(") {",1)}
+		${r("list")}${i("[",2)}${r("i")}${i("]",2)} = ${i("{",2)} ${r("title:")} ${K("Lorem Ipsum is simply dummy text ")} + ${i("(")}${r("i")} + ${N(1)}${i(")")} ${i("}",2)}
+	${i("}",1)}
+${i("}")}
+`)}
+
+${E("div","",`
+	${E("span","","contents: ")}${E("input",` ${O("bind")}:${q("value")}=${i("{")}${r("count")}${i("}")}
+			${r("type")}=${K("number")} ${r("type")}=${K("bg=inherit w=3 ta=right")}
+			${O("on")}:${q("change")}=${i("{")}${Q("getList")}${i("}")}`,!1)}ea
+	${E("div",` ${r("class")}=${K("bd=.1_solid p=1")}`,`
+		${i("{")}#${O("if")} ${r("view")}.?${r("length")}${i("}")}
+		${E("div","",`${i("{")}${r("view")}${i("[",1)}${N(0)}${i("]",1)}.${r("title")}${i("}")}`)}
+		. . .
+		${E("div","",`${i("{")}${r("view")}${i("[",1)}${r("view")}.${r("length")} - ${N(1)}${i("]",1)}.${r("title")}${i("}")}`)}
+		${i("{")}:${O("else")}${i("}")}
+		Empty
+		${i("{")}/${O("if")}${i("}")}
+	`)}
+	${E("select",` ${O("bind")}:${q("value")}=${i("{")}${r("size")}${i("}")} ${r("class")}=${K("@dark@bg=#222")}`,`
+		${E("option",` ${r("value")}=${i("{")}${N(10)}${i("}")}`,"10")}
+		${E("option",` ${r("value")}=${i("{")}${N(20)}${i("}")}`,"20")}
+		${E("option",` ${r("value")}=${i("{")}${N(50)}${i("}")}`,"50")}
+		${E("option",` ${r("value")}=${i("{")}${N(100)}${i("}")}`,"100")}
+		${E("option",` ${r("value")}=${i("{")}${N(200)}${i("}")}`,"200")}
+	`)}
+	${E("Pagination",` ${O("bind")}:${r("size")}
+			${O("on")}:${q("change")}=${i("{")}${Q("handleChange")}${i("}")}
+			${i("{")}${r("list")}${i("}")}`,!1)}
+`)}`,s;return{c(){t=new Pt(!1),s=R(),this.h()},l(l){t=It(l,!1),s=R(),this.h()},h(){t.a=s},m(l,e){t.m(n,l,e),T(l,s,e)},p:W,d(l){l&&(m(s),t.d())}}}function Kt(o){let t,n,s="contents: ",l,e,a,f,u,$,y="10",C,P="20",d,V="50",z,p="100",_,w="200",A,c,x,tt,H,et,ut,ht;function dt(h,b){var B;return(B=h[3])!=null&&B.length?Gt:Ft}let nt=dt(o),M=nt(o);function Tt(h){o[9](h)}let mt={list:o[0]};return o[1]!==void 0&&(mt.size=o[1]),c=new Rt({props:mt}),yt.push(()=>jt(c,"size",Tt)),c.$on("change",o[4]),H=new Ut({props:{isCode:!0,$$slots:{default:[Jt]},$$scope:{ctx:o}}}),{c(){t=v("div"),n=v("span"),n.textContent=s,l=v("input"),e=D(`ea\r
+		`),a=v("div"),M.c(),f=Y(),u=v("select"),$=v("option"),$.textContent=y,C=v("option"),C.textContent=P,d=v("option"),d.textContent=V,z=v("option"),z.textContent=p,_=v("option"),_.textContent=w,A=Y(),lt(c.$$.fragment),tt=Y(),lt(H.$$.fragment),this.h()},l(h){t=k(h,"DIV",{});var b=j(t);n=k(b,"SPAN",{"data-svelte-h":!0}),X(n)!=="svelte-krpnu"&&(n.textContent=s),l=k(b,"INPUT",{type:!0,class:!0}),e=L(b,`ea\r
+		`),a=k(b,"DIV",{class:!0});var B=j(a);M.l(B),B.forEach(m),f=Z(b),u=k(b,"SELECT",{class:!0});var S=j(u);$=k(S,"OPTION",{"data-svelte-h":!0}),X($)!=="svelte-18d3dpq"&&($.textContent=y),C=k(S,"OPTION",{"data-svelte-h":!0}),X(C)!=="svelte-1k18a0a"&&(C.textContent=P),d=k(S,"OPTION",{"data-svelte-h":!0}),X(d)!=="svelte-ujtx1y"&&(d.textContent=V),z=k(S,"OPTION",{"data-svelte-h":!0}),X(z)!=="svelte-ic6cau"&&(z.textContent=p),_=k(S,"OPTION",{"data-svelte-h":!0}),X(_)!=="svelte-1148cjc"&&(_.textContent=w),S.forEach(m),A=Z(b),st(c.$$.fragment,b),b.forEach(m),tt=Z(h),st(H.$$.fragment,h),this.h()},h(){I(l,"type","number"),I(l,"class","bg=inherit w=3 ta=right"),I(a,"class","bd=.1_solid p=1"),$.__value=10,J($,$.__value),C.__value=20,J(C,C.__value),d.__value=50,J(d,d.__value),z.__value=100,J(z,z.__value),_.__value=200,J(_,_.__value),I(u,"class","@dark@bg=#222"),o[1]===void 0&&Et(()=>o[8].call(u))},m(h,b){T(h,t,b),g(t,n),g(t,l),J(l,o[2]),g(t,e),g(t,a),M.m(a,null),g(t,f),g(t,u),g(u,$),g(u,C),g(u,d),g(u,z),g(u,_),pt(u,o[1],!0),g(t,A),it(c,t,null),T(h,tt,b),it(H,h,b),et=!0,ut||(ht=[G(l,"input",o[7]),G(l,"change",o[5]),G(u,"change",o[8])],ut=!0)},p(h,b){b&4&&wt(l.value)!==h[2]&&J(l,h[2]),nt===(nt=dt(h))&&M?M.p(h,b):(M.d(1),M=nt(h),M&&(M.c(),M.m(a,null))),b&2&&pt(u,h[1]);const B={};b&1&&(B.list=h[0]),!x&&b&2&&(x=!0,B.size=h[1],Nt(()=>x=!1)),c.$set(B);const S={};b&1024&&(S.$$scope={dirty:b,ctx:h}),H.$set(S)},i(h){et||(at(c.$$.fragment,h),at(H.$$.fragment,h),et=!0)},o(h){ot(c.$$.fragment,h),ot(H.$$.fragment,h),et=!1},d(h){h&&(m(t),m(tt)),M.d(),rt(c),rt(H,h),ut=!1,Ct(ht)}}}function Qt(o){let t,n;return t=new Dt({props:{$$slots:{default:[Kt]},$$scope:{ctx:o}}}),{c(){lt(t.$$.fragment)},l(s){st(t.$$.fragment,s)},m(s,l){it(t,s,l),n=!0},p(s,[l]){const e={};l&1039&&(e.$$scope={dirty:l,ctx:s}),t.$set(e)},i(s){n||(at(t.$$.fragment,s),n=!0)},o(s){ot(t.$$.fragment,s),n=!1},d(s){rt(t,s)}}}function Wt(o,t,n){let s,l=0,e,a=0,f=10;const u=({detail:d})=>{n(6,a=d.index),n(1,f=d.size)},$=()=>{l<0?n(2,l=0):n(2,l=Math.floor(l)),n(0,e=new Array(l));for(let d=0;d<(e==null?void 0:e.length);d++)n(0,e[d]={title:"Lorem Ipsum is simply dummy text "+(d+1)},e)};function y(){l=wt(this.value),n(2,l)}function C(){f=Ot(this),n(1,f)}function P(d){f=d,n(1,f)}return o.$$.update=()=>{o.$$.dirty&67&&n(3,s=e==null?void 0:e.slice(a,Math.min(a+f,e.length)))},[e,f,l,s,u,$,a,y,C,P]}class Xt extends ft{constructor(t){super(),_t(this,t,Wt,Qt,ct,{})}}function Yt(o){let t,n,s;return n=new Xt({}),{c(){t=Y(),lt(n.$$.fragment),this.h()},l(l){Mt("svelte-a6ekc1",document.head).forEach(m),t=Z(l),st(n.$$.fragment,l),this.h()},h(){document.title="Pagination | Reference"},m(l,e){T(l,t,e),it(n,l,e),s=!0},p:W,i(l){s||(at(n.$$.fragment,l),s=!0)},o(l){ot(n.$$.fragment,l),s=!1},d(l){l&&m(t),rt(n,l)}}}class ie extends ft{constructor(t){super(),_t(this,t,null,Yt,ct,{})}}export{ie as component};

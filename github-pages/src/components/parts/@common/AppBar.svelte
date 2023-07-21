@@ -5,7 +5,7 @@ import MorphingText from "organs/@common/animations/MorphingText.svelte"
 import AppBarMenu from "parts/@common/AppBarMenu.svelte"
 </script>
 
-<div class="z=10 fixed flex ai=center w=100% h=4 tt=background-color_.5s
+<header class="z=10 fixed flex ai=center w=100% h=4 tt=background-color_.5s
 		bg=--primary-dd bs=0_.5_.5_--primary-55 bdb=.1_solid_#fff
 		{$scroll$ ? "op=.6 :hover/op=1" : ""}">
 	<div class="w=1"></div>
@@ -26,4 +26,4 @@ import AppBarMenu from "parts/@common/AppBarMenu.svelte"
 	</a>
 	<div class="fg=1"></div>
 	<AppBarMenu />
-</div>
+</header>

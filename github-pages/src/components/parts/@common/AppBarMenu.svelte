@@ -33,7 +33,7 @@ onDestroy(() => {
 		<div class="absolute w=100% h=.25 bg=#000 @dark@bg=#fff b=0 tt=transform_.4s
 				{$modal$ ? "tf=translateY(-1em)_rotate(45deg)" : ""}"></div>
 	</button>
-	<div class="flex @sm@bg=none! bg=--catskill-white @dark@bg=--firefly @!sm@absolute @!sm@column @!sm@t=-.5 @!sm@r=-.5 @!sm@p=1.5 @!sm@br=1 @!sm@bd=2px_solid{$modal$ ? "" : " @!sm@v=hidden"}">
+	<nav class="flex @sm@bg=none! bg=--catskill-white @dark@bg=--firefly @!sm@absolute @!sm@column @!sm@t=-.5 @!sm@r=-.5 @!sm@p=1.5 @!sm@br=1 @!sm@bd=2px_solid{$modal$ ? "" : " @!sm@v=hidden"}">
 		<a href="{base}/docs" use:useActive>
 			<button class={styles.button.appbarMenu}>Docs</button>
 		</a>
@@ -56,6 +56,6 @@ onDestroy(() => {
 				</button>
 			</a>
 		</div>
-	</div>
+	</nav>
 </div>
 <div class="w=1.5"></div>
