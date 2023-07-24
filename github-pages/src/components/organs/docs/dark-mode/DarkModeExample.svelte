@@ -3,18 +3,18 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import { bracket, comment, css, func, html, keyword, name, string } from "ts/highlighter"
 
 const code = `${comment("<!-- In light theme, dark mode styles are disabled -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.0.2")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.0.3")}`, `
 	${css(".c\\=red", ["color", "red"])}
 `)}
 
 ${comment("<!-- In dark theme, dark mode styles are applied without media queries -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.0.2")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.0.3")}`, `
 	${css(".c\\=red", ["color", "red"])}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
 `)}
 
 ${comment("<!-- In system theme, the dark mode style is applied as a media query -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.0.2")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.0.3")}`, `
 	${css(".c\\=red", ["color", "red"])}
 	${keyword("@media")} ${bracket("(")}${name("prefers-color-scheme")}:${string("dark", false)}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}

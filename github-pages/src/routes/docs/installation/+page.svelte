@@ -15,12 +15,12 @@ import styles from "styles"
 <span>The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.</span>
 <div class="h=1"></div>
 <Download url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.min.js">
-	<button class="bold va=bottom {styles.button.resources}">css-lube.min.js v1.0.2</button>
+	<button class="bold va=bottom {styles.button.resources}">css-lube.min.js v1.0.3</button>
 </Download>
 <span>compressed for production</span>
 <div class="h=1"></div>
 <Download url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.js">
-	<button class="bold va=bottom {styles.button.resources}">css-lube.js v1.0.2</button>
+	<button class="bold va=bottom {styles.button.resources}">css-lube.js v1.0.3</button>
 </Download>
 <span>uncompressed for development</span>
 <div class="h=1"></div>

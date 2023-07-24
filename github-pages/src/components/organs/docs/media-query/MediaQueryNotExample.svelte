@@ -2,7 +2,7 @@
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { bracket, comment, css, html, keyword, name, string } from "ts/highlighter"
 
-const code = `${html("style", ` ${name("css-lube")}=${string("v1.0.2")}`, `
+const code = `${html("style", ` ${name("css-lube")}=${string("v1.0.3")}`, `
 	${keyword("@media not")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
 		${css(".\\@\\!min-width\\=768px\\@fs\\=12px", ["font-size", "12px"])}
 	${bracket("}")}
