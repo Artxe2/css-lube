@@ -1,18 +1,18 @@
 <script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
-import CarouselSlider from "organs/@common/utils/CarouselSlider.svelte"
+import { CarouselSlider } from "svelte-ts-lube"
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
 import { bracket, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
 
 let align: "" | "start" |"center" | "end" = "center"
-let snap: (direction: number) => void
+let snap: (direction: number, snapAlign?: "start" |"center" | "end") => void
 </script>
 
 <ComponentTabView>
 	<div>
 		<CarouselSlider bind:snap
+				bind:align
 				classs="flex h=3 op=.5 ::-webkit-scrollbar/none"
-				{align}
 				duration={200}>
 			<div class="w=10% h=100% bg=red ta=center">red</div>
 			<div class="w=20% h=100% bg=orange ta=center">orange</div>
@@ -30,13 +30,13 @@ let snap: (direction: number) => void
 					on:click={() => snap(-1)}>PREV</button>
 			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
-					on:click={() => { align = "start"; snap(0) }}>START</button>
+					on:click={() => snap(0, "start")}>START</button>
 			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
-					on:click={() => { align = "center"; snap(0) }}>CENTER</button>
+					on:click={() => snap(0, "center")}>CENTER</button>
 			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
-					on:click={() => { align = "end"; snap(0) }}>END</button>
+					on:click={() => snap(0, "end")}>END</button>
 			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(1)}>NEXT</button>
@@ -44,16 +44,16 @@ let snap: (direction: number) => void
 	</div>
 	<CodePage isCode>{@html
 `${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${name("CarouselSlider")} ${keyword("from")} ${string("organs/@common/utils/CarouselSlider.svelte")}
+${keyword("import")} ${bracket("{")} ${name("CarouselSlider")} ${bracket("}")} ${keyword("from")} ${string("svelte-ts-lube")}
 
 ${declare("let")} ${name("align")}: ${string("")} | ${string("start")} | ${string("center")} | ${string("end")} = ${string("center")}
-${declare("let")} ${func("snap")}: ${bracket("(")}${name("direction")}: ${type("number")}${bracket(")")} ${declare("=>")} ${type("void")}
+${declare("let")} ${func("snap")}: ${bracket("(")}${name("direction")}: ${type("number")}, ${name("snapAlign")}: ${string("start")} | ${string("center")} | ${string("end")}${bracket(")")} ${declare("=>")} ${type("void")}
 `)}
 
 ${html("div", "", `
 	${html("CarouselSlider", ` ${keyword("bind")}:${func("snap")}
+				${keyword("bind")}:${name("align")}
 				${name("classs")}=${string("flex h=3 op=.5 ::-webkit-scrollbar/none")}
-				${bracket("{")}${name("align")}${bracket("}")}
 				${name("duration")}=${bracket("{")}${number(200)}${bracket("}")}`, `
 		${html("div", ` ${name("class")}=${string("w=10% h=100% bg=red ta=center")}`, "red")}
 		${html("div", ` ${name("class")}=${string("w=20% h=100% bg=orange ta=center")}`, "orange")}
@@ -68,19 +68,19 @@ ${html("div", "", `
 			>button/flex=auto`)}`, `
 		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
-				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${func("snap")}${bracket('(', 1)}${number(-1)}${bracket(')', 1)}${bracket('}')}`, "PREV")}
+				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(-1)}${bracket(")", 1)}${bracket("}")}`, "PREV")}
 		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
-				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("start")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "START")}
+				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("start")}${bracket(")", 1)}${bracket("}")}`, "START")}
 		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
-				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("center")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "CENTER")}
+				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("center")}${bracket(")", 1)}${bracket("}")}`, "CENTER")}
 		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
-				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${bracket('{', 1)} ${name("align")} = ${string("end")}; ${func("snap")}${bracket('(', 2)}${number(0)}${bracket(')', 2)} ${bracket('}', 1)}${bracket('}')}`, "END")}
+				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("end")}${bracket(")", 1)}${bracket("}")}`, "END")}
 		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
-				${keyword("on")}:${type("click")}=${bracket('()', 1)} ${declare("=>")} ${func("snap")}${bracket('(', 1)}${number(1)}${bracket(')', 1)}${bracket('}')}`, "NEXT")}
+				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(1)}${bracket(")", 1)}${bracket("}")}`, "NEXT")}
 	`)}
 `)}`
 	}</CodePage>

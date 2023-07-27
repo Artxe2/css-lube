@@ -3,22 +3,22 @@ import IRefresh from "cells/svgs/i_refresh.svelte"
 import H1 from "cells/typography/H1.svelte"
 import { contents$ } from "parts/ref/store"
 import LoadingCircle from "organs/@common/animations/LoadingCircle.svelte"
-import InfiniteScroll from "organs/@common/utils/InfiniteScroll.svelte"
 import styles from "styles"
 import { onDestroy, onMount } from "svelte"
 import { bracket, comment, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
+    import { InfiniteScroll } from "svelte-ts-lube"
 
 const code1 = `${html("script", ` ${name("lang")}=${string("ts")}`, `
 ${keyword("import")} ${name("H1")} ${keyword("from")} ${string("cells/typography/H1.svelte")}
-${keyword("import")} ${name("InfiniteScroll")} ${keyword("from")} ${string("organs/@common/utils/InfiniteScroll.svelte")}
 ${keyword("import")} ${name("IRefresh")} ${keyword("from")} ${string("cells/svgs/i_refresh.svelte")}
 ${keyword("import")} ${name("LoadingCircle")} ${keyword("from")} ${string("src/instant-ui/animations/LoadingCircle.svelte")}
 ${keyword("import")} ${name("styles")} ${keyword("from")} ${string("src/styles")}
 ${keyword("import")} ${bracket("{")} ${name("contents$")} ${bracket("}")} ${keyword("from")} ${string("parts/ref/store")}
 ${keyword("import")} ${bracket("{")} ${name("onDestroy")}, ${name("onMount")} ${bracket("}")} ${keyword("from")} ${string("svelte")}
+${keyword("import")} ${bracket("{")} ${name("InfiniteScroll")} ${bracket("}")} ${keyword("from")} ${string("svelte-ts-lube")}
 
 ${declare("let")} ${name("loading")} = ${number(1)} ${comment("// 0: in progress, 1: none, 2: error")}
 ${declare("const")} ${name("loremApi", true)}: ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${type("Promise")}${bracket("<")}${type("any")}${bracket(">")} = ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${declare("new")} ${type("Promise")}${bracket("(")}${bracket("(", 1)}${func("resolve")}, ${func("reject")}${bracket(")", 1)} ${declare("=>")} ${func("setTimeout")}${bracket("(", 1)}${bracket("()", 2)} ${declare("=>")} ${bracket("{", 2)}
@@ -48,7 +48,7 @@ ${func("onMount")}${bracket("(")}${bracket("()", 1)} ${declare("=>")} ${name("lo
 ${func("onDestroy")}${bracket("(")}${bracket("()", 1)} ${declare("=>")} ${name("$contents$")} = ${bracket("[]", 1)}${bracket(")")}
 `)}
 
-${html("InfiniteScroll", ` ${name("classs")}=${string('"bd=1px_solid_black xh=15', false)} ${bracket("{", 2)}${name("styles")}.${name("scrollbar")}.${name("primary")}${bracket("}", 2)}${string('"', false)}
+${html("InfiniteScroll", ` ${name("classs")}=${string('"bd=1px_solid_black xh=15 p=1', false)} ${bracket("{", 2)}${name("styles")}.${name("scrollbar")}.${name("primary")}${bracket("}", 2)}${string('"', false)}
 		${name("onlast")}=${bracket("{")}${func("loadContents")}${bracket("}")}
 		${name("ready")}=${bracket("{")}${name("loading")} === ${number(1)}${bracket("}")}`, `
 	${bracket("{")}#${keyword("each")} ${name("$contents$")} ${keyword("as")} ${name("c")}${bracket("}")}
@@ -112,7 +112,7 @@ onDestroy(() => $contents$ = [])
 </script>
 
 <ComponentTabView>
-	<InfiniteScroll classs="bd=1px_solid_black xh=15 {styles.scrollbar.primary}"
+	<InfiniteScroll classs="bd=1px_solid_black xh=15 p=1 {styles.scrollbar.primary}"
 			onlast={loadContents}
 			ready={loading === 1}>
 		{#each $contents$ as c}

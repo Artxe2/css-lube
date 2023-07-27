@@ -1,6 +1,6 @@
 <script lang="ts">
-import Dragable from "organs/@common/utils/Dragable.svelte"
 import { drag$, transition$ } from "parts/ref/store"
+import { Dragable } from "svelte-ts-lube"
 
 export let list: string[]
 export let transforms: number[]
@@ -36,6 +36,8 @@ const handleDragstart = () => {
 <Dragable on:dragstart={handleDragstart}
 		delay={300}
 		{setDragElement}>
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div bind:clientHeight on:click={handleClick}
 			class="w=6 ol=.1_solid ta=center fs=2 cs=pointer tf=translateY({transforms[index]}px)
 			{$transition$ ? "tt=" + duration + "ms" : ""}

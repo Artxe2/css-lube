@@ -1,8 +1,8 @@
 <script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
-import CarouselSlider from "organs/@common/utils/CarouselSlider.svelte"
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
-import { html, keyword, name, string } from "ts/highlighter"
+import { CarouselSlider } from "svelte-ts-lube"
+import { bracket, html, keyword, name, string } from "ts/highlighter"
 </script>
 
 <ComponentTabView>
@@ -18,7 +18,7 @@ import { html, keyword, name, string } from "ts/highlighter"
 	</CarouselSlider>
 	<CodePage isCode>{@html
 `${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${name("CarouselSlider")} ${keyword("from")} ${string("organs/@common/utils/CarouselSlider.svelte")}
+${keyword("import")} ${bracket("{")} ${name("CarouselSlider")} ${bracket("}")} ${keyword("from")} ${string("svelte-ts-lube")}
 `)}
 
 ${html("CarouselSlider", ` ${name("classs")}=${string(`flex op=.5

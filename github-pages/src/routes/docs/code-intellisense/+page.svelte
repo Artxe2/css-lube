@@ -1,8 +1,8 @@
 <script>
 import H5 from "cells/typography/H5.svelte"
-import Download from "organs/@common/utils/Download.svelte"
 import SafeImg from "organs/@common/utils/SafeImg.svelte"
 import styles from "styles"
+import { Download } from "svelte-ts-lube"
 </script>
 
 <svelte:head>
@@ -15,8 +15,9 @@ import styles from "styles"
 <span>It's easy to see the shortand that the library provides.</span>
 <div class="h=1"></div>
 <div class="h=1"></div>
-<Download url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/intellisense-css-lube-0.0.2.vsix">
-	<button class="bold va=bottom {styles.button.resources}">intellisense.vsix v0.0.2</button>
+<Download classs="bold va=bottom {styles.button.resources}"
+		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/intellisense-css-lube-0.0.2.vsix">
+	intellisense.vsix v0.0.2
 </Download>
 <span>vscode extension</span>
 <div class="h=1"></div>

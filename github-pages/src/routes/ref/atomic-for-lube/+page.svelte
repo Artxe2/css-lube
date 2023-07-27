@@ -15,9 +15,8 @@ import GithubStars from "organs/index/GithubStars.svelte"
 </svelte:head>
 
 <H2>Atomic for CSS Lube</H2>
-<div class="h=2"></div>
+<div class="h=3"></div>
 <H5>Folder structure</H5><br>
-<div class="h=1"></div>
 <span>First of all, CSS Lube divides components into three layers.</span><br>
 <CodePage>
 	<IdeFolder name="src" />{`
@@ -65,16 +64,14 @@ import GithubStars from "organs/index/GithubStars.svelte"
 <CodePage>
 	<GithubStars />
 </CodePage>
-<div class="h=2"></div>
+<div class="h=3"></div>
 <H5>Component Rules</H5><br>
-<div class="h=1"></div>
 <span>By default, CSS Lube can easily customize the style of components using selectors.</span><br>
 <ComponentRulesExample />
 <span>However, CSS Lube recommends separating components from layouts and delegating layouts to parent components.</span><br>
 <span>To do this, the "width" and "height" of the component should be "100%" or "fit-content", the "margin" should be "0", and the "position" should be any property other than "absolute".</span>
-<div class="h=2"></div>
+<div class="h=3"></div>
 <H5>Responsive Web Design</H5><br>
-<div class="h=1"></div>
 <span>CSS Lube recommends using "em" as the default unit.</span><br>
 <span>This website provides a responsive web by adjusting the "font size" according to "device width" as shown below.</span><br>
 <ResponsiveWebDesignExample />

@@ -4,18 +4,18 @@ import { onDestroy, onMount } from "svelte"
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
 import DragItemForExample from "parts/ref/drag-and-drop/DragItemForExample.svelte"
-import DragContainer from "organs/@common/utils/DragContainer.svelte"
 import DragItemPlaceHolderForExample from "parts/ref/drag-and-drop/DragItemPlaceHolderForExample.svelte"
 import { bracket, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
 import IdeSvelte from "cells/typography/IdeSvelte.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
+import { DragContainer } from "svelte-ts-lube"
 
 const code1 = `${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${name("DragContainer")} ${keyword("from")} ${string("organs/@common/utils/DragContainer.svelte")}
 ${keyword("import")} ${name("DragItemForExample")} ${keyword("from")} ${string("parts/ref/DragItemForExample.svelte")}
 ${keyword("import")} ${name("DragItemPlaceHolderForExample")} ${keyword("from")} ${string("parts/ref/DragItemPlaceHolderForExample.svelte")}
 ${keyword("import")} ${bracket("{")} ${name("done$")}, ${name("doneTf$")}, ${name("drag$")}, ${name("todo$")}, ${name("todoTf$")}, ${name("transition$")} ${bracket("}")} ${keyword("from")} ${string("parts/ref/store")}
 ${keyword("import")} ${bracket("{")} ${name("onDestroy")}, ${name("onMount")} ${bracket("}")} ${keyword("from")} ${string("svelte")}
+${keyword("import")} ${bracket("{")} ${name("DragContainer")} ${bracket("}")} ${keyword("from")} ${string("svelte-ts-lube")}
 
 ${declare("const")} ${name("todoHeights", true)}: ${type("number")}${bracket("[]")} = ${bracket("[]")}
 ${declare("const")} ${name("doneHeights", true)}: ${type("number")}${bracket("[]")} = ${bracket("[]")}
@@ -190,7 +190,7 @@ ${html("DragContainer", ` ${keyword("bind")}:${name("isDragging")}
 const code2 = `
 
 ${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${name("Dragable")} ${keyword("from")} ${string("organs/@common/utils/Dragable.svelte")}
+${keyword("import")} ${bracket("{")} ${name("Dragable")} ${bracket("}")} ${keyword("from")} ${string("svelte-ts-lube")}
 ${keyword("import")} ${bracket("{")} ${name("drag$")}, ${name("transition$")} ${bracket("}")} ${keyword("from")} ${string("parts/ref/store")}
 
 ${keyword("export")} ${declare("let")} ${name("list")}: ${type("string")}${bracket("[]")}

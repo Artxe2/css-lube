@@ -12,6 +12,7 @@ const handleDragenter = () => {
 }
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="us=none w=6 ol=.1_dashed ta=center fs=2 cs=pointer"
 		on:dragenter={handleDragenter}>
 	Empty

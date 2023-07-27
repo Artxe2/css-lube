@@ -4,19 +4,20 @@ import IGithub from "cells/svgs/i_github.svelte"
 import { onMount } from "svelte"
 
 
-let star = ""
-onMount(() => client("https://api.github.com/repos/:user/:repo")
+let star = "0"
+onMount(
+	() => client("https://api.github.com/repos/:user/:repo")
 		.get()
 		.query({ user: "artxe2", repo: "css-lube" })
 		.then(value => {
-			console.log("...")
 			if (value.status > 299) {
 				throw value
 			}
 			return value.json()
 		})
 		.then(json => star = json.stargazers_count)
-		.catch(reason => star = reason.status + " ERROR"))
+		.catch(reason => star = reason.status + " ERROR")
+)
 </script>
 
 <div class="flex fs=1.25">
