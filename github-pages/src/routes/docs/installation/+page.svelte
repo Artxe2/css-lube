@@ -16,13 +16,13 @@ import styles from "styles"
 <div class="h=1"></div>
 <Download classs="bold va=bottom {styles.button.resources}"
 		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.min.js">
-	css-lube.min.js v1.1.0
+	css-lube.min.js v1.1.1
 </Download>
 <span>compressed for production</span>
 <div class="h=1"></div>
 <Download classs="bold va=bottom {styles.button.resources}"
 		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.js">
-	css-lube.js v1.1.0
+	css-lube.js v1.1.1
 </Download>
 <span>uncompressed for development</span>
 <div class="h=1"></div>

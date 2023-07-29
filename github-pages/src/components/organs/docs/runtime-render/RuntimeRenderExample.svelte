@@ -10,7 +10,7 @@ ${openTag("head", "")}
 	. . . . . .
 	${html("script", ` ${name("src")}=${string("/css-lube.js")}`, "")}
 	${comment("<!-- Automatically generated styles at runtime using MutationObserver by CSS Lube -->")}
-	${openTag("style ", ` ${name("css-lube")}=${string("v1.1.0")}`)}
+	${openTag("style ", ` ${name("css-lube")}=${string("v1.1.1")}`)}
 		. . . . . .
 `
 $: code2 = `		${css(".fv\\=small-caps", ["font-variant", "small-caps"])}`

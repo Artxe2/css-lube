@@ -4,7 +4,7 @@ import{s as it,J as mt,e as lt,K as ct,i as a,u as ut,d as o,a as f,f as u,l as 
 `)}
 ${X("body","",`
 	. . . . . .
-`)}`]}class At extends rt{constructor(e){super(),ft(this,e,Rt,Ot,it,{})}}function St(r){let e;return{c(){e=K("Installation")},l(s){e=z(s,"Installation")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function Nt(r){let e;return{c(){e=K("css-lube.min.js v1.1.0")},l(s){e=z(s,"css-lube.min.js v1.1.0")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function vt(r){let e;return{c(){e=K("css-lube.js v1.1.0")},l(s){e=z(s,"css-lube.js v1.1.0")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function gt(r){let e,s,n,i,c,h,k="CSS Lube can download both compressed and original files.",L,D,_,Q="The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.",P,b,F,$,y,I,Z="compressed for production",j,O,W,d,M,T,tt="uncompressed for development",U,R,B,E,G,A,et=`
+`)}`]}class At extends rt{constructor(e){super(),ft(this,e,Rt,Ot,it,{})}}function St(r){let e;return{c(){e=K("Installation")},l(s){e=z(s,"Installation")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function Nt(r){let e;return{c(){e=K("css-lube.min.js v1.1.1")},l(s){e=z(s,"css-lube.min.js v1.1.1")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function vt(r){let e;return{c(){e=K("css-lube.js v1.1.1")},l(s){e=z(s,"css-lube.js v1.1.1")},m(s,n){a(s,e,n)},d(s){s&&o(e)}}}function gt(r){let e,s,n,i,c,h,k="CSS Lube can download both compressed and original files.",L,D,_,Q="The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.",P,b,F,$,y,I,Z="compressed for production",j,O,W,d,M,T,tt="uncompressed for development",U,R,B,E,G,A,et=`
 MIT License
 
 Copyright (c) 2022 Artxe2

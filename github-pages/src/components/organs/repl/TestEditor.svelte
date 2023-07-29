@@ -12,22 +12,25 @@ let content = `<div class="ta=center">
 		Hello
 	</div>
 </div>`
-onMount(async () => {
-	window.MonacoEnvironment = {
+onMount(() => {
+	self.MonacoEnvironment = {
 		getWorkerUrl: () => "https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js"
 	}
-	editor = (await import('monaco-editor')).editor.create(container, {
-		automaticLayout: true,
-		language: "html",
-		minimap: {
-			enabled: false,
-		},
-		theme: "vs-dark",
-		value: content
-	})
-	isLoading = false
-	editor.getModel()?.onDidChangeContent(() => content = editor.getValue())
-	return () => editor.dispose()
+	import('monaco-editor')
+		.then(value => {
+			editor = value.editor.create(container, {
+				automaticLayout: true,
+				language: "html",
+				minimap: {
+					enabled: false,
+				},
+				theme: "vs-dark",
+				value: content
+			})
+			isLoading = false
+			editor.getModel()?.onDidChangeContent(() => content = editor.getValue())
+		})
+	return () => editor?.dispose()
 })
 </script>
 

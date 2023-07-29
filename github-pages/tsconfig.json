@@ -4,7 +4,6 @@
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
