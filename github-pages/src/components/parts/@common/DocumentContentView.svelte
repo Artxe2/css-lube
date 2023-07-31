@@ -18,7 +18,7 @@ afterNavigate(() => {
 
 <div bind:this={container}
 		class="h=100% oy=auto
-		@!md@tt=transform_.3s
+		@max-width=767px@tt=transform_.3s
 		{$naviOpen$ ? "tf=translateX(20em)" : ""}
 		{styles.scrollbar.primary}"
 		on:scroll={handleScroll}>

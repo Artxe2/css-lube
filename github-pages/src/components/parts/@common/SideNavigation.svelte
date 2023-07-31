@@ -17,8 +17,8 @@ const useActive = (e: HTMLAnchorElement) => {
 
 <div class="relative">
 	<div class="h=100% bg=#fff bdr=1px_solid_--alto-55 w=20 tt=transform_.3s
-			@!md@absolute
-			{$naviOpen$ ? "" : "@!md@tf=translateX(-20em)"}
+			@max-width=767px@absolute
+			{$naviOpen$ ? "" : "@max-width=767px@tf=translateX(-20em)"}
 			@dark@bg=--firefly">
 		<nav class="pl=1.5 h=100% oy=auto {styles.scrollbar.primary}">
 			<div class="h=2"></div>

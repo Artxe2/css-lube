@@ -34,9 +34,9 @@ onMount(() => {
 })
 </script>
 
-<div class="flex h=100% xw=100% @!sm@column">
-	<div class="relative w=40% @!sm@w=100% @!sm@h=30% bd=1px_solid p=1 oy=auto {styles.scrollbar.primary}">{@html content}</div>
-	<div bind:this={container} class="fg=1 fsk=1 xw=60% bg=--cod-gray pt=1 @!sm@xw=100% @!sm@xh=70%">
+<div class="flex h=100% xw=100% @max-width=639px@column">
+	<div class="relative w=40% @max-width=639px@w=100% @max-width=639px@h=30% bd=1px_solid p=1 oy=auto {styles.scrollbar.primary}">{@html content}</div>
+	<div bind:this={container} class="fg=1 fsk=1 xw=60% bg=--cod-gray pt=1 @max-width=639px@xw=100% @max-width=639px@xh=70%">
 		{#if isLoading} 
 			<div class="flex h=100% jc=center ai=center">
 				<LoadingCircle />

@@ -33,20 +33,20 @@ onDestroy(() => {
 		<div class="absolute w=100% h=.25 bg=#000 @dark@bg=#fff b=0 tt=transform_.4s
 				{$modal$ ? "tf=translateY(-1em)_rotate(45deg)" : ""}"></div>
 	</button>
-	<nav class="flex @sm@bg=none! bg=--catskill-white @dark@bg=--firefly @!sm@absolute @!sm@column @!sm@t=-.5 @!sm@r=-.5 @!sm@p=1.5 @!sm@br=1 @!sm@bd=2px_solid{$modal$ ? "" : " @!sm@v=hidden"}">
+	<nav class="flex @sm@bg=none! bg=--catskill-white @dark@bg=--firefly @max-width=639px@absolute @max-width=639px@column @max-width=639px@t=-.5 @max-width=639px@r=-.5 @max-width=639px@p=1.5 @max-width=639px@br=1 @max-width=639px@bd=2px_solid{$modal$ ? "" : " @max-width=639px@v=hidden"}">
 		<a href="{base}/docs" use:useActive>
 			<button class={styles.button.appbarMenu}>Docs</button>
 		</a>
-		<div class="w=2 @!sm@w=1"></div>
+		<div class="w=2 @max-width=639px@w=1"></div>
 		<a href="{base}/repl" use:useActive>
 			<button class={styles.button.appbarMenu}>REPL</button>
 		</a>
-		<div class="w=2 @!sm@w=1"></div>
+		<div class="w=2 @max-width=639px@w=1"></div>
 		<a href="{base}/ref" use:useActive>
 			<button class={styles.button.appbarMenu}>Reference</button>
 		</a>
-		<div class="w=2 @!sm@w=1"></div>
-		<div class="flex @!sm@column-reverse">
+		<div class="w=2 @max-width=639px@w=1"></div>
+		<div class="flex @max-width=639px@column-reverse">
 			<ThemeSelector />
 			<div class="w=1 h=1"></div>
 			<a href="https://github.com/Artxe2/css-lube" target="_blank">
