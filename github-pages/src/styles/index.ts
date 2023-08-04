@@ -13,6 +13,13 @@ export default {
 		text: "p=.5 br=.5 :hover/bg=#eee :active/bg=#ddd! @dark@:hover/bg=#333 @dark@:active/bg=#444!",
 		themeSelector: "bg=--primary :hover/bg=--havelock-blue w=6.25 h=2.5 br=.25 bd=.2_solid"
 	},
+	checkbox: {
+		docsInput: `none
+		:checked+label/bg=--primary
+		:checked+label:after/ct='✔';absolute;tf=translate(0,-.3em)`,
+		docsLabel: `inline-block pointer us=none fs=1.5 bold va=-.3em bd=.2_solid_--primary br=.3 w=1.2 h=1.2
+		:after/c=--onahau @dark@:after/c=--firefly`
+	},
 	scrollbar: {
 		primary: "::-webkit-scrollbar/w=.5 ::-webkit-scrollbar-track/bg=--primary-55 ::-webkit-scrollbar-thumb/bg=--primary;br=.25"
 	},

@@ -1,8 +1,7 @@
 <script>
 import H5 from "cells/typography/H5.svelte"
-import { Download } from "svelte-ts-lube"
 import InstallationExample from "organs/docs/installation/InstallationExample.svelte"
-import styles from "styles"
+import CssLubeDownloadForm from "organs/docs/installation/CssLubeDownloadForm.svelte"
 </script>
 
 <svelte:head>
@@ -11,26 +10,11 @@ import styles from "styles"
 
 <H5>Installation</H5>
 <div class="h=1"></div>
-<span>CSS Lube can download both compressed and original files.</span><br>
-<span>The uncompressed file is can be used for development or debugging, the compressed file saves bandwidth and improves performance in production.</span>
+<span>CSS Lube can select the download option.</span><br>
+<span>Checking Safari Compatible, will change the way some regular expressions and dark modes are applied.</span><br>
+<span>Checking Using "px" for default unit, sets "px" instead of "em" as the default unit.</span>
 <div class="h=1"></div>
-<Download classs="bold va=bottom {styles.button.resources}"
-		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.min.js">
-	css-lube.min.js v1.1.2
-</Download>
-<span>compressed for production</span>
-<div class="h=1"></div>
-<Download classs="bold va=bottom {styles.button.resources}"
-		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube.js">
-	css-lube.js v1.1.2
-</Download>
-<span>uncompressed for development</span>
-<div class="h=1"></div>
-<Download classs="bold va=bottom {styles.button.resources}"
-		url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/css-lube-sc.min.js">
-	css-lube-sc.min.js v1.1.2
-</Download>
-<span>safari compatible version</span>
+<CssLubeDownloadForm />
 <div class="h=1"></div>
 <InstallationExample />
 <pre>{`

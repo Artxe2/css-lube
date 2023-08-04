@@ -7,7 +7,7 @@
 		"axios": "^1.4.0",
 		"eslint": "^8.45.0",
 		"eslint-plugin-svelte": "^2.32.4",
-		"fetch-lube": "^0.1.2",
+		"fetch-lube": "^0.1.5",
 		"minimist": "^1.2.8",
 		"monaco-editor": "^0.40.0",
 		"svelte": "^4.1.1",

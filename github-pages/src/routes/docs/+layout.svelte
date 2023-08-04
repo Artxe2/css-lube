@@ -5,7 +5,7 @@ import NaviOpenButton from "parts/@common/NaviOpenButton.svelte"
 import DocumentContentView from "parts/@common/DocumentContentView.svelte"
 </script>
 
-<div class="bg=--primary-22 @dark@bg=--firefly h=100% xw=100%">
+<div class="bg=--onahau @dark@bg=--firefly h=100% xw=100%">
 	<AppBar />
 	<div class="h=4"></div>
 	<div class="flex row h=calc(100%-4em)">
