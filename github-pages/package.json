@@ -1,22 +1,22 @@
 {
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^2.0.2",
-		"@sveltejs/kit": "^1.22.3",
-		"@typescript-eslint/eslint-plugin": "^6.2.0",
-		"@typescript-eslint/parser": "^6.2.0",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.22.4",
+		"@typescript-eslint/eslint-plugin": "^6.2.1",
+		"@typescript-eslint/parser": "^6.2.1",
 		"axios": "^1.4.0",
-		"eslint": "^8.45.0",
+		"eslint": "^8.46.0",
 		"eslint-plugin-svelte": "^2.32.4",
-		"fetch-lube": "^0.1.5",
+		"fetch-lube": "^1.0.0",
 		"minimist": "^1.2.8",
-		"monaco-editor": "^0.40.0",
-		"svelte": "^4.1.1",
+		"monaco-editor": "^0.41.0",
+		"svelte": "^4.1.2",
 		"svelte-check": "^3.4.6",
 		"svelte-preprocess": "^5.0.4",
 		"svelte-ts-lube": "^0.1.0",
 		"tslib": "^2.6.1",
 		"typescript": "^5.1.6",
-		"vite": "^4.4.7"
+		"vite": "^4.4.8"
 	},
 	"name": "svelte-kit",
 	"scripts": {
