@@ -12,7 +12,8 @@ import CssLubeDownloadForm from "organs/docs/installation/CssLubeDownloadForm.sv
 <div class="h=1"></div>
 <span>CSS Lube can select the download option.</span><br>
 <span>Checking Safari Compatible, will change the way some regular expressions and dark modes are applied.</span><br>
-<span>Checking Using "px" for default unit, sets "px" instead of "em" as the default unit.</span>
+<span>Checking Using "px" for default unit, sets "px" instead of "em" as the default unit.</span><br>
+<span>Checking Uncompressed File, file are not compressed into terser, and can be used for debugging purposes.</span><br>
 <div class="h=1"></div>
 <CssLubeDownloadForm />
 <div class="h=1"></div>

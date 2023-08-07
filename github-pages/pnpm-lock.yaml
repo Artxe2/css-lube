@@ -45,8 +45,8 @@ devDependencies:
     specifier: ^5.0.4
     version: 5.0.4(postcss@8.4.27)(svelte@4.1.2)(typescript@5.1.6)
   svelte-ts-lube:
-    specifier: ^0.1.0
-    version: 0.1.0
+    specifier: ^0.1.4
+    version: 0.1.4
   tslib:
     specifier: ^2.6.1
     version: 2.6.1
@@ -1814,8 +1814,8 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /svelte-ts-lube@0.1.0:
-    resolution: {integrity: sha512-1Ki/HevhBq0nTFJrcaQju/K01m+d+T04l2UCI7cxbyBOwd7KEO/ZR5IUILyULhZbMwiRWa6WWArMPyTTtYtiZw==}
+  /svelte-ts-lube@0.1.4:
+    resolution: {integrity: sha512-Kl2al1kPjXp2/p8s2C9H++QQEJ7UsJgjH0AiNExYDeuV9JH/kKX4pt3O04lkOIgVJ68kwFO1BCLO7WkIyvo1VQ==}
     dev: true
 
   /svelte@4.1.2:

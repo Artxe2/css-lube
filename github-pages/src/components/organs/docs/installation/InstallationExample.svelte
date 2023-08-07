@@ -5,9 +5,9 @@ import { html, name, string } from "ts/highlighter"
 
 const code = `${html("head", "", `
 	. . . . . .
-	${html("script", ` ${name("src")}=${string("<f>/css-lube.min.js</f>")}`, "")}
+	${html("script", ` ${name("src")}=${string("<f>/css-lube.min.js</f>")} ${name("<f>async</f>")}`, "")}
 `)}
-${html("body", "", `
+${html("body", ` ${name("<f>hidden</f>")} ${name("class")}=${string("...")}`, `
 	. . . . . .
 `)}`
 </script>
