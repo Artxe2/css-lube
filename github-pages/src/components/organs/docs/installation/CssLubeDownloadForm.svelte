@@ -1,14 +1,16 @@
 <script>
 import { client } from "fetch-lube"
 import styles from "styles"
+import version from "ts/version"
 
 let isSafariCompatible = false
 let usingPxForDefaultUnit = false
 let isUncompressed = false
 
-const getSource = client("https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/:fileName")
+const get_source = client("https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/:fileName")
 		.get()
-const downloadFile = async () => {
+		.query
+const download_file = async () => {
 	let fileName = isSafariCompatible
 			? isUncompressed
 				? "css-lube-sc.js"
@@ -16,7 +18,7 @@ const downloadFile = async () => {
 			: isUncompressed
 				? "css-lube.js"
 				: "download/css-lube.min.js"
-	let response = await getSource.query({ fileName })
+	let response = await get_source({ fileName })
 	let text = await response.text()
 	if (usingPxForDefaultUnit) text = text.replace(`"em"`, `"px"`)
 	const link = document.createElement("a")
@@ -47,6 +49,6 @@ const downloadFile = async () => {
 <label for="3" class={styles.checkbox.docsLabel}></label>
 <span class="bold">Uncompressed File</span>
 <div class="h=.5"></div>
-<button class="bold va=bottom {styles.button.resources}" on:click={downloadFile}>
-	css-lube.{isUncompressed ? "" : "min."}js v1.2.1
+<button class="bold va=bottom {styles.button.resources}" on:click={download_file}>
+	css-lube.{isUncompressed ? "" : "min."}js {version}
 </button>

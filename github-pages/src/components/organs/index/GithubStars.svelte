@@ -1,23 +1,17 @@
 <script lang="ts">
 import { client } from "fetch-lube"
 import IGithub from "cells/svgs/i_github.svelte"
-import { onMount } from "svelte"
 
+const fetch_github_info = client("https://api.github.com/repos/:user/:repo")
+	.get()
+	.query
 
-let star = "0"
-onMount(
-	() => client("https://api.github.com/repos/:user/:repo")
-		.get()
-		.query({ user: "artxe2", repo: "css-lube" })
-		.then(value => {
-			if (value.status > 299) {
-				throw value
-			}
-			return value.json()
-		})
-		.then(json => star = json.stargazers_count)
-		.catch(reason => star = reason.status + " ERROR")
-)
+const fetch_star = async () => {
+	let response = await fetch_github_info({ user: "artxe2", repo: "css-lube" })
+	if (response.status > 299) throw Error("Err:" + response.status)
+	let json = await response.json()
+	return json.stargazers_count
+}
 </script>
 
 <div class="flex fs=1.25">
@@ -35,5 +29,13 @@ onMount(
 			:after/absolute;block;ct='';t=.66;l=-.29;bd=.35_solid_transparent :after/bdl=0;bdr=.35_solid_#fafafa"
 		href="https://github.com/artxe2/css-lube/stargazers"
 		target="_blank"
-	>{star}</a>
+	>
+		{#await fetch_star()}
+			{"..."}
+		{:then star}
+			{star}
+		{:catch error}
+			{error.message}
+		{/await}
+	</a>
 </div>

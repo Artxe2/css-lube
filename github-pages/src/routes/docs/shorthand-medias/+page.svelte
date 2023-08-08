@@ -14,13 +14,13 @@ import JsMap from "cells/typography/JsMap.svelte"
 <div class="h=2"></div>
 <CodePage>
 	<JsMap
-		name="shorthandMedias"
+		name="shorthandForMediaCondition"
 		json={`[
-	["dark","(prefers-color-scheme:dark)"],
-	["sm","(min-width:640px)"],
-	["md","(min-width:768px)"],
-	["lg","(min-width:1024px)"],
-	["xl","(min-width:1280px)"],
-	["2xl","(min-width:1536px)"]
+	["dark", "(prefers-color-scheme:dark)"],
+	["sm", "(min-width:640px)"],
+	["md", "(min-width:768px)"],
+	["lg", "(min-width:1024px)"],
+	["xl", "(min-width:1280px)"],
+	["2xl", "(min-width:1536px)"]
 ]`}/>
 </CodePage>

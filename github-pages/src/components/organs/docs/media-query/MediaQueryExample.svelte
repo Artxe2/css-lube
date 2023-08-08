@@ -1,8 +1,9 @@
 <script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { bracket, comment, css, html, keyword, name, string } from "ts/highlighter"
+import version from "ts/version"
 
-const code = `${html("style", ` ${name("css-lube")}=${string("v1.2.1")}`, `
+const code = `${html("style", ` ${name("css-lube")}=${string(version)}`, `
 	${css(".c\\=red", ["color", "red"])}
 	${css(".fs\\=16px", ["font-size", "16px"])}
 	${css("[class].fs\\=16px\\!", ["font-size", "16px"])}

@@ -14,32 +14,27 @@ import JsMap from "cells/typography/JsMap.svelte"
 <div class="h=2"></div>
 <CodePage>
 	<JsMap
-		name="shorthandValues" 
+		name="shorthandForValues" 
 		json={`[
-	/* cursor */
-	["not-allowed","cursor:not-allowed"],
-	["pointer","cursor:pointer"],
-	["wait","cursor:wait"],
-	/* display */
-	["block","display:block"],
-	["flex","display:flex"],
-	["grid","display:grid"],
-	["inline","display:inline"],
-	["inline-block","display:inline-block"],
-	["inline-flex","display:inline-flex"],
-	["none","display:none"],
-	/* flex-direction */
-	["column","flex-direction:column"],
-	["column-reverse","flex-direction:column-reverse"],
-	["row","flex-direction:row"],
-	["row-reverse","flex-direction:row-reverse"],
-	/* font-weight */
-	["bold","font-weight:bold"],
-	/* position */
-	["absolute","position:absolute"],
-	["fixed","position:fixed"],
-	["relative","position:relative"],
-	["static","position:static"],
-	["sticky","position:sticky"]
+	["not-allowed", "cursor:not-allowed"],
+	["pointer", "cursor:pointer"],
+	["wait", "cursor:wait"],
+	["block", "display:block"],
+	["flex", "display:flex"],
+	["grid", "display:grid"],
+	["inline", "display:inline"],
+	["inline-block", "display:inline-block"],
+	["inline-flex", "display:inline-flex"],
+	["none", "display:none"],
+	["column", "flex-direction:column"],
+	["column-reverse", "flex-direction:column-reverse"],
+	["row", "flex-direction:row"],
+	["row-reverse", "flex-direction:row-reverse"],
+	["bold", "font-weight:bold"],
+	["absolute", "position:absolute"],
+	["fixed", "position:fixed"],
+	["relative", "position:relative"],
+	["static", "position:static"],
+	["sticky", "position:sticky"]
 ]`} />
 </CodePage>

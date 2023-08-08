@@ -4,13 +4,14 @@ import TypingText from "organs/@common/animations/TypingText.svelte"
 import { base } from "$app/paths"
 import { closeTag, comment, css, html, name, openTag, string } from "ts/highlighter"
 import styles from "styles"
+import version from "ts/version"
 
 const code1 = `
 ${openTag("head", "")}
 	. . . . . .
 	${html("script", ` ${name("src")}=${string("/css-lube.js")}`, "")}
 	${comment("<!-- Automatically generated styles at runtime using MutationObserver by CSS Lube -->")}
-	${openTag("style ", ` ${name("css-lube")}=${string("v1.2.1")}`)}
+	${openTag("style ", ` ${name("css-lube")}=${string(version)}`)}
 		. . . . . .
 `
 $: code2 = `		${css(".fv\\=small-caps", ["font-variant", "small-caps"])}`
