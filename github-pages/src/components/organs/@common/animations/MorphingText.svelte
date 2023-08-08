@@ -34,7 +34,7 @@ onMount(animation)
 onDestroy(() => clearTimeout(timer))
 </script>
 
-<div class="relative ta=center
+<div class="relative ta=center wc=filter
 		{filter ? "ft=url(#ft)" : ""}
 		>span/absolute >span/w=100% >span/l=0 >span/us=none
 		{classs}">

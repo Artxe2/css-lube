@@ -48,5 +48,5 @@ const downloadFile = async () => {
 <span class="bold">Uncompressed File</span>
 <div class="h=.5"></div>
 <button class="bold va=bottom {styles.button.resources}" on:click={downloadFile}>
-	css-lube.{isUncompressed ? "" : "min."}js v1.2.0
+	css-lube.{isUncompressed ? "" : "min."}js v1.2.1
 </button>

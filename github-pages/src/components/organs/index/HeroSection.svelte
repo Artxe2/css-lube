@@ -10,8 +10,7 @@ let innerHeight: number
 
 <svelte:window bind:innerHeight />
 
-<div class="relative flex column jc=center mh=100vh
-		mh={innerHeight}px!">
+<div class="relative flex column jc=center mh=100vh mh=100dvh!">
 	<div class="relative">
 		<H1 classs="v=hidden"><f>Implement your web designs rapidly on the spot!</f></H1>
 		<H1 classs="v=hidden"><f>It takes only 3 minutes to learn this.</f></H1>

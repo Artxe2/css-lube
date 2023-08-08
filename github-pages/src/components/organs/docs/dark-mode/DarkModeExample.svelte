@@ -3,7 +3,7 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import { bracket, comment, css, func, html, keyword, name, string } from "ts/highlighter"
 
 const code = `${comment("<!-- In light theme, dark mode styles are disabled with FALSE(width<0) -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.2.0")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.2.1")}`, `
 	${css(".c\\=red", ["color", "red"])}
 	${keyword("@media")} ${bracket("(")}${name("width")}<${string("0", false)}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
@@ -11,14 +11,14 @@ ${html("style", ` ${name("css-lube")}=${string("v1.2.0")}`, `
 `)}
 
 ${comment("<!-- In dark theme, dark mode styles are applied with TRUE(width>0) -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.2.0")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.2.1")}`, `
 	${css(".c\\=red", ["color", "red"])}
 	${keyword("@media")} ${bracket("(")}${name("width")}>${string("0", false)}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
 	${bracket("}")}
 `)}
 ${comment("<!-- In system theme, the dark mode style is applied as a media query -->")}
-${html("style", ` ${name("css-lube")}=${string("v1.2.0")}`, `
+${html("style", ` ${name("css-lube")}=${string("v1.2.1")}`, `
 	${css(".c\\=red", ["color", "red"])}
 	${keyword("@media")} ${bracket("(")}${name("prefers-color-scheme")}:${string("dark", false)}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
