@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { html, name, string } from "ts/highlighter"
-import GithubStars from "organs/index/GithubStars.svelte"
+import GithubStars from "parts/@common/GithubStars.svelte"
 
 const code = `${html("div", ` ${name("class")}=${string(`>div>a/br=.75
 		_*/f=blue

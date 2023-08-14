@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
-import H2 from "cells/typography/H2.svelte"
-import H5 from "cells/typography/H5.svelte"
+import { H2 } from "lube-ui"
+import { H5 } from "lube-ui"
 import IdeFolder from "cells/typography/IdeFolder.svelte"
 import IdeSvelte from "cells/typography/IdeSvelte.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
 import ComponentRulesExample from "organs/docs/atomic-for-lube/ComponentRulesExample.svelte"
 import ResponsiveWebDesignExample from "organs/docs/atomic-for-lube/ResponsiveWebDesignExample.svelte"
-import GithubStars from "organs/index/GithubStars.svelte"
+import GithubStars from "parts/@common/GithubStars.svelte"
 </script>
 
 <svelte:head>

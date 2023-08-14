@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
 import { client } from "fetch-lube"
-import styles from "styles"
+import styles from "ts/styles"
 import version from "ts/version"
 
 let isSafariCompatible = false

@@ -22,7 +22,7 @@ json = json.replace(/,/g, s => "<x1>" + s + "</x1>")
 	}<span class="c=--copper-canyon @dark@c=--dotger-blue">{"("}</span>{
 		""
 	}<span class="c=--tamarillo @dark@c=--raw-sienna
-			>x1/c=#000 @dark@>x1/c=--text-dark
+			>x1/c=#000 @dark@>x1/c=--gray-90
 			>x2/c=--forest-green @dark@>x2/c=--bouquet
 			>x2>x2/c=blue @dark@>x2>x2/c=--gold
 			>x3/c=--japanese-laurel @dark@>x3/c=--asparagus">{@html

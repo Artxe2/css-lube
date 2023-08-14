@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import TypingText from "organs/@common/animations/TypingText.svelte"
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { html, name, string } from "ts/highlighter"

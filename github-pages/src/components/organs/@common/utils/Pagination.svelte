@@ -1,5 +1,5 @@
 <script lang="ts">
-import styles from "styles"
+import styles from "ts/styles"
 import { createEventDispatcher } from "svelte"
 
 export let classs = ""
@@ -9,7 +9,7 @@ export let page = 0
 export let offset = 1
 export let jump = 5
 
-$: last = list ? Math.floor(((list.length || 0) + size - 1) / size) - 1 : 0
+$: last = list ? Math.floor( ( (list.length || 0) + size - 1 ) / size ) - 1 : 0
 $: pages = Array.from({ length: last + 1 }, (v, k) => k)
 
 const dispatch = createEventDispatcher()

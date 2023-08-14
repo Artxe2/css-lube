@@ -31,7 +31,7 @@ const animation = async () => {
 	animation()
 }
 onMount(animation)
-onDestroy(() => clearTimeout(timer))
+onDestroy( () => clearTimeout(timer) )
 </script>
 
 <div class="relative ta=center wc=filter

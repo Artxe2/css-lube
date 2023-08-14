@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import { comment, html, name, string } from "ts/highlighter"
 

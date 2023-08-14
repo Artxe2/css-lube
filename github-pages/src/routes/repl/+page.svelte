@@ -1,5 +1,4 @@
-<script>
-import AppBar from "parts/@common/AppBar.svelte"
+<script lang="ts">
 import TestEditor from "organs/repl/TestEditor.svelte"
 </script>
 
@@ -7,10 +6,4 @@ import TestEditor from "organs/repl/TestEditor.svelte"
 	<title>REPL | CSS Lube</title>
 </svelte:head>
 
-<div class="h=100% xh=100% bg=--primary-55 @dark@bg=--firefly">
-	<AppBar />
-	<div class="h=4"></div>
-	<div class="h=calc(100%-4em)">
-		<TestEditor />
-	</div>
-</div>
+<TestEditor />

@@ -1,0 +1,10 @@
+{
+	"author": "artxe2",
+	"devDependencies": {
+		"svelte": "^4.1.2"
+	},
+	"main": "index.js",
+	"name": "lube-ui",
+	"type": "module",
+	"version": "0.1.0"
+}

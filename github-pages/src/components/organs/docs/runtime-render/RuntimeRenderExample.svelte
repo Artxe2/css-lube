@@ -3,7 +3,7 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 import TypingText from "organs/@common/animations/TypingText.svelte"
 import { base } from "$app/paths"
 import { closeTag, comment, css, html, name, openTag, string } from "ts/highlighter"
-import styles from "styles"
+import styles from "ts/styles"
 import version from "ts/version"
 
 const code1 = `
