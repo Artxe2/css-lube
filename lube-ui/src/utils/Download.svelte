@@ -1,4 +1,5 @@
 <script lang="ts">
+
 export let classs = ""
 export let url: string
 
@@ -13,6 +14,7 @@ const downloadFile = () =>
 			document.body.append(link)
 			link.click()
 			document.body.removeChild(link)
+			URL.revokeObjectURL(link.href)
 		})
 </script>
 

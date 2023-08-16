@@ -1,6 +1,5 @@
 <script lang="ts">
 import IRefresh from "cells/svgs/i_refresh.svelte"
-import { H1 } from "lube-ui"
 import { contents$ } from "parts/ref/store"
 import LoadingCircle from "organs/@common/animations/LoadingCircle.svelte"
 import styles from "ts/styles"
@@ -9,16 +8,15 @@ import { bracket, comment, declare, func, html, keyword, name, number, string, t
 import ComponentTabView from "organs/ref/ComponentTabView.svelte"
 import CodePage from "organs/@common/utils/CodePage.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
-    import { InfiniteScroll } from "lube-ui"
+import { H2, InfiniteScroll } from "lube-ui"
 
 const code1 = `${html("script", ` ${name("lang")}=${string("ts")}`, `
-${keyword("import")} ${name("H1")} ${keyword("from")} ${string("cells/typography/H1.svelte")}
 ${keyword("import")} ${name("IRefresh")} ${keyword("from")} ${string("cells/svgs/i_refresh.svelte")}
 ${keyword("import")} ${name("LoadingCircle")} ${keyword("from")} ${string("src/instant-ui/animations/LoadingCircle.svelte")}
-${keyword("import")} ${name("styles")} ${keyword("from")} ${string("src/styles")}
+${keyword("import")} ${name("styles")} ${keyword("from")} ${string("ts/styles")}
 ${keyword("import")} ${bracket("{")} ${name("contents$")} ${bracket("}")} ${keyword("from")} ${string("parts/ref/store")}
 ${keyword("import")} ${bracket("{")} ${name("onDestroy")}, ${name("onMount")} ${bracket("}")} ${keyword("from")} ${string("svelte")}
-${keyword("import")} ${bracket("{")} ${name("InfiniteScroll")} ${bracket("}")} ${keyword("from")} ${string("lube-ui")}
+${keyword("import")} ${bracket("{")} ${name("H2")}, ${name("InfiniteScroll")} ${bracket("}")} ${keyword("from")} ${string("lube-ui")}
 
 ${declare("let")} ${name("loading")} = ${number(1)} ${comment("// 0: in progress, 1: none, 2: error")}
 ${declare("const")} ${name("loremApi", true)}: ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${type("Promise")}${bracket("<")}${type("any")}${bracket(">")} = ${bracket("(")}${name("i")}: ${type("number")}, ${name("n")}: ${type("number")}${bracket(")")} ${declare("=>")} ${declare("new")} ${type("Promise")}${bracket("(")}${bracket("(", 1)}${func("resolve")}, ${func("reject")}${bracket(")", 1)} ${declare("=>")} ${func("setTimeout")}${bracket("(", 1)}${bracket("()", 2)} ${declare("=>")} ${bracket("{", 2)}
@@ -117,7 +115,7 @@ onDestroy(() => $contents$ = [])
 			ready={loading === 1}>
 		{#each $contents$ as c}
 			<div>
-				<H1>{c.title}</H1>
+				<H2>{c.title}</H2>
 				<span>{c.content}</span>
 			</div>
 		{/each}
@@ -143,7 +141,7 @@ onDestroy(() => $contents$ = [])
 		</CodePage>
 		<div class="h=1"></div>
 		<CodePage isCode>
-			styles / <IdeTypescript name="index" />
+			ts / <IdeTypescript name="styles" />
 			{@html code3}
 		</CodePage>
 	</div>

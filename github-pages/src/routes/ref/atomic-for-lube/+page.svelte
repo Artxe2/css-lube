@@ -5,8 +5,8 @@ import { H5 } from "lube-ui"
 import IdeFolder from "cells/typography/IdeFolder.svelte"
 import IdeSvelte from "cells/typography/IdeSvelte.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
-import ComponentRulesExample from "organs/docs/atomic-for-lube/ComponentRulesExample.svelte"
-import ResponsiveWebDesignExample from "organs/docs/atomic-for-lube/ResponsiveWebDesignExample.svelte"
+import ComponentRulesExample from "organs/ref/atomic-for-lube/ComponentRulesExample.svelte"
+import ResponsiveWebDesignExample from "organs/ref/atomic-for-lube/ResponsiveWebDesignExample.svelte"
 import GithubStars from "parts/@common/GithubStars.svelte"
 </script>
 

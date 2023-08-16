@@ -2,5 +2,5 @@
 export let classs = ""
 </script>
 
-<h2 class="bold fs=3.5 @max-width=639px@fs=2
+<h2 class="bold fs=3.5 @!sm@fs=2
 		{classs}"><slot></slot></h2>

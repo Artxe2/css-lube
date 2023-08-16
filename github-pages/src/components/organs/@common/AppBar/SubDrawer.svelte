@@ -24,8 +24,9 @@ export let isOpen: boolean
 			{styles.scrollbar.primary}">
 		<div class="h=5"></div>
 		<div class="flex column p=.5 fg=1">
-			<NavButton text="Home" data={subMenu["Home"]}>
-				<img src="{base}/favicon.png" alt="logo" class="w=1.5 pb=.4 mr=.5">
+			<NavButton classs=":hover_.icon/tf=scale(1.2)"
+					text="Home" data={subMenu["Home"]}>
+				<img src="{base}/favicon.png" alt="logo" class="icon w=1.7 pb=.2 mr=.5">
 			</NavButton>
 			<NavButton classs=":not(:hover)_.icon>div:nth-of-type(even)/op=0
 					:hover_.icon>div:nth-of-type(odd)/op=0"
@@ -37,7 +38,7 @@ export let isOpen: boolean
 			</NavButton>
 			<NavButton classs=":hover_.icon/tf=scale(1.2)"
 					text="REPl" data={subMenu["REPl"]}>
-				<ICode classs="icon inline-block w=2 m=0_-.25 lh=1.7 mr=.5" />
+				<ICode classs="icon inline-block w=2 m=0_-.25 lh=1.7 mr=.25!" />
 			</NavButton>
 			<NavButton classs=":not(:hover)_.icon>div:nth-of-type(even)/op=0
 					:hover_.icon>div:nth-of-type(odd)/op=0"

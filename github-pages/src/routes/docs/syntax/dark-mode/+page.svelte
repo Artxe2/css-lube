@@ -1,6 +1,6 @@
 <script lang="ts">
 import { H5 } from "lube-ui"
-import DarkModeExample from "organs/docs/dark-mode/DarkModeExample.svelte"
+import DarkModeExample from "organs/docs/syntax/dark-mode/DarkModeExample.svelte"
 </script>
 
 <svelte:head>

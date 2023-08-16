@@ -11,10 +11,9 @@ let innerHeight: number
 <svelte:window bind:innerHeight />
 
 <div class="relative flex column br=1.5 o=hidden
-		{styles.background.grid}">
+		{styles.index.hero_section.background_grid}">
 	<div class="relative w=100% ta=center
-			bg=conic-gradient(from_45deg_at_67%_67%,--primary-80,--primary-22)
-			@dark@bg=conic-gradient(from_-45deg_at_33%_67%,--firefly,#000000cc)">
+			{styles.index.hero_section.background_conic}">
 		<div class="h=2"></div>
 			<H1>CSS Lube</H1>
 		<div class="absolute w=100% ts=0_0_.5_#f80">
@@ -23,21 +22,23 @@ let innerHeight: number
 				<span><f>It takes only 3 minutes to learn this.</f></span>
 			</TypingText>
 		</div>
-		<div class="h=20 @sm@h=16 @lg@h=12!"></div>
+		<div class="h=21 @sm@h=16 @lg@h=12!"></div>
 	</div>
 	<div class="absolute b=4 w=100% flex jc=center
 			@!sm@column">
 		<div class="flex ai=center
 				@!lg@column">
 			<a href="{base}/docs">
-				<button class="{styles.button.contained} jc=center p=.2_1!">
+				<button class="w=10 h=3.5 br=1.75 jc=center
+						{styles.index.hero_section.button}">
 					<code class="fs=1.25 bold">Get Started</code>
 					<code class="block mt=-.5 mb=-.2">docs</code>
 				</button>
 			</a>
 			<div class="w=2 h=1"></div>
 			<a href="{base}/repl">
-				<button class="{styles.button.contained} jc=center p=.2_1!">
+				<button class="w=10 h=3.5 br=1.75 jc=center
+						{styles.index.hero_section.button}">
 					<code class="fs=1.25 bold">Try it now!</code>
 					<code class="block mt=-.5 mb=-.2">repl</code>
 				</button>

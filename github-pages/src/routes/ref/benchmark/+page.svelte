@@ -1,48 +1,56 @@
 <script lang="ts">
 import styles from "ts/styles"
+import BenchmarkChart from "organs/ref/benchmark/BenchmarkChart.svelte"
 </script>
 
 <svelte:head>
 	<title>CSS Lube - Benchmark</title>
 </svelte:head>
 
-<div>
-	<div class="bg=#000000">
-		<span class="c=#000000 ft=invert(1)">000000</span>
+<div class="bg=--gray-80 p=1 br=1.5">
+	<a href="https://pagespeed.web.dev" target="_blank"
+			class="fs=2 {styles["@common"].link}">
+		PageSpeed Insights
+	</a>
+	<div class="h=.5"></div>
+	<div class="br=.5 o=hidden">
+		<div style="background:#000000;">
+			<span style="color:#000000;filter:invert(1);">000000</span>
+		</div>
+		<div style="background:#000bb8;">
+			<span style="color:#000bb8;filter:invert(1);">000bb8</span>
+		</div>
+		<div style="background:#001770;">
+			<span style="color:#001770;filter:invert(1);">001770</span>
+		</div>
+		<div style="background:#002328;">
+			<span style="color:#002328;filter:invert(1);">002328</span>
+		</div>
+		<div style="background:#002ee0;">
+			<span style="color:#002ee0;filter:invert(1);">002ee0</span>
+		</div>
+		<div style="background:#003a98;">
+			<span style="color:#003a98;filter:invert(1);">003a98</span>
+		</div>
 	</div>
-	<div class="bg=#0003e8">
-		<span class="c=#0003e8 ft=invert(1)">0003e8</span>
-	</div>
-	<div class="bg=#0007d0">
-		<span class="c=#0007d0 ft=invert(1)">0007d0</span>
-	</div>
-	<div class="bg=#000bb8"><span class="c=#000bb8 ft=invert(1)">000bb8</span></div><div class="bg=#000fa0">
-		<span class="c=#000fa0 ft=invert(1)">000fa0</span>
-	</div>
-	<div class="bg=#001388">
-		<span class="c=#001388 ft=invert(1)">001388</span>
-	</div>
-	<div class="bg=#001770">
-		<span class="c=#001770 ft=invert(1)">001770</span>
-	</div>
-	<div class="bg=#001b58">
-		<span class="c=#001b58 ft=invert(1)">001b58</span>
-	</div>
-	<div class="bg=#001f40">
-		<span class="c=#001f40 ft=invert(1)">001f40</span>
-	</div>
-	<div class="bg=#002328">
-		<span class="c=#002328 ft=invert(1)">002328</span>
-	</div>
-	<div class="bg=#002710">
-		<span class="c=#002710 ft=invert(1)">002710</span>
-	</div>
+	<span class="c=--gray-10">...5593 rows</span>
 </div>
+<div class="h=2"></div>
+<BenchmarkChart />
+<div class="h=1"></div>
 <a href="https://artxe2.github.io/test/inline-style.html" target="_blank"
-		class="fs=2 {styles.button.link}">inline-style.html</a><br>
+		class="fs=1.5 {styles["@common"].link}">
+	inline-style.html
+</a><br>
 <a href="https://artxe2.github.io/test/atomic-css.html" target="_blank"
-		class="fs=2 {styles.button.link}">atomic-css.html</a><br>
+		class="fs=1.5 {styles["@common"].link}">
+	atomic-css.html
+</a><br>
 <a href="https://artxe2.github.io/test/css-lube.html" target="_blank"
-		class="fs=2 {styles.button.link}">css-lube.html</a><br>
+		class="fs=1.5 {styles["@common"].link}">
+	css-lube.html
+</a><br>
 <a href="https://artxe2.github.io/test/tailwind-jit.html" target="_blank"
-		class="fs=2 {styles.button.link}">tailwind-jit.html</a><br>
+		class="fs=1.5 {styles["@common"].link}">
+	tailwind-jit.html
+</a>

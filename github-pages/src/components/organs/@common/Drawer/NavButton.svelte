@@ -25,7 +25,7 @@ onMount(() => {
 		:hover/bold
 		:hover/c=--gray-10 @dark@:hover/c=--gray-80
 		:hover>div/bg=--gray-80 @dark@:hover>div/bg=--gray-30
-		{active ? "c=--primary-50!!" : ""}
+		{active ? "c=--primary-50!! _svg/f=--primary-90" : ""}
 		{classs}">
 	<div class="relative flex jc=center ai=center w=3 h=1.5 br=.75">
 		<div class="absolute bg=--primary-50 w=3 h=1.5 br=.75

@@ -28,6 +28,7 @@ const download_file = async () => {
 	document.body.appendChild(link)
 	link.click()
 	document.body.removeChild(link)
+	URL.revokeObjectURL(link.href)
 }
 </script>
 
@@ -48,7 +49,11 @@ const download_file = async () => {
 		class={styles.checkbox.docsInput}>
 <label for="3" class={styles.checkbox.docsLabel}></label>
 <span class="bold">Uncompressed File</span>
-<div class="h=.5"></div>
-<button class="bold va=bottom {styles.button.resources}" on:click={download_file}>
-	css-lube.{isUncompressed ? "" : "min."}js {version}
+<div class="h=1"></div>
+<button class="h=2.5 br=1.25 p=0_1 jc=center c=#fff
+		bg=--primary-50 :hover/bg=--primary-40
+		:hover/ts=0_0_.5
+		:active/bg=--primary-50!"
+		on:click={download_file}>
+	<span class="fs=1.5">css-lube.{isUncompressed ? "" : "min."}js {version}</span>
 </button>

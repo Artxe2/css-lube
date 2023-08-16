@@ -6,26 +6,31 @@ import IDarkModeFill from "cells/svgs/i_dark_mode_fill.svelte"
 import { theme$ } from "./store"
 import { onMount } from "svelte"
 
-let deg = $theme$ == "DARK"
-		? -360
-		: -180
+let deg = -180
+let animation: boolean
 
 const change_theme = () => {
 	deg -= 180
 	$theme$ = $theme$ == "DARK"
 			? "LIGHT"
 			: "DARK"
-	window.localStorage.setItem("THEME", $theme$)
+	localStorage.setItem("THEME", $theme$)
 	// @ts-ignore
-	window.cssLube()
+	cssLube()
 }
 onMount(() => {
-	let theme = window.localStorage.getItem("THEME") || ""
-	if (!theme && window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+	let theme = localStorage.getItem("THEME") || ""
+	if (!theme && matchMedia?.("(prefers-color-scheme: dark)").matches) {
 		theme = "DARK"
-		window.localStorage.setItem("THEME", "DARK")
+		localStorage.setItem("THEME", "DARK")
 	}
 	$theme$ = theme
+	if (theme == "DARK") deg = 0
+	setTimeout(
+		() => animation = true
+		,
+		50
+	)
 })
 </script>
 
@@ -36,7 +41,7 @@ onMount(() => {
 		:hover/bg=--gray-80 @dark@:hover/bg=--gray-40"
 		on:click={change_theme}>
 	<div class="flex column ai=center p=6_15
-			tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s
+			{animation ? "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s" : ""}
 			tf=translate(-13em,-6em)_rotate({deg}deg)">
 		<div class="relative w=3 h=3">
 			<IDarkMode classs="absolute i=.25 w=2.5 h=2.5" />

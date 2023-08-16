@@ -20,13 +20,14 @@ const subListOpen = {
 <nav class="z=10000 fixed t=0 l=0 h=100%
 		c=--gray-30 @dark@c=--gray-70
 		_svg/f=--gray-10
-		@max-width=1023px@v=hidden">
+		@!lg@v=hidden">
 	<div class="flex column h=100% w=4
 			bg=--gray-95 @dark@bg=--gray-20">
 		<div class="h=1"></div>
 		<div class="flex column">
-			<NavButton href="{base}/" text="Home">
-				<img src="{base}/favicon.png" alt="logo" class="z=1 w=1.5">
+			<NavButton classs=":hover_.icon/tf=scale(1.2)"
+					href="{base}/" text="Home">
+				<img src="{base}/favicon.png" alt="logo" class="icon z=1 w=1.5">
 			</NavButton>
 		</div>
 		<div class="h=.5"></div>

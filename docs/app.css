@@ -29,6 +29,7 @@
 	--tamarillo: #a31515; /* vsc light string */
 
 /* theme */
+	--gray-0-80: #000000cc;
 	--gray-10: #1a1a1a;
 	--gray-20: #333333;
 	--gray-30: #4d4d4d;
@@ -45,18 +46,16 @@
 	--primary-30: #23355b;
 	--primary-40: #2f477a;
 	--primary-50: #3b5998;
+	--primary-50-20: #3b589833;
 	--primary-60: #627aad;
 	--primary-70: #899bc1;
 	--primary-80: #b1bdd6;
 	--primary-90: #d8deea;
 	--primary-95: #ebeef5;
 	--primary-98: #f7f8fb;
-	--primary-22: #3b599822;
 	--primary-55: #3b599855;
-	--primary-88: #3b599888;
 	--primary-aa: #3b5998aa;
-	--primary-dd: #3b5998dd;
-	--primary-light: #3178c6; /* mariner */
+	--primary-light-50: #3178c6;
 
 /* colors */
 	--onahau: #cceeff;

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { H5 } from "lube-ui"
-import BasicExample from "organs/docs/basic/BasicExample.svelte"
+import BasicExample from "organs/docs/syntax/basic/BasicExample.svelte"
 </script>
 
 <svelte:head>

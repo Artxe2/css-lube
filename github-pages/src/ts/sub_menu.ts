@@ -1,6 +1,6 @@
 import { base } from "$app/paths"
 
-const subMenu = {
+const sub_menu = {
 	"Home": { href: base + "/" },
 	"Documents": {
 		href: base + "/docs",
@@ -22,16 +22,6 @@ const subMenu = {
 					"Media Query": { href: base + "/docs/syntax/media-query" },
 					"Dark mode": { href: base + "/docs/syntax/dark-mode" }
 				}
-			},
-			"Customizing": {
-				href: base + "/docs/custom",
-				childs: {
-					"CSS Reset": { href: base + "/docs/custom/css-reset" },
-					"Shorthand Keys": { href: base + "/docs/custom/shorthand-keys" },
-					"Shorthand Values": { href: base + "/docs/custom/shorthand-values" },
-					"Shorthand Medias": { href: base + "/docs/custom/shorthand-medias" },
-					"Default Unit": { href: base + "/docs/custom/default-unit" }
-				}
 			}
 		}
 	},
@@ -39,7 +29,16 @@ const subMenu = {
 	"Reference": {
 		href: base + "/ref",
 		childs: {
-			"Atomic for CSS Lube": { href: base + "/ref/atomic-for-lube" },
+			"Customizing": {
+				href: base + "/ref/custom",
+				childs: {
+					"CSS Reset": { href: base + "/ref/custom/css-reset" },
+					"Shorthand Keys": { href: base + "/ref/custom/shorthand-keys" },
+					"Shorthand Values": { href: base + "/ref/custom/shorthand-values" },
+					"Shorthand Medias": { href: base + "/ref/custom/shorthand-medias" },
+					"Default Unit": { href: base + "/ref/custom/default-unit" }
+				}
+			},
 			"Animations": {
 				href: base + "/ref/anim",
 				childs: {
@@ -55,9 +54,10 @@ const subMenu = {
 					"Infinite Scroll": { href: base + "/ref/utils/infinite-scroll" }
 				}
 			},
-			"Benchmark": { href: base + "/ref/benchmark" }
+			"Benchmark": { href: base + "/ref/benchmark" },
+			"Atomic for CSS Lube": { href: base + "/ref/atomic-for-lube" }
 		}
 	}
 }
 
-export default subMenu
+export default sub_menu

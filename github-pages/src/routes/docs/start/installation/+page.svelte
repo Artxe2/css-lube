@@ -16,7 +16,7 @@ import CssLubeDownloadForm from "organs/docs/installation/CssLubeDownloadForm.sv
 <span>Checking Uncompressed File, file are not compressed into terser, and can be used for debugging purposes.</span><br>
 <div class="h=1"></div>
 <CssLubeDownloadForm />
-<div class="h=1"></div>
+<div class="h=2"></div>
 <InstallationExample />
 <pre>{`
 MIT License

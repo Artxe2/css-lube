@@ -39,18 +39,18 @@ onMount( () => {
 </script>
 
 <div class="flex h=100% xw=100%
-		@max-width=639px@column">
+		@!sm@column">
 	<div class="relative w=40% bd=1px_solid p=1 oy=auto
 			bg=--primary-90 @dark@bg=--primary-10
-			@max-width=639px@w=100% @max-width=639px@h=30%
+			@!sm@w=100% @!sm@h=30%
 			{styles.scrollbar.primary}">
 		{@html content}
 	</div>
 	<div bind:this={container}
 			class="fg=1 fsk=1 xw=60% pt=1 tt=background_.3s
 			bg=#fff @dark@bg=--cod-gray
-			@max-width=639px@xw=100%
-			@max-width=639px@xh=70%
+			@!sm@xw=100%
+			@!sm@xh=70%
 			_.monaco-editor_*/tt=background_.3s">
 		{#if isLoading} 
 			<div class="flex h=100% jc=center ai=center">

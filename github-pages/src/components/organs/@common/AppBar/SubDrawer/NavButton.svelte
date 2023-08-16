@@ -27,7 +27,7 @@ if ("href" in data) {
 {#if "childs" in data}
 <button class="relative w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
 		:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-		{active ? "bg=--primary-50!! c=--primary-90!!" : ""}
+		{active ? "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90" : ""}
 		{classs}"
 		on:click={() => isOpen = !isOpen}>
 	<slot></slot>
@@ -55,7 +55,7 @@ if ("href" in data) {
 <a href={data["href"]}>
 	<button class="w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
 			:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-			{active ? "bg=--primary-50!! c=--primary-90!!" : ""}
+			{active ? "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90" : ""}
 			{classs}">
 		<slot></slot>
 		<span class="fs=1.5">{text}</span>

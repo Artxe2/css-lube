@@ -1,6 +1,6 @@
 <script lang="ts">
 import { H5 } from "lube-ui"
-import PriorityExample from "organs/docs/priority/PriorityExample.svelte"
+import PriorityExample from "organs/docs/syntax/priority/PriorityExample.svelte"
 </script>
 
 <svelte:head>
