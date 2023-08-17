@@ -33,4 +33,6 @@ ${html("span", ` ${name("class")}=${string("@(min-width:768px)@:active/fs=1.25")
 `
 </script>
 
-<CodePage>{@html code}</CodePage>
+<div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+	<CodePage>{@html code}</CodePage>
+</div>

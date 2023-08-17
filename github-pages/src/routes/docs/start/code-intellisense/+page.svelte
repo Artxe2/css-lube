@@ -21,4 +21,4 @@ import { Download } from "lube-ui"
 	<span class="fs=1.5">intellisense.vsix v0.0.2</span>
 </Download>
 <div class="h=1"></div>
-<SafeImg aspectRatio={16 / 9} src="https://github.com/Artxe2/css-lube/raw/main/github-pages/static/imgs/intellisense.webp" />
+<SafeImg classs="br=1 o=hidden" aspectRatio={16 / 9} src="https://github.com/Artxe2/css-lube/raw/main/github-pages/static/imgs/intellisense.webp" />

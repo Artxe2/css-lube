@@ -20,4 +20,6 @@ ${html("span", ` ${name("class")}=${string("color=red;font-size=calc(8px*2)!impo
 `)}`
 </script>
 
-<CodePage>{@html code}</CodePage>
+<div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+	<CodePage>{@html code}</CodePage>
+</div>

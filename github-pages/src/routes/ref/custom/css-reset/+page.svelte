@@ -4,7 +4,7 @@ import CssResetExample from "organs/docs/custom/css-reset/CssResetExample.svelte
 </script>
 
 <svelte:head>
-	<title>CSS Reset | CSS Lube</title>
+	<title>CSS Reset - CSS Lube</title>
 </svelte:head>
 
 <H5>CSS Reset</H5>

@@ -27,7 +27,7 @@ const handleEndtype = ({ detail }: CustomEvent) => index = detail
 	<H2>What is CSS Lube?</H2>
 	<span>CSS Lube is Highly-optimized Runtime CSS-In-JS.</span>
 	<span>This makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,420 byte js file.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,558 byte js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
 			@!md@column">
@@ -50,13 +50,14 @@ const handleEndtype = ({ detail }: CustomEvent) => index = detail
 			</CodePage>
 		</div>
 		<div class="w=1 h=1"></div>
-		<div class="relative fg=1 fsk=1 @fs=.5 >div/br=1">
+		<div class="relative fg=1 fsk=1 >div/br=1">
 			<div class="v=hidden">
 				<pre class="p=1 wb=break-all letter-spacing=.075">{@html code}</pre>
 			</div>
-			<div class="absolute t=0 >div/h=100%">
+			<div class="absolute t=0 >div/h=100%
+					@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
 				<CodePage>
-					<TypingText classs={styles.util.typingTextInMiddle} orders={[ 1, 2, 0 ]} on:endtype={handleEndtype}>{@html code}</TypingText>
+					<TypingText classs={styles.util.typing_text_in_middle} orders={[ 1, 2, 0 ]} on:endtype={handleEndtype}>{@html code}</TypingText>
 				</CodePage>
 			</div>
 		</div>

@@ -40,4 +40,6 @@ ${html("span", ` ${name("class")}=${string("@dark&md@c=red")}`, `
 `
 </script>
 
-<CodePage>{@html code}</CodePage>
+<div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+	<CodePage>{@html code}</CodePage>
+</div>

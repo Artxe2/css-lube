@@ -3,7 +3,7 @@ import InfiniteScrollExample from "parts/ref/utils/infinite-scroll/InfiniteScrol
 </script>
 
 <svelte:head>
-	<title>Infinite Scroll | Reference</title>
+	<title>Infinite Scroll - CSS Lube</title>
 </svelte:head>
 
 <InfiniteScrollExample />

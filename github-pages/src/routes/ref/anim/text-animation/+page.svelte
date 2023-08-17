@@ -5,7 +5,7 @@ import { H5 } from "lube-ui"
 </script>
 
 <svelte:head>
-	<title>Text Animation | Reference</title>
+	<title>Text Animation - CSS Lube</title>
 </svelte:head>
 
 <H5>Morphing Text</H5>

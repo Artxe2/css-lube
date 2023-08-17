@@ -1,12 +1,12 @@
 <script lang="ts">
 import CodePage from "organs/@common/utils/CodePage.svelte"
-import { bracket, comment, css, func, html, keyword, name, string } from "ts/highlighter"
+import { bracket, comment, css, func, html, keyword, name, number, string } from "ts/highlighter"
 import version from "ts/version"
 
 const code = `${comment("<!-- In light theme, dark mode styles are disabled with FALSE(width<0) -->")}
 ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 	${css(".c\\=red", ["color", "red"])}
-	${keyword("@media")} ${bracket("(")}${name("width")}<${string("0", false)}${bracket("){")}
+	${keyword("@media")} ${bracket("(")}${number(0)}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
 	${bracket("}")}
 `)}
@@ -14,7 +14,7 @@ ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 ${comment("<!-- In dark theme, dark mode styles are applied with TRUE(width>0) -->")}
 ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 	${css(".c\\=red", ["color", "red"])}
-	${keyword("@media")} ${bracket("(")}${name("width")}>${string("0", false)}${bracket("){")}
+	${keyword("@media")} ${bracket("(")}${keyword("color")}${bracket("){")}
 		${css(".\\@dark\\@c\\=blue", ["color", "blue"])}
 	${bracket("}")}
 `)}
@@ -39,4 +39,6 @@ ${html("script", "", `
 `)}`
 </script>
 
-<CodePage>{@html code}</CodePage>
+<div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+	<CodePage>{@html code}</CodePage>
+</div>

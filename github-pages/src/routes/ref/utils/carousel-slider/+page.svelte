@@ -6,7 +6,7 @@ import { H5 } from "lube-ui"
 </script>
 
 <svelte:head>
-	<title>Carousel Slider | Reference</title>
+	<title>Carousel Slider - CSS Lube</title>
 </svelte:head>
 
 <H5>Basic</H5>

@@ -11,31 +11,31 @@ const data: {
 	{
 		name: "Inline Style",
 		first_contentful_paint: 1.2,
-		total_blocking_time: 440,
+		total_blocking_time: 400,
 		speed_index: 1.2
 	},
 	{
 		name: "Atomic CSS",
 		first_contentful_paint: 1.9,
-		total_blocking_time: 80,
+		total_blocking_time: 170,
 		speed_index: 2.0
 	},
 	{
 		name: "CSS Lube",
-		first_contentful_paint: 1.2,
-		total_blocking_time: 1340,
-		speed_index: 2.6
+		first_contentful_paint: 1.8,
+		total_blocking_time: 80,
+		speed_index: 1.8
 	},
 	{
 		name: "Tailwind JIT",
 		first_contentful_paint: 2.8,
-		total_blocking_time: 22370,
-		speed_index: 11.3
+		total_blocking_time: 30530,
+		speed_index: 13.8
 	}
 ]
 const first_contentful_paint_ticks = [0, .75, 1.5, 2.25, 3]
-const total_blocking_time_ticks = [0, 5750, 11500, 17250, 23000]
-const speed_index_ticks = [0, 3, 6, 9, 12]
+const total_blocking_time_ticks = [0, 7750, 15500, 23250, 31000]
+const speed_index_ticks = [0, 3.5, 7, 10.5, 14]
 const padding = { top: 20, right: 15, bottom: 20, left: 25 }
 
 let width: number

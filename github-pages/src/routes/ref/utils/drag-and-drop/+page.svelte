@@ -3,7 +3,7 @@ import DragListExample from "parts/ref/utils/drag-and-drop/DragListExample.svelt
 </script>
 
 <svelte:head>
-	<title>Drag and Drop | Reference</title>
+	<title>Drag and Drop - CSS Lube</title>
 </svelte:head>
 
 <DragListExample />

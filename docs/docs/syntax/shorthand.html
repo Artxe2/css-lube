@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>CSS Lube</title>
+		<title>CSS Lube - Highly-optimized Runtime CSS in JS</title>
 		<meta charset="utf-8" />
-		<meta name="description" content="Highly-optimized JIT CSS Generator" />
+		<meta name="description" content="Highly-optimized Runtime CSS-In-JS" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="../../favicon.png" />
-		<link rel="stylesheet" href="../../app.css?20230807" />
-		<script src="../../css-lube-sc.min.js?20230807" async></script>
+		<link rel="stylesheet" href="../../app.css?20230817" />
+		<script src="../../css-lube.min.js?20230817" async></script>
 		<link rel="preload" href="../../fonts/NotoSans-Medium.subset.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../fonts/NotoSans-Black.subset.woff2" as="font" type="font/woff2" crossorigin />
 		
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.8dc5da32.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.c26f574f.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/scheduler.f6e53d32.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.a86da403.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/singletons.4354c37d.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/index.5c41a1e6.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.21e912a5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/paths.cdd0e3f2.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.a54533e9.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.507e8c9d.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/preload-helper.a4192956.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/index.c26f0603.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.25bffc4d.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.c54f9217.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/i_github.a6e0a5d0.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/store.fec897ba.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/client.fc0d3a94.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/each.e59479a4.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/stores.e731c888.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/styles.ef402c30.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/stores.268dc5b2.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/styles.1c89ec47.js">
 		<link rel="modulepreload" href="../../_app/immutable/nodes/2.91af4389.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/13.99ef030f.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/13.ecd2aaac.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/H5.ebc619f0.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/CodePage.9e282020.js">
 		<link rel="modulepreload" href="../../_app/immutable/chunks/highlighter.ff4ee7c2.js"><title>Shorthand | CSS Lube</title><!-- HEAD_svelte-1gq0v36_START --><!-- HEAD_svelte-1gq0v36_END -->
@@ -50,7 +50,7 @@
 		:hover/c=--primary-60;bold;
 		:hover/ts=0_0_.5_#fff @dark@:hover/ts=0_0_.5_#000
 		:active/c=--primary-50!
-		:hover:before/ct='#';absolute;l=-.5;c=--primary-40">shorthand medias</button></a> <div class="h=1"></div> <div class="br=.5 ta=right bs=0_.5_.5_#00000088 bg=#fff @dark@bg=--cod-gray"> <pre class="ta=left p=1  _*/wb=break-all letter-spacing=.075"><code><!-- HTML_TAG_START --><span class="c=--japanese-laurel @dark@c=--asparagus">&lt;!-- For convenience, you can enter (=) instead of (:) --&gt;</span>
+		:hover:before/ct='#';absolute;l=-.5;c=--primary-40">shorthand medias</button></a> <div class="h=1"></div> <div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7"><div class="br=.5 ta=right bs=0_.5_.5_#00000088 bg=#fff @dark@bg=--cod-gray"> <pre class="ta=left p=1  _*/wb=break-all letter-spacing=.075"><code><!-- HTML_TAG_START --><span class="c=--japanese-laurel @dark@c=--asparagus">&lt;!-- For convenience, you can enter (=) instead of (:) --&gt;</span>
 <span class="c=--maroon @dark@c=gray">&lt;</span><span class="c=--maroon @dark@c=--havelock-blue">span</span> <span class="c=--navy-blue @dark@c=--anakiwa">class</span>=<span class="c=--tamarillo @dark@c=--raw-sienna">"background=red"</span><span class="c=--maroon @dark@c=gray">&gt;</span>
 { background: red }
 <span class="c=--maroon @dark@c=gray">&lt;/</span><span class="c=--maroon @dark@c=--havelock-blue">span</span><span class="c=--maroon @dark@c=gray">&gt;</span>
@@ -79,11 +79,11 @@
 <span class="c=--japanese-laurel @dark@c=--asparagus">&lt;!-- Values starting with two hyphens automatically wrap the var function --&gt;</span>
 <span class="c=--maroon @dark@c=gray">&lt;</span><span class="c=--maroon @dark@c=--havelock-blue">span</span> <span class="c=--navy-blue @dark@c=--anakiwa">class</span>=<span class="c=--tamarillo @dark@c=--raw-sienna">"bg=--primary"</span><span class="c=--maroon @dark@c=gray">&gt;</span>
 { background: var(--primary) }
-<span class="c=--maroon @dark@c=gray">&lt;/</span><span class="c=--maroon @dark@c=--havelock-blue">span</span><span class="c=--maroon @dark@c=gray">&gt;</span><!-- HTML_TAG_END --></code></pre></div></div></main></div></div></div> 
+<span class="c=--maroon @dark@c=gray">&lt;/</span><span class="c=--maroon @dark@c=--havelock-blue">span</span><span class="c=--maroon @dark@c=gray">&gt;</span><!-- HTML_TAG_END --></code></pre></div></div></div></main></div></div></div> 
 			
 			<script>
 				{
-					__sveltekit_p2087o = {
+					__sveltekit_16y9zkh = {
 						assets: "/css-lube",
 						base: new URL("../..", location).pathname.slice(0, -1),
 						env: {}
@@ -94,8 +94,8 @@
 					const data = [null,null,null];
 
 					Promise.all([
-						import("../../_app/immutable/entry/start.8dc5da32.js"),
-						import("../../_app/immutable/entry/app.a54533e9.js")
+						import("../../_app/immutable/entry/start.c26f574f.js"),
+						import("../../_app/immutable/entry/app.507e8c9d.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2, 13],

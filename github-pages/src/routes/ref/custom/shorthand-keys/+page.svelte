@@ -5,7 +5,7 @@ import CodePage from "organs/@common/utils/CodePage.svelte"
 </script>
 
 <svelte:head>
-	<title>Shorthand for Properties | CSS Lube</title>
+	<title>Shorthand for Properties - CSS Lube</title>
 </svelte:head>
 
 <H5>Shorthand Keys</H5>

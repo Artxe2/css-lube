@@ -5,7 +5,7 @@ import JsMap from "cells/typography/JsMap.svelte"
 </script>
 
 <svelte:head>
-	<title>Shorthand for Media Condition | CSS Lube</title>
+	<title>Shorthand for Media Condition - CSS Lube</title>
 </svelte:head>
 
 <H5>Shorthand Medias</H5>

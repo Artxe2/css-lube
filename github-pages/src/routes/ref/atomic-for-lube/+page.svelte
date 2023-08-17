@@ -11,7 +11,7 @@ import GithubStars from "parts/@common/GithubStars.svelte"
 </script>
 
 <svelte:head>
-	<title>Atomic for CSS Lube | CSS Lube</title>
+	<title>Atomic for CSS Lube - CSS Lube</title>
 </svelte:head>
 
 <H2>Atomic for CSS Lube</H2>

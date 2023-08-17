@@ -4,7 +4,7 @@ import DefaultUnitExample from "organs/docs/custom/default-unit/DefaultUnitExamp
 </script>
 
 <svelte:head>
-	<title>Default Unit | CSS Lube</title>
+	<title>Default Unit - CSS Lube</title>
 </svelte:head>
 
 <H5>Default Unit</H5>

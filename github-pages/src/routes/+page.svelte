@@ -4,7 +4,7 @@ import WhatIsCssLube from "organs/index/WhatIsCssLube.svelte"
 </script>
 
 <svelte:head>
-	<title>CSS Lube : Highly-optimized JIT CSS Generator</title>
+	<title>CSS Lube - Highly-optimized Runtime CSS in JS</title>
 </svelte:head>
 
 <header class="h=fit-content m=.5">

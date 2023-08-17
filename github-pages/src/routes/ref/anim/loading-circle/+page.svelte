@@ -3,7 +3,7 @@ import LoadingCircleExample from "organs/ref/anim/loading-circle/LoadingCircleEx
 </script>
 
 <svelte:head>
-	<title>Loading Circle | Reference</title>
+	<title>Loading Circle - CSS Lube</title>
 </svelte:head>
 
 <LoadingCircleExample />

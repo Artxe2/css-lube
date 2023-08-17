@@ -21,16 +21,13 @@ export default {
 		}
 	},
 	button: {
-		appbarMenu: "p=.5 br=.5 bold ts=0_.1_.5_#fff @dark@ts=0_.1_.5_#000 :hover/ts=0_.1_.5 :active/ts=0_.1_1!",
-		resources: "h=2 bg=--primary-50 @dark@bg=--firefly br=.25 pl=.75 pr=.75 bd=2px_solid_--primary :hover/bg=--havelock-blue",
-		text: "p=.5 br=.5 :hover/bg=#eee :active/bg=#ddd! @dark@:hover/bg=#333 @dark@:active/bg=#444!",
-		themeSelector: "bg=--primary-50 :hover/bg=--havelock-blue w=6.25 h=2.5 br=.25 bd=.2_solid"
+		text: "p=.5 br=.5 :hover/bg=#eee :active/bg=#ddd! @dark@:hover/bg=#333 @dark@:active/bg=#444!"
 	},
 	checkbox: {
-		docsInput: `none
+		docs_input: `none
 		:checked+label/bg=--primary-50
 		:checked+label:after/ct='✔';absolute;tf=translate(0,-.3em)`,
-		docsLabel: `inline-block pointer us=none fs=1.5 bold va=-.3em bd=.2_solid_--primary-50 br=.3 w=1.2 h=1.2
+		docs_label: `inline-block pointer us=none fs=1.5 bold va=-.3em bd=.2_solid_--primary-50 br=.3 w=1.2 h=1.2
 		:after/c=--onahau @dark@:after/c=--firefly
 		:after/c=#fff @dark@:after/c=--gray-10`
 	},
@@ -38,7 +35,7 @@ export default {
 		primary: "::-webkit-scrollbar/w=.5 ::-webkit-scrollbar-track/bg=--primary-70 ::-webkit-scrollbar-thumb/bg=--primary-50;br=.25"
 	},
 	util: {
-		typingText: "_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=--cod-gray",
-		typingTextInMiddle: "_f:not(:empty):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):before/inline-block;ct='\\00a0';bg=--cod-gray"
+		typing_text: "_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=--cod-gray",
+		typing_text_in_middle: "_f:not(:empty):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):before/inline-block;ct='\\00a0';bg=--cod-gray"
 	}
 }

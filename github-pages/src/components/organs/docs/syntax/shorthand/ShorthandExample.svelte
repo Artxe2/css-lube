@@ -34,4 +34,6 @@ ${html("span", ` ${name("class")}=${string("bg=--primary")}`, `
 `)}`
 </script>
 
-<CodePage>{@html code}</CodePage>
+<div class="@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+	<CodePage>{@html code}</CodePage>
+</div>
