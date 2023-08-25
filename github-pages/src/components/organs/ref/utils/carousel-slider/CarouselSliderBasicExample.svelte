@@ -1,6 +1,6 @@
 <script lang="ts">
-import CodePage from "organs/@common/utils/CodePage.svelte"
-import ComponentTabView from "organs/ref/ComponentTabView.svelte"
+import CodePage from "organs/$common/utils/CodePage.svelte"
+import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
 import { CarouselSlider } from "lube-ui"
 import { bracket, html, keyword, name, string } from "ts/highlighter"
 </script>

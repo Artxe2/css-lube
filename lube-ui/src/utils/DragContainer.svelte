@@ -22,9 +22,9 @@ let cx = 0
 let cy = 0
 let requestId: number
 
-const handleMousemove = (event: { clientX: number, clientY: number }) => {
+const handle_mousemove = (event: { clientX: number, clientY: number }) => {
 	if (isDragging) {
-		const current = getTerrain(document.elementsFromPoint(event.clientX, event.clientY))
+		const current = get_terrain(document.elementsFromPoint(event.clientX, event.clientY))
 		if (current && terrain != current) {
 			if (terrain) {
 				terrain.dispatchEvent(new DragEvent("dragleave"))
@@ -39,10 +39,10 @@ const handleMousemove = (event: { clientX: number, clientY: number }) => {
 		scroll(Date.now())
 	}
 }
-const handleTouchmove = (event: TouchEvent) => {
-	handleMousemove(event.touches[0])
+const handle_touchmove = (event: TouchEvent) => {
+	handle_mousemove(event.touches[0])
 }
-const handleMouseup = () => {
+const handle_mouseup = () => {
 	if (isDragging) {
 		container.removeChild(dragElement!)
 		if (terrain) {
@@ -54,10 +54,10 @@ const handleMouseup = () => {
 		dispatch("dragend")
 	}
 }
-const handleTouchend = () => {
-	handleMouseup()
+const handle_touchend = () => {
+	handle_mouseup()
 }
-const getTerrain = (terrains: Element[]) => {
+const get_terrain = (terrains: Element[]) => {
 	const length = terrains.length
 	for (let i = 0; i < length; i++) {
 		if (!dragElement!.compareDocumentPosition(terrains[i])) {
@@ -139,10 +139,10 @@ function scroll(time: number) {
 </script>
 
 <svelte:body
-		on:mousemove={handleMousemove}
-		on:mouseup={handleMouseup}
-		on:touchmove={handleTouchmove}
-		on:touchend={handleTouchend} />
+		on:mousemove={handle_mousemove}
+		on:mouseup={handle_mouseup}
+		on:touchmove={handle_touchmove}
+		on:touchend={handle_touchend} />
 
 <div bind:this={container}
 		class={classs}

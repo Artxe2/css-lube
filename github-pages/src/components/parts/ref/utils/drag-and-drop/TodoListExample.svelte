@@ -1,0 +1,187 @@
+<script lang="ts">
+import { done$, done_tf$, drag$, todo$, todo_tf$, transition$ } from "parts/ref/store"
+import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
+import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
+import DragItem from "parts/ref/utils/drag-and-drop/TodoListExample/DragItem.svelte"
+import DragItemPlaceHolder from "parts/ref/utils/drag-and-drop/TodoListExample/DragItemPlaceHolder.svelte"
+import { DragContainer } from "lube-ui"
+import ExampleCode from "organs/ref/utils/TodoListExample/ExampleCode.svelte"
+
+const todo_heights: number[] = []
+const done_heights: number[] = []
+// eslint-disable-next-line id-match
+let isDragging: boolean
+// eslint-disable-next-line id-match
+let setDragElement: (clientX: number, clientY: number, drag: HTMLElement) => any
+
+const handle_dragend = () => {
+	const from = $drag$!.index
+	const type = $drag$!.type
+	$drag$ = null
+	re_ordering(from, type)
+}
+const transfer_list = (index: number) => {
+	const from = $drag$!.index
+	const type = $drag$!.type
+	const transforms = [...(type === "todo" ? $todo_tf$ : $done_tf$)]
+	const heights = type === "todo" ? todo_heights : done_heights
+	if (from < index) {
+		if (transforms[index]) {
+			for (let i = index; transforms[i]; i++) {
+				transforms[from] -= heights[i]
+				transforms[i] = 0
+			}
+		} else {
+			for (let i = index; !transforms[i]; i--) {
+				transforms[from] += heights[i]
+				transforms[i] = -heights[from]
+			}
+		}
+	} else {
+		if (transforms[index]) {
+			for (let i = index; transforms[i]; i--) {
+				transforms[from] += heights[i]
+				transforms[i] = 0
+			}
+		} else {
+			for (let i = index; !transforms[i]; i++) {
+				transforms[from] -= heights[i]
+				transforms[i] = heights[from]
+			}
+		}
+	}
+	(type === "todo" ? todo_tf$ : done_tf$).set(transforms)
+}
+const move_item = (index: number) => {
+	const from = $drag$!.index
+	const type = $drag$!.type
+	if (type === "todo") {
+		const before = [...$todo$]
+		const after = [...$done$]
+		after.splice(index, 0, before[from])
+		before.splice(from, 1)
+		$todo$ = before
+		$done$ = after
+		$todo_tf$ = new Array(before.length).fill(0)
+		$done_tf$ = new Array(after.length).fill(0)
+		$drag$ = { type: "done", index: index }
+		done_heights.splice(index, 0, todo_heights[from])
+		todo_heights.splice(from, 1)
+	} else {
+		const before = [...$done$]
+		const after = [...$todo$]
+		after.splice(index, 0, before[from])
+		before.splice(from, 1)
+		$done$ = before
+		$todo$ = after
+		$done_tf$ = new Array(before.length).fill(0)
+		$todo_tf$ = new Array(after.length).fill(0)
+		$drag$ = { type: "todo", index: index }
+		todo_heights.splice(index, 0, done_heights[from])
+		done_heights.splice(from, 1)
+	}
+}
+const re_ordering = (from: number, type: string) => {
+	const transforms = [...(type === "todo" ? $todo_tf$ : $done_tf$)]
+	if (transforms[from] === 0) {
+		return
+	}
+	const list = [...(type === "todo" ? $todo$ : $done$)]
+	const temp = list[from]
+	let i
+	if (transforms[from] < 0) {
+		for (i = from - 1; transforms[i]; i--) {
+			list[i + 1] = list[i]
+			transforms[i] = 0
+		}
+		list[i + 1] = temp
+	} else {
+		for (i = from + 1; transforms[i]; i++) {
+			list[i - 1] = list[i]
+			transforms[i] = 0
+		}
+		list[i - 1] = temp
+	}
+	transforms[from] = 0
+	$transition$ = false
+	;(type === "todo" ? todo$ : done$).set(list)
+	;(type === "todo" ? todo_tf$ : done_tf$).set(transforms)
+}
+on_mount(() => {
+	$todo$ = [
+		"Task A",
+		"Task B",
+		"Task C",
+		"Task D",
+		"Task E",
+		"Task F",
+		"Task G",
+		"Task H",
+		"Task I",
+		"Task J",
+		"Task K",
+		"Task L",
+		""
+	]
+	$todo_tf$ = new Array($todo$.length).fill(0)
+	$done$ = [ "Task Z", "" ]
+	$done_tf$ = new Array($done$.length).fill(0)
+})
+on_destroy(() => {
+	$todo$ = []
+	$todo_tf$ = []
+	$done$ = []
+	$done_tf$ = []
+	$transition$ = false
+	$drag$ = null
+})
+</script>
+
+<ComponentTabView>
+	<div class="flex jc=center">
+		<DragContainer bind:isDragging
+				bind:setDragElement
+				on:dragend={handle_dragend}>
+			<div class="flex flex-wrap=wrap">
+				<div class="flex column">
+					<span class="fs=2 bold">To do</span>
+					<div class="h=.5"></div>
+					{#each $todo$ as v, i}
+					<DragItem bind:clientHeight={todo_heights[i]}
+							{setDragElement}
+							list={$todo$}
+							transforms={$todo_tf$}
+							type="todo"
+							index={i}
+							{transfer_list}
+							{move_item} />
+					{/each}
+					{#if $todo$.length === 1}
+					<DragItemPlaceHolder {move_item} />
+					{/if}
+				</div>
+				<div class="w=5 h=5"></div>
+				<div class="flex column">
+					<span class="fs=2 bold">Done</span>
+					<div class="h=.5"></div>
+					{#each $done$ as v, i}
+					<DragItem bind:clientHeight={done_heights[i]}
+							{setDragElement}
+							list={$done$}
+							transforms={$done_tf$}
+							type="done"
+							index={i}
+							{transfer_list}
+							{move_item} />
+					{/each}
+					{#if $done$.length === 1}
+					<DragItemPlaceHolder {move_item} />
+					{/if}
+				</div>
+			</div>
+		</DragContainer>
+	</div>
+	<div>
+		<ExampleCode />
+	</div>
+</ComponentTabView>

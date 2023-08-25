@@ -1,11 +1,11 @@
 <script lang="ts">
 import styles from "ts/styles"
 import type monaco from "monaco-editor/esm/vs/editor/editor.api"
-import { onMount } from "svelte"
-import LoadingCircle from "organs/@common/animations/LoadingCircle.svelte"
-    import { theme$ } from "parts/@common/store";
+import { onMount as on_mount } from "svelte"
+import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
+    import { theme$ } from "parts/$common/store"
 
-let isLoading = true
+let is_loading = true
 let container: HTMLDivElement
 let editor: monaco.editor.IStandaloneCodeEditor
 let content = `<div class="ta=center">
@@ -13,11 +13,11 @@ let content = `<div class="ta=center">
 		Hello
 	</div>
 </div>`
-onMount( () => {
+on_mount(() => {
 	self.MonacoEnvironment = {
 		getWorkerUrl: () => "https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js"
 	}
-	import('monaco-editor')
+	import("monaco-editor")
 		.then(monaco => {
 			editor = monaco.editor.create(container, {
 				automaticLayout: true,
@@ -28,34 +28,36 @@ onMount( () => {
 				theme: "vs-dark",
 				value: content
 			})
-			isLoading = false
-			editor.getModel()?.onDidChangeContent( () => content = editor.getValue() )
+			is_loading = false
+			editor.getModel()?.onDidChangeContent(() => content = editor.getValue())
 			theme$.subscribe(theme => {
 				monaco.editor.setTheme("vs-" + theme.toLowerCase())
 			})
 		})
 	return () => editor?.dispose()
-} )
+})
 </script>
 
 <div class="flex h=100% xw=100%
 		@!sm@column">
-	<div class="relative w=40% bd=1px_solid p=1 oy=auto
-			bg=--primary-90 @dark@bg=--primary-10
-			@!sm@w=100% @!sm@h=30%
-			{styles.scrollbar.primary}">
-		{@html content}
+	<div class="flex
+			w=100% @sm@w=40% 
+			@!sm@h=30%">
+		<div class="fg=1 relative bd=1px_solid p=1 oy=auto
+				bg=--primary-90 @dark@bg=--primary-10
+				{styles.scrollbar.primary}">
+			{@html content}
+		</div>
 	</div>
 	<div bind:this={container}
-			class="fg=1 fsk=1 xw=60% pt=1 tt=background_.3s
+			class="fg=1 pt=1 tt=background_.3s
 			bg=#fff @dark@bg=--cod-gray
-			@!sm@xw=100%
-			@!sm@xh=70%
-			_.monaco-editor_*/tt=background_.3s">
-		{#if isLoading} 
-			<div class="flex h=100% jc=center ai=center">
-				<LoadingCircle />
-			</div>
+			xw=99.99% @sm@xw=60%
+			@!sm@xh=70%">
+		{#if is_loading} 
+		<div class="flex h=100% jc=center ai=center">
+			<LoadingCircle />
+		</div>
 		{/if}
 	</div>
 </div>

@@ -11,31 +11,52 @@ const data: {
 	{
 		name: "Inline Style",
 		first_contentful_paint: 1.2,
-		total_blocking_time: 400,
+		total_blocking_time: 200,
 		speed_index: 1.2
 	},
 	{
 		name: "Atomic CSS",
-		first_contentful_paint: 1.9,
-		total_blocking_time: 170,
-		speed_index: 2.0
-	},
-	{
-		name: "CSS Lube",
-		first_contentful_paint: 1.8,
-		total_blocking_time: 80,
+		first_contentful_paint: 1.7,
+		total_blocking_time: 50,
 		speed_index: 1.8
 	},
 	{
+		name: "CSS Lube",
+		first_contentful_paint: 1.1,
+		total_blocking_time: 790,
+		speed_index: 1.7
+	},
+	{
 		name: "Tailwind JIT",
-		first_contentful_paint: 2.8,
-		total_blocking_time: 30530,
-		speed_index: 13.8
+		first_contentful_paint: 2.7,
+		total_blocking_time: 17480,
+		speed_index: 8.4
 	}
 ]
-const first_contentful_paint_ticks = [0, .75, 1.5, 2.25, 3]
-const total_blocking_time_ticks = [0, 7750, 15500, 23250, 31000]
-const speed_index_ticks = [0, 3.5, 7, 10.5, 14]
+const max_first_contentful_paint = Math.max(...data.map(v => v.first_contentful_paint))
+const first_contentful_paint_ticks = [
+	0,
+	.25 * max_first_contentful_paint,
+	.5 * max_first_contentful_paint,
+	.75 * max_first_contentful_paint,
+	max_first_contentful_paint
+]
+const total_blocking_time_paint = Math.max(...data.map(v => v.total_blocking_time))
+const total_blocking_time_ticks = [
+	0,
+	.25 * total_blocking_time_paint,
+	.5 * total_blocking_time_paint,
+	.75 * total_blocking_time_paint,
+	total_blocking_time_paint
+]
+const max_speed_index = Math.max(...data.map(v => v.speed_index))
+const speed_index_ticks = [
+	0,
+	.25 * max_speed_index,
+	.5 * max_speed_index,
+	.75 * max_speed_index,
+	max_speed_index
+]
 const padding = { top: 20, right: 15, bottom: 20, left: 25 }
 
 let width: number

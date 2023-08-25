@@ -91,3 +91,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+@keyframes blink {
+	50% { opacity: 0 }
+}

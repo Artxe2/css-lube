@@ -3,7 +3,7 @@
 export let classs = ""
 export let url: string
 
-const downloadFile = () =>
+const download_file = () =>
 	fetch(url)
 		.then(response => response.blob())
 		.then(blob => {
@@ -18,6 +18,6 @@ const downloadFile = () =>
 		})
 </script>
 
-<button class={classs} on:click={downloadFile}>
+<button class={classs} on:click={download_file}>
 	<slot></slot>
 </button>

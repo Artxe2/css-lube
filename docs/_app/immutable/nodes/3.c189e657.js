@@ -1,0 +1,1 @@
+import{b as e}from"../chunks/paths.35b1839b.js";import{r as o}from"../chunks/index.ade5cbd2.js";function r(){throw o(307,e+"/docs/start")}const s=Object.freeze(Object.defineProperty({__proto__:null,load:r},Symbol.toStringTag,{value:"Module"}));export{s as universal};

@@ -1,7 +1,7 @@
 <script lang="ts">
-import AppBar from "organs/@common/AppBar.svelte"
-import Drawer from "organs/@common/Drawer.svelte"
-import RootDiv from "organs/@common/RootDiv.svelte"
+import AppBar from "organs/$common/AppBar.svelte"
+import Drawer from "organs/$common/Drawer.svelte"
+import RootDiv from "organs/$common/RootDiv.svelte"
 import styles from "ts/styles"
 </script>
 
@@ -10,7 +10,7 @@ import styles from "ts/styles"
 		<Drawer />
 		<div class="fsk=1 fg=1 flex column">
 			<AppBar />
-			<main class="fsk=1 fg=1 flex column o=auto
+			<main class="relative fsk=1 fg=1 flex column o=auto
 					{styles.scrollbar.primary}">
 				<slot></slot>
 			</main>

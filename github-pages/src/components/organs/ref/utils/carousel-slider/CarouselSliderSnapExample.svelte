@@ -1,7 +1,7 @@
 <script lang="ts">
-import CodePage from "organs/@common/utils/CodePage.svelte"
+import CodePage from "organs/$common/utils/CodePage.svelte"
 import { CarouselSlider } from "lube-ui"
-import ComponentTabView from "organs/ref/ComponentTabView.svelte"
+import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
 import { bracket, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
 
 let align: "" | "start" |"center" | "end" = "center"
@@ -25,19 +25,19 @@ let snap: (direction: number, snapAlign?: "start" |"center" | "end") => void
 		<div class="h=1"></div>
 		<div class="flex jc=space-between g=1
 				>button/flex=auto">
-			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(-1)}>PREV</button>
-			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(0, "start")}>START</button>
-			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(0, "center")}>CENTER</button>
-			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(0, "end")}>END</button>
-			<button class="bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+			<button class="bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 					:hover/bg=--havelock-blue"
 					on:click={() => snap(1)}>NEXT</button>
 		</div>
@@ -66,19 +66,19 @@ ${html("div", "", `
 	${html("div", ` ${name("class")}=${string("h=1")}`, "")}
 	${html("div", ` ${name("class")}=${string(`flex jc=space-between g=1
 			>button/flex=auto`)}`, `
-		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(-1)}${bracket(")", 1)}${bracket("}")}`, "PREV")}
-		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("start")}${bracket(")", 1)}${bracket("}")}`, "START")}
-		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("center")}${bracket(")", 1)}${bracket("}")}`, "CENTER")}
-		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(0)}, ${string("end")}${bracket(")", 1)}${bracket("}")}`, "END")}
-		${html("button", ` ${name("class")}=${string(`bg=--primary w=6.25 h=1.5 br=.25 fs=.75
+		${html("button", ` ${name("class")}=${string(`bg=--primary-50 w=6.25 h=1.5 br=.25 fs=.75
 				:hover/bg=--havelock-blue`)}
 				${keyword("on")}:${type("click")}=${bracket("{")}${bracket("()", 1)} ${declare("=>")} ${func("snap")}${bracket("(", 1)}${number(1)}${bracket(")", 1)}${bracket("}")}`, "NEXT")}
 	`)}

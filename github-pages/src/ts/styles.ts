@@ -1,19 +1,21 @@
 export default {
-	"@common": {
+	$common: {
+		background_grid: `bgi=linear-gradient(#ddd_2px,transparent_2px),linear-gradient(90deg,#ddd_2px,transparent_2px),linear-gradient(#dddddd4d_1px,transparent_1px),linear-gradient(90deg,#dddddd4d_1px,transparent_1px)
+		@dark@bgi=linear-gradient(#888_2px,transparent_2px),linear-gradient(90deg,#888_2px,transparent_2px),linear-gradient(#ffffff4d_1px,transparent_1px),linear-gradient(90deg,#ffffff4d_1px,transparent_1px)
+		background-size=10em_10em,10em_10em,2em_2em,2em_2em
+		background-position=-1em_-1em`,
+		background_conic: `bg=conic-gradient(from_45deg_at_67%_67%,--primary-80,--primary-50-20)
+		@dark@bg=conic-gradient(from_-45deg_at_33%_67%,--firefly,--gray-0-80)`,
+		contents_div: `flex column br=1.5 o=hidden p=1.5
+		bg=--gray-90 @dark@bg=--gray-20`,
 		link: `c=--primary-50 p=.25 br=.5 relative
 		:hover/c=--primary-60;bold;
-		:hover/ts=0_0_.5_#fff @dark@:hover/ts=0_0_.5_#000
+		ts=0_0_.5_#fff @dark@ts=0_0_.5_#000
 		:active/c=--primary-50!
 		:hover:before/ct='#';absolute;l=-.5;c=--primary-40`
 	},
 	index: {
 		hero_section: {
-			background_grid: `bgi=linear-gradient(#ddd_2px,transparent_2px),linear-gradient(90deg,#ddd_2px,transparent_2px),linear-gradient(#dddddd4d_1px,transparent_1px),linear-gradient(90deg,#dddddd4d_1px,transparent_1px)
-			@dark@bgi=linear-gradient(#fff_2px,transparent_2px),linear-gradient(90deg,#fff_2px,transparent_2px),linear-gradient(#ffffff4d_1px,transparent_1px),linear-gradient(90deg,#ffffff4d_1px,transparent_1px)
-			background-size=10em_10em,10em_10em,2em_2em,2em_2em
-			background-position=-1em_-1em`,
-			background_conic: `bg=conic-gradient(from_45deg_at_67%_67%,--primary-80,--primary-50-20)
-			@dark@bg=conic-gradient(from_-45deg_at_33%_67%,--firefly,--gray-0-80)`,
 			button: `c=#fff
 			bg=--primary-50 :hover/bg=--primary-40
 			:hover/ts=0_0_.5

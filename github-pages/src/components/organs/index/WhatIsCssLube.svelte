@@ -1,36 +1,36 @@
 <script lang="ts">
-import CodePage from "organs/@common/utils/CodePage.svelte"
-import TypingText from "organs/@common/animations/TypingText.svelte"
+import CodePage from "organs/$common/utils/CodePage.svelte"
+import TypingText from "organs/$common/animations/TypingText.svelte"
 import { base } from "$app/paths"
 import { html, name, string } from "ts/highlighter"
 import styles from "ts/styles"
 import { H2 } from "lube-ui"
 
 const code = `${html("div", ` ${name("class")}=${string("flex column ai=center ta=center w=12 bg=#fff c=#000 p=.5 br=.5 bs=0_1_1_gray")}`, `
-	${html("img", ` ${name("class")}=${string(`w=4 h=4<f>tf=rotate(-20deg)</f>`)} ${name("src")}=${string(base + "/favicon.png")} ${name("alt")}=${string("favicon")}`, false)} 
+	${html("img", ` ${name("class")}=${string("w=4 h=4<f>tf=rotate(-20deg)</f>")} ${name("src")}=${string(base + "/favicon.png")} ${name("alt")}=${string("favicon")}`, false)} 
 	${html("div", "", `
-		${html("h3", ` ${name("class")}=${string(`bold fs=1.5<f>fv=small-caps</f>`)}`, "CSS Lube")} 
+		${html("h3", ` ${name("class")}=${string("bold fs=1.5<f>fv=small-caps</f>")}`, "CSS Lube")} 
 		${html("div", ` ${name("class")}=${string("relative mt=-1.5<f>_span/ff='Times_New_Roman',Times,serif</f>")}`, `
 			${html("h5", ` ${name("class")}=${string("fs=.75 lh=1")}`, "Just-In-Time")}
-			${html("h5", ` ${name("class")}=${string("fs=.75 lh=1")}`, "Near-Atomic")}
-			${html("h5", ` ${name("class")}=${string("fs=.75 lh=1")}`, "CSS-In-JS")}
+			${html("h5", ` ${name("class")}=${string("fs=.75 lh=1")}`, "Zero-Buildtime")}
+			${html("h5", ` ${name("class")}=${string("fs=.75 lh=1")}`, "CSS Interpreter")}
 		`)}
 	`)}
 `)}`
 let index = -1
 
-const handleEndtype = ({ detail }: CustomEvent) => index = detail
+const handle_endtype = ({ detail }: CustomEvent) => index = detail
 </script>
 
-<div class="flex column br=1.5 o=hidden p=1.5
-		bg=--gray-90 @dark@bg=--gray-20">
+<div class={styles.$common.contents_div}>
 	<H2>What is CSS Lube?</H2>
-	<span>CSS Lube is Highly-optimized Runtime CSS-In-JS.</span>
-	<span>This makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,558 byte js file.</span>
+	<span>CSS Lube is Highly-optimized CSS Interpreter.</span>
+	<span>It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,554 byte(2,805 byte on gzip) js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
-			@!md@column">
+			@!md@column
+			@!lg@_pre/fs=.7">
 		<div class="flex
 				>div/fg=1
 				>div>pre/flex;jc=center">
@@ -42,8 +42,8 @@ const handleEndtype = ({ detail }: CustomEvent) => index = detail
 						<div class="relative _h5/mt=-1.5
 								{index < 1 ? "" : "_h5/ff='Times_New_Roman',Times,serif"}">
 							<h5 class="fs=.75 lh=1">Just-In-Time</h5>
-							<h5 class="fs=.75 lh=1">Near-Atomic</h5>
-							<h5 class="fs=.75 lh=1">CSS-In-JS</h5>
+							<h5 class="fs=.75 lh=1">Zero-Buildtime</h5>
+							<h5 class="fs=.75 lh=1">CSS Interpreter</h5>
 						</div>
 					</div>
 				</div>
@@ -54,10 +54,9 @@ const handleEndtype = ({ detail }: CustomEvent) => index = detail
 			<div class="v=hidden">
 				<pre class="p=1 wb=break-all letter-spacing=.075">{@html code}</pre>
 			</div>
-			<div class="absolute t=0 >div/h=100%
-					@!lg@_pre/fs=.85 @!lg@_pre/fs=.7">
+			<div class="absolute t=0 >div/h=100%">
 				<CodePage>
-					<TypingText classs={styles.util.typing_text_in_middle} orders={[ 1, 2, 0 ]} on:endtype={handleEndtype}>{@html code}</TypingText>
+					<TypingText classs={styles.util.typing_text_in_middle} orders={[ 1, 2, 0 ]} on:endtype={handle_endtype}>{@html code}</TypingText>
 				</CodePage>
 			</div>
 		</div>

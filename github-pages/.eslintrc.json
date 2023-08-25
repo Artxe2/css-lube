@@ -4,15 +4,26 @@
 		"es2021": true
 	},
 	"extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+	"ignorePatterns": ["static/"],
+	"overrides": [{
+		"files": ["*.svelte"],
+		"parser": "svelte-eslint-parser",
+		"parserOptions": {
+			"parser": "@typescript-eslint/parser"
+		}
+	}],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint", "svelte-eslint-plugin"],
+	"plugins": ["@typescript-eslint"],
 	"rules": {
+		"@typescript-eslint/ban-ts-comment": "warn",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/no-unused-vars": "warn",
 		// Require identifiers to snake-case
-		"id-match": ["error", "^[_$]?[_$]?[a-z]+(?:_[a-z]+)*(?:_?\\d+)?$|^[A-Z]+(?:_[A-Z]+)*(?:_?\\d+)?$|^(?:[A-Z][a-z]*)+(?:_?\\d+)?$", {
+		"id-match": ["error", "^[_$]?[_$]?[a-z]+(?:_[a-z]+)*(?:_?\\d+)?\\$?$|^[A-Z]+(?:_[A-Z]+)*(?:_?\\d+)?$|^(?:[A-Z][a-z]*)+(?:_?\\d+)?$", {
 			"onlyDeclarations": true
 		}],
 		// Require indentation using tab
@@ -23,7 +34,7 @@
 			"before": true
 		}],
 		// Disallow line that longer than 120 characters
-		"max-len": ["error", 120],
+		"max-len": ["warn", 120],
 		// Disallow callback that nested more than 3
 		"max-nested-callbacks": ["error", 3],
 		// Disallow multi spaces

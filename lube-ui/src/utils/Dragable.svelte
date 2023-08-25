@@ -10,7 +10,7 @@ let container: HTMLDivElement
 let dragView: HTMLDivElement
 let timer: number
 
-const handleMousedown = (event: { clientX: number, clientY: number }) => {
+const handle_mousedown = (event: { clientX: number, clientY: number }) => {
 	timer = setTimeout(() => {
 		const drag = (dragView.firstChild || container).cloneNode(true) as HTMLDivElement
 		drag.style.position = "absolute"
@@ -20,13 +20,13 @@ const handleMousedown = (event: { clientX: number, clientY: number }) => {
 		dispatch("dragstart")
 	}, delay)
 }
-const handleTouchstart = (event: TouchEvent) => {
-	handleMousedown(event.touches[0])
+const handle_touchstart = (event: TouchEvent) => {
+	handle_mousedown(event.touches[0])
 }
-const handleMouseup = () => {
+const handle_mouseup = () => {
 	clearTimeout(timer);
 }
-const handleTouchend = () => {
+const handle_touchend = () => {
 	clearTimeout(timer);
 }
 </script>
@@ -35,10 +35,10 @@ const handleTouchend = () => {
 <div bind:this={container}
 		class={classs}
 		style="touch-action:none;user-select:none;width:fit-content;"
-		on:mousedown={handleMousedown}
-		on:mouseup={handleMouseup}
-		on:touchstart={handleTouchstart}
-		on:touchend={handleTouchend}>
+		on:mousedown={handle_mousedown}
+		on:mouseup={handle_mouseup}
+		on:touchstart={handle_touchstart}
+		on:touchend={handle_touchend}>
 	<slot></slot>
 </div>
 <div bind:this={dragView} style="display:none;">

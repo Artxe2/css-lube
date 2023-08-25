@@ -7,7 +7,7 @@ export let duration = 800
 export const snap = (direction: number, snapAlign?: "start" |"center" | "end") => {
 	const now = Date.now()
 	if (snapAlign) align = snapAlign
-	requestSnapping(calculate_snap_move(0, direction) / duration, now, duration, 0)
+	request_snapping(calculate_snap_move(0, direction) / duration, now, duration, 0)
 }
 
 let container: HTMLDivElement
@@ -26,7 +26,7 @@ const handle_mousedown = (event: { clientX: number }) => {
 const handle_touchstart = (event: TouchEvent) => {
 	handle_mousedown(event.touches[0])
 }
-const handleMousemove = (event: MouseEvent) => {
+const handle_mousemove = (event: MouseEvent) => {
 	if (isDragging) {
 		event.preventDefault()
 		const scroll = startX - event.clientX
@@ -40,27 +40,27 @@ const handleMousemove = (event: MouseEvent) => {
 		}
 	}
 }
-const handleTouchmove = (event: TouchEvent) => {
-	handleMousemove(new MouseEvent("mousemove", event.touches[0]))
+const handle_touchmove = (event: TouchEvent) => {
+	handle_mousemove(new MouseEvent("mousemove", event.touches[0]))
 }
-const handleMouseup = () => {
+const handle_mouseup = () => {
 	if (isDragging) {
 		const now = Date.now()
 		if (align === "") {
 			const speed = accumulate / (now - startTime)
-			requestSlipping(speed, now, duration, 0)
+			request_slipping(speed, now, duration, 0)
 		} else {
 			const speed = calculate_snap_move(accumulate * duration * 2 / (now - startTime), 0)
-			requestSnapping(speed / duration, now, duration, 0)
+			request_snapping(speed / duration, now, duration, 0)
 		}
 		accumulate = 0
 		isDragging = false
 	}
 }
-const handleTouchend = () => {
-	handleMouseup()
+const handle_touchend = () => {
+	handle_mouseup()
 }
-const requestSlipping = (speed: number, prev: number, time: number, move: number) => {
+const request_slipping = (speed: number, prev: number, time: number, move: number) => {
 	cancelAnimationFrame(request)
 	request = requestAnimationFrame( () => slipping(speed, prev, time, move) )
 }
@@ -72,12 +72,12 @@ const slipping = (speed: number, prev: number, time: number, move: number) => {
 	container.scrollLeft = move
 	move -= container.scrollLeft
 	if ((time -= ms) > 0) {
-		requestSlipping(speed, curr, time, move)
+		request_slipping(speed, curr, time, move)
 	} else {
 		container.scrollLeft += move
 	}
 }
-const requestSnapping = (speed: number, prev: number, time: number, move: number) => {
+const request_snapping = (speed: number, prev: number, time: number, move: number) => {
 	cancelAnimationFrame(request)
 	request = requestAnimationFrame(() => snapping(speed, prev, time, move))
 }
@@ -89,7 +89,7 @@ const snapping = (speed: number, prev: number, time: number, move: number) => {
 	container.scrollLeft = move
 	move -= container.scrollLeft
 	if ((time -= ms) > 0) {
-		requestSnapping(speed, curr, time, move)
+		request_snapping(speed, curr, time, move)
 	} else {
 		container.scrollLeft += move
 	}
@@ -237,8 +237,8 @@ onDestroy(() => clearInterval(timer))
 </script>
 
 <svelte:window
-		on:mousemove={handleMousemove}
-		on:mouseup={handleMouseup}/>
+		on:mousemove={handle_mousemove}
+		on:mouseup={handle_mouseup}/>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div bind:this={container}
@@ -246,7 +246,7 @@ onDestroy(() => clearInterval(timer))
 		style="overflow:scroll;touch-action:none;"
 		on:mousedown={handle_mousedown}
 		on:touchstart={handle_touchstart}
-		on:touchmove={handleTouchmove}
-		on:touchend={handleTouchend}>
+		on:touchmove={handle_touchmove}
+		on:touchend={handle_touchend}>
 	<slot></slot>
 </div>
