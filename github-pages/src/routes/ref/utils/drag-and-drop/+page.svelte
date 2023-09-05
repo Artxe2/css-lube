@@ -1,11 +1,14 @@
-<script lang="ts">
+<script>
 import { H2 } from "lube-ui"
 import TodoListExample from "parts/ref/utils/drag-and-drop/TodoListExample.svelte"
 import { onMount as on_mount } from "svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 
-let header: HTMLElement
-on_mount(() => header.parentElement?.scroll(0, 0))
+/** @type {HTMLElement} */
+let header
+on_mount(
+	() => header.parentElement?.scroll(0, 0)
+)
 </script>
 
 <svelte:head>

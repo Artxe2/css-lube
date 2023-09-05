@@ -1,81 +1,95 @@
-import * as vscode from "vscode";
+import * as vscode from "vscode"
 
-function getClassName(document: vscode.TextDocument, position: vscode.Position) {
-	const text = document.getText();
-	let index = 0;
+// eslint-disable-next-line max-len
+const class_name_regex = /(?<=class=|className=)(?:'[-+=:;*/.,()!@#%"\w\t\r\n \\]*|"[-+=:;*/.,()!@#%'\w\t\r\n \\]*)$/
+function get_class_name(document: vscode.TextDocument, position: vscode.Position) {
+	const text = document.getText()
+	let index = 0
 	for (let i = 0; i < position.line; i++) {
-		while (text.charAt(index++) !== '\n');
+		while (text.charAt(index++) !== "\n");
 	}
-	return /(?<=class=|className=)'[-+=:;*/.,()!@#%"\w\t\r\n \\]*$|(?<=class=|className=)"[-+=:;*/.,()!@#%'\w\t\r\n \\]*$/
-		.exec(text.slice(0, index + position.character))?.[0];
+	return class_name_regex.exec(text.slice(0, index + position.character))?.[0]
 }
-const shorthandKeys = new Map(
+const shorthand_for_properties = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lube.custom.shorthandKeys") as [string, string][]
-);
-const shorthandValues = new Map(
+		.get("css-lube.custom.shorthand_for_properties") as [string, string][]
+)
+const shorthand_for_values = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lube.custom.shorthandValues") as [string, string][]
-);
-const shorthandMedias = new Map(
+		.get("css-lube.custom.shorthand_for_values") as [string, string][]
+)
+const shorthand_for_media_condition = new Map(
 	vscode.workspace.getConfiguration()
-			.get("css-lube.custom.shorthandMedias") as [string, string][]
-);
-const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"];
-const triggerCharacters = [`"`, "'", " ", "/", ";"];
+		.get("css-lube.custom.shorthand_for_media_condition") as [string, string][]
+)
+const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"]
+const trigger_characters = ["\"", "'", " ", "/", ";"]
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(selector, {
-			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-				const className = getClassName(document, position);
-				if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
-					const keys = [...shorthandKeys].map(([k, v]) => {
-						const comp = new vscode.CompletionItem(v + ":?");
-						comp.insertText = k + "=";
-						comp.kind = vscode.CompletionItemKind.EnumMember;
-						comp.detail = `${k}= * * * shorthandKeys of css-lube`;
-						comp.sortText = v;
-						return comp;
-					});
-					return [...keys];
+			provideCompletionItems(
+				document: vscode.TextDocument,
+				position: vscode.Position
+			) {
+				const class_name = get_class_name(document, position)
+				if (class_name != null && /(?:^.|[ ;/@])$/.test(class_name)) {
+					const keys = [...shorthand_for_properties].map(([k, v]) => {
+						const comp = new vscode.CompletionItem(v + ":?")
+						comp.insertText = k + "="
+						comp.kind = vscode.CompletionItemKind.EnumMember
+						comp.detail = `${k}= * * * shorthandKeys of css-lube`
+						comp.sortText = v
+						return comp
+					})
+					return [...keys]
 				}
 			}
-		}, ...triggerCharacters),
+		}, ...trigger_characters),
 		vscode.languages.registerCompletionItemProvider(selector, {
-			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-				const className = getClassName(document, position);
-				if (className != null && /(?:^.|[ ;/@])$/.test(className)) {
-					const values = [...shorthandValues].map(([k, v]) => {
-						const comp = new vscode.CompletionItem(v);
-						comp.insertText = k;
-						comp.kind = vscode.CompletionItemKind.Value;
-						comp.detail = `${k} * * * shorthandValues of css-lube`;
-						comp.sortText = v;
-						return comp;
-					});
-					return [...values];
+			provideCompletionItems(
+				document: vscode.TextDocument,
+				position: vscode.Position,
+			) {
+				const class_name = get_class_name(document, position)
+				if (class_name != null && /(?:^.|[ ;/@])$/.test(class_name)) {
+					const values = [...shorthand_for_values].map(([k, v]) => {
+						const comp = new vscode.CompletionItem(v)
+						comp.insertText = k
+						comp.kind = vscode.CompletionItemKind.Value
+						comp.detail = `${k} * * * shorthandValues of css-lube`
+						comp.sortText = v
+						return comp
+					})
+					return [...values]
 				}
 			}
-		}, ...triggerCharacters),
-		vscode.languages.registerCompletionItemProvider(selector, {
-			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-				const className = getClassName(document, position);
-				if (className != null && /(?:^.| )$/.test(className)) {
-					const medias = [...shorthandMedias].map(([k, v]) => {
-						const comp = new vscode.CompletionItem("@media " + v);
-						comp.insertText = "@" + k + "@";
-						comp.kind = vscode.CompletionItemKind.Constructor;
-						comp.detail = `@${k}@ * * * shorthandMedias of css-lube`;
-						comp.sortText = v;
-						comp.command = {
-							"command": "editor.action.triggerSuggest",
-							"title": "Re-trigger completions..."
-						};
-						return comp;
-					});
-					return [...medias];
+		}, ...trigger_characters),
+		vscode.languages.registerCompletionItemProvider(
+			selector,
+			{
+				provideCompletionItems(
+					document: vscode.TextDocument,
+					position: vscode.Position
+				) {
+					const class_name = get_class_name(document, position)
+					if (class_name != null && /(?:^.| )$/.test(class_name)) {
+						const medias = [...shorthand_for_media_condition].map(([k, v]) => {
+							const comp = new vscode.CompletionItem("@media " + v)
+							comp.insertText = "@" + k + "@"
+							comp.kind = vscode.CompletionItemKind.Constructor
+							comp.detail = `@${k}@ * * * shorthandMedias of css-lube`
+							comp.sortText = v
+							comp.command = {
+								"command": "editor.action.triggerSuggest",
+								"title": "Re-trigger completions..."
+							}
+							return comp
+						})
+						return [...medias]
+					}
 				}
-			}
-		}, ...triggerCharacters),
-	);
+			},
+			...trigger_characters
+		),
+	)
 }

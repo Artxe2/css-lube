@@ -1,26 +1,36 @@
-<script lang="ts">
-import { drag$, transition$ } from "parts/ref/store"
+<script>
+import { drag$, transition$ } from "parts/ref/store.js"
 import { Dragable } from "lube-ui"
 
-export let list: string[]
-export let transforms: number[]
-export let type: "todo" | "done"
-export let index: number
+/** @type {string[]} */
+export let list
+/** @type {number[]} */
+export let transforms
+/** @type {"todo"|"done"} */
+export let type
+/** @type {number} */
+export let index
+/** @type {number} */
 // eslint-disable-next-line id-match
-export let clientHeight: number
+export let clientHeight
 export let duration = 400
+/** @type {(clientX: number, clientY: number, drag: HTMLElement) => void} */
 // eslint-disable-next-line id-match
-export let setDragElement: (clientX: number, clientY: number, drag: HTMLElement) => any
-export let transfer_list: (index: number) => any
-export let move_item: (index: number) => any
+export let setDragElement
+/** @type {(index: number) => void} */
+export let transfer_list
+/** @type {(index: number) => void} */
+export let move_item
 
-const handle_click = (event: MouseEvent) => {
-	alert((event.target as HTMLElement).textContent)
+/** @param {MouseEvent} event */
+const handle_click = event => {
+	/** @ts-ignore */
+	alert(event.target.textContent)
 }
 const handle_dragenter = () => {
 	const i = $drag$?.index
 	const t = $drag$?.type
-	if (i === undefined || i === index && t === type) {
+	if (i === void 0 || i === index && t === type) {
 		return
 	}
 	if (t === type) {
@@ -30,7 +40,10 @@ const handle_dragenter = () => {
 	}
 }
 const handle_dragstart = () => {
-	$drag$ = { type: type, index: index }
+	$drag$ = {
+		type: type,
+		index: index 
+	}
 	$transition$ = true
 }
 </script>

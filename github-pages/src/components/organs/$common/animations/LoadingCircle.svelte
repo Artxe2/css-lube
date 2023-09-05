@@ -1,9 +1,10 @@
-<script lang="ts">
+<script>
 import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
 
 export let classs = ""
 
-let timer: number
+/** @type {number} */
+let timer
 let index = 0
 on_mount(() => timer = setInterval(() => index = ++index % 12, 90))
 on_destroy(() => clearInterval(timer))

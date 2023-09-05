@@ -1,10 +1,11 @@
-<script lang="ts">
-import styles from "ts/styles"
+<script>
+import styles from "js/styles.js"
 import BenchmarkChart from "organs/ref/benchmark/BenchmarkChart.svelte"
 import { H2 } from "lube-ui"
 import { onMount as on_mount } from "svelte"
 
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 on_mount(() => header.parentElement?.scroll(0, 0))
 </script>
 

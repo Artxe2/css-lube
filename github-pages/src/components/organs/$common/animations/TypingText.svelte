@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import {
 	createEventDispatcher as create_event_dispatcher,
 	onDestroy as on_destroy,
@@ -9,18 +9,26 @@ export let classs = ""
 export let selector = "f"
 export let bgc = "--anakiwa"
 export let dark_bgc = "--astronaut"
-export let orders: number[] | undefined = undefined
+/** @type {number[]|void} */
+export let orders = void 0
 export let duration = 1000
 
 const dispatch = create_event_dispatcher()
-let timer: number
-let wrapper: HTMLElement
+
+/** @type {number} */
+let timer
+/** @type {HTMLElement} */
+let wrapper
 let index = 0
 let temp = ` _${selector}/none` 
 const cursor = ":after/ct='|';c=#000;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const dark_cursor = "@dark@:after/ct='|';c=#fff;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const blink = ":after/a=blink_1s_step-end_infinite"
-const sleep = async (ms: number) => new Promise(resolve => timer = setTimeout(resolve, ms))
+/** @param {number} ms */
+const sleep = async ms =>
+	new Promise(
+		resolve => timer = setTimeout(resolve, ms)
+	)
 const get_foldables = () => {
 	if (!wrapper) {
 		return
@@ -48,7 +56,7 @@ const animation = async () => {
 	const texts = foldables.map(e => {
 		const t = e.textContent
 		e.textContent = ""
-		return t
+		return t || ""
 	})
 	temp = ""
 	dispatch("starttype", -1)
@@ -60,7 +68,7 @@ const animation = async () => {
 	while (index < length) {
 		dispatch("starttype", index)
 		foldables[index].classList.add(cursor, dark_cursor, "bg=" + bgc, "@dark@bg=" + dark_bgc)
-		for (const t of texts[index]!) {
+		for (const t of texts[index]) {
 			foldables[index].textContent += t
 			await sleep(30)
 		}

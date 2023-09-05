@@ -1,13 +1,16 @@
-<script lang="ts">
+<script>
 import { scaleLinear as scale_linear } from "d3-scale"
 import { H2 } from "lube-ui"
 
-const data: {
-	name: string,
-	first_contentful_paint: number,
-	total_blocking_time: number,
-	speed_index: number
-}[] = [
+/**
+ * @type {{
+		name: string,
+		first_contentful_paint: number,
+		total_blocking_time: number,
+		speed_index: number
+	}[]}
+ */
+const data = [
 	{
 		name: "Inline Style",
 		first_contentful_paint: 1.2,
@@ -57,10 +60,18 @@ const speed_index_ticks = [
 	.75 * max_speed_index,
 	max_speed_index
 ]
-const padding = { top: 20, right: 15, bottom: 20, left: 25 }
+const padding = {
+	top: 20,
+	right: 15,
+	bottom: 20,
+	left: 25 
+}
 
-let width: number
-let height: number
+/** @type {number} */
+let width
+
+/** @type {number} */
+let height
 
 $: x_scale = scale_linear()
 	.domain([0, data.length])
@@ -111,7 +122,9 @@ $: bar_width = innerWidth / data.length / 3 - 4
 			{/each}
 		</g>
 		<g>
-			{#each data as { first_contentful_paint, total_blocking_time, speed_index }, i}
+			{#each data as {
+				first_contentful_paint, total_blocking_time, speed_index 
+			}, i}
 				<rect class="f=#a11 stroke=none op=.65"
 						x={x_scale(i) + 4}
 						y={first_contentful_paint_scale(first_contentful_paint)}

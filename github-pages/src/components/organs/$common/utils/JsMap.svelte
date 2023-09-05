@@ -1,6 +1,9 @@
-<script lang="ts">
-export let name: string
-export let json: string
+<script>
+/** @type {string} */
+export let name
+
+/** @type {string} */
+export let json
 
 json = json.replace(/,/g, s => "<x1>" + s + "</x1>")
 	.replace(/(^\[)|(]$)/g, s => "<x2>" + s + "</x2>")

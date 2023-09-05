@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import { page } from "$app/stores"
 import { H2, H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
@@ -6,9 +6,10 @@ import JsMap from "organs/$common/utils/JsMap.svelte"
 import CssResetArticle from "organs/ref/custom/CssResetArticle.svelte"
 import DefaultUnitArticle from "organs/ref/custom/DefaultUnitArticle.svelte"
 import { onMount as on_mount } from "svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 
 on_mount(() => {
 	page.subscribe(() => {

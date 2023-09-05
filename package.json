@@ -1,11 +1,17 @@
 {
-	"dependencies": {
-		"@typescript-eslint/parser": "^6.3.0"
+	"author": "artxe2",
+	"description": "Highly-optimized CSS Interpreter",
+	"name": "css-lube",
+	"homepage": "https://artxe2.github.io/css-lube/",
+	"devDependencies": {
+		"@typescript-eslint/parser": "^6.5.0",
+		"eslint": "^8.48.0"
 	},
 	"scripts": {
 		"build": "cd github-pages && pnpm build",
 		"dev": "cd github-pages && pnpm dev",
 		"lint": "cd github-pages && pnpm lint",
 		"preview": "cd github-pages && pnpm preview"
-	}
+	},
+	"version": "v1.4.2"
 }

@@ -1,8 +1,10 @@
-<script lang="ts">
+<script>
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
 import MorphingText from "organs/$common/animations/MorphingText.svelte"
-import { bracket, escape_tag, html, keyword, name, number, string } from "ts/highlighter"
+import {
+	bracket, escape_tag, html, keyword, name, number, string 
+} from "js/highlighter.js"
 </script>
 
 <ComponentTabView>
@@ -22,7 +24,7 @@ import { bracket, escape_tag, html, keyword, name, number, string } from "ts/hig
 			/>
 		</div>
 	</div>
-	<CodePage isCode>{@html
+	<CodePage is_code>{@html
 `${html("script", ` ${name("lang")}=${string("ts")}`, `
 ${keyword("import")} ${name("MorphingText")} ${keyword("from")} ${string("src/instant-ui/animations/MorphingText.svelte")}
 `)}

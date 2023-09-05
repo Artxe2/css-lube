@@ -1,13 +1,21 @@
-<script lang="ts">
+<script>
 import { page } from "$app/stores"
 import { onMount as on_mount } from "svelte"
 
-export let text: string
-export let data: any
+/** @type {string} */
+export let text
 
-let is_open: boolean
-let active: boolean
-let active_after: boolean
+/** @type {*} */
+export let data
+
+/** @type {boolean} */
+let is_open
+
+/** @type {boolean} */
+let active
+
+/** @type {boolean} */
+let active_after
 
 on_mount(() => {
 	page.subscribe(() => {

@@ -1,5 +1,6 @@
-<script lang="ts">
-export let name: string
+<script>
+/** @type {string} */
+export let name
 </script>
 
 v <span class="c=#090">{@html name}</span>

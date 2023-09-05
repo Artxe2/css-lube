@@ -1,9 +1,12 @@
-<script lang="ts">
-import styles from "ts/styles"
-import NavButton from "./SubDrawer/NavButton.svelte"
+<script>
+import styles from "js/styles.js"
+import NavButton from "organs/$common/Drawer/SubDrawer/NavButton.svelte"
 
-export let data: any
-export let is_open: boolean
+/** @type {*} */
+export let data
+
+/** @type {boolean} */
+export let is_open
 </script>
 
 <div class="fixed t=0 l=4 h=100% w=14 o=hidden

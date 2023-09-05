@@ -1,11 +1,12 @@
-<script lang="ts">
+<script>
 import { H2 } from "lube-ui"
 import ComponentRulesExample from "organs/ref/tips/ComponentRulesExample.svelte"
 import ResponsiveWebDesignExample from "organs/ref/tips/ResponsiveWebDesignExample.svelte"
 import { onMount as on_mount } from "svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 on_mount(() => header.parentElement?.scroll(0, 0))
 </script>
 

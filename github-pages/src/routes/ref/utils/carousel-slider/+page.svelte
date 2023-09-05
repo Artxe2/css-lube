@@ -1,12 +1,13 @@
-<script lang="ts">
+<script>
 import CarouselSliderBasicExample from "organs/ref/utils/carousel-slider/CarouselSliderBasicExample.svelte"
 import CarouselSliderCopyExample from "organs/ref/utils/carousel-slider/CarouselSliderCopyExample.svelte"
 import CarouselSliderSnapExample from "organs/ref/utils/carousel-slider/CarouselSliderSnapExample.svelte"
 import { H2, H5 } from "lube-ui"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 import { onMount as on_mount } from "svelte"
 
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 on_mount(() => header.parentElement?.scroll(0, 0))
 </script>
 

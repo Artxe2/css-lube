@@ -1,10 +1,17 @@
 {
 	"author": "artxe2",
-	"devDependencies": {
-		"svelte": "^4.1.2"
-	},
+	"description": "Svelte UI Components for CSS Lube",
+	"keywords": [],
+	"license": "MIT",
 	"main": "index.js",
 	"name": "lube-ui",
+	"scripts": {
+		"dts": "tsc"
+	},
 	"type": "module",
-	"version": "0.1.0"
+	"types": "@types/index.d.ts",
+	"version": "0.1.0",
+	"devDependencies": {
+		"svelte": "^4.2.0"
+	}
 }

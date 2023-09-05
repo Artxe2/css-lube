@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
 import TabPage from "organs/$common/utils/TabPage.svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 import InstallationArticle from "organs/docs/installation/InstallationArticle.svelte"
 import CodeIntellisenseArticle from "organs/docs/installation/CodeIntellisenseArticle.svelte"
 import { onMount as on_mount } from "svelte"
@@ -9,7 +9,8 @@ import { H2 } from "lube-ui"
 
 const tabs = [ "Installation", "Code Intellisense" ]
 let index = 0
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 
 on_mount(() => {
 	page.subscribe(() => header?.parentElement?.scroll(0, 0))

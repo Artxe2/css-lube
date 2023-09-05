@@ -5,22 +5,22 @@
 		"configuration": [{
 			"id": "intellisense-css-lube",
 			"properties": {
-				"css-lube.custom.shorthandKeys": {
-					"additionalProperties": false,
-					"default": [["acc", "accent-color"], ["ac", "align-content"], ["ai", "align-items"], ["as", "align-self"], ["a", "animation"], ["bf", "backdrop-filter"], ["bg", "background"], ["bgc", "background-color"], ["bgi", "background-image"], ["bd", "border"], ["bdb", "border-bottom"], ["bdc", "border-color"], ["bdl", "border-left"], ["br", "border-radius"], ["bdr", "border-right"], ["bds", "border-style"], ["bdt", "border-top"], ["bdw", "border-width"], ["b", "bottom"], ["bs", "box-shadow"], ["cp", "clip-path"], ["c", "color"], ["ct", "content"], ["cs", "cursor"], ["d", "display"], ["f", "fill"], ["ft", "filter"], ["fg", "flex-grow"], ["fsk", "flex-shrink"], ["fw", "flex-wrap"], ["fl", "float"], ["ff", "font-family"], ["fs", "font-size"], ["fv", "font-variant"], ["g", "gap"], ["gc", "grid-column"], ["gr", "grid-row"], ["gtc", "grid-template-columns"], ["gtr", "grid-template-rows"], ["h", "height"], ["i", "inset"], ["is", "isolation"], ["jc", "justify-content"], ["l", "left"], ["lsp", "letter-spacing"], ["lb", "line-break"], ["lh", "line-height"], ["ls", "list-style"], ["m", "margin"], ["mb", "margin-bottom"], ["ml", "margin-left"], ["mr", "margin-right"], ["mt", "margin-top"], ["xh", "max-height"], ["xw", "max-width"], ["mh", "min-height"], ["mw", "min-width"], ["mbm", "mix-blend-mode"], ["of", "object-fit"], ["op", "opacity"], ["ol", "outline"], ["o", "overflow"], ["ow", "overflow-wrap"], ["ox", "overflow-x"], ["oy", "overflow-y"], ["p", "padding"], ["pb", "padding-bottom"], ["pi", "padding-inline"], ["pl", "padding-left"], ["pr", "padding-right"], ["pt", "padding-top"], ["ps", "perspective"], ["pso", "perspective-origin"], ["rs", "resize"], ["r", "right"], ["ssa", "scroll-snap-align"], ["sst", "scroll-snap-type"], ["so", "shape-outside"], ["tz", "tab-size"], ["tl", "table-layout"], ["ta", "text-align"], ["td", "text-decoration"], ["ts", "text-shadow"], ["ttf", "text-transform"], ["t", "top"], ["tf", "transform"], ["tfo", "transform-origin"], ["tt", "transition"], ["us", "user-select"], ["va", "vertical-align"], ["v", "visibility"], ["ws", "white-space"], ["w", "width"], ["wc", "will-change"], ["wb", "word-break"], ["wsp", "word-spacing"], ["ww", "word-wrap"], ["wm", "writing-mode"], ["z", "z-index"]],
-					"description": "shorthandKeys of css-lube.js",
-					"type": "array"
-				},
-				"css-lube.custom.shorthandMedias": {
+				"css-lube.custom.shorthand_for_media_condition": {
 					"additionalProperties": false,
 					"default": [["dark", "(prefers-color-scheme:dark)"], ["sm", "(min-width:640px)"], ["md", "(min-width:768px)"], ["lg", "(min-width:1024px)"], ["xl", "(min-width:1280px)"], ["2xl", "(min-width:1536px)"]],
-					"description": "shorthandMedias of css-lube.js",
+					"description": "shorthand_for_media_condition of css-lube.js",
 					"type": "array"
 				},
-				"css-lube.custom.shorthandValues": {
+				"css-lube.custom.shorthand_for_properties": {
+					"additionalProperties": false,
+					"default": [["acc", "accent-color"], ["ac", "align-content"], ["ai", "align-items"], ["as", "align-self"], ["a", "animation"], ["bf", "backdrop-filter"], ["bg", "background"], ["bgc", "background-color"], ["bgi", "background-image"], ["bd", "border"], ["bdb", "border-bottom"], ["bdc", "border-color"], ["bdl", "border-left"], ["br", "border-radius"], ["bdr", "border-right"], ["bds", "border-style"], ["bdt", "border-top"], ["bdw", "border-width"], ["b", "bottom"], ["bs", "box-shadow"], ["cp", "clip-path"], ["c", "color"], ["ct", "content"], ["cs", "cursor"], ["d", "display"], ["f", "fill"], ["ft", "filter"], ["fg", "flex-grow"], ["fsk", "flex-shrink"], ["fw", "flex-wrap"], ["fl", "float"], ["ff", "font-family"], ["fs", "font-size"], ["fv", "font-variant"], ["g", "gap"], ["gc", "grid-column"], ["gr", "grid-row"], ["gtc", "grid-template-columns"], ["gtr", "grid-template-rows"], ["h", "height"], ["i", "inset"], ["is", "isolation"], ["jc", "justify-content"], ["l", "left"], ["lsp", "letter-spacing"], ["lb", "line-break"], ["lh", "line-height"], ["ls", "list-style"], ["m", "margin"], ["mb", "margin-bottom"], ["ml", "margin-left"], ["mr", "margin-right"], ["mt", "margin-top"], ["xh", "max-height"], ["xw", "max-width"], ["mh", "min-height"], ["mw", "min-width"], ["mbm", "mix-blend-mode"], ["of", "object-fit"], ["op", "opacity"], ["ol", "outline"], ["o", "overflow"], ["ow", "overflow-wrap"], ["ox", "overflow-x"], ["oy", "overflow-y"], ["p", "padding"], ["pb", "padding-bottom"], ["pi", "padding-inline"], ["pl", "padding-left"], ["pr", "padding-right"], ["pt", "padding-top"], ["ps", "perspective"], ["pso", "perspective-origin"], ["rs", "resize"], ["r", "right"], ["ssa", "scroll-snap-align"], ["sst", "scroll-snap-type"], ["so", "shape-outside"], ["tz", "tab-size"], ["tl", "table-layout"], ["ta", "text-align"], ["td", "text-decoration"], ["ts", "text-shadow"], ["ttf", "text-transform"], ["t", "top"], ["tf", "transform"], ["tfo", "transform-origin"], ["tt", "transition"], ["us", "user-select"], ["va", "vertical-align"], ["v", "visibility"], ["ws", "white-space"], ["w", "width"], ["wc", "will-change"], ["wb", "word-break"], ["wsp", "word-spacing"], ["ww", "word-wrap"], ["wm", "writing-mode"], ["z", "z-index"]],
+					"description": "shorthand_for_properties of css-lube.js",
+					"type": "array"
+				},
+				"css-lube.custom.shorthand_for_values": {
 					"additionalProperties": false,
 					"default": [["not-allowed", "cursor:not-allowed"], ["pointer", "cursor:pointer"], ["wait", "cursor:wait"], ["block", "display:block"], ["flex", "display:flex"], ["grid", "display:grid"], ["inline", "display:inline"], ["inline-block", "display:inline-block"], ["inline-flex", "display:inline-flex"], ["none", "display:none"], ["column", "flex-direction:column"], ["column-reverse", "flex-direction:column-reverse"], ["row", "flex-direction:row"], ["row-reverse", "flex-direction:row-reverse"], ["bold", "font-weight:bold"], ["absolute", "position:absolute"], ["fixed", "position:fixed"], ["relative", "position:relative"], ["static", "position:static"], ["sticky", "position:sticky"]],
-					"description": "shorthandValues of css-lube.js",
+					"description": "shorthand_for_values of css-lube.js",
 					"type": "array"
 				}
 			},
@@ -47,11 +47,11 @@
 	"publisher": "Artxe2",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Artxe2/intellisense-css-lube"
+		"url": "https://github.com/Artxe2/css-lube"
 	},
 	"scripts": {
 		"compile": "tsc -p ./",
-		"lint": "eslint \"src/**/*.ts\"",
+		"lint": "eslint --fix \"src/**/*.ts\"",
 		"vscode:prepublish": "npm run compile",
 		"watch": "tsc -watch -p ./"
 	},

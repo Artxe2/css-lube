@@ -1,11 +1,14 @@
-<script lang="ts">
+<script>
 import HeroSection from "organs/index/HeroSection.svelte"
 import WhatIsCssLube from "organs/index/WhatIsCssLube.svelte"
 import WhatsTheDifference from "organs/index/WhatsTheDifference.svelte"
 import { onMount as on_mount } from "svelte"
 
-let header: HTMLElement
-on_mount(() => header.parentElement?.scroll(0, 0))
+/** @type {HTMLElement} */
+let header
+on_mount(
+	() => header.parentElement?.scroll(0, 0)
+)
 </script>
 
 <svelte:head>

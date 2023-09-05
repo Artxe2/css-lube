@@ -1,8 +1,8 @@
-<script lang="ts">
+<script>
 import AppBar from "organs/$common/AppBar.svelte"
 import Drawer from "organs/$common/Drawer.svelte"
 import RootDiv from "organs/$common/RootDiv.svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 </script>
 
 <RootDiv>

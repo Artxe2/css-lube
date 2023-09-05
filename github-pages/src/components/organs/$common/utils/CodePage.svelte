@@ -1,10 +1,12 @@
-<script lang="ts">
-export let type: "p" | "pre" = "pre"
+<script>
+/** @type {"p"|"pre"} */
+export let type = "pre"
 export let is_code = false
 
-let wrapper: HTMLElement
+/** @type {HTMLElement} */
+let wrapper
 
-const copy = () => navigator.clipboard.writeText(wrapper.textContent!)
+const copy = () => navigator.clipboard.writeText(wrapper.textContent || "")
 </script>
 
 <div class="br=.5 ta=right bs=0_.5_.5_#00000088

@@ -1,13 +1,16 @@
-<script lang="ts">
-import styles from "ts/styles"
-import type monaco from "monaco-editor/esm/vs/editor/editor.api"
+<script>
+import styles from "js/styles.js"
 import { onMount as on_mount } from "svelte"
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
-    import { theme$ } from "parts/$common/store"
+import { theme$ } from "parts/$common/store.js"
 
 let is_loading = true
-let container: HTMLDivElement
-let editor: monaco.editor.IStandaloneCodeEditor
+
+/** @type {HTMLDivElement} */
+let container
+
+/** @type {import("monaco-editor").editor.IStandaloneCodeEditor} */
+let editor
 let content = `<div class="ta=center">
 	<div class="fs=2 bold">
 		Hello
@@ -50,7 +53,7 @@ on_mount(() => {
 		</div>
 	</div>
 	<div bind:this={container}
-			class="fg=1 pt=1 tt=background_.3s
+			class="fg=1 pt=1
 			bg=#fff @dark@bg=--cod-gray
 			xw=99.99% @sm@xw=60%
 			@!sm@xh=70%">

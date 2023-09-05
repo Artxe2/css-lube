@@ -1,6 +1,6 @@
-<script lang="ts">
+<script>
 import TabPage from "organs/$common/utils/TabPage.svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 import BasicArticle from "organs/docs/syntax/BasicArticle.svelte"
 import SelectorArticle from "organs/docs/syntax/SelectorArticle.svelte"
 import MediaQueryArticle from "organs/docs/syntax/MediaQueryArticle.svelte"
@@ -10,7 +10,8 @@ import { H2 } from "lube-ui"
 
 const tabs = [ "Basic", "Selector", "Media Query" ]
 let index = 0
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 
 on_mount(() => {
 	page.subscribe(() => header?.parentElement?.scroll(0, 0))

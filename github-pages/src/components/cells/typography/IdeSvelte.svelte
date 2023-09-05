@@ -1,7 +1,8 @@
-<script lang="ts">
-import ISvelte from "cells/svgs/i_svelte.svelte"
+<script>
+import { base } from "$app/paths"
 
-export let name: string
+/** @type {string} */
+export let name
 </script>
 
-<ISvelte classs="inline-block w=1 _path/f=#ff3e00 _path:nth-of-type(2)/f=#fff" /> {@html name}.svelte
+<svg class="inline-block w=1 h=1.5 --fill-1=#ff3e00 --fill-2=#fff"><use xlink:href="{base}/icons.svg#svelte" /></svg> {@html name}.svelte

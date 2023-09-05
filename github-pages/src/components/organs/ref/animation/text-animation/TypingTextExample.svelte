@@ -1,9 +1,11 @@
-<script lang="ts">
+<script>
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
 import TypingText from "organs/$common/animations/TypingText.svelte"
-import { bracket, declare, escape_tag, func, html, keyword, name, string } from "ts/highlighter"
-import styles from "ts/styles"
+import {
+	bracket, declare, escape_tag, func, html, keyword, name, string 
+} from "js/highlighter.js"
+import styles from "js/styles.js"
 
 const text = `${html("body", "", `
 	. . . . . .
@@ -15,11 +17,11 @@ const text = `${html("body", "", `
 	<TypingText classs={styles.util.typing_text}>
 		<CodePage>{@html text}</CodePage>
 	</TypingText>
-	<CodePage isCode>{@html
+	<CodePage is_code>{@html
 `${html("script", ` ${name("lang")}=${string("ts")}`, `
 ${keyword("import")} ${name("CodePage")} ${keyword("from")} ${string("cells/boxs/CodePage.svelte")}
 ${keyword("import")} ${name("TypingText")} ${keyword("from")} ${string("src/instant-ui/animations/TypingText.svelte")}
-${keyword("import")} ${bracket("{")} ${name("bracket")}, ${name("declare")}, ${name("escape_tag")}, ${name("func")}, ${name("html")}, ${name("keyword")}, ${name("name")}, ${name("string")} ${bracket("}")} ${keyword("from")} ${string("src/ts/highlighter")}
+${keyword("import")} ${bracket("{")} ${name("bracket")}, ${name("declare")}, ${name("escape_tag")}, ${name("func")}, ${name("html")}, ${name("keyword")}, ${name("name")}, ${name("string")} ${bracket("}")} ${keyword("from")} ${string("js/highlighter.js")}
 
 ${declare("const")} ${name("text", true)} = ${string("`", false)}${declare("${")}${func("html")}${bracket("(")}${string("body")}, ${string("")}, ${string("`", false)}
 	${string(". . . . . .", false)}

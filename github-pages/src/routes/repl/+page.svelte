@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import TestEditor from "organs/repl/TestEditor.svelte"
 </script>
 

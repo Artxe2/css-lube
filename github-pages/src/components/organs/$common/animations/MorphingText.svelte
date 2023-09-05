@@ -1,19 +1,27 @@
-<script lang="ts">
+<script>
 import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
 
 export let classs = ""
-export let array: [ string, number ][] = []
-export let longest: number
+/** @type {[ string, number ][]} */
+export let array = []
+/** @type {number} */
+export let longest
 export let transition = 500
 
-let timer: number
+/** @type {number} */
+let timer
 let index = 0
 let text1 = array[0][0]
 let text2 = ""
 let filter = false
 let class1 = ""
 let class2 = ""
-const sleep = async (ms: number) => new Promise(resolve => timer = setTimeout(resolve, ms))
+
+/** @param {number} ms */
+const sleep = async ms =>
+	new Promise(
+		resolve => timer = setTimeout(resolve, ms)
+	)
 const animation = async () => {
 	await sleep(array[index][1] - transition)
 	filter = true

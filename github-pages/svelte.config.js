@@ -17,7 +17,7 @@ const config = {
 			organs: path.resolve("./src/components/organs"),
 			parts: path.resolve("./src/components/parts"),
 			styles: path.resolve("./src/styles"),
-			ts: path.resolve("./src/ts")
+			js: path.resolve("./src/js")
 		},
 		paths: {
 			// eslint-disable-next-line no-undef

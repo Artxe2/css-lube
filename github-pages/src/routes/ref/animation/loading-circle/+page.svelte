@@ -1,10 +1,11 @@
-<script lang="ts">
+<script>
 import { H2 } from "lube-ui"
 import LoadingCircleExample from "organs/ref/animation/loading-circle/LoadingCircleExample.svelte"
 import { onMount as on_mount } from "svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 
-let header: HTMLElement
+/** @type {HTMLElement} */
+let header
 on_mount(() => header.parentElement?.scroll(0, 0))
 </script>
 

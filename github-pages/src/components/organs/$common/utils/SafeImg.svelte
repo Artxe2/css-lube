@@ -1,13 +1,18 @@
-<script lang="ts">
+<script>
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
 
-export let classs: string = ""
-export let aspect_ratio: number
-export let src: string
+export let classs = ""
+
+/** @type {number} */
+export let aspect_ratio
+
+/** @type {string} */
+export let src
 
 $: alt = src.slice(src.lastIndexOf("/") + 1)
 
-let loaded: boolean
+/** @type {boolean} */
+let loaded
 </script>
 
 <div class="relative {classs}">

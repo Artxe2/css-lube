@@ -1,11 +1,12 @@
-<script lang="ts">
-import { drag$ } from "parts/ref/store"
+<script>
+import { drag$ } from "parts/ref/store.js"
 
-export let move_item: (index: number) => any
+/** @type {(index: number) => any} */
+export let move_item
 
 const handle_dragenter = () => {
 	const i = $drag$?.index
-	if (i === undefined) {
+	if (i === void 0) {
 		return
 	}
 	move_item(0)

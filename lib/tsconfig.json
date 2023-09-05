@@ -7,6 +7,6 @@
 		"module": "NodeNext",
 		"strict": true,
 		"outDir": "silences wrong TS error, we don't compile, we only typecheck",
-		"target": "ES2020"
+		"target": "ESNext"
 	}
 }

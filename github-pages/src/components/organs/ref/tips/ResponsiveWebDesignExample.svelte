@@ -1,7 +1,9 @@
-<script lang="ts">
+<script>
 import { H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import { comment, html, name, string } from "ts/highlighter"
+import {
+	comment, html, name, string 
+} from "js/highlighter.js"
 
 const code = `. . . . . .
 ${html("body", "", `
@@ -9,7 +11,7 @@ ${html("body", "", `
 			fs=16px @md@fs=20px @xl@fs=24px</span>
 			bg=#fff @dark@bg=--gray-10
 			c=#000 @dark@c=--gray-90
-			_svg/f=#000 @dark@_svg/f=--gray-90`)}`, `
+			_svg/f=currentcolor`)}`, `
 		${html("div", ` ${name(". . .")}`, `
 			. . . . . .
 		`)}

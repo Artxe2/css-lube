@@ -1,8 +1,9 @@
-<script lang="ts">
+<script>
 export let classs = ""
 export let index = 0
 
-let container: HTMLDivElement
+/** @type {HTMLDivElement} */
+let container
 </script>
 
 <div bind:this={container}

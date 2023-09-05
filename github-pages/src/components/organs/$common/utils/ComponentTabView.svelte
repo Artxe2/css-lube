@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 import TabPage from "organs/$common/utils/TabPage.svelte"
 
 let index = 0

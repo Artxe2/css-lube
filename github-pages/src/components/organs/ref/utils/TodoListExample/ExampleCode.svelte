@@ -1,6 +1,8 @@
-<script lang="ts">
+<script>
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import { bracket, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
+import {
+	bracket, declare, func, html, keyword, name, number, string, type 
+} from "js/highlighter.js"
 import IdeSvelte from "cells/typography/IdeSvelte.svelte"
 import IdeTypescript from "cells/typography/IdeTypescript.svelte"
 
@@ -203,7 +205,7 @@ ${bracket("}")}
 ${declare("const")} ${func("handle_dragenter")} = ${bracket("()")} ${declare("=>")} ${bracket("{")}
 	${declare("const")} ${name("i", true)} = ${name("$drag$")}?.${name("index")}
 	${declare("const")} ${name("t", true)} = ${name("$drag$")}?.${name("type")}
-	${keyword("if")} ${bracket("(", 1)}${name("i", true)} === ${declare("undefined")} || ${name("i", true)} === ${name("index")} && ${name("t", true)} === ${name("type")}${bracket(") {", 1)}
+	${keyword("if")} ${bracket("(", 1)}${name("i", true)} === ${declare("void")} ${number(0)} || ${name("i", true)} === ${name("index")} && ${name("t", true)} === ${name("type")}${bracket(") {", 1)}
 		${keyword("return")}
 	${bracket("}", 1)}
 	${keyword("if")} ${bracket("(", 1)}${name("t", true)} === ${name("type")}${bracket(") {", 1)}
@@ -245,7 +247,7 @@ ${keyword("export")} ${declare("let")} ${func("move_item")}: ${bracket("(")}${na
 
 ${declare("const")} ${func("handle_dragenter")} = ${bracket("()")} ${declare("=>")} ${bracket("{")}
 	${declare("const")} ${name("i", true)} = ${name("$drag$")}?.${name("index")}
-	${keyword("if")} ${bracket("(", 1)}${name("i", true)} === ${declare("undefined")}${bracket(") {", 1)}
+	${keyword("if")} ${bracket("(", 1)}${name("i", true)} === ${declare("void")} ${number(0)}${bracket(") {", 1)}
 		${keyword("return")}
 	${bracket("}", 1)}
 	${func("move_item")}${bracket("(", 2)}${number(0)}${bracket(")", 2)}
@@ -259,19 +261,19 @@ ${html("div", ` ${name("style")}=${string("user-select:none")}
 `)}`
 </script>
 
-<CodePage isCode>{@html code1}</CodePage>
+<CodePage is_code>{@html code1}</CodePage>
 <div class="h=1"></div>
-<CodePage isCode>
+<CodePage is_code>
 	<IdeSvelte name="DragItem" />
 	{@html code2}
 </CodePage>
 <div class="h=1"></div>
-<CodePage isCode>
+<CodePage is_code>
 	<IdeSvelte name="DragItemPlaceHolder" />
 	{@html code3}
 </CodePage>
 <div class="h=1"></div>
-<CodePage isCode>
+<CodePage is_code>
 	<IdeTypescript name="store" />
 	{@html
 `

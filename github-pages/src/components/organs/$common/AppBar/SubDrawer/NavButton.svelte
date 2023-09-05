@@ -1,14 +1,18 @@
-<script lang="ts">
+<script>
 import { base } from "$app/paths"
 import { page } from "$app/stores"
 import { onMount as on_mount } from "svelte"
 
-export let text: string
-export let data: any
+/** @type {string} */
+export let text
+/** @type {*} */
+export let data
 export let classs = ""
 
-let is_open: boolean
-let active: boolean
+/** @type {boolean} */
+let is_open
+/** @type {boolean} */
+let active
 
 if ("href" in data) {
 	on_mount(() => {
@@ -27,7 +31,7 @@ if ("href" in data) {
 {#if "childs" in data}
 <button class="relative w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
 		:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-		{active ? "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90" : ""}
+		{active ? "bg=--primary-50!! c=--primary-90!!" : ""}
 		{classs}"
 		on:click={() => is_open = !is_open}>
 	<slot></slot>
@@ -57,7 +61,7 @@ if ("href" in data) {
 <a href={data["href"]}>
 	<button class="w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
 			:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-			{active ? "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90" : ""}
+			{active ? "bg=--primary-50!! c=--primary-90!!" : ""}
 			{classs}">
 		<slot></slot>
 		<span class="fs=1.5">{text}</span>

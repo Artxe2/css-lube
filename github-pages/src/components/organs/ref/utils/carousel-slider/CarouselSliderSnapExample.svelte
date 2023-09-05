@@ -1,11 +1,16 @@
-<script lang="ts">
+<script>
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import { CarouselSlider } from "lube-ui"
 import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
-import { bracket, declare, func, html, keyword, name, number, string, type } from "ts/highlighter"
+import {
+	bracket, declare, func, html, keyword, name, number, string, type 
+} from "js/highlighter.js"
 
-let align: "" | "start" |"center" | "end" = "center"
-let snap: (direction: number, snapAlign?: "start" |"center" | "end") => void
+/** @type {"" | "start" |"center" | "end"} */
+let align = "center"
+
+/** @type {(direction: number, snapAlign?: "start" |"center" | "end") => void} */
+let snap
 </script>
 
 <ComponentTabView>
@@ -42,7 +47,7 @@ let snap: (direction: number, snapAlign?: "start" |"center" | "end") => void
 					on:click={() => snap(1)}>NEXT</button>
 		</div>
 	</div>
-	<CodePage isCode>{@html
+	<CodePage is_code>{@html
 `${html("script", ` ${name("lang")}=${string("ts")}`, `
 ${keyword("import")} ${bracket("{")} ${name("CarouselSlider")} ${bracket("}")} ${keyword("from")} ${string("lube-ui")}
 

@@ -1,12 +1,13 @@
-<script lang="ts">
+<script>
 import { base } from "$app/paths"
 import TypingText from "organs/$common/animations/TypingText.svelte"
 import { H1 } from "lube-ui"
 import GithubStars from "parts/$common/GithubStars.svelte"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 
+/** @type {number} */
 // eslint-disable-next-line id-match
-let innerHeight: number
+let innerHeight
 </script>
 
 <svelte:window bind:innerHeight />

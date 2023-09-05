@@ -2,9 +2,11 @@
 import { base } from "$app/paths"
 import { H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import { bracket, comment, css, func, html, keyword, name, number, string } from "ts/highlighter"
-import styles from "ts/styles"
-import version from "ts/version"
+import {
+	bracket, comment, css, func, html, keyword, name, number, string 
+} from "js/highlighter.js"
+import styles from "js/styles.js"
+import version from "js/version.js"
 
 const code1 = `${html("span", ` ${name("class")}=${string("fs=12px @(min-width:768px)@fs=16px  @(min-width:768px)@:hover/fs=20px")}`, `
 	${css(".fs\\=12px", ["font-size", "12px"])}

@@ -1,9 +1,10 @@
-<script lang="ts">
+<script>
 import { base } from "$app/paths"
 import ModalBackground from "organs/$common/ModalBackground.svelte"
-import SubDrawer from "./AppBar/SubDrawer.svelte"
+import SubDrawer from "organs/$common/AppBar/SubDrawer.svelte"
 
-let is_open: boolean
+/** @type {boolean} */
+let is_open
 </script>
 
 <nav class="z=9000 fixed t=0 l=0 w=100%

@@ -1,6 +1,6 @@
-<script lang="ts">
-import IGithub from "cells/svgs/i_github.svelte"
-import { github_star$ } from "./store"
+<script>
+import { base } from "$app/paths"
+import { github_star$ } from "parts/$common/store.js"
 </script>
 
 <div class="flex fs=1.25">
@@ -9,7 +9,9 @@ import { github_star$ } from "./store"
 		href="https://github.com/artxe2/css-lube"
 		target="_blank"
 	>
-		<IGithub classs="inline-block w=1.5 _svg/f=#333!" />
+		<svg class="inline-block w=1.5 h=1.5 f=#333!">
+			<use xlink:href="{base}/icons.svg#github" />
+		</svg>
 		<span class="c=#333">css-lube</span>
 	</a>
 	<div class="w=.5"></div>

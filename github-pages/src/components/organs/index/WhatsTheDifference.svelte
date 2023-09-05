@@ -1,6 +1,6 @@
 <script>
 import { H2 } from "lube-ui"
-import styles from "ts/styles"
+import styles from "js/styles.js"
 </script>
 
 <div class={styles.$common.contents_div}>
