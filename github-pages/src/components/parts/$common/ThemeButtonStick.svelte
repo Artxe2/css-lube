@@ -40,7 +40,7 @@ on_mount(() => {
 		:hover/bg=--gray-80 @dark@:hover/bg=--gray-40"
 		on:click={change_theme}>
 	<div class="flex column ai=center p=6_15
-			{animation ? "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s" : ""}
+			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s"}
 			tf=translate(-13em,-6em)_rotate({deg}deg)">
 		<div class="relative w=3 h=3">
 			<svg class="absolute i=.25 w=2.5 h=2.5 t=0.25">

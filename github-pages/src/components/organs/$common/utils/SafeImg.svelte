@@ -21,6 +21,7 @@ let loaded
 		<LoadingCircle />
 	</div>
 	{/if}
-	<img class="w=100%{loaded ? "" : " absolute t=0"}" src={src} alt={alt}
+	<img class="w=100%
+			{loaded || "absolute t=0"}" src={src} alt={alt}
 			on:load={() => loaded = true} />
 </div>

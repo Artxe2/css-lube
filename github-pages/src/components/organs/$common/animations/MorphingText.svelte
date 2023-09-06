@@ -43,7 +43,7 @@ on_destroy(() => clearTimeout(timer))
 </script>
 
 <div class="relative ta=center wc=filter
-		{filter ? "ft=url(#ft)" : ""}
+		{filter && "ft=url(#ft)"}
 		>span/absolute >span/w=100% >span/l=0 >span/us=none
 		{classs}">
 	<span class={class1}>{@html text1}</span>

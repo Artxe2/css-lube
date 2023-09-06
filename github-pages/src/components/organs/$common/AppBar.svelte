@@ -33,13 +33,13 @@ let is_open
 		<div class="relative w=2 h=1.8">
 			<div class="absolute w=100% h=.3 t=0 tt=transform_.4s br=.15
 					bg=--gray-30 @dark@bg=--gray-70
-					{is_open ? "tf=translateY(.75em)_rotate(-45deg)" : ""}"></div>
+					{is_open && "tf=translateY(.75em)_rotate(-45deg)"}"></div>
 			<div class="absolute w=100% h=.3 t=.75 tt=transform_.4s_linear,opacity_.4s br=.15
 					bg=--gray-30 @dark@bg=--gray-70
-					{is_open ? "tf=translateX(2.5em) op=0" : ""}"></div>
+					{is_open && "tf=translateX(2.5em) op=0"}"></div>
 			<div class="absolute w=100% h=.3 b=0 tt=transform_.4s br=.15
 					bg=--gray-30 @dark@bg=--gray-70
-					{is_open ? "tf=translateY(-.75em)_rotate(45deg)" : ""}"></div>
+					{is_open && "tf=translateY(-.75em)_rotate(45deg)"}"></div>
 		</div>
 	</button>
 </nav>

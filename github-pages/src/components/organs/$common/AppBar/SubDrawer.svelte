@@ -13,7 +13,7 @@ export let is_open
 		c=--gray-30 @dark@c=--gray-70
 		bg=--gray-90 @dark@bg=--gray-30
 		_svg/f=--gray-10 @dark@_svg/f=--gray-70
-		{is_open ? "tf=translateX(20em)" : ""}">
+		{is_open && "tf=translateX(20em)"}">
 	<div class="h=100% oy=auto flex column
 			{styles.scrollbar.primary}">
 		<div class="h=5"></div>

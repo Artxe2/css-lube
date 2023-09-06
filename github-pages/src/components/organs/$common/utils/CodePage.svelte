@@ -16,7 +16,7 @@ const copy = () => navigator.clipboard.writeText(wrapper.textContent || "")
 	<div class="m=0_.5 bd=.1_solid_#888"></div>
 	{/if}
 	<svelte:element this={type} bind:this={wrapper}
-			class="ta=left p=1  {is_code ? "pt=0" : ""}
+			class="ta=left p=1 {is_code && "pt=0"}
 			_*/wb=break-all letter-spacing=.075
 			"><code><slot></slot></code></svelte:element>
 </div>

@@ -55,9 +55,9 @@ const handle_dragstart = () => {
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div bind:clientHeight on:click={handle_click}
 			class="w=6 ol=.1_solid ta=center fs=2 cs=pointer tf=translateY({transforms[index]}px)
-			{$transition$ ? "tt=" + duration + "ms" : ""}
-			{$drag$?.index === index && $drag$?.type === type ? " opacity=.2 ol=.2_solid_#aaa" : ""}
-			{!list[index] ? "none" : ""}"
+			{$transition$ && `tt=${duration}ms`}
+			{$drag$?.index === index && $drag$?.type === type && "opacity=.2 ol=.2_solid_#aaa"}
+			{!list[index] && "none"}"
 			on:dragenter={handle_dragenter}>
 		{list[index]}
 	</div>

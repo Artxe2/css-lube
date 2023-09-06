@@ -39,7 +39,7 @@ on_mount(() => {
 		:not(:hover)>div>div>svg:nth-of-type(even)/op=0"
 		on:click={change_theme}>
 	<div class="flex column ai=center p=0_2
-			{animation ? "tt=transform_cubic-bezier(.9,0,.45,1.8)_.5s" : ""}
+			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.8)_.5s"}
 			tf=translateX(-1em)_rotate({deg}deg)">
 		<div class="relative w=2 h=2">
 			<svg class="absolute i=.25 w=1.5 h=1.5">

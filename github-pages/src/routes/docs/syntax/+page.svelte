@@ -45,7 +45,7 @@ on_mount(() => {
 		<button on:click={() => index = i}
 				class="fg=1 br=2.5
 				:hover/bg=--gray-70 @dark@:hover/bg=--gray-30
-				{index == i ? "bg=--primary-50!! c=--primary-90!!" : ""}">
+				{index == i && "bg=--primary-50!! c=--primary-90!!"}">
 			<span class="bold @md@fs=1.5">{title}</span>
 		</button>
 		{/each}

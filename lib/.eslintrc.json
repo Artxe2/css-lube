@@ -65,7 +65,7 @@ VSCE: JavaScript and TypeScript Nightly
 			"allowAllPropertiesOnSameLine": false
 		}],
 		// Warns the use of const for variables that are not reassigned
-		"prefer-const": "warn",
+		// "prefer-const": "warn",
 		// Requires the use of double quotes for strings
 		"quotes": ["error", "double"],
 		// Disallows the use of semicolons

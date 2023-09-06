@@ -29,7 +29,7 @@ const handle_endtype = ({ detail }) => index = detail
 	<H2>What is CSS Lube?</H2>
 	<span>CSS Lube is Highly-optimized CSS Interpreter.</span>
 	<span>It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,517 byte(2,792 byte on gzip) js file.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,504 byte(2,788 byte on gzip) js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
 			@!md@column
@@ -39,11 +39,16 @@ const handle_endtype = ({ detail }) => index = detail
 				>div>pre/flex;jc=center">
 			<CodePage>
 				<div class="flex column ai=center ta=center w=12 bg=#fff c=#000 p=.5 br=.5 bs=0_1_1_gray">
-					<img class="w=4 h=4{index < 2 ? "" : " tt=transform_.5s tf=rotate(-20deg)"}" src="{base}/favicon.png" alt="favicon" />
+					<img class="w=4 h=4 
+							{index < 2 || "tt=transform_.5s tf=rotate(-20deg)"}"
+							src="{base}/favicon.png" alt="favicon" />
 					<div>
-						<h3 class="bold fs=1.5{index < 0 ? "" : " fv=small-caps"}">CSS Lube</h3>
+						<h3 class="bold fs=1.5
+								{index < 0 || "fv=small-caps"}">
+							CSS Lube
+						</h3>
 						<div class="relative _h5/mt=-1.5
-								{index < 1 ? "" : "_h5/ff='Times_New_Roman',Times,serif"}">
+								{index < 1 || "_h5/ff='Times_New_Roman',Times,serif"}">
 							<h5 class="fs=.75 lh=1">Just-In-Time</h5>
 							<h5 class="fs=.75 lh=1">Zero-Buildtime</h5>
 							<h5 class="fs=.75 lh=1">CSS Interpreter</h5>
