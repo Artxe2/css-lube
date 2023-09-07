@@ -6,12 +6,13 @@
 	"main": "index.js",
 	"name": "lube-ui",
 	"scripts": {
-		"dts": "tsc"
 	},
 	"type": "module",
-	"types": "@types/index.d.ts",
+	"types": "types.d.ts",
 	"version": "0.1.0",
 	"devDependencies": {
-		"svelte": "^4.2.0"
+		"@typescript-eslint/parser": "^6.6.0",
+		"svelte": "^4.2.0",
+		"svelte-eslint-parser": "^0.33.0"
 	}
 }

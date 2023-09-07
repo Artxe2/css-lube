@@ -8,7 +8,7 @@ import {
 </script>
 
 <ComponentTabView>
-	<CarouselSlider classs="flex h=3 op=.5
+	<CarouselSlider classs="h=3 op=.5
 			::-webkit-scrollbar/none">
 		<div class="w=10% h=100% bg=red ta=center">red</div>
 		<div class="w=20% h=100% bg=orange ta=center">orange</div>
@@ -19,7 +19,7 @@ import {
 ${keyword("import")} ${bracket("{")} ${name("CarouselSlider")} ${bracket("}")} ${keyword("from")} ${string("lube-ui")}
 `)}
 
-${html("CarouselSlider", ` ${name("classs")}=${string(`flex h=3 op=.5
+${html("CarouselSlider", ` ${name("classs")}=${string(`h=3 op=.5
 		::-webkit-scrollbar/none`)}`, `
 	${html("div", ` ${name("class")}=${string("w=10% h=100% bg=red ta=center")}`, "red")}
 	${html("div", ` ${name("class")}=${string("w=20% h=100% bg=orange ta=center")}`, "orange")}

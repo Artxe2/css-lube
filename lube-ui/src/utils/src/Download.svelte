@@ -11,7 +11,7 @@ const download_file = () =>
 		.then(blob => {
 			const link = document.createElement("a")
 			link.href = URL.createObjectURL(blob)
-			link.download = url.slice(url.lastIndexOf('/') + 1)
+			link.download = url.slice(url.lastIndexOf("/") + 1)
 			link.style.display = "none"
 			document.body.append(link)
 			link.click()

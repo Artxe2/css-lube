@@ -19,7 +19,6 @@ let active_after
 
 on_mount(() => {
 	page.subscribe(() => {
-		// @ts-ignore
 		active = location.pathname.startsWith(data.href)
 		if (active != active_after) setTimeout(() => active_after = active, 50)
 	})

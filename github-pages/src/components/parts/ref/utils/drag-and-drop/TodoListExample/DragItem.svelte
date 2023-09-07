@@ -24,8 +24,10 @@ export let move_item
 
 /** @param {MouseEvent} event */
 const handle_click = event => {
-	/** @ts-ignore */
-	alert(event.target.textContent)
+	alert(
+		/** @type {HTMLElement} */
+		(event.target)?.textContent
+	)
 }
 const handle_dragenter = () => {
 	const i = $drag$?.index

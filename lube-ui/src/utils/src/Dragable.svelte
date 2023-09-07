@@ -1,19 +1,21 @@
 <script>
-import { createEventDispatcher } from "svelte"
+import { createEventDispatcher as create_event_dispatcher } from "svelte"
 
 export let classs = ""
 export let delay = 0
 
-/** @type {(clientX: number, clientY: number, drag: HTMLElement) => void} */
+/** @type {
+	(clientX: number, clientY: number, drag: HTMLElement) => void
+} */// eslint-disable-next-line id-match
 export let setDragElement
 
-const dispatch = createEventDispatcher()
+const dispatch = create_event_dispatcher()
 
 /** @type {HTMLDivElement} */
 let container
 
 /** @type {HTMLDivElement} */
-let dragView
+let drag_view
 
 /** @type {number} */
 let timer
@@ -21,9 +23,9 @@ let timer
 /** @param {{ clientX: number, clientY: number }} event */
 const handle_mousedown = ({ clientX, clientY }) => {
 	timer = setTimeout(() => {
-		/** @type {HTMLDivElement} */
-		// @ts-ignore
-		const drag = (dragView.firstChild || container).cloneNode(true)
+		const drag = /** @type {HTMLDivElement} */ (
+			(drag_view.firstChild || container).cloneNode(true)
+		)
 		drag.style.position = "absolute"
 		drag.style.top = container.offsetTop + "px"
 		drag.style.left = container.offsetLeft + "px"
@@ -37,10 +39,10 @@ const handle_touchstart = event => {
 	handle_mousedown(event.touches[0])
 }
 const handle_mouseup = () => {
-	clearTimeout(timer);
+	clearTimeout(timer)
 }
 const handle_touchend = () => {
-	clearTimeout(timer);
+	clearTimeout(timer)
 }
 </script>
 
@@ -54,6 +56,6 @@ const handle_touchend = () => {
 		on:touchend={handle_touchend}>
 	<slot></slot>
 </div>
-<div bind:this={dragView} style="display:none;">
+<div bind:this={drag_view} style="display:none;">
 	<slot name="drag"></slot>
 </div>

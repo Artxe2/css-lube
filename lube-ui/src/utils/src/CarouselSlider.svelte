@@ -1,5 +1,5 @@
 <script>
-import { onDestroy, onMount } from "svelte"
+import { onMount as on_mount } from "svelte"
 
 /** @type {""|"start"|"center"|"end"} */
 export let align = ""
@@ -7,30 +7,46 @@ export let classs = ""
 export let duration = 800
 /**
  * @param {-1|0|1} direction
- * @param {"start" |"center" | "end"} [snapAlign]
+ * @param {""|"start"|"center"|"end"} [snap_align]
  */
-export const snap = (direction, snapAlign) => {
-	const now = Date.now()
-	if (snapAlign) align = snapAlign
-	request_snapping(calculate_snap_move(0, direction) / duration, now, duration, 0)
+export const snap = (direction, snap_align) => {
+	const curr = now()
+	if (snap_align !== void 0) align = snap_align
+	if (snap_align !== "") {
+		request_snapping(
+			calculate_snap_move(0, direction) / duration,
+			curr,
+			duration,
+			0
+		)
+	}
 }
+
+/** @type {number[]} */
+const move_record = []
+const now = Date.now
+const record_length = 3
+/** @type {number[]} */
+const time_record = []
+
+/** @type {(callback: FrameRequestCallback) => number} */
+let raf
+/** @type {(handle: number) => void} */
+let caf
 
 /** @type {HTMLDivElement} */
 let container
-let isDragging = false
-let startX = 0
-let startTime = 0
-let accumulate = 0
+let is_dragging = false
+/** @type {number} */
+let start_x
 /** @type {number} */
 let request
-/** @type {number} */
-let timer
 
 /** @param {{ clientX: number }} event */
 const handle_mousedown = event => {
-	isDragging = true
-	startX = event.clientX
-	startTime = Date.now()
+	is_dragging = true
+	start_x = event.clientX
+	time_record[0] = now()
 }
 /** @param {TouchEvent} event */
 const handle_touchstart = event => {
@@ -38,17 +54,17 @@ const handle_touchstart = event => {
 }
 /** @param {MouseEvent} event */
 const handle_mousemove = event => {
-	if (isDragging) {
+	if (is_dragging) {
 		event.preventDefault()
-		const scroll = startX - event.clientX
+		const scroll = start_x - event.clientX
 		container.scrollBy(scroll, event.clientY)
-		startX = event.clientX
-		if (scroll < 0 && accumulate > 0 || scroll > 0 && accumulate < 0) {
-			startTime = Date.now()
-			accumulate = scroll
-		} else {
-			accumulate += scroll
+		start_x = event.clientX
+		if (move_record.length == record_length) {
+			move_record.shift()
+			time_record.shift()
 		}
+		move_record.push(scroll)
+		time_record.push(now())
 	}
 }
 /** @param {TouchEvent} event */
@@ -56,22 +72,23 @@ const handle_touchmove = event => {
 	handle_mousemove(new MouseEvent("mousemove", event.touches[0]))
 }
 const handle_mouseup = () => {
-	if (isDragging) {
-		const now = Date.now()
+	if (is_dragging) {
+		const curr = now()
+		let accumulate = 0
+		for (const n of move_record) accumulate += n
 		if (align === "") {
-			const speed = accumulate / (now - startTime)
-			request_slipping(speed, now, duration, 0)
+			const speed = accumulate / (curr - time_record[0])
+			request_slipping(speed, curr, duration, 0)
 		} else {
-			const speed = calculate_snap_move(accumulate * duration * 2 / (now - startTime), 0)
-			request_snapping(speed / duration, now, duration, 0)
+			const speed = calculate_snap_move(accumulate * duration * 2 / (curr - time_record[0]), 0)
+			request_snapping(speed / duration, curr, duration, 0)
 		}
-		accumulate = 0
-		isDragging = false
+		move_record.length = 0
+		time_record.length = 0
+		is_dragging = false
 	}
 }
-const handle_touchend = () => {
-	handle_mouseup()
-}
+const handle_touchend = handle_mouseup
 /**
  * @param {number} speed
  * @param {number} prev
@@ -79,8 +96,10 @@ const handle_touchend = () => {
  * @param {number} move
  */
 const request_slipping = (speed, prev, time, move) => {
-	cancelAnimationFrame(request)
-	request = requestAnimationFrame( () => slipping(speed, prev, time, move) )
+	if (request) caf(request)
+	request = raf(
+		() => slipping(speed, prev, time, move)
+	)
 }
 /**
  * @param {number} speed
@@ -90,7 +109,7 @@ const request_slipping = (speed, prev, time, move) => {
  */
 const slipping = (speed, prev, time, move) => {
 	if (!speed) return
-	const curr = Date.now()
+	const curr = now()
 	const ms = Math.min(time, curr - prev)
 	move += speed * ms * time / duration + container.scrollLeft
 	container.scrollLeft = move
@@ -108,8 +127,8 @@ const slipping = (speed, prev, time, move) => {
  * @param {number} move
  */
 const request_snapping = (speed, prev, time, move) => {
-	cancelAnimationFrame(request)
-	request = requestAnimationFrame(() => snapping(speed, prev, time, move))
+	if (request) caf(request)
+	request = raf(() => snapping(speed, prev, time, move))
 }
 /**
  * @param {number} speed
@@ -119,7 +138,7 @@ const request_snapping = (speed, prev, time, move) => {
  */
 const snapping = (speed, prev, time, move) => {
 	if (!speed) return
-	const curr = Date.now()
+	const curr = now()
 	const ms = Math.min(time, curr - prev)
 	move += speed * ms + container.scrollLeft
 	container.scrollLeft = move
@@ -131,112 +150,91 @@ const snapping = (speed, prev, time, move) => {
 	}
 }
 /**
- * @param {number} offset
+ * @param {number} inertia
  * @param {number} direction
  */
-const calculate_snap_move = (offset, direction) => {
-	/** @type {HTMLElement[]} */
-	// @ts-ignore
-	const childElements = [...container.children]
+const calculate_snap_move = (inertia, direction) => {
+	const child_elements = /** @type {HTMLElement[]} */ ([...container.children])
 	const length = container.childElementCount
-	if (length == 0) {
-		return 0
-	}
+	if (length == 0) return 0
 	let left = 0
 	if (align === "" || align === "start") {
-		const scrollLeft = container.scrollLeft
-		for (let i = 0; ; i++) {
-			if (left + childElements[i % length].offsetWidth >= scrollLeft + offset) {
-				if (scrollLeft - left + offset < childElements[i % length].offsetWidth / 2) {
-					if (direction < 0) {
-						return left - scrollLeft - childElements[(i - 1 + length) % length].offsetWidth
-					} else if (direction > 0) {
-						return left - scrollLeft + childElements[i % length].offsetWidth
-					} else {
-						return left - scrollLeft
-					}
-				}
-				if (direction < 0) {
-					return left - scrollLeft
-				} else if (direction > 0) {
-					return left - scrollLeft + childElements[i % length].offsetWidth + childElements[(i + 1) % length].offsetWidth
-				} else {
-					return left - scrollLeft + childElements[i % length].offsetWidth
-				}
-			} else {
-				left += childElements[i % length].offsetWidth
-			}
+		const scroll_left = container.scrollLeft
+		let i = 0
+		while (left + child_elements[i % length].offsetWidth < scroll_left + inertia) {
+			left += child_elements[i++ % length].offsetWidth
 		}
+		if (scroll_left - left + inertia < child_elements[i % length].offsetWidth / 2) {
+			return direction < 0
+				? left - scroll_left - child_elements[(i - 1 + length) % length].offsetWidth
+				: direction > 0
+					? left - scroll_left + child_elements[i % length].offsetWidth
+					: left - scroll_left
+		}
+		return direction < 0
+			? left - scroll_left
+			: direction > 0
+				? left - scroll_left + child_elements[i % length].offsetWidth + child_elements[(i + 1) % length].offsetWidth
+				: left - scroll_left + child_elements[i % length].offsetWidth
+	} else if (align === "center") {
+		const scroll_left = container.scrollLeft + container.clientWidth / 2
+		let i = 0
+		while (left + child_elements[i % length].offsetWidth / 2 < scroll_left + inertia) {
+			left += child_elements[i++ % length].offsetWidth
+		}
+		if (scroll_left - left + inertia < 0) {
+			return direction < 0
+				? left - scroll_left - child_elements[(i - 1) % length].offsetWidth - child_elements[(i - 2 + length) % length].offsetWidth / 2
+				: direction > 0
+					? left - scroll_left + child_elements[i % length].offsetWidth / 2
+					: left - scroll_left - child_elements[(i - 1 + length) % length].offsetWidth / 2
+		}
+		return direction < 0
+			? left - scroll_left - child_elements[(i - 1 + length) % length].offsetWidth / 2
+			: direction > 0
+				? left - scroll_left + child_elements[i % length].offsetWidth + child_elements[(i + 1) % length].offsetWidth / 2
+				: left - scroll_left + child_elements[i % length].offsetWidth / 2
 	} else if (align === "end") {
-		const scrollLeft = container.scrollLeft + container.clientWidth
-		for (let i = 0; ; i++) {
-			if (left + childElements[i % length].offsetWidth >= scrollLeft + offset) {
-				if (scrollLeft - left + offset < childElements[i % length].offsetWidth / 2) {
-					if (direction < 0) {
-						return left - scrollLeft - childElements[(i - 1 + length) % length].offsetWidth
-					} else if (direction > 0) {
-						return left - scrollLeft + childElements[i % length].offsetWidth
-					} else {
-						return left - scrollLeft
-					}
-				}
-				if (direction < 0) {
-					return left - scrollLeft
-				} else if (direction > 0) {
-					return left - scrollLeft + childElements[i % length].offsetWidth + childElements[(i + 1) % length].offsetWidth
-				} else {
-					return left - scrollLeft + childElements[i % length].offsetWidth
-				}
-			} else {
-				left += childElements[i % length].offsetWidth
-			}
+		const scroll_left = container.scrollLeft + container.clientWidth
+		let i = 0
+		while (left + child_elements[i % length].offsetWidth < scroll_left + inertia) {
+			left += child_elements[i++ % length].offsetWidth
 		}
-	} else {
-		const scrollLeft = container.scrollLeft + container.clientWidth / 2
-		for (let i = 0; ; i++) {
-			if (left + childElements[i % length].offsetWidth / 2 >= scrollLeft + offset) {
-				if (scrollLeft - left + offset < 0) {
-					if (direction < 0) {
-						return Math.floor(left - scrollLeft - childElements[(i - 1) % length].offsetWidth - childElements[(i - 2 + length) % length].offsetWidth / 2)
-					} else if (direction > 0) {
-						return Math.floor(left - scrollLeft + childElements[i % length].offsetWidth / 2)
-					} else {
-						return Math.floor(left - scrollLeft - childElements[(i - 1 + length) % length].offsetWidth / 2)
-					}
-				}
-				if (direction < 0) {
-					return Math.floor(left - scrollLeft - childElements[(i - 1 + length) % length].offsetWidth / 2)
-				} else if (direction > 0) {
-					return Math.floor(left - scrollLeft + childElements[i % length].offsetWidth + childElements[(i + 1) % length].offsetWidth / 2)
-				} else {
-					return Math.floor(left - scrollLeft + childElements[i % length].offsetWidth / 2)
-				}
-			} else {
-				left += childElements[i % length].offsetWidth
-			}
+		if (scroll_left - left + inertia < child_elements[i % length].offsetWidth / 2) {
+			return direction < 0
+				? left - scroll_left - child_elements[(i - 1 + length) % length].offsetWidth
+				: direction > 0
+					? left - scroll_left + child_elements[i % length].offsetWidth
+					: left - scroll_left
+		}
+		return direction < 0
+			? left - scroll_left
+			: direction > 0
+				? left - scroll_left + child_elements[i % length].offsetWidth + child_elements[(i + 1) % length].offsetWidth
+				: left - scroll_left + child_elements[i % length].offsetWidth
+	}
+	return 0
+}
+const copy_childs_full = () => {
+	let max_child_width = 0
+	const child_elements = /** @type {HTMLElement[]} */ ([...container.children])
+	for (const child of child_elements) {
+		max_child_width = Math.max(max_child_width, child.offsetWidth)
+	}
+	const safe_width = container.offsetWidth + max_child_width * 3
+	while (container.scrollWidth < safe_width) {
+		for (const child of child_elements) {
+			container.append(
+				child.cloneNode(true)
+			)
 		}
 	}
 }
-const copyChildsFull = () => {
-	let maxChildWidth = 0
-	/** @type {HTMLElement[]} */
-	// @ts-ignore
-	const childElements = [...container.children]
-	for (const child of childElements) {
-		maxChildWidth = Math.max(maxChildWidth, child.offsetWidth)
-	}
-	const safeWidth = container.offsetWidth + maxChildWidth * 3
-	while (container.scrollWidth < safeWidth) {
-		for (const child of childElements) {
-			container.append(child.cloneNode(true))
-		}
-	}
-}
-onMount(() => {
-	if (container.childElementCount == 0) {
-		return
-	}
-	copyChildsFull()
+on_mount(() => {
+	raf = requestAnimationFrame
+	caf = cancelAnimationFrame
+	if (container.childElementCount == 0) return
+	copy_childs_full()
 	let first = container.firstElementChild
 	let last = container.lastElementChild
 	last && first?.before(last)
@@ -251,12 +249,10 @@ onMount(() => {
 					const target = entry.target
 					if (target === first) {
 						last && target.before(last)
-						// @ts-ignore
-						container.scrollLeft += last?.offsetWidth + 1
+						container.scrollLeft += /** @type {HTMLElement} */ (last)?.offsetWidth
 					} else {
 						first && target.after(first)
-						// @ts-ignore
-						container.scrollLeft -= first?.offsetWidth + 1
+						container.scrollLeft -= /** @type {HTMLElement} */ (first)?.offsetWidth
 					}
 					first = container.firstElementChild
 					last = container.lastElementChild
@@ -265,29 +261,30 @@ onMount(() => {
 				}
 			}
 		}, {
-			root: container
-			,threshold: 0
+			root: container,
+			threshold: 0
 		})
 	first && observer.observe(first)
 	last && observer.observe(last)
-	timer = setInterval(() => {
-		const initScroll = calculate_snap_move(0, 1)
-		if (!initScroll || container.scrollLeft != (container.scrollLeft += initScroll)) {
-			clearTimeout(timer)
-		}
-	}, 50)
+	const init_scroll = calculate_snap_move(0, 1)
+	if (init_scroll) {
+		const timer = setInterval(() => {
+			if (container.scrollLeft != (container.scrollLeft += init_scroll)) {
+				clearTimeout(timer)
+			}
+		}, 50)
+	}
 })
-onDestroy(() => clearInterval(timer))
 </script>
 
-<svelte:window
+<svelte:body
 		on:mousemove={handle_mousemove}
 		on:mouseup={handle_mouseup}/>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
 <div bind:this={container}
 		class={classs}
-		style="overflow:scroll;touch-action:none;"
+		style="display:flex;overflow:scroll;touch-action:none;"
+		role="none"
 		on:mousedown={handle_mousedown}
 		on:touchstart={handle_touchstart}
 		on:touchmove={handle_touchmove}

@@ -10,7 +10,7 @@ VSCE: JavaScript and TypeScript Nightly
 		"node": true
 	},
 	"extends": ["eslint:recommended"],
-	"ignorePatterns": ["**/@types/**/*.d.ts"],
+	"ignorePatterns": ["*.min.js", "history/**/*.js"],
 	"overrides": [{
 		"files": ["*.svelte"],
 		"parser": "svelte-eslint-parser",
@@ -20,7 +20,7 @@ VSCE: JavaScript and TypeScript Nightly
 	}],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
-		"ecmaVersion": "latest",
+		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
 	"rules": {
@@ -72,7 +72,7 @@ VSCE: JavaScript and TypeScript Nightly
 			"allowAllPropertiesOnSameLine": false
 		}],
 		// Warns the use of const for variables that are not reassigned
-		"prefer-const": "warn",
+		"prefer-const": "error",
 		// Requires the use of double quotes for strings
 		"quotes": ["error", "double"],
 		// Disallows the use of semicolons

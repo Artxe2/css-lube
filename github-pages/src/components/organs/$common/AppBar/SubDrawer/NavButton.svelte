@@ -17,11 +17,8 @@ let active
 if ("href" in data) {
 	on_mount(() => {
 		page.subscribe(() => {
-			// @ts-ignore
 			active = data.href == base + "/"
-			// @ts-ignore
 				? location.pathname == data.href || location.pathname + "/" == data.href
-			// @ts-ignore
 				: location.pathname.startsWith(data.href)
 		})
 	})

@@ -15,8 +15,9 @@
 	"scripts": {
 		"build": "cd github-pages && pnpm build",
 		"dev": "cd github-pages && pnpm dev",
+		"dts": "cd lube-ui && pnpm dts",
 		"lint": "cd github-pages && pnpm lint",
 		"preview": "cd github-pages && pnpm preview"
 	},
-	"version": "v1.4.3"
+	"version": "v1.5.0"
 }

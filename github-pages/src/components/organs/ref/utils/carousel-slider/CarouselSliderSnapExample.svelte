@@ -6,10 +6,9 @@ import {
 	bracket, declare, func, html, keyword, name, number, string, type 
 } from "js/highlighter.js"
 
-/** @type {"" | "start" |"center" | "end"} */
+/** @type {""|"start"|"center"|"end"} */
 let align = "center"
-
-/** @type {(direction: number, snapAlign?: "start" |"center" | "end") => void} */
+/** @type {(direction: number, snapAlign?: ""|"start"|"center"|"end") => void} */
 let snap
 </script>
 
@@ -17,7 +16,7 @@ let snap
 	<div>
 		<CarouselSlider bind:snap
 				bind:align
-				classs="flex h=3 op=.5 ::-webkit-scrollbar/none"
+				classs="h=3 op=.5 ::-webkit-scrollbar/none"
 				duration={200}>
 			<div class="w=10% h=100% bg=red ta=center">red</div>
 			<div class="w=20% h=100% bg=orange ta=center">orange</div>
@@ -58,7 +57,7 @@ ${declare("let")} ${func("snap")}: ${bracket("(")}${name("direction")}: ${type("
 ${html("div", "", `
 	${html("CarouselSlider", ` ${keyword("bind")}:${func("snap")}
 				${keyword("bind")}:${name("align")}
-				${name("classs")}=${string("flex h=3 op=.5 ::-webkit-scrollbar/none")}
+				${name("classs")}=${string("h=3 op=.5 ::-webkit-scrollbar/none")}
 				${name("duration")}=${bracket("{")}${number(200)}${bracket("}")}`, `
 		${html("div", ` ${name("class")}=${string("w=10% h=100% bg=red ta=center")}`, "red")}
 		${html("div", ` ${name("class")}=${string("w=20% h=100% bg=orange ta=center")}`, "orange")}

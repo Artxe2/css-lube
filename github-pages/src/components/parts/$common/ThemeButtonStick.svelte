@@ -13,8 +13,7 @@ const change_theme = () => {
 		? "LIGHT"
 		: "DARK"
 	localStorage.setItem("THEME", $theme$)
-	// @ts-ignore
-	// eslint-disable-next-line no-undef
+	/* @ts-ignore: window.cssLube */// eslint-disable-next-line no-undef
 	cssLube()
 }
 on_mount(() => {

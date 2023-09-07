@@ -29,7 +29,7 @@ const handle_endtype = ({ detail }) => index = detail
 	<H2>What is CSS Lube?</H2>
 	<span>CSS Lube is Highly-optimized CSS Interpreter.</span>
 	<span>It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,504 byte(2,788 byte on gzip) js file.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,528 byte(2,805 byte on gzip) js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
 			@!md@column
