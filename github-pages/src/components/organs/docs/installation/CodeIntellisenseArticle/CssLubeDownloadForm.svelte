@@ -1,5 +1,5 @@
 <script>
-import { client } from "fetch-lube"
+import { client } from "async-lube"
 import styles from "js/styles.js"
 import version from "js/version.js"
 import { base } from "$app/paths"

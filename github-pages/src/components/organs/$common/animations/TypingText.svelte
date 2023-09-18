@@ -1,8 +1,8 @@
 <script>
 import {
-	createEventDispatcher as create_event_dispatcher,
-	onDestroy as on_destroy,
-	onMount as on_mount
+	createEventDispatcher,
+	onDestroy,
+	onMount
 } from "svelte"
 
 export let classs = ""
@@ -13,7 +13,7 @@ export let dark_bgc = "--astronaut"
 export let orders = void 0
 export let duration = 1000
 
-const dispatch = create_event_dispatcher()
+const dispatch = createEventDispatcher()
 
 /** @type {number} */
 let timer
@@ -83,8 +83,8 @@ const animation = async () => {
 	foldables[index - 1].classList.remove(cursor, dark_cursor, blink)
 	animation()
 }
-on_mount(animation)
-on_destroy(
+onMount(animation)
+onDestroy(
 	() => clearTimeout(timer)
 )
 </script>

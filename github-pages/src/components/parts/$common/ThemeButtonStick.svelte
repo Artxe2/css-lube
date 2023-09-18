@@ -1,6 +1,6 @@
 <script>
 import { theme$ } from "parts/$common/store.js"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import { base } from "$app/paths"
 
 let deg = -180
@@ -16,7 +16,7 @@ const change_theme = () => {
 	/* @ts-ignore: window.cssLube */// eslint-disable-next-line no-undef
 	cssLube()
 }
-on_mount(() => {
+onMount(() => {
 	let theme = localStorage.getItem("THEME") || ""
 	if (!theme && matchMedia?.("(prefers-color-scheme: dark)").matches) {
 		theme = "DARK"

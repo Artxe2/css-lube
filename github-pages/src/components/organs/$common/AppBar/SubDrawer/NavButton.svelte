@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths"
 import { page } from "$app/stores"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 
 /** @type {string} */
 export let text
@@ -15,7 +15,7 @@ let is_open
 let active
 
 if ("href" in data) {
-	on_mount(() => {
+	onMount(() => {
 		page.subscribe(() => {
 			active = data.href == base + "/"
 				? location.pathname == data.href || location.pathname + "/" == data.href

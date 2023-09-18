@@ -1,12 +1,12 @@
 <script>
 import { H2 } from "lube-ui"
 import InfiniteScrollExample from "parts/ref/utils/infinite-scroll/InfiniteScrollExample.svelte"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import styles from "js/styles.js"
 
 /** @type {HTMLElement} */
 let header
-on_mount(
+onMount(
 	() => header.parentElement?.scroll(0, 0)
 )
 </script>

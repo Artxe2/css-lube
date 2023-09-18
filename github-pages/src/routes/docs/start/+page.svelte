@@ -3,7 +3,7 @@ import TabPage from "organs/$common/utils/TabPage.svelte"
 import styles from "js/styles.js"
 import InstallationArticle from "organs/docs/installation/InstallationArticle.svelte"
 import CodeIntellisenseArticle from "organs/docs/installation/CodeIntellisenseArticle.svelte"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import { page } from "$app/stores"
 import { H2 } from "lube-ui"
 
@@ -12,7 +12,7 @@ let index = 0
 /** @type {HTMLElement} */
 let header
 
-on_mount(() => {
+onMount(() => {
 	page.subscribe(() => header?.parentElement?.scroll(0, 0))
 })
 </script>

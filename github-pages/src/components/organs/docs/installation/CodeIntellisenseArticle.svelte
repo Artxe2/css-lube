@@ -13,8 +13,8 @@ import styles from "js/styles.js"
 				bg=--primary-50 :hover/bg=--primary-40
 				:hover/ts=0_0_.5
 				:active/bg=--primary-50!"
-				url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/intellisense-css-lube-0.0.2.vsix">
-			<span class="@md@fs=1.5">intellisense.vsix v0.0.2</span>
+				url="https://raw.githubusercontent.com/Artxe2/css-lube/main/lib/intellisense-css-lube-0.1.0.vsix">
+			<span class="@md@fs=1.5">intellisense.vsix v0.1.0</span>
 		</Download>
 	</div>
 	<div class="h=1"></div>

@@ -2,11 +2,11 @@
 import HeroSection from "organs/index/HeroSection.svelte"
 import WhatIsCssLube from "organs/index/WhatIsCssLube.svelte"
 import WhatsTheDifference from "organs/index/WhatsTheDifference.svelte"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 
 /** @type {HTMLElement} */
 let header
-on_mount(
+onMount(
 	() => header.parentElement?.scroll(0, 0)
 )
 </script>

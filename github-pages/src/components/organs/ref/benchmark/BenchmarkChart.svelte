@@ -1,5 +1,5 @@
 <script>
-import { scaleLinear as scale_linear } from "d3-scale"
+import { scaleLinear } from "d3-scale"
 import { H2 } from "lube-ui"
 
 /**
@@ -73,16 +73,16 @@ let width
 /** @type {number} */
 let height
 
-$: x_scale = scale_linear()
+$: x_scale = scaleLinear()
 	.domain([0, data.length])
 	.range([padding.left, width - padding.right])
-$: first_contentful_paint_scale = scale_linear()
+$: first_contentful_paint_scale = scaleLinear()
 	.domain([0, Math.max(...first_contentful_paint_ticks)])
 	.range([height - padding.bottom, padding.top])
-$: total_blocking_time_scale = scale_linear()
+$: total_blocking_time_scale = scaleLinear()
 	.domain([0, Math.max(...total_blocking_time_ticks)])
 	.range([height - padding.bottom, padding.top])
-$: speed_index_scale = scale_linear()
+$: speed_index_scale = scaleLinear()
 	.domain([0, Math.max(...speed_index_ticks)])
 	.range([height - padding.bottom, padding.top])
 

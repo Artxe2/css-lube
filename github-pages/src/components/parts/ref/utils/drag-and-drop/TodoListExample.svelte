@@ -2,12 +2,11 @@
 import {
 	done$, done_tf$, drag$, todo$, todo_tf$, transition$ 
 } from "parts/ref/store.js"
-import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
-import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
+import { onDestroy, onMount } from "svelte"
 import DragItem from "parts/ref/utils/drag-and-drop/TodoListExample/DragItem.svelte"
 import DragItemPlaceHolder from "parts/ref/utils/drag-and-drop/TodoListExample/DragItemPlaceHolder.svelte"
 import { DragContainer } from "lube-ui"
-import ExampleCode from "organs/ref/utils/TodoListExample/ExampleCode.svelte"
+import styles from "js/styles.js"
 
 /** @type {number[]} */
 const todo_heights = []
@@ -15,12 +14,11 @@ const todo_heights = []
 /** @type {number[]} */
 const done_heights = []
 
-/** @type {boolean} */
-// eslint-disable-next-line id-match
+/** @type {boolean} */// eslint-disable-next-line lube/svelte-naming-convention
 let isDragging
 
 /** @type {(clientX: number, clientY: number, drag: HTMLElement) => any} */
-// eslint-disable-next-line id-match
+// eslint-disable-next-line lube/svelte-naming-convention
 let setDragElement
 
 const handle_dragend = () => {
@@ -131,7 +129,7 @@ const re_ordering = (from, type) => {
 	;(type === "todo" ? todo$ : done$).set(list)
 	;(type === "todo" ? todo_tf$ : done_tf$).set(transforms)
 }
-on_mount(() => {
+onMount(() => {
 	$todo$ = [
 		"Task A",
 		"Task B",
@@ -151,7 +149,7 @@ on_mount(() => {
 	$done$ = [ "Task Z", "" ]
 	$done_tf$ = new Array($done$.length).fill(0)
 })
-on_destroy(() => {
+onDestroy(() => {
 	$todo$ = []
 	$todo_tf$ = []
 	$done$ = []
@@ -161,51 +159,49 @@ on_destroy(() => {
 })
 </script>
 
-<ComponentTabView>
-	<div class="flex jc=center">
-		<DragContainer bind:isDragging
-				bind:setDragElement
-				on:dragend={handle_dragend}>
-			<div class="flex flex-wrap=wrap">
-				<div class="flex column">
-					<span class="fs=2 bold">To do</span>
-					<div class="h=.5"></div>
-					{#each $todo$ as v, i}
-					<DragItem bind:clientHeight={todo_heights[i]}
-							{setDragElement}
-							list={$todo$}
-							transforms={$todo_tf$}
-							type="todo"
-							index={i}
-							{transfer_list}
-							{move_item} />
-					{/each}
-					{#if $todo$.length === 1}
-					<DragItemPlaceHolder {move_item} />
-					{/if}
-				</div>
-				<div class="w=5 h=5"></div>
-				<div class="flex column">
-					<span class="fs=2 bold">Done</span>
-					<div class="h=.5"></div>
-					{#each $done$ as v, i}
-					<DragItem bind:clientHeight={done_heights[i]}
-							{setDragElement}
-							list={$done$}
-							transforms={$done_tf$}
-							type="done"
-							index={i}
-							{transfer_list}
-							{move_item} />
-					{/each}
-					{#if $done$.length === 1}
-					<DragItemPlaceHolder {move_item} />
-					{/if}
-				</div>
-			</div>
-		</DragContainer>
+<a href="https://github.com/Artxe2/css-lube/blob/main/github-pages/src/components/parts/ref/utils/drag-and-drop/TodoListExample.svelte" target="_blank"
+		class="w=fit-content {styles.$common.link}">
+	TodoListExample.svelte
+</a>
+<div class="h=1"></div>
+<DragContainer bind:isDragging
+		bind:setDragElement
+		on:dragend={handle_dragend}>
+	<div class="flex flex-wrap=wrap">
+		<div class="flex column">
+			<span class="fs=2 bold">To do</span>
+			<div class="h=.5"></div>
+			{#each $todo$ as v, i}
+			<DragItem bind:clientHeight={todo_heights[i]}
+					{setDragElement}
+					list={$todo$}
+					transforms={$todo_tf$}
+					type="todo"
+					index={i}
+					{transfer_list}
+					{move_item} />
+			{/each}
+			{#if $todo$.length === 1}
+			<DragItemPlaceHolder {move_item} />
+			{/if}
+		</div>
+		<div class="w=5 h=5"></div>
+		<div class="flex column">
+			<span class="fs=2 bold">Done</span>
+			<div class="h=.5"></div>
+			{#each $done$ as v, i}
+			<DragItem bind:clientHeight={done_heights[i]}
+					{setDragElement}
+					list={$done$}
+					transforms={$done_tf$}
+					type="done"
+					index={i}
+					{transfer_list}
+					{move_item} />
+			{/each}
+			{#if $done$.length === 1}
+			<DragItemPlaceHolder {move_item} />
+			{/if}
+		</div>
 	</div>
-	<div>
-		<ExampleCode />
-	</div>
-</ComponentTabView>
+</DragContainer>

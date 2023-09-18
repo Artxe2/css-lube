@@ -4,7 +4,7 @@ import styles from "js/styles.js"
 import BasicArticle from "organs/docs/syntax/BasicArticle.svelte"
 import SelectorArticle from "organs/docs/syntax/SelectorArticle.svelte"
 import MediaQueryArticle from "organs/docs/syntax/MediaQueryArticle.svelte"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import { page } from "$app/stores"
 import { H2 } from "lube-ui"
 
@@ -13,7 +13,7 @@ let index = 0
 /** @type {HTMLElement} */
 let header
 
-on_mount(() => {
+onMount(() => {
 	page.subscribe(() => header?.parentElement?.scroll(0, 0))
 })
 </script>

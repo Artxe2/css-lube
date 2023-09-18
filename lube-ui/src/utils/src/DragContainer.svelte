@@ -1,28 +1,28 @@
 <script>
-import { createEventDispatcher as create_event_dispatcher } from "svelte"
+import { createEventDispatcher } from "svelte"
 
 export let classs = ""
-// eslint-disable-next-line id-match
+
 export let isDragging = false
 
-/** @type {HTMLElement?} */// eslint-disable-next-line id-match
+/** @type {HTMLElement?} */
 export let dragElement = null
 
 /**
- * @param {number} clientX
- * @param {number} clientY
+ * @param {number} client_x
+ * @param {number} client_y
  * @param {HTMLElement} drag
- */// eslint-disable-next-line id-match
-export const setDragElement = (clientX, clientY, drag) => {
+ */
+export const setDragElement = (client_x, client_y, drag) => {
 	const container_rect = container.getBoundingClientRect()
 	dragElement = drag
-	x = clientX - container_rect.left
-	y = clientY - container_rect.top
+	x = client_x - container_rect.left
+	y = client_y - container_rect.top
 	container.append(dragElement)
 	isDragging = true
 }
 
-const dispatch = create_event_dispatcher()
+const dispatch = createEventDispatcher()
 
 /** @type {HTMLElement} */
 let container
@@ -171,7 +171,7 @@ const scroll_with_drag = time => {
 }
 </script>
 
-<svelte:body
+<svelte:window
 		on:mousemove={handle_mousemove}
 		on:mouseup={handle_mouseup}
 		on:touchmove={handle_touchmove}

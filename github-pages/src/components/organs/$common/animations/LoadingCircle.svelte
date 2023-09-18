@@ -1,13 +1,13 @@
 <script>
-import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
+import { onDestroy, onMount } from "svelte"
 
 export let classs = ""
 
 /** @type {number} */
 let timer
 let index = 0
-on_mount(() => timer = setInterval(() => index = ++index % 12, 90))
-on_destroy(() => clearInterval(timer))
+onMount(() => timer = setInterval(() => index = ++index % 12, 90))
+onDestroy(() => clearInterval(timer))
 </script>
 
 <div class="flex relative w=4 h=4 jc=center ai=center c=#000 fs=1.5

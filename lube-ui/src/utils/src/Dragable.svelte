@@ -1,15 +1,15 @@
 <script>
-import { createEventDispatcher as create_event_dispatcher } from "svelte"
+import { createEventDispatcher } from "svelte"
 
 export let classs = ""
 export let delay = 0
 
 /** @type {
 	(clientX: number, clientY: number, drag: HTMLElement) => void
-} */// eslint-disable-next-line id-match
+} */
 export let setDragElement
 
-const dispatch = create_event_dispatcher()
+const dispatch = createEventDispatcher()
 
 /** @type {HTMLDivElement} */
 let container

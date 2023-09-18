@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths"
 import { page } from "$app/stores"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 
 /** @type {string} */
 export let href
@@ -16,7 +16,7 @@ let active
 /** @type {boolean} */
 let active_after
 
-on_mount(() => {
+onMount(() => {
 	page.subscribe(() => {
 		active = href == base + "/"
 			? location.pathname == href || location.pathname + "/" == href

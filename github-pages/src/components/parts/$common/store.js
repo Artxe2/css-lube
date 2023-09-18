@@ -3,12 +3,13 @@ import {
 	writable
 } from "svelte/store"
 
-import { client } from "fetch-lube"
+import { client } from "async-lube"
 
 export const theme$ = writable("")
 
-/** @type {import("svelte/store").Writable<DrawerSubList>} */
-export const drawer_sub_list$ = writable([])
+export const drawer_sub_list$ = writable(
+	/** @type {import("./public.js").DrawerSubList} */([])
+)
 
 const fetch_github_info = client("https://api.github.com/repos/:user/:repo")
 	.get()

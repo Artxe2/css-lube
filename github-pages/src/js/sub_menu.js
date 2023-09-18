@@ -23,13 +23,6 @@ const sub_menu = {
 					"Drag and Drop": { href: base + "/ref/utils/drag-and-drop" },
 					"Infinite Scroll": { href: base + "/ref/utils/infinite-scroll" }
 				}
-			},
-			"Animations": {
-				href: base + "/ref/animation",
-				childs: {
-					"Loading Circle": { href: base + "/ref/animation/loading-circle" },
-					"Text Animation": { href: base + "/ref/animation/text-animation" }
-				}
 			}
 		}
 	}

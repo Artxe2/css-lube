@@ -6,7 +6,7 @@ import GithubStars from "parts/$common/GithubStars.svelte"
 import styles from "js/styles.js"
 
 /** @type {number} */
-// eslint-disable-next-line id-match
+// eslint-disable-next-line lube/svelte-naming-convention
 let innerHeight
 </script>
 

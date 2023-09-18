@@ -5,13 +5,13 @@ import CodePage from "organs/$common/utils/CodePage.svelte"
 import JsMap from "organs/$common/utils/JsMap.svelte"
 import CssResetArticle from "organs/ref/custom/CssResetArticle.svelte"
 import DefaultUnitArticle from "organs/ref/custom/DefaultUnitArticle.svelte"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import styles from "js/styles.js"
 
 /** @type {HTMLElement} */
 let header
 
-on_mount(() => {
+onMount(() => {
 	page.subscribe(() => {
 		if (!location.hash) header?.parentElement?.scroll(0, 0)
 	})

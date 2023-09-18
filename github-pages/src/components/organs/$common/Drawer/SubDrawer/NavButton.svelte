@@ -1,6 +1,6 @@
 <script>
 import { page } from "$app/stores"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 
 /** @type {string} */
 export let text
@@ -17,7 +17,7 @@ let active
 /** @type {boolean} */
 let active_after
 
-on_mount(() => {
+onMount(() => {
 	page.subscribe(() => {
 		active = location.pathname.startsWith(data.href)
 		if (active != active_after) setTimeout(() => active_after = active, 50)

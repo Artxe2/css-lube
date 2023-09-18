@@ -1,6 +1,6 @@
 <script>
 import styles from "js/styles.js"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
 import { theme$ } from "parts/$common/store.js"
 
@@ -16,7 +16,7 @@ let content = `<div class="ta=center">
 		Hello
 	</div>
 </div>`
-on_mount(() => {
+onMount(() => {
 	self.MonacoEnvironment = {
 		getWorkerUrl: () => "https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js"
 	}

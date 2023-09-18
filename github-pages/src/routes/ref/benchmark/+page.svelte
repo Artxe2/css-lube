@@ -2,11 +2,11 @@
 import styles from "js/styles.js"
 import BenchmarkChart from "organs/ref/benchmark/BenchmarkChart.svelte"
 import { H2 } from "lube-ui"
-import { onMount as on_mount } from "svelte"
+import { onMount } from "svelte"
 
 /** @type {HTMLElement} */
 let header
-on_mount(() => header.parentElement?.scroll(0, 0))
+onMount(() => header.parentElement?.scroll(0, 0))
 </script>
 
 <svelte:head>

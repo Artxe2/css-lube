@@ -11,11 +11,9 @@ export let type
 /** @type {number} */
 export let index
 /** @type {number} */
-// eslint-disable-next-line id-match
 export let clientHeight
 export let duration = 400
 /** @type {(clientX: number, clientY: number, drag: HTMLElement) => void} */
-// eslint-disable-next-line id-match
 export let setDragElement
 /** @type {(index: number) => void} */
 export let transfer_list

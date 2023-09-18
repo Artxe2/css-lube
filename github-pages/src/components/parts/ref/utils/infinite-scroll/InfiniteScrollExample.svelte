@@ -2,10 +2,8 @@
 import { contents$ } from "parts/ref/store.js"
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
 import styles from "js/styles.js"
-import { onDestroy as on_destroy, onMount as on_mount } from "svelte"
-import ComponentTabView from "organs/$common/utils/ComponentTabView.svelte"
+import { onDestroy, onMount } from "svelte"
 import { H2, InfiniteScroll } from "lube-ui"
-import ExampleCode from "organs/ref/utils/InfiniteScrollExample/ExampleCode.svelte"
 import { base } from "$app/paths"
 
 let loading = 1 // 0: in progress, 1: none, 2: error
@@ -42,39 +40,39 @@ const load_contents = () => {
 			.catch(() => loading = 2)
 	}
 }
-on_mount(() => lorem_api(0, 10).then(value => $contents$ = value))
-on_destroy(() => $contents$ = [])
+onMount(() => lorem_api(0, 10).then(value => $contents$ = value))
+onDestroy(() => $contents$ = [])
 </script>
 
-<ComponentTabView>
-	<InfiniteScroll classs="bd=1px_solid_black xh=15 p=1 {styles.scrollbar.primary}"
-			onlast={load_contents}
-			ready={loading === 1}>
-		{#each $contents$ as c}
-			<div>
-				<H2>{c.title}</H2>
-				<span>{c.content}</span>
+<a href="https://github.com/Artxe2/css-lube/blob/main/github-pages/src/components/parts/ref/utils/infinite-scroll/InfiniteScrollExample.svelte" target="_blank"
+		class="w=fit-content {styles.$common.link}">
+	InfiniteScrollExample.svelte
+</a>
+<div class="h=1"></div>
+<InfiniteScroll classs="bd=1px_solid_black xh=15 p=1 {styles.scrollbar.primary}"
+		onlast={load_contents}
+		ready={loading === 1}>
+	{#each $contents$ as c}
+		<div>
+			<H2>{c.title}</H2>
+			<span>{c.content}</span>
+		</div>
+	{/each}
+	{#if !loading}
+		<div class="flex h=6.5 jc=center">
+			<LoadingCircle />
+		</div>
+	{:else if loading === 2}
+		<div class="relative flex h=6.5 jc=center ai=center">
+			<div class="w=6 absolute">
+				<svg class="f=#88888888!">
+					<use xlink:href="{base}/icons.svg#refresh" />
+				</svg>
 			</div>
-		{/each}
-		{#if !loading}
-			<div class="flex h=6.5 jc=center">
-				<LoadingCircle />
-			</div>
-		{:else if loading === 2}
-			<div class="relative flex h=6.5 jc=center ai=center">
-				<div class="w=6 absolute">
-					<svg class="f=#88888888!">
-						<use xlink:href="{base}/icons.svg#refresh" />
-					</svg>
-				</div>
-				<button class="absolute fs=1.5 bold
-						ts=0_0_.5_#fff @dark@ts=0_0_.5_#000" on:click={load_contents}>
-					server error
-				</button>
-			</div>
-		{/if}
-	</InfiniteScroll>
-	<div>
-		<ExampleCode />
-	</div>
-</ComponentTabView>
+			<button class="absolute fs=1.5 bold
+					ts=0_0_.5_#fff @dark@ts=0_0_.5_#000" on:click={load_contents}>
+				server error
+			</button>
+		</div>
+	{/if}
+</InfiniteScroll>

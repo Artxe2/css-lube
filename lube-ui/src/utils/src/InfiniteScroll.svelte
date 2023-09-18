@@ -1,5 +1,5 @@
 <script>
-import { afterUpdate as after_update, onMount as on_mount } from "svelte"
+import { afterUpdate, onMount } from "svelte"
 
 export let classs = ""
 
@@ -15,7 +15,7 @@ let container
 /** @type {IntersectionObserver} */
 let observer
 
-on_mount(() => {
+onMount(() => {
 	observer = new IntersectionObserver(
 		entries => {
 			if (entries[0].isIntersecting) {
@@ -29,7 +29,7 @@ on_mount(() => {
 		}
 	)
 })
-after_update(() => {
+afterUpdate(() => {
 	if (ready && container.lastElementChild) {
 		observer.observe(container.lastElementChild)
 	}

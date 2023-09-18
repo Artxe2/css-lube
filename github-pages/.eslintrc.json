@@ -17,7 +17,7 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint"],
+	"plugins": ["@typescript-eslint", "lube"],
 	"rules": {
 		"@typescript-eslint/ban-ts-comment": "warn",
 		"@typescript-eslint/no-explicit-any": "warn",
@@ -39,11 +39,8 @@
 			"after": true,
 			"before": true
 		}],
-		// Custom rule that enforces a specific pattern for identifiers, including snake_case and CamelCase
-		"id-match": ["error", "^[_$]?[_$]?(?:[a-z]+(?:_[a-z]+)*(?:_?\\d+)?\\$?)?$|^[A-Z]+(?:_[A-Z]+)*(?:_?\\d+)?$|^(?:[A-Z][a-z]*)+(?:_?\\d+)?$", {
-			"ignoreDestructuring": true,
-			"onlyDeclarations": true
-		}],
+		// Custom rule that enforces a specific pattern for identifiers
+		"lube/svelte-naming-convention": ["error", { "fixSameNames": true }],
 		// Warns if lines are longer than 120 characters
 		"max-len": ["warn", 120],
 		// Flags if callbacks are nested more than 3 levels deep
