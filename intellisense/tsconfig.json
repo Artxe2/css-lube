@@ -1,9 +1,11 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es2020",
-		"lib": ["es2020"],
+		"module": "CommonJS",
+		"target": "ESNext",
+		
+		"lib": ["ESNext"],
 		"outDir": "out",
+		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true
 	},

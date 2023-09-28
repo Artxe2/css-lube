@@ -4,17 +4,22 @@ import {
 	shorthand_for_media_condition,
 	shorthand_for_properties,
 	shorthand_for_values
-} from "../helper/get_config"
+} from "../helper/get_config.js"
+
+import { parseDom } from "dom-eater"
 
 export default (context: vscode.ExtensionContext) => {
-	const class_name_regex = /(?<=class(?:Name)?=['"])[-+=:;*/.,()!@#%"\w\t\r\n \\]*$/
-	function get_class_name(document: vscode.TextDocument, position: vscode.Position) {
+	function is_in_class_name(document: vscode.TextDocument, position: vscode.Position) {
 		const text = document.getText()
 		let index = 0
 		for (let i = 0; i < position.line; i++) {
 			while (text.charAt(index++) !== "\n");
 		}
-		return class_name_regex.exec(text.slice(0, index + position.character))?.[0]
+		const ast = parseDom(text.slice(0, index + position.character)).ast
+		const last_node = ast[ast.length - 1]
+		if (last_node.type != "Element" || !last_node.attributes.length) return
+		const last_attr = last_node.attributes[last_node.attributes.length - 1]
+		return last_attr.name == "class" || last_attr.name == "className" || last_attr.name == "classs"
 	}
 	const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"]
 	const trigger_characters = ["\"", "'", " ", "/", ";"]
@@ -27,13 +32,12 @@ export default (context: vscode.ExtensionContext) => {
 					document: vscode.TextDocument,
 					position: vscode.Position
 				) {
-					const class_name = get_class_name(document, position)
-					if (class_name != null && /(?:^.|[ ;/@])$/.test(class_name)) {
+					if (is_in_class_name(document, position)) {
 						const keys = [...shorthand_for_properties].map(([k, v]) => {
 							const comp = new vscode.CompletionItem(v + ":?")
 							comp.insertText = k + "="
 							comp.kind = vscode.CompletionItemKind.EnumMember
-							comp.detail = `${k}= * * * shorthandKeys of css-lube`
+							comp.detail = `${k}= * * * shorthand_for_properties of css-lube`
 							comp.sortText = v
 							return comp
 						})
@@ -41,7 +45,7 @@ export default (context: vscode.ExtensionContext) => {
 							const comp = new vscode.CompletionItem(v)
 							comp.insertText = k
 							comp.kind = vscode.CompletionItemKind.Value
-							comp.detail = `${k} * * * shorthandValues of css-lube`
+							comp.detail = `${k} * * * shorthand_for_values of css-lube`
 							comp.sortText = v
 							return comp
 						})
@@ -58,13 +62,12 @@ export default (context: vscode.ExtensionContext) => {
 					document: vscode.TextDocument,
 					position: vscode.Position
 				) {
-					const class_name = get_class_name(document, position)
-					if (class_name != null && /(?:^.| )$/.test(class_name)) {
+					if (is_in_class_name(document, position)) {
 						const medias = [...shorthand_for_media_condition].map(([k, v]) => {
 							const comp = new vscode.CompletionItem("@media " + v)
 							comp.insertText = "@" + k + "@"
 							comp.kind = vscode.CompletionItemKind.Constructor
-							comp.detail = `@${k}@ * * * shorthandMedias of css-lube`
+							comp.detail = `@${k}@ * * * shorthand_for_media_condition of css-lube`
 							comp.sortText = v
 							comp.command = {
 								"command": "editor.action.triggerSuggest",

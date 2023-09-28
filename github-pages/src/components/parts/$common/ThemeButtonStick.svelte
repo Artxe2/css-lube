@@ -32,7 +32,7 @@ onMount(() => {
 })
 </script>
 
-<button class="relative w=14 h=3 br=1.75 ol=.1_solid o=hidden
+<button class="relative w=14 h=3 br=1.75 ol=.1_solid o=hidden us=none
 		_svg/f=currentcolor
 		:not(:hover)>div>div>svg:nth-of-type(even)/op=0
 		:hover/c=--gray-20 @dark@:hover/c=--gray-90

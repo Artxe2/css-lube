@@ -1,5 +1,5 @@
 # CSS Lube
-![What is CSS Lube](./what-is-css-lube.webp)
+![What is CSS Lube](./github-pages/static/imgs/intellisense.gif)
 ## Introduction
 The landscape of CSS paradigms has seen a constant evolution, marked by the rise of popular CSS-In-JS libraries like styled-components and emotion.  
 However, in recent times, there has been a notable shift in focus towards CSS libraries that emphasize "zero-runtime" approaches, such as Tailwind CSS and vanilla-extract.  

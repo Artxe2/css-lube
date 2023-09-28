@@ -25,14 +25,13 @@ onMount(() => {
 	$theme$ = theme
 	if (theme == "DARK") deg = 0
 	setTimeout(
-		() => animation = true
-		,
+		() => animation = true,
 		50
 	)
 })
 </script>
 
-<button class="w=2 h=2 br=1 ol=.1_solid o=hidden
+<button class="w=2 h=2 br=1 ol=.1_solid o=hidden us=none
 		:hover/bg=--gray-90 @dark@:hover/bg=--gray-30
 		_svg/f=--gray-60
 		:not(:hover)>div>div>svg:nth-of-type(even)/op=0"

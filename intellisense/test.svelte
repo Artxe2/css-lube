@@ -1,10 +1,11 @@
 <script>
 const is_active = false
-let int = 0
-for (let i = 0; i < int; i++) {
-
-}
 </script>
-<div class="@dark@c=#000!! absolute!! c=red!! :active/absolute!! :active/c=red!!
-	bg=green {is_active ?? "ai=center"}">
+
+<div style="color: red; background: blue;"
+		class=":hover/c=--primary-50;bold
+		c=red bg=blue
+		@dark@c=white
+		:active/tf=scale(1.2)
+		{is_active ?? "bold;fs=1.2"}">
 </div>
