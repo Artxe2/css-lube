@@ -67,5 +67,5 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"type": "commonjs",
-	"version": "0.2.0"
+	"version": "0.2.1"
 }

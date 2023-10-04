@@ -3,7 +3,15 @@ import { base } from "$app/paths"
 import { H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import {
-	bracket, comment, css, func, html, keyword, name, number, string 
+	bracket,
+	comment,
+	css,
+	func,
+	html,
+	keyword,
+	name,
+	number,
+	string
 } from "js/highlighter.js"
 import styles from "js/styles.js"
 import version from "js/version.js"

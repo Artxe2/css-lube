@@ -1,6 +1,11 @@
 <script>
 import {
-	done$, done_tf$, drag$, todo$, todo_tf$, transition$ 
+	done$,
+	done_tf$,
+	drag$,
+	todo$,
+	todo_tf$,
+	transition$
 } from "parts/ref/store.js"
 import { onDestroy, onMount } from "svelte"
 import DragItem from "parts/ref/utils/drag-and-drop/TodoListExample/DragItem.svelte"

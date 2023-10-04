@@ -1,9 +1,7 @@
 <script>
 import { base } from "$app/paths"
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import {
-	html, name, string 
-} from "js/highlighter.js"
+import { html, name, string } from "js/highlighter.js"
 import styles from "js/styles.js"
 
 const code1 = `${html("div", ` ${name("class")}=${string("background:#08f  width:4em;height:4em!important")}`, `

@@ -1,9 +1,7 @@
 <script>
 import { H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import {
-	comment, html, name, string 
-} from "js/highlighter.js"
+import { comment, html, name, string } from "js/highlighter.js"
 
 const code = `. . . . . .
 ${html("body", "", `

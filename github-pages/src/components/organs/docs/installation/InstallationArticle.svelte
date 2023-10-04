@@ -1,7 +1,5 @@
 <script>
-import {
-	html, name, string 
-} from "js/highlighter.js"
+import { html, name, string } from "js/highlighter.js"
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import TypingText from "organs/$common/animations/TypingText.svelte"
 import CssLubeDownloadForm from "organs/docs/installation/CodeIntellisenseArticle/CssLubeDownloadForm.svelte"

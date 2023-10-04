@@ -1,9 +1,7 @@
 <script>
 import { H3 } from "lube-ui"
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import {
-	comment, declare, name, string 
-} from "js/highlighter.js"
+import { comment, declare, name, string } from "js/highlighter.js"
 
 const code = `${comment("// eslint-disable-next-line max-len")}
 ${declare("let")} ${name("style")} = ${string(`*{margin:0;padding:0;font:inherit;color:inherit}

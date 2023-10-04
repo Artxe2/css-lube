@@ -66,12 +66,8 @@ const padding = {
 	bottom: 20,
 	left: 25 
 }
-
-/** @type {number} */
-let width
-
-/** @type {number} */
-let height
+let width = 100
+let height = 100
 
 $: x_scale = scaleLinear()
 	.domain([0, data.length])
@@ -110,7 +106,7 @@ $: bar_width = innerWidth / data.length / 3 - 4
 			{#each speed_index_ticks as tick, i}
 				<g class="fs=.75" transform="translate(0, {speed_index_scale(tick)})">
 					<line class="stroke=--gray-50
-							stroke-dasharray={i ? 2 : 0}" x2="100%" />
+							{i ? "stroke-dasharray=2" : "stroke-dasharray=0"}" x2="100%" />
 				</g>
 			{/each}
 		</g>

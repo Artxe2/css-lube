@@ -14,7 +14,7 @@ import styles from "js/styles.js"
 					bg=--primary-50 :hover/bg=--primary-40
 					:hover/ts=0_0_.5
 					:active/bg=--primary-50!">
-				<span class="@md@fs=1.5">intellisense.vsix v0.2.0</span>
+				<span class="@md@fs=1.5">VSCE:intellisense.vsix</span>
 			</button>
 		</a>
 	</div>

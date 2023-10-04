@@ -1,8 +1,6 @@
 <script>
 import CodePage from "organs/$common/utils/CodePage.svelte"
-import {
-	html, name, string 
-} from "js/highlighter.js"
+import { html, name, string } from "js/highlighter.js"
 import styles from "js/styles.js"
 
 const code1 = `${html("div", ` ${name("class")}=${string("w=3.5 ta=center >div.target/bgc=red _div:nth-of-type(2n+1)/bgc=blue")}`, `

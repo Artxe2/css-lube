@@ -1,7 +1,4 @@
-import {
-	readable,
-	writable
-} from "svelte/store"
+import { readable, writable } from "svelte/store"
 
 import { client } from "async-lube"
 

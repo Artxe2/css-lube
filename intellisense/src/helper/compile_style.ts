@@ -77,7 +77,7 @@ const compile_raw = (cname: string) => "{ " + parse_value(cname) + " }"
 
 const compile_special = (cname: string) => {
 	const i = cname.indexOf("/")
-	return `<span style="color:#d7ba7d;">${cname.slice(0, i).replace(replace_space_regex, " ")}</span> { ${parse_value(cname.slice(i + 1))} }`
+	return `<span style="color:#d7ba7d;">&${cname.slice(0, i).replace(replace_space_regex, " ")}</span> { ${parse_value(cname.slice(i + 1))} }`
 }
 
 const get_priority = (cname: string) => {
