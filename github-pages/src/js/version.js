@@ -1,1 +1,1 @@
-export default "v1.7.0"
+export default "v1.8.0"

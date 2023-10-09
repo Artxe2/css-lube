@@ -1,5 +1,5 @@
 # CSS Lube
-![What is CSS Lube](./github-pages/static/imgs/intellisense.gif)
+![Intellisense CSS Lube](https://raw.githubusercontent.com/Artxe2/css-lube/main/github-pages/static/imgs/intellisense.gif)
 ## Introduction
 The landscape of CSS paradigms has seen a constant evolution, marked by the rise of popular CSS-In-JS libraries like styled-components and emotion.  
 However, in recent times, there has been a notable shift in focus towards CSS libraries that emphasize "zero-runtime" approaches, such as Tailwind CSS and vanilla-extract.  
@@ -9,7 +9,7 @@ However, CSS Lube challenges the notion of relying solely on build time for achi
 ## What is CSS Lube?
 CSS Lube is Highly-optimized CSS Interpreter.
 It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.
-In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,323 byte(2,709 byte on gzip) js file.
+In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,431 byte(2,765 byte on gzip) js file.
 Looking at the PageSpeed Insights score table below, you'll be able to guess the performance level of the CSS Lube, even considering the margin of error.
 [Benchmark - CSS Lube](https://artxe2.github.io/css-lube/ref/benchmark)
 ![PageSpeed Insights](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/75e6z2gjoyf05kuwiod4.png)
