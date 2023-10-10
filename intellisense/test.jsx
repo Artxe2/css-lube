@@ -1,11 +1,12 @@
 var n = 5
-const a = <a>{n}</a>
+const a = <a class="fs=2">{n}</a>
 const text = "<div></div>"
+const props = {}
 
 export function App() {
 	const is_active = false
 	return (
-		<div style="color: red; background: blue;"
+		<div {...props} style="color: red; background: blue;"
 			className={`:hover/c=--primary-50;bold
 			c=red bg=blue
 			@dark@c=white

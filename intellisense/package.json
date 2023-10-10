@@ -34,7 +34,7 @@
 		}]
 	},
 	"dependencies": {
-		"dom-eater": "^0.1.8"
+		"dom-eater": "^0.2.2"
 	},
 	"devDependencies": {
 		"@types/node": "^20.6.2",
@@ -67,5 +67,5 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"type": "commonjs",
-	"version": "0.2.1"
+	"version": "0.3.0"
 }

@@ -3,7 +3,7 @@ import * as vscode from "vscode"
 import { AstNode, String } from "dom-eater/@types"
 
 import compile_style from "../helper/compile_style.js"
-import { parseDom } from "dom-eater"
+import parse_dom from "../helper/parse_dom.js"
 
 export default (context: vscode.ExtensionContext) => {
 	const decorator = vscode.window.createTextEditorDecorationType
@@ -76,7 +76,7 @@ export default (context: vscode.ExtensionContext) => {
 	async function update_decorations() {
 		if (!active_editor) return
 		const text = active_editor.document.getText()
-		const ast = parseDom(text).ast
+		const ast = parse_dom(active_editor.document.fileName, text)
 		const cname_array: vscode.DecorationOptions[] = []
 		const media_query_array: vscode.Range[] = []
 		const selector_array: vscode.Range[] = []

@@ -1,12 +1,10 @@
 import * as vscode from "vscode"
-
 import {
 	shorthand_for_media_condition,
 	shorthand_for_properties,
 	shorthand_for_values
 } from "../helper/get_config.js"
-
-import { parseDom } from "dom-eater"
+import parse_dom from "../helper/parse_dom.js"
 
 export default (context: vscode.ExtensionContext) => {
 	function is_in_class_name(document: vscode.TextDocument, position: vscode.Position) {
@@ -15,13 +13,14 @@ export default (context: vscode.ExtensionContext) => {
 		for (let i = 0; i < position.line; i++) {
 			while (text.charAt(index++) !== "\n");
 		}
-		const ast = parseDom(text.slice(0, index + position.character)).ast
+		const ast = parse_dom(document.fileName, text.slice(0, index + position.character))
 		const last_node = ast[ast.length - 1]
+		if (!last_node) return
 		if (last_node.type != "Element" || !last_node.attributes.length) return
 		const last_attr = last_node.attributes[last_node.attributes.length - 1]
 		return last_attr.name == "class" || last_attr.name == "className" || last_attr.name == "classs"
 	}
-	const selector = ["html", "javascriptreact", "svelte", "typescriptreact", "vue"]
+	const selector = ["*"]
 	const trigger_characters = ["\"", "'", " ", "/", ";"]
 
 	context.subscriptions.push(
