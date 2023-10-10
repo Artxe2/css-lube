@@ -15,5 +15,5 @@
 		"npm": "pnpm -r -F {github-pages,lib,lube-ui} up && cd intellisense && npm i",
 		"preview": "cd github-pages && pnpm preview"
 	},
-	"version": "v1.8.0"
+	"version": "v1.8.1"
 }
