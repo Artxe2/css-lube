@@ -5,7 +5,7 @@ export let classs = ""
 export let delay = 0
 
 /** @type {
-	(clientX: number, clientY: number, drag: HTMLElement) => void
+	(clientX: number, clientY: number, drag_element: HTMLElement) => void
 } */
 export let setDragElement
 
@@ -20,18 +20,25 @@ let drag_view
 /** @type {number} */
 let timer
 
+/**
+ * @param {number} client_x
+ * @param {number} client_y
+ */
+const start_drag = (client_x, client_y) => {
+	const drag_element = /** @type {HTMLDivElement} */ (
+		(drag_view.firstChild || container).cloneNode(true)
+	)
+	drag_element.style.position = "absolute"
+	drag_element.style.top = container.offsetTop + "px"
+	drag_element.style.left = container.offsetLeft + "px"
+	setDragElement(client_x, client_y, drag_element)
+	dispatch("dragstart")
+}
+
 /** @param {{ clientX: number, clientY: number }} event */
 const handle_mousedown = ({ clientX, clientY }) => {
-	timer = setTimeout(() => {
-		const drag = /** @type {HTMLDivElement} */ (
-			(drag_view.firstChild || container).cloneNode(true)
-		)
-		drag.style.position = "absolute"
-		drag.style.top = container.offsetTop + "px"
-		drag.style.left = container.offsetLeft + "px"
-		setDragElement(clientX, clientY, drag)
-		dispatch("dragstart")
-	}, delay)
+	if (delay) timer = setTimeout(start_drag, delay, clientX, clientY)
+	else start_drag(clientX, clientY)
 }
 
 /** @param {TouchEvent} event */

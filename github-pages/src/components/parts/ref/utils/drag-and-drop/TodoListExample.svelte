@@ -22,8 +22,9 @@ const done_heights = []
 /** @type {boolean} */// eslint-disable-next-line lube/svelte-naming-convention
 let isDragging
 
-/** @type {(clientX: number, clientY: number, drag: HTMLElement) => any} */
-// eslint-disable-next-line lube/svelte-naming-convention
+/**
+ * @type {(clientX: number, clientY: number, drag: HTMLElement) => any}
+ */// eslint-disable-next-line lube/svelte-naming-convention
 let setDragElement
 
 const handle_dragend = () => {

@@ -12,8 +12,13 @@
 		"build": "cd github-pages && pnpm build",
 		"dev": "cd github-pages && pnpm dev",
 		"lint": "cd github-pages && pnpm lint",
-		"npm": "pnpm -r -F {github-pages,lib,lube-ui} up && cd intellisense && npm i",
+		"npm": "cd github-pages && pnpm up && cd ../lib && pnpm up && cd ../lube-ui && pnpm up && cd ../intellisense && npm i",
 		"preview": "cd github-pages && pnpm preview"
 	},
-	"version": "v1.8.1"
+	"version": "v1.9.0",
+	"devDependencies": {
+		"@typescript-eslint/parser": "^6.8.0",
+		"eslint": "^8.51.0",
+		"eslint-plugin-lube": "^0.2.5"
+	}
 }

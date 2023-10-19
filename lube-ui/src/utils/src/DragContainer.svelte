@@ -11,11 +11,11 @@ export let dragElement = null
 /**
  * @param {number} client_x
  * @param {number} client_y
- * @param {HTMLElement} drag
+ * @param {HTMLElement} drag_element
  */
-export const setDragElement = (client_x, client_y, drag) => {
+export const setDragElement = (client_x, client_y, drag_element) => {
+	dragElement = drag_element
 	const container_rect = container.getBoundingClientRect()
-	dragElement = drag
 	x = client_x - container_rect.left
 	y = client_y - container_rect.top
 	container.append(dragElement)

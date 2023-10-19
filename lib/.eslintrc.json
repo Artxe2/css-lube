@@ -16,5 +16,7 @@ VSCE: JavaScript and TypeScript Nightly
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"rules": {}
+	"rules": {
+		"prefer-const": "off"
+	}
 }
