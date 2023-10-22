@@ -5,7 +5,7 @@ import { H2 } from "lube-ui"
 /**
  * @type {{
 		name: string,
-		first_contentful_paint: number,
+		page_weight: number,
 		total_blocking_time: number,
 		speed_index: number
 	}[]}
@@ -13,36 +13,36 @@ import { H2 } from "lube-ui"
 const data = [
 	{
 		name: "Inline Style",
-		first_contentful_paint: 1.2,
-		total_blocking_time: 200,
-		speed_index: 1.2
+		page_weight: 51,
+		total_blocking_time: 1018,
+		speed_index: 934
 	},
 	{
 		name: "Atomic CSS",
-		first_contentful_paint: 1.7,
-		total_blocking_time: 50,
-		speed_index: 1.8
+		page_weight: 108,
+		total_blocking_time: 0,
+		speed_index: 2599
 	},
 	{
 		name: "CSS Lube",
-		first_contentful_paint: 1.1,
-		total_blocking_time: 790,
-		speed_index: 1.7
+		page_weight: 52,
+		total_blocking_time: 173,
+		speed_index: 2980
 	},
 	{
 		name: "Tailwind JIT",
-		first_contentful_paint: 2.7,
-		total_blocking_time: 17480,
-		speed_index: 8.4
+		page_weight: 157,
+		total_blocking_time: 2291,
+		speed_index: 4051
 	}
 ]
-const max_first_contentful_paint = Math.max(...data.map(v => v.first_contentful_paint))
-const first_contentful_paint_ticks = [
+const max_page_weight = Math.max(...data.map(v => v.page_weight))
+const page_weight_ticks = [
 	0,
-	.25 * max_first_contentful_paint,
-	.5 * max_first_contentful_paint,
-	.75 * max_first_contentful_paint,
-	max_first_contentful_paint
+	.25 * max_page_weight,
+	.5 * max_page_weight,
+	.75 * max_page_weight,
+	max_page_weight
 ]
 const total_blocking_time_paint = Math.max(...data.map(v => v.total_blocking_time))
 const total_blocking_time_ticks = [
@@ -64,7 +64,7 @@ const padding = {
 	top: 20,
 	right: 15,
 	bottom: 20,
-	left: 25 
+	left: 25
 }
 let width = 100
 let height = 100
@@ -72,8 +72,8 @@ let height = 100
 $: x_scale = scaleLinear()
 	.domain([0, data.length])
 	.range([padding.left, width - padding.right])
-$: first_contentful_paint_scale = scaleLinear()
-	.domain([0, Math.max(...first_contentful_paint_ticks)])
+$: page_weight_scale = scaleLinear()
+	.domain([0, Math.max(...page_weight_ticks)])
 	.range([height - padding.bottom, padding.top])
 $: total_blocking_time_scale = scaleLinear()
 	.domain([0, Math.max(...total_blocking_time_ticks)])
@@ -85,8 +85,6 @@ $: speed_index_scale = scaleLinear()
 $: innerWidth = width - padding.left - padding.right
 $: bar_width = innerWidth / data.length / 3 - 4
 </script>
-
-<H2 classs="ta=center">PageSpeed Insights</H2>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
 	<svg class="relative w=100% h=20">
@@ -119,17 +117,17 @@ $: bar_width = innerWidth / data.length / 3 - 4
 		</g>
 		<g>
 			{#each data as {
-				first_contentful_paint, total_blocking_time, speed_index 
+				page_weight, total_blocking_time, speed_index
 			}, i}
 				<rect class="f=#a11 stroke=none op=.65"
 						x={x_scale(i) + 4}
-						y={first_contentful_paint_scale(first_contentful_paint)}
+						y={page_weight_scale(page_weight)}
 						width={bar_width}
-						height={first_contentful_paint_scale(0) - first_contentful_paint_scale(first_contentful_paint)} />
+						height={page_weight_scale(0) - page_weight_scale(page_weight)} />
 				<text class="fs=.75 text-anchor=middle"
 						x={x_scale(i) + 4 + bar_width / 2}
-						y={first_contentful_paint_scale(first_contentful_paint)}>
-					{first_contentful_paint}s
+						y={page_weight_scale(page_weight)}>
+					{page_weight}KB
 				</text>
 				<rect class="f=#1a1 stroke=none op=.65"
 						x={x_scale(i) + 6 + bar_width}
@@ -149,7 +147,7 @@ $: bar_width = innerWidth / data.length / 3 - 4
 				<text class="fs=.75 text-anchor=middle"
 						x={x_scale(i) + 8 + bar_width * 2.5}
 						y={speed_index_scale(speed_index)}>
-					{speed_index}s
+					{speed_index}ms
 				</text>
 			{/each}
 		</g>

@@ -26,7 +26,7 @@ onMount(() => {
 				automaticLayout: true,
 				language: "html",
 				minimap: {
-					enabled: false,
+					enabled: false
 				},
 				theme: "vs-dark",
 				value: content
@@ -44,7 +44,7 @@ onMount(() => {
 <div class="flex h=100% xw=100%
 		@!sm@column">
 	<div class="flex
-			w=100% @sm@w=40% 
+			w=100% @sm@w=40%
 			@!sm@h=30%">
 		<div class="fg=1 relative bd=1px_solid p=1 oy=auto
 				bg=--primary-90 @dark@bg=--primary-10
@@ -57,7 +57,7 @@ onMount(() => {
 			bg=#fff @dark@bg=--cod-gray
 			xw=99.99% @sm@xw=60%
 			@!sm@xh=70%">
-		{#if is_loading} 
+		{#if is_loading}
 		<div class="flex h=100% jc=center ai=center">
 			<LoadingCircle />
 		</div>

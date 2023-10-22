@@ -20,7 +20,7 @@ let timer
 /** @type {HTMLElement} */
 let wrapper
 let index = 0
-let temp = ` _${selector}/none` 
+let temp = ` _${selector}/none`
 const cursor = ":after/ct='|';c=#000;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const dark_cursor = "@dark@:after/ct='|';c=#fff;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
 const blink = ":after/a=blink_1s_step-end_infinite"
@@ -70,10 +70,12 @@ const animation = async () => {
 		foldables[index].classList.add(cursor, dark_cursor, "bg=" + bgc, "@dark@bg=" + dark_bgc)
 		for (const t of texts[index]) {
 			foldables[index].textContent += t
+			// eslint-disable-next-line no-await-in-loop
 			await sleep(30)
 		}
 		foldables[index].classList.add(blink)
 		dispatch("endtype", index)
+		// eslint-disable-next-line no-await-in-loop
 		await sleep(duration)
 		foldables[index].classList.remove(cursor, dark_cursor, blink, "bg=" + bgc, "@dark@bg=" + dark_bgc)
 		index++

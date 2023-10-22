@@ -44,9 +44,9 @@ onMount(() => {
 </button>
 <ul class="ml=1 o=hidden tt=height_.3s
 		h={is_open ? Object.keys(data.childs).length * 2.75 : 0}">
-	{#each Object.keys(data.childs) as text}
+	{#each Object.keys(data.childs) as t}
 	<li>
-		<svelte:self {text} data={data.childs[text]} />
+		<svelte:self text={t} data={data.childs[t]} />
 	</li>
 	{/each}
 </ul>

@@ -19,9 +19,6 @@ const todo_heights = []
 /** @type {number[]} */
 const done_heights = []
 
-/** @type {boolean} */// eslint-disable-next-line lube/svelte-naming-convention
-let isDragging
-
 /**
  * @type {(clientX: number, clientY: number, drag: HTMLElement) => any}
  */// eslint-disable-next-line lube/svelte-naming-convention
@@ -52,17 +49,15 @@ const transfer_list = index => {
 				transforms[i] = -heights[from]
 			}
 		}
+	} else if (transforms[index]) {
+		for (let i = index; transforms[i]; i--) {
+			transforms[from] += heights[i]
+			transforms[i] = 0
+		}
 	} else {
-		if (transforms[index]) {
-			for (let i = index; transforms[i]; i--) {
-				transforms[from] += heights[i]
-				transforms[i] = 0
-			}
-		} else {
-			for (let i = index; !transforms[i]; i++) {
-				transforms[from] -= heights[i]
-				transforms[i] = heights[from]
-			}
+		for (let i = index; !transforms[i]; i++) {
+			transforms[from] -= heights[i]
+			transforms[i] = heights[from]
 		}
 	}
 	(type === "todo" ? todo_tf$ : done_tf$).set(transforms)
@@ -83,7 +78,7 @@ const move_item = index => {
 		$done_tf$ = new Array(after.length).fill(0)
 		$drag$ = {
 			type: "done",
-			index: index 
+			index: index
 		}
 		done_heights.splice(index, 0, todo_heights[from])
 		todo_heights.splice(from, 1)
@@ -98,7 +93,7 @@ const move_item = index => {
 		$todo_tf$ = new Array(after.length).fill(0)
 		$drag$ = {
 			type: "todo",
-			index: index 
+			index: index
 		}
 		todo_heights.splice(index, 0, done_heights[from])
 		done_heights.splice(from, 1)
@@ -170,7 +165,7 @@ onDestroy(() => {
 	TodoListExample.svelte
 </a>
 <div class="h=1"></div>
-<DragContainer bind:isDragging
+<DragContainer
 		bind:setDragElement
 		on:dragend={handle_dragend}>
 	<div class="flex flex-wrap=wrap">

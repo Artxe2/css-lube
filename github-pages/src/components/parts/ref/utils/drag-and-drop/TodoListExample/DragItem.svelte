@@ -22,10 +22,7 @@ export let move_item
 
 /** @param {MouseEvent} event */
 const handle_click = event => {
-	alert(
-		/** @type {HTMLElement} */
-		(event.target)?.textContent
-	)
+	alert(/** @type {HTMLElement} */(event.target)/**/?.textContent)
 }
 const handle_dragenter = () => {
 	const i = $drag$?.index
@@ -42,7 +39,7 @@ const handle_dragenter = () => {
 const handle_dragstart = () => {
 	$drag$ = {
 		type: type,
-		index: index 
+		index: index
 	}
 	$transition$ = true
 }

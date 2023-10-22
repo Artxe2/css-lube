@@ -22,7 +22,7 @@ onMount(() => header.parentElement?.scroll(0, 0))
 			<div class="fg=1 fsk=1">
 				<div class="h=2"></div>
 				<H2>Benchmark</H2>
-				<span>Measuring Speed with PageSpeed Insights</span>
+				<span>Measuring Speed with WebPageTest</span>
 				<H2 classs="v=hidden">.</H2>
 			</div>
 		</div>
@@ -54,11 +54,12 @@ onMount(() => header.parentElement?.scroll(0, 0))
 			<span class="c=--gray-10">...5593 rows</span>
 		</div>
 		<div class="h=2"></div>
+		<H2 classs="ta=center">WebPageTest</H2>
 		<BenchmarkChart />
 		<div class="h=1"></div>
-		<a href="https://pagespeed.web.dev" target="_blank"
+		<a href="https://www.webpagetest.org/" target="_blank"
 				class="fs=1.5 {styles.$common.link}">
-			PageSpeed Insights
+			WebPageTest
 		</a><br>
 		<a href="https://artxe2.github.io/test/inline-style.html" target="_blank"
 				class="fs=1.5 {styles.$common.link}">

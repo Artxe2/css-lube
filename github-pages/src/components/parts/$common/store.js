@@ -5,7 +5,7 @@ import { client } from "async-lube"
 export const theme$ = writable("")
 
 export const drawer_sub_list$ = writable(
-	/** @type {import("./public.js").DrawerSubList} */([])
+	/** @type {import("./public.js").DrawerSubList} */([])/**/
 )
 
 const fetch_github_info = client("https://api.github.com/repos/:user/:repo")
@@ -16,7 +16,7 @@ const fetch_github_info = client("https://api.github.com/repos/:user/:repo")
 const fetch_star = async () => {
 	const response = await fetch_github_info({
 		user: "artxe2",
-		repo: "css-lube" 
+		repo: "css-lube"
 	})
 	if (response.status > 299) throw Error("Err:" + response.status)
 	const json = await response.json()

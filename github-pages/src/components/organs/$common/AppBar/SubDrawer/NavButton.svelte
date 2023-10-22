@@ -47,9 +47,9 @@ if ("href" in data) {
 <ul class="ml=1 o=hidden
 		{is_open || "h=0"}">
 	{#if data.childs}
-		{#each Object.keys(data.childs) as text}
+		{#each Object.keys(data.childs) as t}
 		<li>
-			<svelte:self {text} data={data.childs[text]} />
+			<svelte:self text={t} data={data.childs[t]} />
 		</li>
 		{/each}
 	{/if}

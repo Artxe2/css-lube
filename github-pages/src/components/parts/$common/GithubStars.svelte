@@ -24,7 +24,7 @@ import { github_star$ } from "parts/$common/store.js"
 		>
 			{#await $github_star$}
 				...
-			{:then star} 
+			{:then star}
 				{star}
 			{:catch err}
 				{err}

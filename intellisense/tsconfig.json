@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"module": "CommonJS",
 		"target": "ESNext",
-		
 		"lib": ["ESNext"],
 		"outDir": "out",
 		"skipLibCheck": true,

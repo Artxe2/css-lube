@@ -2,12 +2,8 @@
 import { createEventDispatcher } from "svelte"
 
 export let classs = ""
-
-export let isDragging = false
-
 /** @type {HTMLElement?} */
 export let dragElement = null
-
 /**
  * @param {number} client_x
  * @param {number} client_y
@@ -19,31 +15,27 @@ export const setDragElement = (client_x, client_y, drag_element) => {
 	x = client_x - container_rect.left
 	y = client_y - container_rect.top
 	container.append(dragElement)
-	isDragging = true
+	is_dragging = true
 }
-
-const dispatch = createEventDispatcher()
 
 /** @type {HTMLElement} */
 let container
-
+let cx = 0
+let cy = 0
+const dispatch = createEventDispatcher()
+let is_dragging = false
+/** @type {number} */
+let request_id
 /** @type {HTMLElement?} */
 let terrain
 let x = 0
 let y = 0
-let cx = 0
-let cy = 0
-
-/** @type {number} */
-let request_id
 
 /** @param {{ clientX: number, clientY: number }} event */
 const handle_mousemove = ({ clientX, clientY }) => {
-	if (isDragging) {
+	if (is_dragging) {
 		const current = get_terrain(
-			/** @type {HTMLElement[]} */ (
-				document.elementsFromPoint(clientX, clientY)
-			)
+			/** @type {HTMLElement[]} */(document.elementsFromPoint(clientX, clientY))/**/
 		)
 		if (current && terrain != current) {
 			if (terrain) {
@@ -59,25 +51,24 @@ const handle_mousemove = ({ clientX, clientY }) => {
 		request_scroll_with_drag(Date.now())
 	}
 }
-
+const handle_touchend = () => {
+	handle_mouseup()
+}
 /** @param {TouchEvent} event */
 const handle_touchmove = event => {
 	handle_mousemove(event.touches[0])
 }
 const handle_mouseup = () => {
-	if (isDragging) {
+	if (is_dragging) {
 		dragElement && container.removeChild(dragElement)
 		if (terrain) {
 			terrain.dispatchEvent(new DragEvent("drop"))
 			terrain = null
 		}
 		dragElement = null
-		isDragging = false
+		is_dragging = false
 		dispatch("dragend")
 	}
-}
-const handle_touchend = () => {
-	handle_mouseup()
 }
 
 /** @param {HTMLElement[]} terrains */

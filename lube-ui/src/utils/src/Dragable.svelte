@@ -4,9 +4,7 @@ import { createEventDispatcher } from "svelte"
 export let classs = ""
 export let delay = 0
 
-/** @type {
-	(clientX: number, clientY: number, drag_element: HTMLElement) => void
-} */
+/** @type {(clientX: number, clientY: number, drag_element: HTMLElement) => void} */
 export let setDragElement
 
 const dispatch = createEventDispatcher()
@@ -25,9 +23,7 @@ let timer
  * @param {number} client_y
  */
 const start_drag = (client_x, client_y) => {
-	const drag_element = /** @type {HTMLDivElement} */ (
-		(drag_view.firstChild || container).cloneNode(true)
-	)
+	const drag_element = /** @type {HTMLDivElement} */((drag_view.firstChild || container).cloneNode(true))/**/
 	drag_element.style.position = "absolute"
 	drag_element.style.top = container.offsetTop + "px"
 	drag_element.style.left = container.offsetLeft + "px"

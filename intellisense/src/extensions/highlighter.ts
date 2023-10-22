@@ -102,7 +102,7 @@ export default (context: vscode.ExtensionContext) => {
 						const media_query_start = active_editor.document.positionAt(cname_index)
 						const media_query_end = active_editor.document.positionAt(cname_index + index + 1)
 						media_query_array.push(new vscode.Range(media_query_start, media_query_end))
-						parse_index = index + 1 
+						parse_index = index + 1
 					}
 				}
 				if (check_is_special(cname, parse_index)) {
@@ -111,7 +111,7 @@ export default (context: vscode.ExtensionContext) => {
 						const selector_start = active_editor.document.positionAt(cname_index + parse_index)
 						const selector_end = active_editor.document.positionAt(cname_index + index + 1)
 						selector_array.push(new vscode.Range(selector_start, selector_end))
-						parse_index = index + 1 
+						parse_index = index + 1
 					}
 				}
 				const index_array: number[] = []

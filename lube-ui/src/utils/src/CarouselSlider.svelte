@@ -94,7 +94,7 @@ const handle_mouseup = () => {
 }
 const handle_touchend = handle_mouseup
 const handle_scroll = () => {
-	const child_elements = /** @type {HTMLElement[]} */ ([...container.children])
+	const child_elements = /** @type {HTMLElement[]} */([...container.children])/**/
 	let scroll_left = container.scrollLeft - child_elements[0].offsetWidth
 	let scroll_index = 0
 	while (scroll_left >= 0) {
@@ -133,7 +133,8 @@ const slipping = (speed, prev, time, move) => {
 	move += speed * ms * time / duration + container.scrollLeft
 	container.scrollLeft = move
 	move -= container.scrollLeft
-	if ((time -= ms) > 0) {
+	time -= ms
+	if (time > 0) {
 		request_slipping(speed, curr, time, move)
 	} else {
 		container.scrollLeft += move
@@ -162,7 +163,8 @@ const snapping = (speed, prev, time, move) => {
 	move += speed * ms + container.scrollLeft
 	container.scrollLeft = move
 	move -= container.scrollLeft
-	if ((time -= ms) > 0) {
+	time -= ms
+	if (time > 0) {
 		request_snapping(speed, curr, time, move)
 	} else {
 		container.scrollLeft += move
@@ -174,7 +176,7 @@ const snapping = (speed, prev, time, move) => {
  */
 const calculate_snap_move = (inertia, direction) => {
 	if (!observer) return 0
-	const child_elements = /** @type {HTMLElement[]} */ ([...container.children])
+	const child_elements = /** @type {HTMLElement[]} */([...container.children])/**/
 	const length = child_elements.length
 	let left = 0
 	const scroll_left = container.scrollLeft
@@ -200,7 +202,7 @@ afterUpdate(() => {
 	const count = container.childElementCount
 	if (count < 4) return
 	let max_child_width = 0
-	const child_elements = /** @type {HTMLElement[]} */ ([...container.children])
+	const child_elements = /** @type {HTMLElement[]} */([...container.children])/**/
 	for (const child of child_elements) {
 		max_child_width = Math.max(max_child_width, child.offsetWidth)
 	}
@@ -220,11 +222,11 @@ afterUpdate(() => {
 						const target = entry.target
 						if (target === first) {
 							last && target.before(last)
-							container.scrollLeft += /** @type {HTMLElement} */ (last).offsetWidth
+							container.scrollLeft += /** @type {HTMLElement} */(last)/**/.offsetWidth
 							observe_index = (observe_index - 1 + count) % count
 						} else if (target === last) {
 							first && target.after(first)
-							container.scrollLeft -= /** @type {HTMLElement} */ (first).offsetWidth
+							container.scrollLeft -= /** @type {HTMLElement} */(first)/**/.offsetWidth
 							observe_index = (observe_index + 1) % count
 						}
 						first = container.firstElementChild
