@@ -1,0 +1,25 @@
+{
+	"author": "Artxe2",
+	"description": "Highly-optimized CSS Interpreter",
+	"devDependencies": {
+		"@typescript-eslint/parser": "^6.9.0",
+		"eslint": "^8.52.0",
+		"eslint-plugin-lube": "^0.3.5",
+		"typescript": "^5.2.2"
+	},
+	"homepage": "https://artxe2.github.io/css-lube/",
+	"license": "MIT",
+	"main": "css-lube.js",
+	"name": "css-lube",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Artxe2/css-lube.git"
+	},
+	"scripts": {
+		"build": "cd github-pages && pnpm build",
+		"dev": "cd github-pages && pnpm dev",
+		"lint": "pnpm -r lint",
+		"preview": "cd github-pages && pnpm preview"
+	},
+	"version": "2.0.0"
+}

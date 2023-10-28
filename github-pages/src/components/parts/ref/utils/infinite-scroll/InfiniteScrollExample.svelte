@@ -3,7 +3,8 @@ import { contents$ } from "parts/ref/store.js"
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
 import styles from "js/styles.js"
 import { onDestroy, onMount } from "svelte"
-import { H2, InfiniteScroll } from "lube-ui"
+import { H2 } from "lube-ui/typography"
+import { InfiniteScroll } from "lube-ui/utils"
 import { base } from "$app/paths"
 
 let loading = 1 // 0: in progress, 1: none, 2: error

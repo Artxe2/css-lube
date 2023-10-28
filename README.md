@@ -9,10 +9,10 @@ However, CSS Lube challenges the notion of relying solely on build time for achi
 ## What is CSS Lube?
 CSS Lube is Highly-optimized CSS Interpreter.
 It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.
-In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,386 byte(2,753 byte on gzip) js file.
+In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,327 byte(2,701 byte on gzip) js file.
 Looking at the PageSpeed Insights score table below, you'll be able to guess the performance level of the CSS Lube, even considering the margin of error.
 [Benchmark - CSS Lube](https://artxe2.github.io/css-lube/ref/benchmark)
-![PageSpeed Insights](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/75e6z2gjoyf05kuwiod4.png)
+![PageSpeed Insights](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w94pc96jvc6i3bjvxcl2.png)
 
 ## What's the difference?
 One of the key things about lube is that it's a zero-buildtime css Luberary.

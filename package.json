@@ -1,5 +1,5 @@
 {
-	"author": "artxe2",
+	"author": "Artxe2",
 	"description": "Highly-optimized CSS Interpreter",
 	"homepage": "https://artxe2.github.io/css-lube/",
 	"license": "MIT",
@@ -14,10 +14,5 @@
 		"lint": "pnpm -r lint",
 		"preview": "cd github-pages && pnpm preview"
 	},
-	"version": "v1.9.1",
-	"devDependencies": {
-		"@typescript-eslint/parser": "^6.8.0",
-		"eslint": "^8.52.0",
-		"eslint-plugin-lube": "^0.3.5"
-	}
+	"version": "0.0.0"
 }

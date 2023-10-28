@@ -1,15 +1,14 @@
 <script>
 import { base } from "$app/paths"
 import ModalBackground from "organs/$common/ModalBackground.svelte"
-import SubDrawer from "organs/$common/AppBar/SubDrawer.svelte"
+import Drawer from "organs/$common/Drawer.svelte"
 
 /** @type {boolean} */
 let is_open
 </script>
 
 <nav class="z=9000 fixed t=0 l=0 w=100%
-		c=--gray-30 @dark@c=--gray-70
-		@lg@v=hidden">
+		c=--gray-30 @dark@c=--gray-70">
 	<div class="flex h=5 ai=center
 			bg=--gray-95 @dark@bg=--gray-20">
 		<div class="w=4.5"></div>
@@ -17,7 +16,7 @@ let is_open
 			<div class="flex ai=center p=.2_.5 br=1.75
 					:hover/bg=--gray-90 @dark@:hover/bg=--gray-30
 					:hover>img/tf=scale(1.2,1.2)">
-				<img src="{base}/favicon.png" alt="logo"
+				<img src="{base}/favicon.svg" alt="logo"
 						class="inline-block
 						w=2 h=2">
 				<span class="fs=2 bold">CSS Lube</span>
@@ -26,7 +25,7 @@ let is_open
 		</a>
 	</div>
 	<ModalBackground bind:is_open />
-	<SubDrawer bind:is_open />
+	<Drawer bind:is_open />
 	<button class="z=3 fixed t=.6 l=.5 p=1 br=2.5
 			:hover/bg=--gray-{is_open ? "80" : "90"} @dark@:hover/bg=--gray-{is_open ? "40" : "30"}"
 			on:click={() => is_open = !is_open}>
@@ -43,5 +42,4 @@ let is_open
 		</div>
 	</button>
 </nav>
-<div class="h=5
-		@lg@none"></div>
+<div class="h=5"></div>

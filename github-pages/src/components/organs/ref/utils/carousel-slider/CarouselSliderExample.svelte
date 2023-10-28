@@ -1,6 +1,6 @@
 <script>
 import styles from "js/styles.js"
-import { CarouselSlider } from "lube-ui"
+import { CarouselSlider } from "lube-ui/utils"
 
 let is_snap = false
 /** @type {(direction: number) => void} */

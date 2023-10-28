@@ -13,7 +13,6 @@ const change_theme = () => {
 		? "LIGHT"
 		: "DARK"
 	localStorage.setItem("THEME", $theme$)
-	/* @ts-ignore: window.cssLube */// eslint-disable-next-line no-undef
 	cssLube()
 }
 onMount(() => {
@@ -25,35 +24,41 @@ onMount(() => {
 	$theme$ = theme
 	if (theme == "DARK") deg = 0
 	setTimeout(
-		() => animation = true,
+		() => animation = true
+		,
 		50
 	)
 })
 </script>
 
-<button class="w=2 h=2 br=1 ol=.1_solid o=hidden us=none
-		:hover/bg=--gray-90 @dark@:hover/bg=--gray-30
-		_svg/f=--gray-60
-		:not(:hover)>div>div>svg:nth-of-type(even)/op=0"
+<button class="relative w=14 h=3 br=1.75 ol=.1_solid o=hidden us=none
+		_svg/f=currentcolor
+		:not(:hover)>div>div>svg:nth-of-type(even)/op=0
+		:hover/c=--gray-20 @dark@:hover/c=--gray-90
+		:hover/bg=--gray-80 @dark@:hover/bg=--gray-40"
 		on:click={change_theme}>
-	<div class="flex column ai=center p=0_2
-			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.8)_.5s"}
-			tf=translateX(-1em)_rotate({deg}deg)">
-		<div class="relative w=2 h=2">
-			<svg class="absolute i=.25 w=1.5 h=1.5">
+	<div class="flex column ai=center p=6_15
+			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s"}
+			tf=translate(-13em,-6em)_rotate({deg}deg)">
+		<div class="relative w=3 h=3">
+			<svg class="absolute i=.25 w=2.5 h=2.5 t=0.25">
 				<use xlink:href="{base}/icons.svg#dark-mode" />
 			</svg>
-			<svg class="absolute i=.25 w=1.5 h=1.5 tt=opacity_.3s">
+			<svg class="absolute i=.25 w=2.5 h=2.5 t=0.25 tt=opacity_.3s">
 				<use xlink:href="{base}/icons.svg#dark-mode-fill" />
 			</svg>
 		</div>
-		<div class="relative w=2 h=2">
-			<svg class="absolute i=.25 w=1.5 h=1.5">
+		<div class="h=10"></div>
+		<div class="relative w=3 h=3">
+			<svg class="absolute i=.25 w=2.5 h=2.5 t=0.25">
 				<use xlink:href="{base}/icons.svg#light-mode" />
 			</svg>
-			<svg class="absolute i=.25 w=1.5 h=1.5 tt=opacity_.3s">
+			<svg class="absolute i=.25 w=2.5 h=2.5 t=0.25 tt=opacity_.3s">
 				<use xlink:href="{base}/icons.svg#light-mode-fill" />
 			</svg>
 		</div>
+	</div>
+	<div class="absolute t=0 l=4 ai=center flex h=3">
+		<span class="fs=1.25">Switch theme</span>
 	</div>
 </button>

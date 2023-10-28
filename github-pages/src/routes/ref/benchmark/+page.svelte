@@ -1,7 +1,7 @@
 <script>
 import styles from "js/styles.js"
 import BenchmarkChart from "organs/ref/benchmark/BenchmarkChart.svelte"
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 import { onMount } from "svelte"
 
 /** @type {HTMLElement} */
@@ -73,9 +73,9 @@ onMount(() => header.parentElement?.scroll(0, 0))
 				class="fs=1.5 {styles.$common.link}">
 			css-lube.html
 		</a><br>
-		<a href="https://artxe2.github.io/test/tailwind-jit.html" target="_blank"
+		<a href="https://artxe2.github.io/test/tailwind-cdn.html" target="_blank"
 				class="fs=1.5 {styles.$common.link}">
-			tailwind-jit.html
+			tailwind-cdn.html
 		</a>
 	</article>
 </div>

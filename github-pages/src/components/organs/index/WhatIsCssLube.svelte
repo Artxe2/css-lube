@@ -4,10 +4,10 @@ import TypingText from "organs/$common/animations/TypingText.svelte"
 import { base } from "$app/paths"
 import { html, name, string } from "js/highlighter.js"
 import styles from "js/styles.js"
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 
 const code = `${html("div", ` ${name("class")}=${string("flex column ai=center ta=center w=12 bg=#fff c=#000 p=.5 br=.5 bs=0_1_1_gray")}`, `
-	${html("img", ` ${name("class")}=${string("w=4 h=4<f>tf=rotate(-20deg)</f>")} ${name("src")}=${string(base + "/favicon.png")} ${name("alt")}=${string("favicon")}`, false)} 
+	${html("img", ` ${name("class")}=${string("w=4 h=4<f>tf=rotate(-20deg)</f>")} ${name("src")}=${string(base + "/favicon.svg")} ${name("alt")}=${string("favicon")}`, false)} 
 	${html("div", "", `
 		${html("h3", ` ${name("class")}=${string("bold fs=1.5<f>fv=small-caps</f>")}`, "CSS Lube")} 
 		${html("div", ` ${name("class")}=${string("relative mt=-1.5<f>_span/ff='Times_New_Roman',Times,serif</f>")}`, `
@@ -27,7 +27,7 @@ const handle_endtype = ({ detail }) => index = detail
 	<H2>What is CSS Lube?</H2>
 	<span>CSS Lube is Highly-optimized CSS Interpreter.</span>
 	<span>It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,386 byte(2,753 byte on gzip) js file.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,327 byte(2,701 byte on gzip) js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
 			@!md@column
@@ -39,7 +39,7 @@ const handle_endtype = ({ detail }) => index = detail
 				<div class="flex column ai=center ta=center w=12 bg=#fff c=#000 p=.5 br=.5 bs=0_1_1_gray">
 					<img class="w=4 h=4
 							{index < 2 || "tt=transform_.5s tf=rotate(-20deg)"}"
-							src="{base}/favicon.png" alt="favicon" />
+							src="{base}/favicon.svg" alt="favicon" />
 					<div>
 						<h3 class="bold fs=1.5
 								{index < 0 || "fv=small-caps"}">

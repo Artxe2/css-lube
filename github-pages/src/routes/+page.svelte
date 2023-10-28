@@ -18,11 +18,8 @@ onMount(
 <header bind:this={header} class="h=fit-content m=.5">
 	<HeroSection />
 </header>
-<div class="h=2"></div>
-<article class="h=fit-content
+<article class="flex column h=fit-content p=2_0_4 g=1
 		m=0_1 @sm@m=0_2">
 	<WhatIsCssLube />
-	<div class="h=1"></div>
 	<WhatsTheDifference />
 </article>
-<div class="h=4"></div>

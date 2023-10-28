@@ -1,6 +1,5 @@
 <script>
 import { scaleLinear } from "d3-scale"
-import { H2 } from "lube-ui"
 
 /**
  * @type {{
@@ -24,16 +23,16 @@ const data = [
 		speed_index: 2599
 	},
 	{
-		name: "CSS Lube",
+		name: "CSS Lube v2.0.0",
 		page_weight: 52,
-		total_blocking_time: 173,
-		speed_index: 2980
+		total_blocking_time: 2552,
+		speed_index: 1125
 	},
 	{
-		name: "Tailwind JIT",
-		page_weight: 157,
-		total_blocking_time: 2291,
-		speed_index: 4051
+		name: "Tailwind CDN v3.3.5",
+		page_weight: 159,
+		total_blocking_time: 2234,
+		speed_index: 4306
 	}
 ]
 const max_page_weight = Math.max(...data.map(v => v.page_weight))

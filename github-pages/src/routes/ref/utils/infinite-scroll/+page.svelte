@@ -1,5 +1,5 @@
 <script>
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 import InfiniteScrollExample from "parts/ref/utils/infinite-scroll/InfiniteScrollExample.svelte"
 import { onMount } from "svelte"
 import styles from "js/styles.js"

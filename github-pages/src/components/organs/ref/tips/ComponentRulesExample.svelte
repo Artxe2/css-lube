@@ -2,7 +2,7 @@
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import { html, name, string } from "js/highlighter.js"
 import GithubStars from "parts/$common/GithubStars.svelte"
-import { H3 } from "lube-ui"
+import { H3 } from "lube-ui/typography"
 
 const code = `${html("GithubStars", "", false)}
 ${html("div", ` ${name("class")}=${string(`>div>a/br=.75

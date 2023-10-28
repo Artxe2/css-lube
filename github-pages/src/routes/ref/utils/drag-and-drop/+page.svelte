@@ -1,5 +1,5 @@
 <script>
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 import TodoListExample from "parts/ref/utils/drag-and-drop/TodoListExample.svelte"
 import { onMount } from "svelte"
 import styles from "js/styles.js"

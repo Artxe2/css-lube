@@ -1,5 +1,4 @@
 <script>
-import { Download } from "lube-ui"
 import SafeImg from "organs/$common/utils/SafeImg.svelte"
 import styles from "js/styles.js"
 </script>

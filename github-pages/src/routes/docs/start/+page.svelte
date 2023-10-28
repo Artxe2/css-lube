@@ -5,7 +5,7 @@ import InstallationArticle from "organs/docs/installation/InstallationArticle.sv
 import CodeIntellisenseArticle from "organs/docs/installation/CodeIntellisenseArticle.svelte"
 import { onMount } from "svelte"
 import { page } from "$app/stores"
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 
 const tabs = [ "Installation", "Code Intellisense" ]
 let index = 0

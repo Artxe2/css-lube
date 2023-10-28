@@ -4,7 +4,7 @@
 		"checkJs": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"module": "NodeNext",
+		"module": "Node16",
 		"moduleResolution": "NodeNext",
 		"outDir": "silences wrong TS error, we don't compile, we only typecheck",
 		"resolveJsonModule": true,

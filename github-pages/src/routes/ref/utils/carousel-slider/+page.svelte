@@ -1,6 +1,6 @@
 <script>
 import CarouselSliderExample from "organs/ref/utils/carousel-slider/CarouselSliderExample.svelte"
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 import styles from "js/styles.js"
 import { onMount } from "svelte"
 

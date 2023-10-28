@@ -20,7 +20,6 @@ const config = {
 			js: path.resolve("./src/js")
 		},
 		paths: {
-			// eslint-disable-next-line no-undef
 			base: process.env.NODE_ENV === "production" ? "/css-lube" : ""
 		}
 	},

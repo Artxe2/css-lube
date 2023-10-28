@@ -1,91 +1,71 @@
 <script>
-import { base } from "$app/paths"
-import NavButton from "organs/$common/Drawer/NavButton.svelte"
-import SubDrawer from "organs/$common/Drawer/SubDrawer.svelte"
 import ThemeButton from "parts/$common/ThemeButton.svelte"
-import sub_menu from "js/sub_menu.js"
+import { base } from "$app/paths"
+import Button from "organs/$common/Drawer/Button.svelte"
+import sub_menu from "js/menu.js"
+import styles from "js/styles.js"
 
-const sub_list_open = {
-	docs: false,
-	ref: false
-}
+/** @type {boolean} */
+export let is_open
 </script>
 
-<nav class="z=10000 fixed t=0 l=0 h=100%
+<nav class="z=2 fixed t=0 l=-30 w=30 pl=10 h=100% br=0_1_1_0 tt=transform_.3s o=auto
 		c=--gray-30 @dark@c=--gray-70
+		bg=--gray-90 @dark@bg=--gray-30
 		_svg/f=--gray-10 @dark@_svg/f=--gray-70
-		@!lg@v=hidden">
-	<div class="flex column h=100% w=4
-			bg=--gray-95 @dark@bg=--gray-20">
-		<div class="h=1"></div>
-		<div class="flex column">
-			<NavButton classs=":hover_.icon/tf=scale(1.2)"
-					href="{base}/" text="Home">
-				<img src="{base}/favicon.png" alt="logo" class="icon z=1 w=1.5">
-			</NavButton>
-		</div>
-		<div class="h=.5"></div>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div class="flex column"
-				on:mouseleave={() => sub_list_open.docs = false}>
-			<NavButton classs=":not(:hover)_.icon>svg:nth-of-type(even)/op=0
+		{is_open && "tf=translateX(20em)"}">
+	<div class="h=100% oy=auto flex column
+			{styles.scrollbar.primary}">
+		<div class="h=5"></div>
+		<div class="flex column p=.5 fg=1">
+			<Button classs=":hover_.icon/tf=scale(1.2)"
+					menu={sub_menu[0]}>
+				<img src="{base}/favicon.svg" alt="logo" class="icon w=1.7 pb=.2 mr=.5">
+			</Button>
+			<Button classs=":not(:hover)_.icon>svg:nth-of-type(even)/op=0
 					:hover_.icon>svg:nth-of-type(odd)/op=0"
-					on:mouseenter={() => sub_list_open.docs = true}
-					href="{base}/docs" text="Documents">
-				<div class="icon z=1 relative w=1.2 h=1.5">
-					<svg class="absolute w=1.2 h=1.5">
+					menu={sub_menu[1]}>
+				<div class="icon relative inline-block w=1.5 h=1.3 mr=.5">
+					<svg class="absolute w=1.5 h=1.5">
 						<use xlink:href="{base}/icons.svg#library-books" />
 					</svg>
-					<svg class="absolute w=1.2 h=1.5">
+					<svg class="absolute w=1.5 h=1.5">
 						<use xlink:href="{base}/icons.svg#library-books-fill" />
 					</svg>
 				</div>
-			</NavButton>
-			<SubDrawer data={sub_menu["Documents"]} bind:is_open={sub_list_open.docs} />
-		</div>
-		<div class="h=.5"></div>
-		<div class="flex column">
-			<NavButton classs=":hover_.icon>svg/tf=scale(1.2)"
-					href="{base}/repl" text="REPL">
-				<div class="icon z=1 relative w=1.5 h=1.5">
-					<svg class="h=1.5">
-						<use xlink:href="{base}/icons.svg#code" />
-					</svg>
-				</div>
-			</NavButton>
-		</div>
-		<div class="h=.5"></div>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div class="flex column"
-				on:mouseleave={() => sub_list_open.ref = false}>
-			<NavButton classs=":not(:hover)_.icon>svg:nth-of-type(even)/op=0
+			</Button>
+			<Button classs=":hover_.icon/tf=scale(1.2)"
+					menu={sub_menu[2]}>
+				<svg class="icon w=2 h=2 m=0_-.25 lh=1.7 mr=.25">
+					<use xlink:href="{base}/icons.svg#code" />
+				</svg>
+			</Button>
+			<Button classs=":not(:hover)_.icon>svg:nth-of-type(even)/op=0
 					:hover_.icon>svg:nth-of-type(odd)/op=0"
-					on:mouseenter={() => sub_list_open.ref = true}
-					href="{base}/ref" text="Reference">
-				<div class="icon z=1 relative w=1.2 h=1.5">
-					<svg class="absolute w=1.2 h=1.5">
+					menu={sub_menu[3]}>
+				<div class="icon relative inline-block w=1.5 h=1.3 mr=.5">
+					<svg class="absolute w=1.5 h=1.5">
 						<use xlink:href="{base}/icons.svg#quick-reference" />
 					</svg>
-					<svg class="absolute w=1.2 h=1.5">
+					<svg class="absolute w=1.5 h=1.5">
 						<use xlink:href="{base}/icons.svg#quick-reference-fill" />
 					</svg>
 				</div>
-			</NavButton>
-			<SubDrawer data={sub_menu["Reference"]} bind:is_open={sub_list_open.ref} />
+			</Button>
 		</div>
-		<div class="fg=1"></div>
-		<div class="h=1"></div>
+		<div class="h=7"></div>
 		<div class="flex w=100% jc=center">
-			<a href="https://github.com/Artxe2/css-lube" target="_blank"
-					class="flex ai=center :hover_svg/f=#000 @dark@:hover_svg/f=#fff">
-				<svg class="w=2.2 h=2.2">
-					<use xlink:href="{base}/icons.svg#github" />
-				</svg>
-			</a>
-		</div>
-		<div class="h=1"></div>
-		<div class="flex w=100% jc=center">
-			<ThemeButton />
+			<div class="flex ai=center">
+				<a href="https://github.com/Artxe2/css-lube" target="_blank"
+						class="flex ai=center fs=1.5
+						:hover_svg/f=#000 @dark@:hover_svg/f=#fff">
+					<svg class="w=2.2 h=2.2 f=--gray-10">
+						<use xlink:href="{base}/icons.svg#github" />
+					</svg>
+				</a>
+				<div class="w=1"></div>
+				<ThemeButton />
+			</div>
 		</div>
 		<div class="h=1"></div>
 	</div>

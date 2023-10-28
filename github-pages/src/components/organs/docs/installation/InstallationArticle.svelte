@@ -7,9 +7,9 @@ import styles from "js/styles.js"
 
 const code = `${html("head", "", `
 	. . . . . .
-	${html("script", ` ${name("src")}=${string("<f>/css-lube.min.js</f>")} ${name("<f>defer</f>")}`, "")}
+	${html("script", ` ${name("src")}=${string("<f>/css-lube.min.js</f>")}`, "")}
 `)}
-${html("body", ` ${name("<f>hidden</f>")} ${name("class")}=${string("...")}`, `
+${html("body", ` ${name("class")}=${string("...")}`, `
 	. . . . . .
 `)}`
 </script>

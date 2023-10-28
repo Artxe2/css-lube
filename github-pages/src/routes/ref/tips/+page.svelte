@@ -1,5 +1,5 @@
 <script>
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 import ComponentRulesExample from "organs/ref/tips/ComponentRulesExample.svelte"
 import ResponsiveWebDesignExample from "organs/ref/tips/ResponsiveWebDesignExample.svelte"
 import { onMount } from "svelte"

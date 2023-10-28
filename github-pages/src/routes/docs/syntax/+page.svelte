@@ -6,7 +6,7 @@ import SelectorArticle from "organs/docs/syntax/SelectorArticle.svelte"
 import MediaQueryArticle from "organs/docs/syntax/MediaQueryArticle.svelte"
 import { onMount } from "svelte"
 import { page } from "$app/stores"
-import { H2 } from "lube-ui"
+import { H2 } from "lube-ui/typography"
 
 const tabs = [ "Basic", "Selector", "Media Query" ]
 let index = 0

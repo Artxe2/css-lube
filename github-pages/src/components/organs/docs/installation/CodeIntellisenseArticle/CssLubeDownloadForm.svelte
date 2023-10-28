@@ -13,7 +13,7 @@ const get_source = client("https://raw.githubusercontent.com/Artxe2/css-lube/mai
 const download_file = async () => {
 	const file_name = is_uncompressed
 		? "css-lube.js"
-		: "download/css-lube.min.js"
+		: "css-lube.min.js"
 	const response = await get_source({ file_name })
 	let text = await response.text()
 	if (using_px_for_default_unit) text = text.replace("\"em\"", "\"px\"")

@@ -1,0 +1,51 @@
+{
+	"author": "artxe2",
+	"description": "Svelte UI Components for CSS Lube",
+	"devDependencies": {
+		"@types/node": "^20.8.9",
+		"@typescript-eslint/parser": "^6.9.0",
+		"eslint": "^8.52.0",
+		"eslint-plugin-lube": "^0.3.5",
+		"svelte": "^4.2.2",
+		"svelte-check": "^3.5.2",
+		"svelte-eslint-parser": "^0.33.1",
+		"typescript": "^5.2.2"
+	},
+	"exports": {
+		".": {
+			"import": "./src/index.js",
+			"types": "./types/index.d.ts"
+		},
+		"./typography": {
+			"default": "./src/typography/index.js",
+			"types": "./types/typography.d.ts"
+		},
+		"./utils": {
+			"default": "./src/utils/index.js",
+			"types": "./types/utils.d.ts"
+		}
+	},
+	"keywords": [],
+	"license": "MIT",
+	"main": "src/index.js",
+	"name": "lube-ui",
+	"scripts": {
+		"lint": "svelte-check --tsconfig ./tsconfig.json && eslint --fix ."
+	},
+	"type": "module",
+	"types": "types/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"*": [
+				"types/index.d.ts"
+			],
+			"typography": [
+				"types/typography.d.ts"
+			],
+			"utils": [
+				"types/utils.d.ts"
+			]
+		}
+	},
+	"version": "0.1.0"
+}

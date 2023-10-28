@@ -1,6 +1,6 @@
 <script>
 import { drag$, transition$ } from "parts/ref/store.js"
-import { Dragable } from "lube-ui"
+import { Dragable } from "lube-ui/utils"
 
 /** @type {string[]} */
 export let list

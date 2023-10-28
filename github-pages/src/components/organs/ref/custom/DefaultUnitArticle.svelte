@@ -1,5 +1,5 @@
 <script>
-import { H3 } from "lube-ui"
+import { H3 } from "lube-ui/typography"
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import {
 	color,

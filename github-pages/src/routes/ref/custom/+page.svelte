@@ -1,6 +1,6 @@
 <script>
 import { page } from "$app/stores"
-import { H2, H3 } from "lube-ui"
+import { H2, H3 } from "lube-ui/typography"
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import JsMap from "organs/$common/utils/JsMap.svelte"
 import CssResetArticle from "organs/ref/custom/CssResetArticle.svelte"

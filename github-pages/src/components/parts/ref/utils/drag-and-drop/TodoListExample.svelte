@@ -10,7 +10,7 @@ import {
 import { onDestroy, onMount } from "svelte"
 import DragItem from "parts/ref/utils/drag-and-drop/TodoListExample/DragItem.svelte"
 import DragItemPlaceHolder from "parts/ref/utils/drag-and-drop/TodoListExample/DragItemPlaceHolder.svelte"
-import { DragContainer } from "lube-ui"
+import { DragContainer } from "lube-ui/utils"
 import styles from "js/styles.js"
 
 /** @type {number[]} */

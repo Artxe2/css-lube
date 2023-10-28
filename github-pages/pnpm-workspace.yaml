@@ -1,2 +1,2 @@
 packages:
-  - '../lube-ui'
+  - '../packages/lube-ui'

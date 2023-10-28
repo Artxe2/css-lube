@@ -1,7 +1,7 @@
 <script>
 import { base } from "$app/paths"
 import TypingText from "organs/$common/animations/TypingText.svelte"
-import { H1 } from "lube-ui"
+import { H1 } from "lube-ui/typography"
 import GithubStars from "parts/$common/GithubStars.svelte"
 import styles from "js/styles.js"
 
