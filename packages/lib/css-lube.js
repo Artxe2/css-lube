@@ -165,8 +165,7 @@
 	let classes = new Set
 	/** @type {Set<Element>} */
 	let elements = new Set
-	/** @type {Map<string, [string, string]>} */
-	let media = new M
+	let media_style = ""
 	/**
 	 * @type {RegExp}
 	 * ```
@@ -256,12 +255,10 @@
 	/** @returns {void} */
 	let build_style_sheet = () => {
 		let theme = localStorage.getItem("THEME")
-		let temp = ""
-		for (let [query, style] of media.values()) temp += query + style + "}"
 		style_sheet.textContent = pure_style + (
 			theme
-				? temp.replace(dark_theme_regex, theme == "DARK" ? "color" : "")
-				: temp
+				? media_style.replace(dark_theme_regex, theme == "DARK" ? "color" : "")
+				: media_style
 		)
 	}
 	/**
@@ -307,14 +304,9 @@
 	let compile_media = cname => {
 		let i = cname.indexOf("@", 2)
 		let query = cname.slice(1, i)
-		let group = media.get(query)
-		if (!group) {
-			group = [ parse_query(query), "" ]
-			media.set(query, group)
-		}
 		let name = cname.slice(i + 1)
-		group[1] += get_priority(name) + ".\\@" + escape(query) + "\\@"
-			+ (check_is_raw(name) ? compile_raw : compile_special)(name)
+		media_style += parse_query(query) + get_priority(name) + ".\\@" + escape(query) + "\\@"
+			+ (check_is_raw(name) ? compile_raw : compile_special)(name) + "}"
 	}
 	/**
 	 * @param {string} cname
@@ -476,7 +468,7 @@
 	let replace_var_handler = substr => substr[0] + "var(" + substr.slice(1) + ")"
 
 
-	style_sheet.setAttribute("css-lube", "v2.0.0")
+	style_sheet.setAttribute("css-lube", "v2.1.0")
 	dom.head.append(style_sheet)
 	new MO(mr_list => {
 		let size = classes.size

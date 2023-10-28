@@ -23,10 +23,10 @@ const data = [
 		speed_index: 2599
 	},
 	{
-		name: "CSS Lube v2.0.0",
+		name: "CSS Lube v2.1.0",
 		page_weight: 52,
-		total_blocking_time: 2552,
-		speed_index: 1125
+		total_blocking_time: 2008,
+		speed_index: 1109
 	},
 	{
 		name: "Tailwind CDN v3.3.5",
@@ -91,7 +91,7 @@ $: bar_width = innerWidth / data.length / 3 - 4
 		<rect width="15" height="15" y="46" fill="#1a1" />
 		<rect width="15" height="15" y="66" fill="#11a" />
 		<g transform="translate(20, 40)">
-			<text>first contentful paint</text>
+			<text>page weight</text>
 		</g>
 		<g transform="translate(20, 60)">
 			<text>total blocking time</text>
