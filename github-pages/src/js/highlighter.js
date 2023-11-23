@@ -1,10 +1,22 @@
-const colors = [ "blue", "--forest-green", "--copper-canyon" ]
-const dark_colors = [ "--gold", "--bouquet", "--dotger-blue" ]
+const colors = [
+	"blue",
+	"--forest-green",
+	"--copper-canyon"
+]
+const dark_colors = [
+	"--gold",
+	"--bouquet",
+	"--dotger-blue"
+]
 /**
  * @param {string} parens
  * @param {number=} depth
  */
-const bracket = (parens, depth) => color(colors[depth || 0], dark_colors[depth || 0], parens)
+const bracket = (parens, depth) => color(
+	colors[depth || 0],
+	dark_colors[depth || 0],
+	parens
+)
 
 /** @param {string} tag */
 const close_tag = tag => {
@@ -27,7 +39,11 @@ const color = (col, dark, text) => `<span class="c=${col} @dark@c=${dark}">${tex
 const css = (selector, ...properties) => `${color("--maroon", "--straw", selector)}${bracket("{")}${properties.map(([key, value]) => `${color("red", "--anakiwa", key)}:${color("--endeavour", "--raw-sienna", value)}`).join(";")}${bracket("}")}`
 
 /** @param {string} text */
-const comment = text => color("--japanese-laurel", "--asparagus", escape_tag(text))
+const comment = text => color(
+	"--japanese-laurel",
+	"--asparagus",
+	escape_tag(text)
+)
 
 /** @param {string} text */
 const declare = text => color("blue", "--havelock-blue", text)
@@ -64,7 +80,11 @@ const html = (tag, attr, child) => {
 }
 
 /** @param {string} text */
-const keyword = text => color("--electric-violet", "--bouquet", text)
+const keyword = text => color(
+	"--electric-violet",
+	"--bouquet",
+	text
+)
 
 /**
  * @param {string} text
@@ -73,7 +93,11 @@ const keyword = text => color("--electric-violet", "--bouquet", text)
 const name = (text, is_final) => is_final ? color("--lochmara", "--malibu", text) : color("--navy-blue", "--anakiwa", text)
 
 /** @param {number} num */
-const number = num => color("--salem", "--coriander", num.toString())
+const number = num => color(
+	"--salem",
+	"--coriander",
+	num.toString()
+)
 
 /**
  * @param {string} tag
@@ -92,16 +116,28 @@ const open_tag = (tag, attr) => {
  */
 const string = (text, quote) => {
 	if (quote === false) {
-		return color("--tamarillo", "--raw-sienna", text)
+		return color(
+			"--tamarillo",
+			"--raw-sienna",
+			text
+		)
 	}
 	if (!quote) {
 		quote = "\""
 	}
-	return color("--tamarillo", "--raw-sienna", quote + text + quote)
+	return color(
+		"--tamarillo",
+		"--raw-sienna",
+		quote + text + quote
+	)
 }
 
 /** @param {string} text */
-const type = text => color("--jelly-bean", "--puerto-rico", text)
+const type = text => color(
+	"--jelly-bean",
+	"--puerto-rico",
+	text
+)
 
 export {
 	bracket,

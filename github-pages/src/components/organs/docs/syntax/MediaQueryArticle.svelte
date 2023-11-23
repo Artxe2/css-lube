@@ -1,6 +1,5 @@
 <script>
 import { base } from "$app/paths"
-import { H3 } from "lube-ui/typography"
 import CodePage from "organs/$common/utils/CodePage.svelte"
 import {
 	bracket,
@@ -15,44 +14,8 @@ import {
 } from "js/highlighter.js"
 import styles from "js/styles.js"
 import version from "js/version.js"
+import TestEditor from "parts/$common/TestEditor.svelte"
 
-const code1 = `${html("span", ` ${name("class")}=${string("fs=12px @(min-width:768px)@fs=16px  @(min-width:768px)@:hover/fs=20px")}`, `
-	${css(".fs\\=12px", ["font-size", "12px"])}
-	${keyword("@media")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
-		${css(".\\@\\(min-width\\:768px\\)\\@fs\\=16px", ["font-size", "16px"])}
-		${css(".\\@\\(min-width\\:768px\\)\\@\\:hover\\/fs\\=20px", ["font-size", "20px"])}
-	${bracket("}")}
-`)}`
-const code2 = `${html("span", ` ${name("class")}=${string("@min-width=768px@c=red")}`, `
-	${keyword("@media")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
-		${css(".\\@min-width\\=768px\\@c\\=red", ["color", "red"])}
-	${bracket("}")}
-`)}
-${html("span", ` ${name("class")}=${string("@md@c=red")}`, `
-	${keyword("@media")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
-		${css(".\\@md\\@c\\=red", ["color", "red"])}
-	${bracket("}")}
-`)}
-${html("span", ` ${name("class")}=${string("@sm&!lg@c=red")}`, `
-	${keyword("@media")} ${bracket("(")}${name("min-width")}:${string("640px", false)}${bracket(")")} ${keyword("and")} ${bracket("(")}${name("max-width")}:${string("1023px", false)}${bracket("){")}
-		${css(".\\@sm\\&\\!lg\\@c\\=red", ["color", "red"])}
-	${bracket("}")}
-`)}
-${html("span", ` ${name("class")}=${string("@!md@c=red")}`, `
-	${keyword("@media")} ${bracket("(")}${name("max-width")}:${string("767px", false)}${bracket("){")}
-		${css(".\\@\\!md\\@c\\=red", ["color", "red"])}
-	${bracket("}")}
-`)}
-${html("span", ` ${name("class")}=${string("@dark&md@c=red")}`, `
-	${keyword("@media")} ${bracket("(")}${name("prefers-color-scheme")}:${string("dark", false)}${bracket(")")} ${keyword("and")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
-		${css(".\\@dark\\&md\\@c\\=red", ["color", "red"])}
-	${bracket("}")}
-`)}`
-const code3 = `${html("span", ` ${name("class")}=${string("@@container_md@fs=10px")}`, `
-	${keyword("@container")} ${bracket("(")}${name("min-width")}:${string("768px", false)}${bracket("){")}
-		${css(".\\@\\@container_md\\@fs\\=10px", ["font-size", "10px"])}
-	${bracket("}")}
-`)}`
 const code4 = `${html("script", "", `
 	${comment("// if THEME is not DARK and true, light theme is applied")}
 	${name("localStorage")}.${func("setItem")}${bracket("(")}${string("THEME")}, ${string("LIGHT")}${bracket(")")}
@@ -93,22 +56,43 @@ ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 
 <div class={styles.$common.contents_div}>
 	<span>Classes that begin with an at (@) apply media queries and use the second at to separate styles from media queries</span>
-	<div class="m=1_0_2_0">
-		<CodePage>{@html code1}</CodePage>
+	<div class="h=.5"></div>
+	<div class="h=10 @!md@h=20">
+		<TestEditor content={`<span class="c=red @(min-width:768px)@c=blue">
+	Red? Blue?
+</span>
+<span class=":active/c=red @(min-width:768px)@:active/c=blue">
+	Red? Blue?
+</span>`} />
 	</div>
+	<br>
 	<span>Media queries also provide some shorthands</span>
-	<a href="{base}/ref/custom#Shorthand for Media Condition" target="_blank"
+	<a href="{base}/docs/custom#shorthand-for-media" target="_blank"
 			class="w=fit-content {styles.$common.link}">
 		Shorthand for Media Condition
 	</a>
-	<div class="m=1_0_2_0">
-		<CodePage>{@html code2}</CodePage>
+	<div class="h=.5"></div>
+	<div class="h=10 @!md@h=20">
+		<TestEditor content={`<pre>
+	<span class="c=red @min-width=768px@c=blue">Red? Blue?</span>
+	<span class="c=red @md@c=blue">Red? Blue?</span>
+	<span class="c=red @sm&!lg@c=blue">Red? Blue?</span>
+	<span class="c=red @!md@c=blue">Red? Blue?</span>
+	<span class="c=red @dark&md@c=blue">Red? Blue?</span>
+</pre>`} />
 	</div>
+	<br>
 	<span>If you use two at (@), the query does not have media as a prefix</span>
-	<div class="m=1_0_2_0">
-		<CodePage>{@html code3}</CodePage>
+	<div class="h=.5"></div>
+	<div class="h=10 @!md@h=20">
+		<TestEditor content={`<div class="bg=#fff inline-block o=auto resize=horizontal w=5 h=5">
+	<div class="container-type=size ta=center">
+		<span class="c=red @@container_(width>10em)@c=blue">Red? Blue?</span>
 	</div>
-	<H3>Dark Mode</H3>
+</div>`} />
+	</div>
+	<br>
+	<h3 class="fs=2 bold">Dark Mode</h3>
 	<span>The dark mode transition of CSS Lube is applied using media queries.</span><br>
 	<span>In light theme, dark mode styles are disabled with FALSE(0)</span>
 	<div class="m=1_0_2_0">

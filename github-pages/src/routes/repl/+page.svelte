@@ -1,5 +1,5 @@
 <script>
-import TestEditor from "organs/repl/TestEditor.svelte"
+import TestEditor from "parts/$common/TestEditor.svelte"
 </script>
 
 <svelte:head>

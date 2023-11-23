@@ -17,7 +17,7 @@ const code = `${html("div", ` ${name("class")}=${string("flex column ai=center t
 		`)}
 	`)}
 `)}`
-let index = -1
+let index = $state(-1)
 
 /** @param {CustomEvent<number>} event */
 const handle_endtype = ({ detail }) => index = detail
@@ -27,7 +27,7 @@ const handle_endtype = ({ detail }) => index = detail
 	<H2>What is CSS Lube?</H2>
 	<span>CSS Lube is Highly-optimized CSS Interpreter.</span>
 	<span>It is makes improved your developer experience by implement any designs directly in markup and immediately reflect feedback.</span>
-	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,245 byte(2,655 byte on gzip) js file.</span>
+	<span>In addition, CSS Lube parses HTML documents at runtime and render styles, so it can completely replace style files that become bloated whenever updated with a 6,033 byte(2,572 byte on gzip) js file.</span>
 	<div class="h=1"></div>
 	<div class="flex
 			@!md@column
@@ -57,12 +57,12 @@ const handle_endtype = ({ detail }) => index = detail
 		</div>
 		<div class="w=1 h=1"></div>
 		<div class="relative fg=1 fsk=1 >div/br=1">
-			<div class="v=hidden">
+			<div class="v=hidden _f:not(:empty):before/inline-block;ct='_'">
 				<pre class="p=1 wb=break-all letter-spacing=.075">{@html code}</pre>
 			</div>
 			<div class="absolute t=0 >div/h=100%">
 				<CodePage>
-					<TypingText classs={styles.util.typing_text_in_middle} orders={[ 1, 2, 0 ]} on:endtype={handle_endtype}>{@html code}</TypingText>
+					<TypingText classs={styles.util.typing_text_in_middle} orders={[ 1, 2, 0 ]} onendtype={handle_endtype}>{@html code}</TypingText>
 				</CodePage>
 			</div>
 		</div>

@@ -1,12 +1,13 @@
 <script>
-export let classs = ""
-export let index = 0
-
-/** @type {HTMLDivElement} */
-let container
+/**
+ * @type {{
+ *   classs?: string
+ *   index: number
+ * }}
+ */
+const { classs = "", index } = $props()
 </script>
 
-<div bind:this={container}
-		class=">:not(:nth-child({index + 1}))/none {classs}">
+<div class=">:not(:nth-child({index + 1}))/none {classs}">
 	<slot></slot>
 </div>

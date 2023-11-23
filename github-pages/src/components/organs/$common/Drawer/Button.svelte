@@ -1,51 +1,64 @@
 <script>
+/**
+ * @type {{
+ *   classs?: string
+ *   close?: Function
+ *   menu: import("js/types.js").Menu
+ * }}
+ */
+let { classs = "", close, menu } = $props()
+close = () => {
+	is_open = false
+	for (const c of close_childs) c()
+}
+
 import { base } from "$app/paths"
 import { page } from "$app/stores"
-import { onMount } from "svelte"
-
-/** @type {import("js/types.js").Menu} */
-export let menu
-export let classs = ""
 
 /** @type {boolean} */
-let is_open
+let is_open = $state(false)
 /** @type {boolean} */
-let active
+let active = $state(false)
+/** @type {Function[]} */
+const close_childs = $state([])
 
-onMount(() => {
-	page.subscribe(() => {
-		active = menu.href == base + "/"
-			? location.pathname == menu.href || location.pathname + "/" == menu.href
-			: location.pathname.startsWith(menu.href)
-	})
-})
+const toggle_open = () => {
+	if (is_open) close?.()
+	else is_open = true
+}
+
+$effect.pre(
+	() => {
+		page.subscribe(
+			() => {
+				active = menu.href == base + "/"
+					? location.pathname == menu.href || location.pathname + "/" == menu.href
+					: location.pathname.startsWith(menu.href)
+			}
+		)
+	}
+)
 </script>
 
 {#if menu.subs}
 <button class="relative w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
 		:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-		{active && "bg=--primary-50!! c=--primary-90!!"}
+		{active && "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90!!"}
 		{classs}"
-		on:click={() => is_open = !is_open}>
+		onclick={toggle_open}>
 	<slot></slot>
 	<span class="fs=1.5">{menu.name}</span>
-	<div class="absolute b=50% r=1 h=.75 w=.25 br=.125
-			tt=transform_.3s tfo=bottom
-			tf=rotate({is_open ? "-135deg" : "-45deg"})_translateY(.1em)
-			bg=--gray-30 @dark@bg=--gray-70
-			{active && "bg=--primary-90!"}"></div>
-	<div class="absolute b=50% r=1 h=.75 w=.25 br=.125
-			tt=transform_.3s tfo=bottom
-			tf=rotate({is_open ? "135deg" : "45deg"})_translateY(.1em)
-			bg=--gray-30 @dark@bg=--gray-70
-			{active && "bg=--primary-90!"}"></div>
+	<svg class="inline absolute r=.5 w=1.8 h=2.2 tt=transform_.3s
+			tf=rotate({is_open ? 0 : "-90deg"})">
+			<use xlink:href="{base}/icons.svg#expand" />
+	</svg>
 </button>
 <ul class="ml=1 o=hidden">
 	{#if menu.subs}
-		{#each menu.subs as m}
+		{#each menu.subs as m, i}
 		<li class="relative tt=margin-top_.3s
 				{is_open || "mt=-3.75"}">
-			<svelte:self menu={m} />
+			<svelte:self menu={m} bind:close={close_childs[i]} />
 		</li>
 		{/each}
 	{/if}

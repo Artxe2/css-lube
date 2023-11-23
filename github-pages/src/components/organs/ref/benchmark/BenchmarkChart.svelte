@@ -3,47 +3,51 @@ import { scaleLinear } from "d3-scale"
 
 /**
  * @type {{
-		name: string,
-		page_weight: number,
-		total_blocking_time: number,
-		speed_index: number
+		name: string
+		first_contentful_paint: number
+		total_blocking_time: number
+		page_weight: number
 	}[]}
  */
 const data = [
 	{
 		name: "Inline Style",
-		page_weight: 51,
-		total_blocking_time: 1018,
-		speed_index: 934
+		first_contentful_paint: 812,
+		total_blocking_time: 0,
+		page_weight: 164
+	},
+	{
+		name: "CSS Lube v2.2.0",
+		first_contentful_paint: 1095,
+		total_blocking_time: 1945,
+		page_weight: 166
 	},
 	{
 		name: "Atomic CSS",
-		page_weight: 108,
-		total_blocking_time: 0,
-		speed_index: 2599
-	},
-	{
-		name: "CSS Lube v2.1.0",
-		page_weight: 52,
-		total_blocking_time: 2008,
-		speed_index: 1109
+		first_contentful_paint: 1956,
+		total_blocking_time: 546,
+		page_weight: 197
 	},
 	{
 		name: "Tailwind CDN v3.3.5",
-		page_weight: 159,
-		total_blocking_time: 2234,
-		speed_index: 4306
+		first_contentful_paint: 3908,
+		total_blocking_time: 11194,
+		page_weight: 270
 	}
 ]
-const max_page_weight = Math.max(...data.map(v => v.page_weight))
-const page_weight_ticks = [
+const max_first_contentful_paint = Math.max(
+	...data.map(v => v.first_contentful_paint)
+)
+const first_contentful_paint_ticks = [
 	0,
-	.25 * max_page_weight,
-	.5 * max_page_weight,
-	.75 * max_page_weight,
-	max_page_weight
+	.25 * max_first_contentful_paint,
+	.5 * max_first_contentful_paint,
+	.75 * max_first_contentful_paint,
+	max_first_contentful_paint
 ]
-const total_blocking_time_paint = Math.max(...data.map(v => v.total_blocking_time))
+const total_blocking_time_paint = Math.max(
+	...data.map(v => v.total_blocking_time)
+)
 const total_blocking_time_ticks = [
 	0,
 	.25 * total_blocking_time_paint,
@@ -51,13 +55,15 @@ const total_blocking_time_ticks = [
 	.75 * total_blocking_time_paint,
 	total_blocking_time_paint
 ]
-const max_speed_index = Math.max(...data.map(v => v.speed_index))
-const speed_index_ticks = [
+const max_page_weight = Math.max(
+	...data.map(v => v.page_weight)
+)
+const page_weight_ticks = [
 	0,
-	.25 * max_speed_index,
-	.5 * max_speed_index,
-	.75 * max_speed_index,
-	max_speed_index
+	.25 * max_page_weight,
+	.5 * max_page_weight,
+	.75 * max_page_weight,
+	max_page_weight
 ]
 const padding = {
 	top: 20,
@@ -65,24 +71,72 @@ const padding = {
 	bottom: 20,
 	left: 25
 }
-let width = 100
-let height = 100
+let width = $state(100)
+let height = $state(100)
 
-$: x_scale = scaleLinear()
-	.domain([0, data.length])
-	.range([padding.left, width - padding.right])
-$: page_weight_scale = scaleLinear()
-	.domain([0, Math.max(...page_weight_ticks)])
-	.range([height - padding.bottom, padding.top])
-$: total_blocking_time_scale = scaleLinear()
-	.domain([0, Math.max(...total_blocking_time_ticks)])
-	.range([height - padding.bottom, padding.top])
-$: speed_index_scale = scaleLinear()
-	.domain([0, Math.max(...speed_index_ticks)])
-	.range([height - padding.bottom, padding.top])
-
-$: innerWidth = width - padding.left - padding.right
-$: bar_width = innerWidth / data.length / 3 - 4
+const x_scale = $derived(
+	scaleLinear()
+		.domain([ 0, data.length ])
+		.range(
+			[
+				padding.left,
+				width - padding.right
+			]
+		)
+)
+const page_weight_scale = $derived(
+	scaleLinear()
+		.domain(
+			[
+				0,
+				Math.max(...page_weight_ticks)
+			]
+		)
+		.range(
+			[
+				height - padding.bottom,
+				padding.top
+			]
+		)
+)
+const total_blocking_time_scale = $derived(
+	scaleLinear()
+		.domain(
+			[
+				0,
+				Math.max(...total_blocking_time_ticks)
+			]
+		)
+		.range(
+			[
+				height - padding.bottom,
+				padding.top
+			]
+		)
+)
+const first_contentful_paint_scale = $derived(
+	scaleLinear()
+		.domain(
+			[
+				0,
+				Math.max(
+					...first_contentful_paint_ticks
+				)
+			]
+		)
+		.range(
+			[
+				height - padding.bottom,
+				padding.top
+			]
+		)
+)
+const inner_width = $derived(
+	width - padding.left - padding.right
+)
+const bar_width = $derived(
+	inner_width / data.length / 3 - 4
+)
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
@@ -91,17 +145,17 @@ $: bar_width = innerWidth / data.length / 3 - 4
 		<rect width="15" height="15" y="46" fill="#1a1" />
 		<rect width="15" height="15" y="66" fill="#11a" />
 		<g transform="translate(20, 40)">
-			<text>page weight</text>
+			<text>first contentful paint</text>
 		</g>
 		<g transform="translate(20, 60)">
 			<text>total blocking time</text>
 		</g>
 		<g transform="translate(20, 80)">
-			<text>speed index</text>
+			<text>page weight</text>
 		</g>
 		<g>
-			{#each speed_index_ticks as tick, i}
-				<g class="fs=.75" transform="translate(0, {speed_index_scale(tick)})">
+			{#each first_contentful_paint_ticks as tick, i}
+				<g class="fs=.75" transform="translate(0, {first_contentful_paint_scale(tick)})">
 					<line class="stroke=--gray-50
 							{i ? "stroke-dasharray=2" : "stroke-dasharray=0"}" x2="100%" />
 				</g>
@@ -116,17 +170,19 @@ $: bar_width = innerWidth / data.length / 3 - 4
 		</g>
 		<g>
 			{#each data as {
-				page_weight, total_blocking_time, speed_index
+				page_weight,
+				total_blocking_time,
+				first_contentful_paint
 			}, i}
 				<rect class="f=#a11 stroke=none op=.65"
 						x={x_scale(i) + 4}
-						y={page_weight_scale(page_weight)}
+						y={first_contentful_paint_scale(first_contentful_paint)}
 						width={bar_width}
-						height={page_weight_scale(0) - page_weight_scale(page_weight)} />
+						height={first_contentful_paint_scale(0) - first_contentful_paint_scale(first_contentful_paint)} />
 				<text class="fs=.75 text-anchor=middle"
 						x={x_scale(i) + 4 + bar_width / 2}
-						y={page_weight_scale(page_weight)}>
-					{page_weight}KB
+						y={first_contentful_paint_scale(first_contentful_paint)}>
+					{first_contentful_paint}ms
 				</text>
 				<rect class="f=#1a1 stroke=none op=.65"
 						x={x_scale(i) + 6 + bar_width}
@@ -140,13 +196,13 @@ $: bar_width = innerWidth / data.length / 3 - 4
 				</text>
 				<rect class="f=#11a stroke=none op=.65"
 						x={x_scale(i) + 8 + bar_width * 2}
-						y={speed_index_scale(speed_index)}
+						y={page_weight_scale(page_weight)}
 						width={bar_width}
-						height={speed_index_scale(0) - speed_index_scale(speed_index)} />
+						height={page_weight_scale(0) - page_weight_scale(page_weight)} />
 				<text class="fs=.75 text-anchor=middle"
 						x={x_scale(i) + 8 + bar_width * 2.5}
-						y={speed_index_scale(speed_index)}>
-					{speed_index}ms
+						y={page_weight_scale(page_weight)}>
+					{page_weight}KB
 				</text>
 			{/each}
 		</g>

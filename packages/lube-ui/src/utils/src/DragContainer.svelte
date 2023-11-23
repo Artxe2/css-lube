@@ -1,15 +1,21 @@
 <script>
-import { createEventDispatcher } from "svelte"
-
-export let classs = ""
-/** @type {HTMLElement?} */
-export let dragElement = null
 /**
- * @param {number} client_x
- * @param {number} client_y
- * @param {HTMLElement} drag_element
+ * @type {{
+ *   classs?: string
+ *   dragElement?: HTMLElement?;
+ *   ondragend?: (event: DragEvent) => void
+ *   ondragmove?: (event: DragEvent) => void
+ *   setDragElement: (clientX: number, clientY: number, drag_element: HTMLElement) => void
+ * }}
  */
-export const setDragElement = (client_x, client_y, drag_element) => {
+let {
+	classs = "",
+	dragElement = null,
+	ondragend,
+	ondragmove,
+	setDragElement
+} = $props()
+setDragElement = (client_x, client_y, drag_element) => {
 	dragElement = drag_element
 	const container_rect = container.getBoundingClientRect()
 	x = client_x - container_rect.left
@@ -17,13 +23,14 @@ export const setDragElement = (client_x, client_y, drag_element) => {
 	container.append(dragElement)
 	is_dragging = true
 }
+setDragElement
 
 /** @type {HTMLElement} */
 let container
 let cx = 0
 let cy = 0
-const dispatch = createEventDispatcher()
-let is_dragging = false
+/** @type {boolean} */
+let is_dragging
 /** @type {number} */
 let request_id
 /** @type {HTMLElement?} */
@@ -47,7 +54,7 @@ const handle_mousemove = ({ clientX, clientY }) => {
 		cx = clientX
 		cy = clientY
 		translate()
-		dispatch("dragmove")
+		ondragmove?.(new DragEvent("dragmove"))
 		request_scroll_with_drag(Date.now())
 	}
 }
@@ -67,7 +74,7 @@ const handle_mouseup = () => {
 		}
 		dragElement = null
 		is_dragging = false
-		dispatch("dragend")
+		ondragend?.(new DragEvent("dragend"))
 	}
 }
 
@@ -75,10 +82,11 @@ const handle_mouseup = () => {
 const get_terrain = terrains => {
 	const length = terrains.length
 	for (let i = 0; i < length; i++) {
-		if (!dragElement?.compareDocumentPosition(terrains[i])) {
+		if (dragElement == terrains[i]) {
 			return terrains[i + 1]
 		}
 	}
+	return terrains[0]
 }
 const translate = () => {
 	const container_rect = container.getBoundingClientRect()
@@ -148,14 +156,26 @@ const scroll_with_drag = time => {
 	const now = Date.now()
 	time = now - time
 	if (drag_rect.left < x_rect.left) {
-		xs.scrollBy((drag_rect.left - x_rect.left) * time / 30, 0)
+		xs.scrollBy(
+			(drag_rect.left - x_rect.left) * time / 30,
+			0
+		)
 	} else if (drag_rect.right > x_rect.right) {
-		xs.scrollBy((drag_rect.right - x_rect.right) * time / 30, 0)
+		xs.scrollBy(
+			(drag_rect.right - x_rect.right) * time / 30,
+			0
+		)
 	}
 	if (drag_rect.top < y_rect.top) {
-		ys.scrollBy(0, (drag_rect.top - y_rect.top) * time / 30)
+		ys.scrollBy(
+			0,
+			(drag_rect.top - y_rect.top) * time / 30
+		)
 	} else if (drag_rect.bottom > y_rect.bottom) {
-		ys.scrollBy(0, (drag_rect.bottom - y_rect.bottom) * time / 30)
+		ys.scrollBy(
+			0,
+			(drag_rect.bottom - y_rect.bottom) * time / 30
+		)
 	}
 	translate()
 	request_scroll_with_drag(now)
@@ -163,10 +183,10 @@ const scroll_with_drag = time => {
 </script>
 
 <svelte:window
-		on:mousemove={handle_mousemove}
-		on:mouseup={handle_mouseup}
-		on:touchmove={handle_touchmove}
-		on:touchend={handle_touchend} />
+		onmousemove={handle_mousemove}
+		onmouseup={handle_mouseup}
+		ontouchmove={handle_touchmove}
+		ontouchend={handle_touchend} />
 
 <div bind:this={container}
 		class={classs}

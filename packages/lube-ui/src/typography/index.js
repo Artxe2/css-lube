@@ -1,5 +1,2 @@
 export { default as H1 } from "./src/H1.svelte"
 export { default as H2 } from "./src/H2.svelte"
-export { default as H3 } from "./src/H3.svelte"
-export { default as H4 } from "./src/H4.svelte"
-export { default as H5 } from "./src/H5.svelte"

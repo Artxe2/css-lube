@@ -1,42 +1,48 @@
 <script>
-import { theme$ } from "parts/$common/store.js"
-import { onMount } from "svelte"
-import { base } from "$app/paths"
+/** @type {{ classs?: string }} */
+const { classs = "" } = $props()
 
-let deg = -180
+import { theme } from "parts/$common/$.svelte.js"
+import { base } from "$app/paths"
+import { untrack } from "svelte"
+
+let deg = $state(180)
 /** @type {boolean} */
 let animation
 
-const change_theme = () => {
-	deg -= 180
-	$theme$ = $theme$ == "DARK"
-		? "LIGHT"
-		: "DARK"
-	localStorage.setItem("THEME", $theme$)
+const handle_click = () => {
+	theme.change_theme()
 	cssLube()
 }
-onMount(() => {
-	let theme = localStorage.getItem("THEME") || ""
-	if (!theme && matchMedia?.("(prefers-color-scheme: dark)").matches) {
-		theme = "DARK"
-		localStorage.setItem("THEME", "DARK")
-	}
-	$theme$ = theme
-	if (theme == "DARK") deg = 0
-	setTimeout(
-		() => animation = true
-		,
-		50
+const spin_icons = () => {
+	untrack(
+		() => {
+			if (deg > 0) {
+				if (theme.$ == "DARK") deg = 0
+			} else {
+				deg -= 180
+			}
+		}
 	)
-})
+	theme.$
+}
+
+$effect.pre(theme.init)
+$effect.pre(spin_icons)
+$effect(
+	() => {
+		animation = true
+	}
+)
 </script>
 
 <button class="relative w=14 h=3 br=1.75 ol=.1_solid o=hidden us=none
 		_svg/f=currentcolor
 		:not(:hover)>div>div>svg:nth-of-type(even)/op=0
 		:hover/c=--gray-20 @dark@:hover/c=--gray-90
-		:hover/bg=--gray-80 @dark@:hover/bg=--gray-40"
-		on:click={change_theme}>
+		:hover/bg=--gray-80 @dark@:hover/bg=--gray-40
+		{classs}"
+		onclick={handle_click}>
 	<div class="flex column ai=center p=6_15
 			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s"}
 			tf=translate(-13em,-6em)_rotate({deg}deg)">

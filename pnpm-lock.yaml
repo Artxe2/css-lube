@@ -3,3 +3,6 @@ lockfileVersion: '6.0'
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
+
+overrides:
+  svelte: 5.0.0-next.8

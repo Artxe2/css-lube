@@ -7,21 +7,27 @@ import {
 import parse_dom from "../helper/parse_dom.js"
 
 export default (context: vscode.ExtensionContext) => {
-	function is_in_class_name(document: vscode.TextDocument, position: vscode.Position) {
+	function is_in_class_name(
+		document: vscode.TextDocument,
+		position: vscode.Position
+	) {
 		const text = document.getText()
 		let index = 0
 		for (let i = 0; i < position.line; i++) {
 			while (text.charAt(index++) !== "\n");
 		}
-		const ast = parse_dom(document.fileName, text.slice(0, index + position.character))
+		const ast = parse_dom(
+			document.fileName,
+			text.slice(0, index + position.character)
+		)
 		const last_node = ast[ast.length - 1]
 		if (!last_node) return
 		if (last_node.type != "Element" || !last_node.attributes.length) return
 		const last_attr = last_node.attributes[last_node.attributes.length - 1]
 		return last_attr.name == "class" || last_attr.name == "className" || last_attr.name == "classs"
 	}
-	const selector = ["*"]
-	const trigger_characters = ["\"", "'", " ", "/", ";"]
+	const selector = [ "*" ]
+	const trigger_characters = [ "\"", "'", " ", "/", ";" ]
 
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(
@@ -32,23 +38,27 @@ export default (context: vscode.ExtensionContext) => {
 					position: vscode.Position
 				) {
 					if (is_in_class_name(document, position)) {
-						const keys = [...shorthand_for_properties].map(([k, v]) => {
-							const comp = new vscode.CompletionItem(v + ":?")
-							comp.insertText = k + "="
-							comp.kind = vscode.CompletionItemKind.EnumMember
-							comp.detail = `${k}= * * * shorthand_for_properties of css-lube`
-							comp.sortText = v
-							return comp
-						})
-						const values = [...shorthand_for_values].map(([k, v]) => {
-							const comp = new vscode.CompletionItem(v)
-							comp.insertText = k
-							comp.kind = vscode.CompletionItemKind.Value
-							comp.detail = `${k} * * * shorthand_for_values of css-lube`
-							comp.sortText = v
-							return comp
-						})
-						return [...keys, ...values]
+						const keys = [ ...shorthand_for_properties ].map(
+							([ k, v ]) => {
+								const comp = new vscode.CompletionItem(v + ":?")
+								comp.insertText = k + "="
+								comp.kind = vscode.CompletionItemKind.EnumMember
+								comp.detail = `${k}= * * * shorthand_for_properties of css-lube`
+								comp.sortText = v
+								return comp
+							}
+						)
+						const values = [ ...shorthand_for_values ].map(
+							([ k, v ]) => {
+								const comp = new vscode.CompletionItem(v)
+								comp.insertText = k
+								comp.kind = vscode.CompletionItemKind.Value
+								comp.detail = `${k} * * * shorthand_for_values of css-lube`
+								comp.sortText = v
+								return comp
+							}
+						)
+						return [ ...keys, ...values ]
 					}
 				}
 			},
@@ -62,19 +72,21 @@ export default (context: vscode.ExtensionContext) => {
 					position: vscode.Position
 				) {
 					if (is_in_class_name(document, position)) {
-						const medias = [...shorthand_for_media_condition].map(([k, v]) => {
-							const comp = new vscode.CompletionItem("@media " + v)
-							comp.insertText = "@" + k + "@"
-							comp.kind = vscode.CompletionItemKind.Constructor
-							comp.detail = `@${k}@ * * * shorthand_for_media_condition of css-lube`
-							comp.sortText = v
-							comp.command = {
-								"command": "editor.action.triggerSuggest",
-								"title": "Re-trigger completions..."
+						const medias = [ ...shorthand_for_media_condition ].map(
+							([ k, v ]) => {
+								const comp = new vscode.CompletionItem("@media " + v)
+								comp.insertText = "@" + k + "@"
+								comp.kind = vscode.CompletionItemKind.Constructor
+								comp.detail = `@${k}@ * * * shorthand_for_media_condition of css-lube`
+								comp.sortText = v
+								comp.command = {
+									"command": "editor.action.triggerSuggest",
+									"title": "Re-trigger completions..."
+								}
+								return comp
 							}
-							return comp
-						})
-						return [...medias]
+						)
+						return [ ...medias ]
 					}
 				}
 			},

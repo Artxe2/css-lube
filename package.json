@@ -12,6 +12,7 @@
 		"build": "cd github-pages && pnpm build",
 		"dev": "cd github-pages && pnpm dev",
 		"lint": "pnpm -r lint",
+		"pre": "pnpm lint && pnpm build",
 		"preview": "cd github-pages && pnpm preview"
 	},
 	"version": "0.0.0"

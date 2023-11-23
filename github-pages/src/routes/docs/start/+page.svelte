@@ -1,20 +1,19 @@
 <script>
-import TabPage from "organs/$common/utils/TabPage.svelte"
 import styles from "js/styles.js"
-import InstallationArticle from "organs/docs/installation/InstallationArticle.svelte"
-import CodeIntellisenseArticle from "organs/docs/installation/CodeIntellisenseArticle.svelte"
-import { onMount } from "svelte"
+import StartArticle from "organs/docs/start/StartArticle.svelte"
 import { page } from "$app/stores"
 import { H2 } from "lube-ui/typography"
 
-const tabs = [ "Installation", "Code Intellisense" ]
-let index = 0
 /** @type {HTMLElement} */
 let header
 
-onMount(() => {
-	page.subscribe(() => header?.parentElement?.scroll(0, 0))
-})
+$effect(
+	() => {
+		page.subscribe(
+			() => header?.parentElement?.scroll(0, 0)
+		)
+	}
+)
 </script>
 
 <svelte:head>
@@ -36,27 +35,8 @@ onMount(() => {
 		</div>
 	</div>
 </header>
-<div class="m=.5">
-	<div class="flex br=2.5
-			h=3 @md@h=5
-			bg=--gray-95 @dark@bg=--gray-20">
-		{#each tabs as title, i}
-		<button on:click={() => index = i}
-				class="fg=1 br=2.5
-				:hover/bg=--gray-70 @dark@:hover/bg=--gray-30
-				{index == i && "bg=--primary-50!! c=--primary-90!!"}">
-			<span class="bold @md@fs=1.5">{title}</span>
-		</button>
-		{/each}
-	</div>
-	<TabPage {index}>
-		<article class="m=2_1 @md@m=2">
-			<InstallationArticle />
-		</article>
-		<article class="m=2_1 @md@m=2">
-			<CodeIntellisenseArticle />
-		</article>
-	</TabPage>
-</div>
-<button class="h=2 :hover/c=--primary-50;bold" on:click={() => header?.parentElement?.scroll(0, 0)}>Back to top</button>
+<article class="m=2.5_1.5 @md@m=2.5">
+	<StartArticle />
+</article>
+<button class="h=2 :hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>Back to top</button>
 <div class="h=2"></div>

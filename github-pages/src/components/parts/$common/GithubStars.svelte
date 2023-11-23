@@ -1,6 +1,6 @@
 <script>
 import { base } from "$app/paths"
-import { github_star$ } from "parts/$common/store.js"
+import { github_star } from "parts/$common/$.svelte.js"
 </script>
 
 <div class="flex fs=1.25">
@@ -22,7 +22,7 @@ import { github_star$ } from "parts/$common/store.js"
 			href="https://github.com/artxe2/css-lube/stargazers"
 			target="_blank"
 		>
-			{#await $github_star$}
+			{#await github_star.$}
 				...
 			{:then star}
 				{star}

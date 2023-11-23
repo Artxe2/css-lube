@@ -4,14 +4,17 @@ import { vitePreprocess } from "@sveltejs/kit/vite"
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
+	compilerOptions: { runes: true },
 	kit: {
-		adapter: adapter({
-			assets: "../docs",
-			pages: "../docs",
-			fallback: null,
-			precompress: false,
-			strict: true
-		}),
+		adapter: adapter(
+			{
+				assets: "../docs",
+				pages: "../docs",
+				fallback: null,
+				precompress: false,
+				strict: true
+			}
+		),
 		alias: {
 			cells: path.resolve("./src/components/cells"),
 			organs: path.resolve("./src/components/organs"),

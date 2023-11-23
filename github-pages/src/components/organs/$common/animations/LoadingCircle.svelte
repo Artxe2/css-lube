@@ -1,13 +1,16 @@
 <script>
-import { onDestroy, onMount } from "svelte"
+const { classs } = $props()
 
-export let classs = ""
-
-/** @type {number} */
+/** @type {ReturnType<typeof setInterval>} */
 let timer
-let index = 0
-onMount(() => timer = setInterval(() => index = ++index % 12, 90))
-onDestroy(() => clearInterval(timer))
+let index = $state(0)
+
+$effect(
+	() => {
+		timer = setInterval(() => index = ++index % 12, 90)
+		return () => clearInterval(timer)
+	}
+)
 </script>
 
 <div class="flex relative w=4 h=4 jc=center ai=center c=#000 fs=1.5
@@ -15,5 +18,5 @@ onDestroy(() => clearInterval(timer))
 		>div>div/h=1;w=.2;br=.1
 		>div>div/bg=#000 @dark@>div>div/bg=--gray-90
 		{classs}">
-	{#each new Array(12) as n, i}<div class="tf=rotate({i * 30}deg) op={(i = index - i % 12) === 0 ? "1" : i === 1 || i === -11 ? ".75" : i === 2 || i === -10 ? ".5" : ".25"}"><div></div></div>{/each}
+	{#each new Array(12) as n, i}<div class="tf=rotate({i * 30}deg) op={(index - i % 12) === 0 ? "1" : (index - i % 12) === 1 || (index - i % 12) === -11 ? ".75" : (index - i % 12) === 2 || (index - i % 12) === -10 ? ".5" : ".25"}"><div></div></div>{/each}
 </div>

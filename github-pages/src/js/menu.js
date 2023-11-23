@@ -2,10 +2,7 @@ import { base } from "$app/paths"
 
 /** @type {import("./types.js").Menu[]} */
 const menu = [
-	{
-		href: `${base}/`,
-		name: "Home"
-	},
+	{ href: `${base}/`, name: "Home" },
 	{
 		href: `${base}/docs`,
 		name: "Documents",
@@ -17,6 +14,10 @@ const menu = [
 			{
 				href: `${base}/docs/syntax`,
 				name: "Syntax"
+			},
+			{
+				href: `${base}/docs/custom`,
+				name: "Customizing"
 			}
 		]
 	},
@@ -29,31 +30,23 @@ const menu = [
 		name: "Reference",
 		subs: [
 			{
-				href: `${base}/ref/custom`,
-				name: "Customizing"
-			},
-			{
 				href: `${base}/ref/benchmark`,
 				name: "Benchmark"
 			},
 			{
-				href: `${base}/ref/tips`,
-				name: "Useful Tips"
-			},
-			{
-				href: `${base}/ref/utils`,
-				name: "Utils",
+				href: `${base}/ref/ui`,
+				name: "Lube UI",
 				subs: [
 					{
-						href: `${base}/ref/utils/carousel-slider`,
+						href: `${base}/ref/ui/carousel-slider`,
 						name: "Carousel Slider"
 					},
 					{
-						href: `${base}/ref/utils/drag-and-drop`,
+						href: `${base}/ref/ui/drag-and-drop`,
 						name: "Drag and Drop"
 					},
 					{
-						href: `${base}/ref/utils/infinite-scroll`,
+						href: `${base}/ref/ui/infinite-scroll`,
 						name: "Infinite Scroll"
 					}
 				]

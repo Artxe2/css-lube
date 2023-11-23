@@ -4,18 +4,21 @@ import styles from "js/styles.js"
 import BasicArticle from "organs/docs/syntax/BasicArticle.svelte"
 import SelectorArticle from "organs/docs/syntax/SelectorArticle.svelte"
 import MediaQueryArticle from "organs/docs/syntax/MediaQueryArticle.svelte"
-import { onMount } from "svelte"
 import { page } from "$app/stores"
 import { H2 } from "lube-ui/typography"
 
 const tabs = [ "Basic", "Selector", "Media Query" ]
-let index = 0
+let index = $state(0)
 /** @type {HTMLElement} */
 let header
 
-onMount(() => {
-	page.subscribe(() => header?.parentElement?.scroll(0, 0))
-})
+$effect(
+	() => {
+		page.subscribe(
+			() => header?.parentElement?.scroll(0, 0)
+		)
+	}
+)
 </script>
 
 <svelte:head>
@@ -42,7 +45,7 @@ onMount(() => {
 			h=3 @md@h=5
 			bg=--gray-95 @dark@bg=--gray-20">
 		{#each tabs as title, i}
-		<button on:click={() => index = i}
+		<button onclick={() => index = i}
 				class="fg=1 br=2.5
 				:hover/bg=--gray-70 @dark@:hover/bg=--gray-30
 				{index == i && "bg=--primary-50!! c=--primary-90!!"}">
@@ -62,5 +65,5 @@ onMount(() => {
 		</article>
 	</TabPage>
 </div>
-<button class="h=2 :hover/c=--primary-50;bold" on:click={() => header?.parentElement?.scroll(0, 0)}>Back to top</button>
+<button class="h=2 :hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>Back to top</button>
 <div class="h=2"></div>

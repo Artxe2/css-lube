@@ -2,9 +2,12 @@
 import { base } from "$app/paths"
 import ModalBackground from "organs/$common/ModalBackground.svelte"
 import Drawer from "organs/$common/Drawer.svelte"
+import ThemeButton from "parts/$common/ThemeButton.svelte"
 
 /** @type {boolean} */
-let is_open
+let is_open = $state(false)
+
+const toggle_open = () => is_open = !is_open
 </script>
 
 <nav class="z=9000 fixed t=0 l=0 w=100%
@@ -23,12 +26,22 @@ let is_open
 				<div class="w=1"></div>
 			</div>
 		</a>
+		<div class="fg=1"></div>
+		<a href="https://github.com/Artxe2/css-lube" target="_blank"
+				class="flex ai=center fs=1.5
+				:hover_svg/f=#000 @dark@:hover_svg/f=#fff
+				@!sm@none">
+			<svg class="w=2.2 h=2.2 f=--gray-10">
+				<use xlink:href="{base}/icons.svg#github" />
+			</svg>
+		</a>
+		<ThemeButton classs="m=0_1 @!sm@none" />
 	</div>
 	<ModalBackground bind:is_open />
 	<Drawer bind:is_open />
 	<button class="z=3 fixed t=.6 l=.5 p=1 br=2.5
 			:hover/bg=--gray-{is_open ? "80" : "90"} @dark@:hover/bg=--gray-{is_open ? "40" : "30"}"
-			on:click={() => is_open = !is_open}>
+			onclick={toggle_open}>
 		<div class="relative w=2 h=1.8">
 			<div class="absolute w=100% h=.3 t=0 tt=transform_.4s br=.15
 					bg=--gray-30 @dark@bg=--gray-70

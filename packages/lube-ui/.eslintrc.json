@@ -9,14 +9,22 @@ VSCE: JavaScript and TypeScript Nightly
 		"es2021": true,
 		"node": true
 	},
-	"extends": ["plugin:lube/recommended"],
-	"overrides": [{
-		"files": ["*.svelte"],
-		"parser": "svelte-eslint-parser",
-		"parserOptions": {
-			"parser": "@typescript-eslint/parser"
+	"extends": [ "plugin:lube/recommended" ],
+	"globals": {
+		"$derived": true,
+		"$effect": true,
+		"$props": true,
+		"$state": true
+	},
+	"overrides": [
+		{
+			"files": [ "*.svelte" ],
+			"parser": "svelte-eslint-parser",
+			"parserOptions": {
+				"parser": "@typescript-eslint/parser"
+			}
 		}
-	}],
+	],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaVersion": "latest",

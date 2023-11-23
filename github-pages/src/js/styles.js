@@ -26,18 +26,18 @@ export default {
 		text: "p=.5 br=.5 :hover/bg=#eee :active/bg=#ddd! @dark@:hover/bg=#333 @dark@:active/bg=#444!"
 	},
 	checkbox: {
-		docs_input: `none clip-path=text
+		docs_input: `none cp=text
 		:checked+label/bg=--primary-50
-		:checked+label:after/ct='✔';absolute;tf=translate(0,-.3em)`,
+		:checked+label:after/ct='✔'`,
 		docs_label: `inline-block pointer us=none fs=1.5 bold va=-.3em bd=.2_solid_--primary-50 br=.3 w=1.2 h=1.2
-		:after/c=--onahau @dark@:after/c=--firefly
-		:after/c=#fff @dark@:after/c=--gray-10`
+		:after/absolute;tf=translate(0,-.3em)
+		:after/c=--gray-90 @dark@:after/c=--gray-20`
 	},
 	scrollbar: {
 		primary: "::-webkit-scrollbar/w=.5 ::-webkit-scrollbar-track/bg=--primary-70 ::-webkit-scrollbar-thumb/bg=--primary-50;br=.25"
 	},
 	util: {
-		typing_text: "_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):nth-child(n+2):before/inline-block;ct='\\00a0';bg=--cod-gray",
-		typing_text_in_middle: "_f:not(:empty):before/inline-block;ct='\\00a0';bg=#fff @dark@_f:not(:empty):before/inline-block;ct='\\00a0';bg=--cod-gray"
+		typing_text: "_f:not(:empty):nth-child(n+2):before/inline-block;ct='_';bg=#fff @dark@_f:not(:empty):nth-child(n+2):before/inline-block;ct='_';bg=--cod-gray",
+		typing_text_in_middle: "_f:not(:empty):before/inline-block;ct='_';bg=#fff @dark@_f:not(:empty):before/inline-block;ct='_';bg=--cod-gray"
 	}
 }

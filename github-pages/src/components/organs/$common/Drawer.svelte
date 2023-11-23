@@ -1,12 +1,12 @@
 <script>
+/** @type {{ is_open?: boolean }} */
+const { is_open } = $props()
+
 import ThemeButton from "parts/$common/ThemeButton.svelte"
 import { base } from "$app/paths"
 import Button from "organs/$common/Drawer/Button.svelte"
 import sub_menu from "js/menu.js"
 import styles from "js/styles.js"
-
-/** @type {boolean} */
-export let is_open
 </script>
 
 <nav class="z=2 fixed t=0 l=-30 w=30 pl=10 h=100% br=0_1_1_0 tt=transform_.3s o=auto

@@ -6,44 +6,36 @@ import {
 } from "./get_config"
 
 const replace_default_unit_inner_regex = /(?:^| )-?(?:\d*\.)?\d+(?= |$)/g
-// eslint-disable-next-line max-len
 const replace_default_unit_regex = /((?:^|;|-)(?:border|bottom|column-rule|end|flex-basis|font-size|gap|grid-template-(?:columns|rows)|height|inset|left|margin(?:-[a-z]+)*|origin|outline|padding(?:-[a-z]+)*|perspective|position|radius|right|shadow|spacing|start|top|width):)(.+?)(?=;|$)/g
-// @ts-ignore: string -> RegExp
-let check_has_value_regex: RegExp = ".[:=]."
+const check_has_value_regex = RegExp(
+	".[:=].|"
+	+ [ ...shorthand_for_values.keys() ].join("|")
+)
 const replace_and_regex = /&/g
 const replace_colon_regex = /=/g
 const replace_condition_regex = /[^ ,]+=[^ ,]+/g
 const replace_calc_oper_inner_regex = /[^ ][+-][^ ]/g
 const replace_calc_oper_regex = /calc\(.+?\)/g
-// @ts-ignore: string -> RegExp
-let replace_media_condition_regex: RegExp = "(^| )("
-// @ts-ignore: string -> RegExp
-let replace_properties_regex: RegExp = "(^|/|;)("
+const replace_media_condition_regex = RegExp(
+	"(^| )("
+	+ [ ...shorthand_for_media_condition.keys() ].join("|")
+	+ ")(?= |$)",
+	"g"
+)
+const replace_properties_regex = RegExp(
+	"(^|/|;)("
+	+ [ ...shorthand_for_properties.keys() ].join("|")
+	+ ")(?=:)",
+	"g"
+)
 const replace_space_regex = /_/g
 const replace_var_regex = /[: ,]--[^ ;,)]+/g
-// @ts-ignore: string -> RegExp
-let replace_value_regex: RegExp = replace_properties_regex
-// @ts-ignore: string -> RegExp
-for (const key of shorthand_for_values.keys()) check_has_value_regex += "|" + key
-check_has_value_regex = RegExp(check_has_value_regex)
-// @ts-ignore: string -> RegExp
-for (const key of shorthand_for_media_condition.keys()) replace_media_condition_regex += key + "|"
-replace_media_condition_regex = RegExp(
-	// @ts-ignore: string -> RegExp
-	replace_media_condition_regex.slice(0, replace_media_condition_regex.length - 1) + ")(?= |$)",
+const replace_value_regex = RegExp(
+	"(^|/|;)("
+	+ [ ...shorthand_for_values.keys() ].join("|")
+	+ ")(?=;|!|$)",
 	"g"
 )
-// @ts-ignore: string -> RegExp
-for (const key of shorthand_for_properties.keys()) replace_properties_regex += key + "|"
-replace_properties_regex = RegExp(
-	// @ts-ignore: string -> RegExp
-	replace_properties_regex.slice(0, replace_properties_regex.length - 1) + ")(?=:)",
-	"g"
-)
-// @ts-ignore: string -> RegExp
-for (const key of shorthand_for_values.keys()) replace_value_regex += key + "|"
-// @ts-ignore: string -> RegExp
-replace_value_regex = RegExp(replace_value_regex.slice(0, replace_value_regex.length - 1) + ")(?=;|!|$)", "g")
 
 
 const check_is_raw = (cname: string) => {
@@ -120,10 +112,16 @@ const parse_value = (cname: string) => {
 		.replace(replace_colon_regex, ":")
 		.replace(replace_properties_regex, replace_property_callback)
 		.replace(replace_value_regex, replace_value_callback)
-		.replace(replace_default_unit_regex, replace_shorthand_unit_callback)
+		.replace(
+			replace_default_unit_regex,
+			replace_shorthand_unit_callback
+		)
 		.replace(replace_calc_oper_regex, replace_calc_oper_callback)
 		.replace(replace_var_regex, replace_var_callback)
-		.replace(replace_value_color_regex, replace_value_color_callback)
+		.replace(
+			replace_value_color_regex,
+			replace_value_color_callback
+		)
 		.replace(replace_semi_gap_regex, "span>; <span")
 }
 

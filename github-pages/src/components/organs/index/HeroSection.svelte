@@ -4,13 +4,7 @@ import TypingText from "organs/$common/animations/TypingText.svelte"
 import { H1 } from "lube-ui/typography"
 import GithubStars from "parts/$common/GithubStars.svelte"
 import styles from "js/styles.js"
-
-/** @type {number} */
-// eslint-disable-next-line lube/svelte-naming-convention
-let innerHeight
 </script>
-
-<svelte:window bind:innerHeight />
 
 <div class="relative flex column br=1.5 o=hidden
 		{styles.$common.background_grid}">

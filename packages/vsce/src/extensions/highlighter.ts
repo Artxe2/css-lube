@@ -7,39 +7,38 @@ import parse_dom from "../helper/parse_dom.js"
 
 export default (context: vscode.ExtensionContext) => {
 	const decorator = vscode.window.createTextEditorDecorationType
-	let timeout: NodeJS.Timeout|0
+	let timeout: ReturnType<typeof setTimeout> | 0
 	let active_editor = vscode.window.activeTextEditor
 
 	const token_regex = /(?<=^| |\t)[^ \r\t]+/g
 	const token_decorator = decorator({})
-	const media_query_decorator = decorator({
-		border: "solid #b67bb188",
-		borderWidth: "0 0 3px 0"
-	})
-	const selector_decorator = decorator({
-		border: "solid #d7ba7d88",
-		borderWidth: "0 0 3px 0"
-	})
-	const property_decorator = decorator({
-		border: "solid #9cdcfe88",
-		borderWidth: "0 0 3px 0"
-	})
-	const value_decorator = decorator({
-		border: "solid #ce917888",
-		borderWidth: "0 0 3px 0"
-	})
+	const media_query_decorator = decorator(
+		{ border: "solid #b67bb188", borderWidth: "0 0 3px 0" }
+	)
+	const selector_decorator = decorator(
+		{ border: "solid #d7ba7d88", borderWidth: "0 0 3px 0" }
+	)
+	const property_decorator = decorator(
+		{ border: "solid #9cdcfe88", borderWidth: "0 0 3px 0" }
+	)
+	const value_decorator = decorator(
+		{ border: "solid #ce917888", borderWidth: "0 0 3px 0" }
+	)
 	const check_is_special = (cname: string, index: number) => {
 		const c = cname[index]
 		return c != "-" && (c < "a" || c > "z")
 	}
-	function analysis_class_name(text: string, str_node: String, class_names: { text: string, start: number }[]) {
+	function analysis_class_name(
+		text: string,
+		str_node: String,
+		class_names: { text: string, start: number }[]
+	) {
 		let index = str_node.start + 1
 		for (const script of str_node.scripts) {
 			if (script.start > index) {
-				class_names.push({
-					text: text.slice(index, script.start),
-					start: index
-				})
+				class_names.push(
+					{ text: text.slice(index, script.start), start: index }
+				)
 			}
 			for (const string of script.strings) {
 				analysis_class_name(text, string, class_names)
@@ -47,13 +46,19 @@ export default (context: vscode.ExtensionContext) => {
 			index = script.end
 		}
 		if (index < str_node.end - 1) {
-			class_names.push({
-				text: text.slice(index, str_node.end - 1),
-				start: index
-			})
+			class_names.push(
+				{
+					text: text.slice(index, str_node.end - 1),
+					start: index
+				}
+			)
 		}
 	}
-	function dfs_ast(text: string, node: AstNode, class_names: { text: string, start: number }[]) {
+	function dfs_ast(
+		text: string,
+		node: AstNode,
+		class_names: { text: string, start: number }[]
+	) {
 		if (node.type == "Element") {
 			for (const attr of node.attributes) {
 				if (attr.name == "class" || attr.name == "className" || attr.name == "classs") {
@@ -101,7 +106,9 @@ export default (context: vscode.ExtensionContext) => {
 					if (index >= 0) {
 						const media_query_start = active_editor.document.positionAt(cname_index)
 						const media_query_end = active_editor.document.positionAt(cname_index + index + 1)
-						media_query_array.push(new vscode.Range(media_query_start, media_query_end))
+						media_query_array.push(
+							new vscode.Range(media_query_start, media_query_end)
+						)
 						parse_index = index + 1
 					}
 				}
@@ -151,10 +158,12 @@ export default (context: vscode.ExtensionContext) => {
 				const hover_message = new vscode.MarkdownString()
 				hover_message.supportHtml = true
 				hover_message.appendMarkdown("**" + compile_style(cname) + "**")
-				cname_array.push({
-					range: new vscode.Range(cname_start, cname_end),
-					hoverMessage: hover_message
-				})
+				cname_array.push(
+					{
+						range: new vscode.Range(cname_start, cname_end),
+						hoverMessage: hover_message
+					}
+				)
 			}
 		}
 		active_editor.setDecorations(token_decorator, cname_array)

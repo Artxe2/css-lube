@@ -1,6 +1,6 @@
 <script>
-/** @type {string} */
-export let name
+/** @type {{ name: string }} */
+const { name } = $props()
 </script>
 
 v <span class="c=#090">{@html name}</span>

@@ -2,11 +2,13 @@
 import styles from "js/styles.js"
 import BenchmarkChart from "organs/ref/benchmark/BenchmarkChart.svelte"
 import { H2 } from "lube-ui/typography"
-import { onMount } from "svelte"
 
 /** @type {HTMLElement} */
 let header
-onMount(() => header.parentElement?.scroll(0, 0))
+
+$effect(
+	() => header.parentElement?.scroll(0, 0)
+)
 </script>
 
 <svelte:head>
@@ -35,23 +37,23 @@ onMount(() => header.parentElement?.scroll(0, 0))
 				<div style="background:#000000;">
 					<span style="color:#000000;filter:invert(1);">000000</span>
 				</div>
-				<div style="background:#000bb8;">
-					<span style="color:#000bb8;filter:invert(1);">000bb8</span>
+				<div style="background:#001388;">
+					<span style="color:#001388;filter:invert(1);">001388</span>
 				</div>
-				<div style="background:#001770;">
-					<span style="color:#001770;filter:invert(1);">001770</span>
-				</div>
-				<div style="background:#002328;">
-					<span style="color:#002328;filter:invert(1);">002328</span>
-				</div>
-				<div style="background:#002ee0;">
-					<span style="color:#002ee0;filter:invert(1);">002ee0</span>
+				<div style="background:#002710;">
+					<span style="color:#002710;filter:invert(1);">002710</span>
 				</div>
 				<div style="background:#003a98;">
 					<span style="color:#003a98;filter:invert(1);">003a98</span>
 				</div>
+				<div style="background:#004e20;">
+					<span style="color:#004e20;filter:invert(1);">004e20</span>
+				</div>
+				<div style="background:#0061a8;">
+					<span style="color:#0061a8;filter:invert(1);">0061a8</span>
+				</div>
 			</div>
-			<span class="c=--gray-10">...5593 rows</span>
+			<span class="c=--gray-10">...6712 rows</span>
 		</div>
 		<div class="h=2"></div>
 		<H2 classs="ta=center">WebPageTest</H2>
