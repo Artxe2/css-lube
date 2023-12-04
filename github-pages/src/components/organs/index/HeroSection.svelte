@@ -11,16 +11,17 @@ import styles from "js/styles.js"
 	<div class="relative w=100% ta=center
 			{styles.$common.background_conic}">
 		<div class="h=36"></div>
-			<H1>CSS Lube</H1>
+			<H1 classs="@!sm@fs=4em">CSS Lube</H1>
 		<div class="absolute w=100% ts=0_0_6_#f80">
-			<TypingText bgc="" dark_bgc="">
+			<TypingText bgc="" dark_bgc="" classs="@!sm@fs=.75em">
 				<span><f>Implement your web designs rapidly on the spot!</f></span><br>
 				<span><f>It takes only 3 minutes to learn this.</f></span>
 			</TypingText>
 		</div>
 		<div class="h=180"></div>
 	</div>
-	<div class="absolute b=36 w=100% flex g=18 jc=center">
+	<div class="absolute b=36 w=100% flex g=18 jc=center
+			@!sm@tf=scale(.75)">
 		<div class="flex ai=center">
 			<a href="{base}/docs">
 				<button class="p=6_12 br=12 jc=center
