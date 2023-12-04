@@ -1,10 +1,9 @@
 <script>
 import { H2 } from "lube-ui/typography"
-import TodoListExample from "parts/ref/ui/drag-and-drop/TodoListExample.svelte"
+import TodoListExample from "organs/ref/ui/drag-and-drop/TodoListExample.svelte"
 import styles from "js/styles.js"
 
-/** @type {HTMLElement} */
-let header
+let header = /** @type {HTMLElement} */($state())/**/
 
 $effect(
 	() => header.parentElement?.scroll(0, 0)

@@ -56,8 +56,8 @@ ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 
 <div class={styles.$common.contents_div}>
 	<span>Classes that begin with an at (@) apply media queries and use the second at to separate styles from media queries</span>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
 		<TestEditor content={`<span class="c=red @(min-width:768px)@c=blue">
 	Red? Blue?
 </span>
@@ -71,8 +71,8 @@ ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 			class="w=fit-content {styles.$common.link}">
 		Shorthand for Media Condition
 	</a>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
 		<TestEditor content={`<pre>
 	<span class="c=red @min-width=768px@c=blue">Red? Blue?</span>
 	<span class="c=red @md@c=blue">Red? Blue?</span>
@@ -83,27 +83,27 @@ ${html("style", ` ${name("css-lube")}=${string(version)}`, `
 	</div>
 	<br>
 	<span>If you use two at (@), the query does not have media as a prefix</span>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="bg=#fff inline-block o=auto resize=horizontal w=5 h=5">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="bg=#fff inline-block o=auto resize=horizontal w=120 h=120">
 	<div class="container-type=size ta=center">
-		<span class="c=red @@container_(width>10em)@c=blue">Red? Blue?</span>
+		<span class="c=red @@container_(width>180px)@c=blue">Red? Blue?</span>
 	</div>
 </div>`} />
 	</div>
 	<br>
-	<h3 class="fs=2 bold">Dark Mode</h3>
+	<h3 class="fs=2em bold">Dark Mode</h3>
 	<span>The dark mode transition of CSS Lube is applied using media queries.</span><br>
 	<span>In light theme, dark mode styles are disabled with FALSE(0)</span>
-	<div class="m=1_0_2_0">
+	<div class="m=12_0_24_0">
 		<CodePage>{@html code4}</CodePage>
 	</div>
 	<span>In dark theme, dark mode styles are applied with TRUE(color)</span>
-	<div class="m=1_0_2_0">
+	<div class="m=12_0_24_0">
 		<CodePage>{@html code5}</CodePage>
 	</div>
 	<span>In system theme, the dark mode style is applied as a media query</span>
-	<div class="m=1_0_2_0">
+	<div class="m=12_0_24_0">
 		<CodePage>{@html code6}</CodePage>
 	</div>
 </div>

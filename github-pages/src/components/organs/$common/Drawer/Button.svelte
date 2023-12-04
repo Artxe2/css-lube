@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   close?: Function
  *   menu: import("js/types.js").Menu
@@ -41,23 +42,23 @@ $effect.pre(
 </script>
 
 {#if menu.subs}
-<button class="relative w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
+<button class="w=100% h=48 p=0_12 br=24 flex g=12 ai=center mb=6
 		:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-		{active && "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90!!"}
+		{active && "bg=--primary-50!! c=--primary-90!! _svg/f=--primary-90"}
 		{classs}"
 		onclick={toggle_open}>
 	<slot></slot>
-	<span class="fs=1.5">{menu.name}</span>
-	<svg class="inline absolute r=.5 w=1.8 h=2.2 tt=transform_.3s
+	<span class="fs=1.25em">{menu.name}</span>
+	<svg class="inline absolute r=.5em w=1.8em h=2.2em tt=transform_.3s
 			tf=rotate({is_open ? 0 : "-90deg"})">
 			<use xlink:href="{base}/icons.svg#expand" />
 	</svg>
 </button>
-<ul class="ml=1 o=hidden">
+<ul class="ml=18 o=hidden">
 	{#if menu.subs}
 		{#each menu.subs as m, i}
-		<li class="relative tt=margin-top_.3s
-				{is_open || "mt=-3.75"}">
+		<li class="relative grid tt=margin-top_.3s
+				{is_open || "mt=-54"}">
 			<svelte:self menu={m} bind:close={close_childs[i]} />
 		</li>
 		{/each}
@@ -65,12 +66,12 @@ $effect.pre(
 </ul>
 {:else}
 <a href={menu.href}>
-	<button class="w=100% h=3.5 br=1.75 pl=1 ta=left mb=.25
+	<button class="w=100% h=48 p=0_12 br=24 flex g=12 ai=center mb=6
 			:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
 			{active && "bg=--primary-50!! c=--primary-90!!"}
 			{classs}">
 		<slot></slot>
-		<span class="fs=1.5">{menu.name}</span>
+		<span class="fs=1.25em">{menu.name}</span>
 	</button>
 </a>
 {/if}

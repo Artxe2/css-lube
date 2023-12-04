@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   url: string
  * }}

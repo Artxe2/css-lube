@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   delay?: number
  *   ondragstart?: (event: DragEvent) => void
@@ -14,10 +15,8 @@ const {
 	setDragElement
 } = $props()
 
-/** @type {HTMLDivElement} */
-let container
-/** @type {HTMLDivElement} */
-let drag_view
+let container = /** @type {HTMLDivElement} */($state())/**/
+let drag_view = /** @type {HTMLDivElement} */($state())/**/
 /** @type {ReturnType<typeof setTimeout> | 0} */
 let timeout
 

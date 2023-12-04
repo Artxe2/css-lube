@@ -4,55 +4,51 @@ import ModalBackground from "organs/$common/ModalBackground.svelte"
 import Drawer from "organs/$common/Drawer.svelte"
 import ThemeButton from "parts/$common/ThemeButton.svelte"
 
-/** @type {boolean} */
-let is_open = $state(false)
+let is_open = /** @type {boolean} */($state())/**/
 
 const toggle_open = () => is_open = !is_open
 </script>
 
 <nav class="z=9000 fixed t=0 l=0 w=100%
-		c=--gray-30 @dark@c=--gray-70">
-	<div class="flex h=5 ai=center
-			bg=--gray-95 @dark@bg=--gray-20">
-		<div class="w=4.5"></div>
+		c=--gray-30 @dark@c=--gray-70 bg=red">
+	<button class="z=3 fixed t=12 l=6 p=18 br=36
+			:hover/bg=--gray-{is_open ? "80" : "90"} @dark@:hover/bg=--gray-{is_open ? "40" : "30"}"
+			onclick={toggle_open}>
+		<div class="relative w=36 h=36">
+			<div class="absolute w=100% h=6 t=0 tt=transform_.4s br=.15em
+					bg=--gray-30 @dark@bg=--gray-70
+					{is_open && "tf=translateY(15px)_rotate(-45deg)"}"></div>
+			<div class="absolute w=100% h=6 t=15 tt=transform_.4s_linear,opacity_.4s br=.15em
+					bg=--gray-30 @dark@bg=--gray-70
+					{is_open && "tf=translateX(36px) op=0"}"></div>
+			<div class="absolute w=100% h=6 b=0 tt=transform_.4s br=.15em
+					bg=--gray-30 @dark@bg=--gray-70
+					{is_open && "tf=translateY(-15px)_rotate(45deg)"}"></div>
+		</div>
+	</button>
+	<div class="flex h=96 ai=center
+			bg=--gray-95 @dark@bg=--gray-20 pl=78 pr=24">
 		<a href="{base}/">
-			<div class="flex ai=center p=.2_.5 br=1.75
+			<div class="flex ai=center h=72 p=0_18 br=36 g=6
 					:hover/bg=--gray-90 @dark@:hover/bg=--gray-30
-					:hover>img/tf=scale(1.2,1.2)">
+					:hover>img/tf=scale(1.25)">
 				<img src="{base}/favicon.svg" alt="logo"
-						class="inline-block
-						w=2 h=2">
-				<span class="fs=2 bold">CSS Lube</span>
-				<div class="w=1"></div>
+						class="inline-block w=36 h=36">
+				<span class="fs=2em bold">CSS Lube</span>
 			</div>
 		</a>
 		<div class="fg=1"></div>
 		<a href="https://github.com/Artxe2/css-lube" target="_blank"
-				class="flex ai=center fs=1.5
+				class="flex ai=center p=18
 				:hover_svg/f=#000 @dark@:hover_svg/f=#fff
 				@!sm@none">
-			<svg class="w=2.2 h=2.2 f=--gray-10">
+			<svg class="w=36 h=36 f=--gray-10">
 				<use xlink:href="{base}/icons.svg#github" />
 			</svg>
 		</a>
-		<ThemeButton classs="m=0_1 @!sm@none" />
+		<ThemeButton classs="@!sm@none" />
 	</div>
 	<ModalBackground bind:is_open />
 	<Drawer bind:is_open />
-	<button class="z=3 fixed t=.6 l=.5 p=1 br=2.5
-			:hover/bg=--gray-{is_open ? "80" : "90"} @dark@:hover/bg=--gray-{is_open ? "40" : "30"}"
-			onclick={toggle_open}>
-		<div class="relative w=2 h=1.8">
-			<div class="absolute w=100% h=.3 t=0 tt=transform_.4s br=.15
-					bg=--gray-30 @dark@bg=--gray-70
-					{is_open && "tf=translateY(.75em)_rotate(-45deg)"}"></div>
-			<div class="absolute w=100% h=.3 t=.75 tt=transform_.4s_linear,opacity_.4s br=.15
-					bg=--gray-30 @dark@bg=--gray-70
-					{is_open && "tf=translateX(2.5em) op=0"}"></div>
-			<div class="absolute w=100% h=.3 b=0 tt=transform_.4s br=.15
-					bg=--gray-30 @dark@bg=--gray-70
-					{is_open && "tf=translateY(-.75em)_rotate(45deg)"}"></div>
-		</div>
-	</button>
 </nav>
-<div class="h=5"></div>
+<div class="h=96"></div>

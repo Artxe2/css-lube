@@ -2,6 +2,7 @@
 /**
  * @type {{
  *   bgc?: string
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   dark_bgc?: string
  *   duration?: number
@@ -24,8 +25,7 @@ const {
 
 /** @type {ReturnType<typeof setInterval>} */
 let timer
-/** @type {HTMLElement} */
-let wrapper
+let wrapper = /** @type {HTMLElement} */($state())/**/
 let index = 0
 let temp = $state(
 	/** @type {string} */(` _${selector}/none`)/**/

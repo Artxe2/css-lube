@@ -1,7 +1,11 @@
 <script>
-/** @type {{ classs?: string }} */
+/**
+ * @type {{
+ *   children: import("svelte").Snippet
+ *   classs?: string
+ * }}
+ */
 const { classs = "" } = $props()
 </script>
 
-<h2 class="bold fs=3.5 @!sm@fs=2
-		{classs}"><slot></slot></h2>
+<h2 class="bold fs=3.5em {classs}"><slot></slot></h2>

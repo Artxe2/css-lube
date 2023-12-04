@@ -4,7 +4,6 @@ import styles from "js/styles.js"
 </script>
 
 <div class="flex column h=100% ox=hidden
-		fs=16px @md@fs=20px
 		bg=#fff @dark@bg=--gray-10
 		c=#000 @dark@c=--gray-90
 		_svg/f=currentcolor">

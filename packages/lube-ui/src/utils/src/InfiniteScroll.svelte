@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   onlast: (event: CustomEvent<void>) => void
  *   ready: boolean
@@ -8,8 +9,7 @@
  */
 const { classs = "", onlast, ready } = $props()
 
-/** @type {HTMLDivElement} */
-let container
+let container = /** @type {HTMLDivElement} */($state())/**/
 /** @type {IntersectionObserver} */
 let observer
 

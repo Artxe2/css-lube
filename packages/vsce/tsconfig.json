@@ -1,13 +1,12 @@
 {
 	"compilerOptions": {
-		"module": "CommonJS",
-		"target": "ESNext",
-		"lib": [ "ESNext" ],
-		"outDir": "out",
+		"checkJs": true,
+		"lib": [ "ES2022" ],
+		"module": "Node16",
+		"moduleResolution": "NodeNext",
+		"noEmit": true,
 		"rootDir": "src",
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"strict": true
+		"target": "ES2022"
 	},
-	"exclude": [ "node_modules", ".vscode-test" ]
+	"include": [ "**/*.js" ]
 }

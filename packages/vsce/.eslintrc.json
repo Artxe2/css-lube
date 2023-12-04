@@ -4,10 +4,16 @@ VSCE: Sort JS object keys
 VSCE: JavaScript and TypeScript Nightly
 */
 {
-	"env": { "browser": true, "es2021": true, "node": true },
+	"env": {
+		"browser": false,
+		"commonjs": true,
+		"es6": true,
+		"node": true,
+		"mocha": true
+	},
 	"extends": [ "plugin:lube/recommended" ],
 	"globals": { "NodeJS": true },
-	"ignorePatterns": [ "out/", "*.svelte" ],
+	"ignorePatterns": [ "*.svelte", "*.cjs" ],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
 	"plugins": [ "lube" ],

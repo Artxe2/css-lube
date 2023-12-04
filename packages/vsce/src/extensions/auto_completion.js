@@ -1,16 +1,22 @@
-import * as vscode from "vscode"
-import {
+const vscode = require("vscode")
+const {
 	shorthand_for_media_condition,
 	shorthand_for_properties,
 	shorthand_for_values
-} from "../helper/get_config.js"
-import parse_dom from "../helper/parse_dom.js"
+} = require("../helper/get_config.js")
+const parse_dom = require("../helper/parse_dom.js")
 
-export default (context: vscode.ExtensionContext) => {
-	function is_in_class_name(
-		document: vscode.TextDocument,
-		position: vscode.Position
-	) {
+/**
+ * @param {vscode.ExtensionContext} context
+ * @returns {void}
+ */
+module.exports = context => {
+	/**
+	 * @param {vscode.TextDocument} document
+	 * @param {vscode.Position} position
+	 * @returns {boolean}
+	 */
+	function is_in_class_name(document, position) {
 		const text = document.getText()
 		let index = 0
 		for (let i = 0; i < position.line; i++) {
@@ -33,10 +39,12 @@ export default (context: vscode.ExtensionContext) => {
 		vscode.languages.registerCompletionItemProvider(
 			selector,
 			{
-				provideCompletionItems(
-					document: vscode.TextDocument,
-					position: vscode.Position
-				) {
+				/**
+				 * @param {vscode.TextDocument} document
+				 * @param {vscode.Position} position
+				 * @returns {vscode.ProviderResult<vscode.CompletionItem[]>}
+				 */
+				provideCompletionItems(document, position) {
 					if (is_in_class_name(document, position)) {
 						const keys = [ ...shorthand_for_properties ].map(
 							([ k, v ]) => {
@@ -67,10 +75,12 @@ export default (context: vscode.ExtensionContext) => {
 		vscode.languages.registerCompletionItemProvider(
 			selector,
 			{
-				provideCompletionItems(
-					document: vscode.TextDocument,
-					position: vscode.Position
-				) {
+				/**
+				 * @param {vscode.TextDocument} document
+				 * @param {vscode.Position} position
+				 * @returns {vscode.ProviderResult<vscode.CompletionItem[]>}
+				 */
+				provideCompletionItems(document, position) {
 					if (is_in_class_name(document, position)) {
 						const medias = [ ...shorthand_for_media_condition ].map(
 							([ k, v ]) => {

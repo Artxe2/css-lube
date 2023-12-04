@@ -1,7 +1,11 @@
-import { parseHtml, parseJsx } from "dom-eater"
-import { AstNode } from "dom-eater/@types"
+const { parseHtml, parseJsx } = require("../../src_npm/dom-eater.cjs")
 
-export default (file_name: string, text: string): AstNode[] => {
+/**
+ * @param {string} file_name
+ * @param {string} text
+ * @returns {*[]}
+ */
+module.exports = (file_name, text) => {
 	const index = file_name.lastIndexOf(".")
 	if (index < 0) return []
 	const extension = file_name.slice(index + 1)

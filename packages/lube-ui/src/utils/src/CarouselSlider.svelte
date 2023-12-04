@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   duration?: number
  *   is_snap?: boolean
@@ -39,8 +40,7 @@ let raf
 let caf
 /** @type {IntersectionObserver} */
 let observer
-/** @type {HTMLDivElement} */
-let container
+let container = /** @type {HTMLDivElement} */($state())/**/
 let is_dragging = false
 /** @type {number} */
 let start_x
@@ -261,7 +261,7 @@ $effect(
 
 <svelte:window
 		onmousemove={handle_mousemove}
-		onmouseup={handle_mouseup}/>
+		onmouseup={handle_mouseup} />
 
 <div bind:this={container}
 		class={classs}

@@ -1,6 +1,7 @@
 <script>
 /**
  * @type {{
+ *   children: import("svelte").Snippet
  *   classs?: string
  *   dragElement?: HTMLElement?;
  *   ondragend?: (event: DragEvent) => void
@@ -25,8 +26,7 @@ setDragElement = (client_x, client_y, drag_element) => {
 }
 setDragElement
 
-/** @type {HTMLElement} */
-let container
+let container = /** @type {HTMLElement} */($state())/**/
 let cx = 0
 let cy = 0
 /** @type {boolean} */

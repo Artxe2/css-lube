@@ -1,13 +1,16 @@
-import * as vscode from "vscode"
+const vscode = require("vscode")
 
-import { AstNode, String } from "dom-eater/@types"
+const compile_style = require("../helper/compile_style.js")
+const parse_dom = require("../helper/parse_dom.js")
 
-import compile_style from "../helper/compile_style.js"
-import parse_dom from "../helper/parse_dom.js"
-
-export default (context: vscode.ExtensionContext) => {
+/**
+ * @param {vscode.ExtensionContext} context
+ * @returns {void}
+ */
+module.exports = context => {
 	const decorator = vscode.window.createTextEditorDecorationType
-	let timeout: ReturnType<typeof setTimeout> | 0
+	/** @type {ReturnType<typeof setTimeout> | 0} */
+	let timeout
 	let active_editor = vscode.window.activeTextEditor
 
 	const token_regex = /(?<=^| |\t)[^ \r\t]+/g
@@ -24,15 +27,22 @@ export default (context: vscode.ExtensionContext) => {
 	const value_decorator = decorator(
 		{ border: "solid #ce917888", borderWidth: "0 0 3px 0" }
 	)
-	const check_is_special = (cname: string, index: number) => {
+	/**
+	 * @param {string} cname
+	 * @param {number} index
+	 * @returns {boolean}
+	 */
+	const check_is_special = (cname, index) => {
 		const c = cname[index]
 		return c != "-" && (c < "a" || c > "z")
 	}
-	function analysis_class_name(
-		text: string,
-		str_node: String,
-		class_names: { text: string, start: number }[]
-	) {
+	/**
+	 * @param {string} text
+	 * @param {*} str_node
+	 * @param {{ start: number, text: string }[]} class_names
+	 * @returns {void}
+	 */
+	function analysis_class_name(text, str_node, class_names) {
 		let index = str_node.start + 1
 		for (const script of str_node.scripts) {
 			if (script.start > index) {
@@ -54,11 +64,13 @@ export default (context: vscode.ExtensionContext) => {
 			)
 		}
 	}
-	function dfs_ast(
-		text: string,
-		node: AstNode,
-		class_names: { text: string, start: number }[]
-	) {
+	/**
+	 * @param {string} text
+	 * @param {*} node
+	 * @param {{ text: string, start: number }[]} class_names
+	 * @returns {void}
+	 */
+	function dfs_ast(text, node, class_names) {
 		if (node.type == "Element") {
 			for (const attr of node.attributes) {
 				if (attr.name == "class" || attr.name == "className" || attr.name == "classs") {
@@ -82,16 +94,23 @@ export default (context: vscode.ExtensionContext) => {
 		if (!active_editor) return
 		const text = active_editor.document.getText()
 		const ast = parse_dom(active_editor.document.fileName, text)
-		const cname_array: vscode.DecorationOptions[] = []
-		const media_query_array: vscode.Range[] = []
-		const selector_array: vscode.Range[] = []
-		const property_array: vscode.Range[] = []
-		const value_array: vscode.Range[] = []
-		const class_names: { text: string, start: number }[] = []
+		/** @type {vscode.DecorationOptions[]} */
+		const cname_array = []
+		/** @type {vscode.Range[]} */
+		const media_query_array = []
+		/** @type {vscode.Range[]} */
+		const selector_array = []
+		/** @type {vscode.Range[]} */
+		const property_array = []
+		/** @type {vscode.Range[]} */
+		const value_array = []
+		/** @type {{ text: string, start: number }[]} */
+		const class_names = []
 		for (const node of ast) {
 			dfs_ast(text, node, class_names)
 		}
-		let match: RegExpExecArray|null
+		/** @type {RegExpExecArray?} */
+		let match
 		for (const { text: class_name, start: class_name_index } of class_names) {
 			while ((match = token_regex.exec(class_name))) {
 				const cname = match[0]
@@ -121,7 +140,8 @@ export default (context: vscode.ExtensionContext) => {
 						parse_index = index + 1
 					}
 				}
-				const index_array: number[] = []
+				/** @type {number[]} */
+				const index_array = []
 				let index = cname.indexOf("=", parse_index)
 				if (index >= 0) {
 					do {

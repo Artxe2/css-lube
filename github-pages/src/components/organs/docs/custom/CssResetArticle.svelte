@@ -13,7 +13,7 @@ table{border-collapse:collapse;border-spacing:0}
 :root{-webkit-tap-highlight-color:transparent;text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;word-break:break-word;tab-size:4}`)}`
 </script>
 
-<h3 class="fs=2 bold">
+<h3 class="fs=2em bold">
 	<a id="css-reset" href="#css-reset">CSS Reset</a>
 </h3>
 <div class="m=1_0_2_0">

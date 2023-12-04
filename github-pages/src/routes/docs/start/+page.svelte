@@ -4,8 +4,7 @@ import StartArticle from "organs/docs/start/StartArticle.svelte"
 import { page } from "$app/stores"
 import { H2 } from "lube-ui/typography"
 
-/** @type {HTMLElement} */
-let header
+let header = /** @type {HTMLElement} */($state())/**/
 
 $effect(
 	() => {
@@ -20,14 +19,14 @@ $effect(
 	<title>Getting Started - CSS Lube</title>
 </svelte:head>
 
-<header bind:this={header} class="m=.5">
-	<div class="flex br=1.5 o=hidden
+<header bind:this={header} class="m=12">
+	<div class="flex br=36 o=hidden
 			{styles.$common.background_grid}">
 		<div class="flex w=100%
 				{styles.$common.background_conic}">
-			<div class="w=3"></div>
+			<div class="w=48"></div>
 			<div class="fg=1 fsk=1">
-				<div class="h=2"></div>
+				<div class="h=48"></div>
 				<H2>Getting Started</H2>
 				<span>CSS Lube is not constrained by frameworks</span>
 				<H2 classs="v=hidden">.</H2>
@@ -35,8 +34,12 @@ $effect(
 		</div>
 	</div>
 </header>
-<article class="m=2.5_1.5 @md@m=2.5">
+<article class="m=60_36">
 	<StartArticle />
 </article>
-<button class="h=2 :hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>Back to top</button>
-<div class="h=2"></div>
+<div class="flex jc=center">
+	<button class="mb=24 fs=1.5em
+			:hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>
+		Back to top
+	</button>
+</div>

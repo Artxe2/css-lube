@@ -162,8 +162,8 @@
 		]
 	)
 	let replace_default_unit_inner_regex = /(?:^| )-?(?:\d*\.)?\d+(?= |$)/g
-	let replace_default_unit_regex = /((?:^|;|-)(?:border|bottom|column-rule|end|flex-basis|font-size|gap|grid-template-(?:columns|rows)|height|inset|left|margin(?:-[a-z]+)*|origin|outline|padding(?:-[a-z]+)*|perspective|position|radius|right|shadow|spacing|start|top|width):)(.+?)(?=;|$)/g
-	let default_unit = "em"
+	let replace_default_unit_regex = /((?:^|;|-)(?:border|bottom|column-rule|end|flex-basis|font-size|gap|height|inset|left|margin(?:-[a-z]+)*|origin|outline|padding(?:-[a-z]+)*|perspective|position|radius|right|shadow|spacing|start|top|width):)(.+?)(?=;|$)/g
+	let default_unit = "px"
 
 
 	let style_sheet = dom.createElement("style")
@@ -203,10 +203,6 @@
 	 * ``` */
 	let replace_colon_regex = /=/g
 	/** ```
-	 * /[^ ,]+=[^ ,]+/g
-	 * ``` */
-	let replace_condition_regex = /[^ ,]+=[^ ,]+/g
-	/** ```
 	 * /[^ ][+-][^ ]/g
 	 * ``` */
 	let replace_calc_oper_inner_regex = /[^ (][+-][^ ]/g
@@ -214,6 +210,10 @@
 	 * /calc\(.+?\)/g
 	 * ``` */
 	let replace_calc_oper_regex = /calc\(.+?\)/g
+	/** ```
+	 * /[^ ,]+=[^ ,]+/g
+	 * ``` */
+	let replace_condition_regex = /[^ ,]+=[^ ,]+/g
 	/**
 	 * @type {RegExp}
 	 * ```
@@ -477,7 +477,7 @@
 	let replace_var_handler = substr => substr[0] + "var(" + substr.slice(1) + ")"
 
 
-	style_sheet.setAttribute("css-lube", "v2.2.0")
+	style_sheet.setAttribute("css-lube", "v2.3.0")
 	dom.head.append(style_sheet)
 	new MO(
 		mr_list => {

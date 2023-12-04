@@ -7,9 +7,9 @@ import TestEditor from "parts/$common/TestEditor.svelte"
 <div class={styles.$common.contents_div}>
 	<span>By default, class names behave like inline styles</span>
 	<span>Multiple styles or other attributes are also freely applicable in basic syntax</span>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="background:#08f width:4em;height:4em!important">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="background:#08f width:72px;height:72px!important">
 	Box
 </div>`} />
 	</div>
@@ -19,9 +19,9 @@ import TestEditor from "parts/$common/TestEditor.svelte"
 			class="w=fit-content {styles.$common.link}">
 		Default Unit
 	</a>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="background:#08f; width:3.5 height:3.5">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="background:#08f; width:96 height:96">
 	Box
 </div>`} />
 	</div>
@@ -31,18 +31,18 @@ import TestEditor from "parts/$common/TestEditor.svelte"
 			class="w=fit-content {styles.$common.link}">
 		Shorthand for Properties
 	</a>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="bg:blue w:3.5 h:3.5">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="bg:blue w:72 h:72">
 	Box
 </div>`} />
 	</div>
 	<br>
 	<span>Because class names use spaces( ) as delimiters, values that contain spaces should use underscores(_) instead of spaces</span>
 	<span>A colon(:) can be included in the class name, but can be replaced by an equal sign(=) depending on your preference</span>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="bd=2px_solid_red bg=#08f w=3.5 h=3.5">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="bd=2px_solid_red bg=#08f w=72 h=72">
 	Box
 </div>`} />
 	</div>
@@ -52,24 +52,25 @@ import TestEditor from "parts/$common/TestEditor.svelte"
 			class="w=fit-content {styles.$common.link}">
 		Shorthand for Values
 	</a>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="bg=#08f w=3.5 h=3.5">
-	<span class="fs=1.5 bold">Box</span>
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="bg=#08f w=72 h=72">
+	<span class="fs=1.5em bold">Box</span>
 </div>`} />
 	</div>
 	<br>
 	<span>When you use minus(-) or plus(+) in the calc function, spaces are automatically added</span>
-	<div class="h=10 @!md@h=20">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
 		<TestEditor content={`<div class="bg=#08f w=calc(4em-1px) h=calc(4em+1px)">
 	Box
 </div>`} />
 	</div>
 	<br>
 	<span>Values starting with two hyphens automatically wrap the var function</span>
-	<div class="h=.5"></div>
-	<div class="h=10 @!md@h=20">
-		<TestEditor content={`<div class="bg=--primary-50 w=3.5 h=3.5">
+	<div class="h=12"></div>
+	<div class="h=180 @!md@h=360">
+		<TestEditor content={`<div class="bg=--primary-50 w=72 h=72">
 	Box
 </div>`} />
 	</div>

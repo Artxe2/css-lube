@@ -11,6 +11,7 @@
 	"scripts": {
 		"build": "cd github-pages && pnpm build",
 		"dev": "cd github-pages && pnpm dev",
+		"latest": "pnpm -r up --latest && cd github-pages && pnpm i -D svelte@next && cd ../packages/lube-ui && pnpm i -D svelte@next && cd ../vsce && pnpm i @types/vscode@^1.62.0 && pnpm lint",
 		"lint": "pnpm -r lint",
 		"pre": "pnpm lint && pnpm build",
 		"preview": "cd github-pages && pnpm preview"

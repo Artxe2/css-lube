@@ -32,26 +32,12 @@ const menu = [
 			{
 				href: `${base}/ref/benchmark`,
 				name: "Benchmark"
-			},
-			{
-				href: `${base}/ref/ui`,
-				name: "Lube UI",
-				subs: [
-					{
-						href: `${base}/ref/ui/carousel-slider`,
-						name: "Carousel Slider"
-					},
-					{
-						href: `${base}/ref/ui/drag-and-drop`,
-						name: "Drag and Drop"
-					},
-					{
-						href: `${base}/ref/ui/infinite-scroll`,
-						name: "Infinite Scroll"
-					}
-				]
 			}
 		]
+	},
+	{
+		href: `${base}/ui`,
+		name: "Lube UI"
 	}
 ]
 

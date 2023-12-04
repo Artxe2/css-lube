@@ -3,8 +3,7 @@ import CarouselSliderExample from "organs/ref/ui/carousel-slider/CarouselSliderE
 import { H2 } from "lube-ui/typography"
 import styles from "js/styles.js"
 
-/** @type {HTMLElement} */
-let header
+let header = /** @type {HTMLElement} */($state())/**/
 
 $effect(
 	() => header.parentElement?.scroll(0, 0)

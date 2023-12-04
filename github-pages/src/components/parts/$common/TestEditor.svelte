@@ -8,8 +8,7 @@ import { theme } from "parts/$common/$.svelte.js"
 import { untrack } from "svelte"
 
 let is_loading = $state(true)
-/** @type {HTMLDivElement} */
-let container
+let container = /** @type {HTMLDivElement} */($state())/**/
 let monaco = /** @type {import("monaco-editor").editor.IStandaloneCodeEditor} */($state())/**/
 
 const init_monaco = () => {
@@ -53,14 +52,14 @@ $effect.pre(update_theme)
 	<div class="flex
 			w=100% @md@w=45%
 			@!md@h=40%">
-		<div class="fg=1 flex jc=center relative w=100% p=1 o=auto
+		<div class="fg=1 flex jc=center relative w=100% p=24 o=auto
 				bg=--primary-90 @dark@bg=--primary-10
 				{styles.scrollbar.primary}">
 			{@html content}
 		</div>
 	</div>
 	<div bind:this={container}
-			class="fg=1 pt=1
+			class="fg=1 pt=24
 			bg=#fff @dark@bg=--cod-gray
 			xw=99.99% @md@xw=60%
 			@!md@xh=70%">

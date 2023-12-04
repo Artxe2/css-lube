@@ -140,7 +140,7 @@ const bar_width = $derived(
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
-	<svg class="relative w=100% h=20">
+	<svg class="relative w=100% h=480">
 		<rect width="15" height="15" y="26" fill="#a11" />
 		<rect width="15" height="15" y="46" fill="#1a1" />
 		<rect width="15" height="15" y="66" fill="#11a" />
@@ -155,7 +155,7 @@ const bar_width = $derived(
 		</g>
 		<g>
 			{#each first_contentful_paint_ticks as tick, i}
-				<g class="fs=.75" transform="translate(0, {first_contentful_paint_scale(tick)})">
+				<g transform="translate(0, {first_contentful_paint_scale(tick)})">
 					<line class="stroke=--gray-50
 							{i ? "stroke-dasharray=2" : "stroke-dasharray=0"}" x2="100%" />
 				</g>
@@ -163,7 +163,7 @@ const bar_width = $derived(
 		</g>
 		<g>
 			{#each data as { name }, i}
-				<g class="fs=.75" transform="translate({x_scale(i)},{height})">
+				<g transform="translate({x_scale(i)},{height})">
 					<text class="text-anchor=middle" x={bar_width * 1.5 + 6} y="-4">{name}</text>
 				</g>
 			{/each}
@@ -179,7 +179,7 @@ const bar_width = $derived(
 						y={first_contentful_paint_scale(first_contentful_paint)}
 						width={bar_width}
 						height={first_contentful_paint_scale(0) - first_contentful_paint_scale(first_contentful_paint)} />
-				<text class="fs=.75 text-anchor=middle"
+				<text class="text-anchor=middle"
 						x={x_scale(i) + 4 + bar_width / 2}
 						y={first_contentful_paint_scale(first_contentful_paint)}>
 					{first_contentful_paint}ms
@@ -189,7 +189,7 @@ const bar_width = $derived(
 						y={total_blocking_time_scale(total_blocking_time)}
 						width={bar_width}
 						height={total_blocking_time_scale(0) - total_blocking_time_scale(total_blocking_time)} />
-				<text class="fs=.75 text-anchor=middle"
+				<text class="text-anchor=middle"
 						x={x_scale(i) + 6 + bar_width * 1.5}
 						y={total_blocking_time_scale(total_blocking_time)}>
 					{total_blocking_time}ms
@@ -199,7 +199,7 @@ const bar_width = $derived(
 						y={page_weight_scale(page_weight)}
 						width={bar_width}
 						height={page_weight_scale(0) - page_weight_scale(page_weight)} />
-				<text class="fs=.75 text-anchor=middle"
+				<text class="text-anchor=middle"
 						x={x_scale(i) + 8 + bar_width * 2.5}
 						y={page_weight_scale(page_weight)}>
 					{page_weight}KB

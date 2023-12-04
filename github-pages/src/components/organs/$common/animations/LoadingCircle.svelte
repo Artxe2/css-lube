@@ -1,5 +1,6 @@
 <script>
-const { classs } = $props()
+/** @type {{ classs?: string }} */
+const { classs = "" } = $props()
 
 /** @type {ReturnType<typeof setInterval>} */
 let timer

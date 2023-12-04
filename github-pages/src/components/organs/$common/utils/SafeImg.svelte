@@ -11,8 +11,7 @@ const { classs = "", aspect_ratio, src } = $props()
 import LoadingCircle from "organs/$common/animations/LoadingCircle.svelte"
 
 const alt = src.slice(src.lastIndexOf("/") + 1)
-/** @type {boolean} */
-let loaded
+let loaded = /** @type {boolean} */($state())/**/
 </script>
 
 <div class="relative {classs}">
