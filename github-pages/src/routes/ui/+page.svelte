@@ -3,6 +3,7 @@ import styles from "js/styles.js"
 import { page } from "$app/stores"
 import { TextField } from "lube-ui/inputs"
 import { H2 } from "lube-ui/typography"
+import { base } from "$app/paths"
 
 let header = /** @type {HTMLElement} */($state())/**/
 
@@ -44,16 +45,29 @@ $effect(
 	<TextField label="Search" type="search" />
 	<TextField helper="Some important text" label="Helper text" />
 	<div class="h=1em"></div>
-	<TextField classs="fs=2em
+	<TextField classs="fs=2em >input/w=8em
 			bdc=#00f :hover/bdc=#f0f :has(:focus)/bdc=#f00
-			>label/c=#88f
+			>label:first-child/c=#88f
 			>input/c=#44f
 			>p/c=red"
 			helper="Some important text"
-			label="Custom" />
+			label="Custom"
+			prefixWidth="1em"
+			suffixWidth="1em">
+		<p slot="prefix" >
+			<svg class="icon w=1em h=1em">
+				<use xlink:href="{base}/icons.svg#code" />
+			</svg>
+		</p>
+		<p slot="suffix">
+			<svg class="icon w=1em h=1em">
+				<use xlink:href="{base}/icons.svg#code" />
+			</svg>
+		</p>
+	</TextField>
 </article>
 <div class="flex jc=center">
-	<button class="mb=24 fs=1.5em
+	<button class="m=36 fs=1.5em
 			:hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>
 		Back to top
 	</button>

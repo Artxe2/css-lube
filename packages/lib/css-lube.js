@@ -90,6 +90,7 @@
 			[ "op", "opacity" ],
 			[ "ol", "outline" ],
 			[ "o", "overflow" ],
+			[ "ow", "overflow-wrap" ],
 			[ "ox", "overflow-x" ],
 			[ "oy", "overflow-y" ],
 			[ "p", "padding" ],

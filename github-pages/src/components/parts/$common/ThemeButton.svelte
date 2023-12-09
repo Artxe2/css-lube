@@ -7,7 +7,7 @@ import { base } from "$app/paths"
 import { untrack } from "svelte"
 
 let deg = $state(180)
-let animation = /** @type {boolean} */($state())/**/
+let mounted = /** @type {boolean} */($state())/**/
 
 const handle_click = () => {
 	theme.change_theme()
@@ -30,7 +30,7 @@ $effect.pre(theme.init)
 $effect.pre(spin_icons)
 $effect(
 	() => {
-		animation = true
+		mounted = true
 	}
 )
 </script>
@@ -43,7 +43,7 @@ $effect(
 		{classs}"
 		onclick={handle_click}>
 	<div class="flex column ai=center g=72
-			{animation && "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s"}
+			{mounted && "tt=transform_cubic-bezier(.9,0,.45,1.35)_.6s"}
 			tf=translate(0,54px)_rotate({deg}deg)">
 		<div class="relative w=36 h=36">
 			<svg class="absolute l=0 w=36 h=36">

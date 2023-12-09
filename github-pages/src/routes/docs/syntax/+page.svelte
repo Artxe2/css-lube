@@ -64,7 +64,7 @@ $effect(
 	</TabPage>
 </div>
 <div class="flex jc=center">
-	<button class="mb=24 fs=1.5em
+	<button class="m=36 fs=1.5em
 			:hover/c=--primary-50;bold" onclick={() => header?.parentElement?.scroll(0, 0)}>
 		Back to top
 	</button>
