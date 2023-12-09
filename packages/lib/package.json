@@ -2,10 +2,10 @@
 	"author": "Artxe2",
 	"description": "Highly-optimized CSS Interpreter",
 	"devDependencies": {
-		"@typescript-eslint/parser": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.2",
 		"eslint": "^8.55.0",
 		"eslint-plugin-lube": "^0.4.3",
-		"typescript": "^5.3.2"
+		"typescript": "^5.3.3"
 	},
 	"homepage": "https://artxe2.github.io/css-lube/",
 	"license": "MIT",
