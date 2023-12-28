@@ -1,4 +1,4 @@
-const { parseHtml, parseJsx } = require("../../src_npm/dom-eater.cjs")
+const { parseHtml, parseJsx } = require("dom-eater")
 
 /**
  * @param {string} file_name

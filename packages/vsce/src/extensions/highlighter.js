@@ -16,16 +16,16 @@ module.exports = context => {
 	const token_regex = /(?<=^| |\t)[^ \r\t]+/g
 	const token_decorator = decorator({})
 	const media_query_decorator = decorator(
-		{ border: "solid #b67bb188", borderWidth: "0 0 3px 0" }
+		{ border: "solid #b67bb177", borderWidth: "0 0 3px 0" }
 	)
 	const selector_decorator = decorator(
-		{ border: "solid #d7ba7d88", borderWidth: "0 0 3px 0" }
+		{ border: "solid #d7ba7d77", borderWidth: "0 0 3px 0" }
 	)
 	const property_decorator = decorator(
-		{ border: "solid #9cdcfe88", borderWidth: "0 0 3px 0" }
+		{ border: "solid #9cdcfe77", borderWidth: "0 0 3px 0" }
 	)
 	const value_decorator = decorator(
-		{ border: "solid #ce917888", borderWidth: "0 0 3px 0" }
+		{ border: "solid #ce917877", borderWidth: "0 0 3px 0" }
 	)
 	/**
 	 * @param {string} cname
@@ -33,7 +33,7 @@ module.exports = context => {
 	 * @returns {boolean}
 	 */
 	const check_is_special = (cname, index) => {
-		const c = cname[index]
+		const c = /** @type {string} */(cname[index])/**/
 		return c != "-" && (c < "a" || c > "z")
 	}
 	/**

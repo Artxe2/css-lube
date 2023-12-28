@@ -2,10 +2,10 @@
 	"author": "artxe2",
 	"description": "Svelte UI Components for CSS Lube",
 	"devDependencies": {
-		"@typescript-eslint/parser": "^6.13.2",
-		"eslint": "^8.55.0",
+		"@typescript-eslint/parser": "^6.16.0",
+		"eslint": "^8.56.0",
 		"eslint-plugin-lube": "^0.4.3",
-		"svelte": "5.0.0-next.22",
+		"svelte": "5.0.0-next.27",
 		"svelte-check": "^3.6.2",
 		"svelte-eslint-parser": "^0.33.1",
 		"typescript": "^5.3.3"

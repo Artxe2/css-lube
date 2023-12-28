@@ -4,7 +4,7 @@ const highlighter = require("./extensions/highlighter")
 module.exports = {
 	/**
 	 * @param {import("vscode").ExtensionContext} context
-	 * @returns
+	 * @returns {void}
 	 */
 	activate(context) {
 		auto_completion(context)

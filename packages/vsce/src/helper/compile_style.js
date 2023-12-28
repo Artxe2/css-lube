@@ -43,7 +43,7 @@ const replace_value_regex = RE(
  * @returns {boolean}
  */
 const check_is_raw = cname => {
-	const c = cname[0]
+	const c = /** @type {string} */(cname[0])/**/
 	return c == "-" || c >= "a" && c <= "z"
 }
 /**

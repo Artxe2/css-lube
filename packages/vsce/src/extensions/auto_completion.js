@@ -14,7 +14,7 @@ module.exports = context => {
 	/**
 	 * @param {vscode.TextDocument} document
 	 * @param {vscode.Position} position
-	 * @returns {boolean}
+	 * @returns {boolean | void}
 	 */
 	function is_in_class_name(document, position) {
 		const text = document.getText()

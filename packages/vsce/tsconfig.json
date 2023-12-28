@@ -1,12 +1,17 @@
 {
 	"compilerOptions": {
 		"checkJs": true,
+		"exactOptionalPropertyTypes": true,
 		"lib": [ "ES2022" ],
 		"module": "Node16",
 		"moduleResolution": "NodeNext",
 		"noEmit": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
 		"rootDir": "src",
+		"skipLibCheck": true,
+		"strict": true,
 		"target": "ES2022"
 	},
-	"include": [ "**/*.js" ]
+	"include": [ "src/**/*.js" ]
 }

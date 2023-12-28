@@ -285,7 +285,7 @@
 	 * @returns {boolean}
 	 */
 	let check_is_raw = cname => {
-		let c = cname[0]
+		let c = /** @type {string} */(cname[0])/**/
 		return c == "-" || c >= "a" && c <= "z"
 	}
 	/**

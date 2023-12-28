@@ -161,14 +161,16 @@
 			}
 		]
 	},
-	"dependencies": { "dom-eater": "^0.2.3" },
+	"dependencies": { "dom-eater": "^0.2.5" },
 	"devDependencies": {
-		"@types/node": "^20.10.4",
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@types/node": "^20.10.5",
 		"@types/vscode": "^1.62.0",
-		"@typescript-eslint/eslint-plugin": "^6.13.2",
-		"@typescript-eslint/parser": "^6.13.2",
+		"@typescript-eslint/eslint-plugin": "^6.16.0",
+		"@typescript-eslint/parser": "^6.16.0",
 		"@vscode/vsce": "^2.22.0",
-		"eslint": "^8.55.0",
+		"eslint": "^8.56.0",
 		"eslint-plugin-lube": "^0.4.3",
 		"typescript": "^5.3.3"
 	},
@@ -177,7 +179,7 @@
 	"files": [ "./node_modules/dom-eater/dom-eater.cjs" ],
 	"icon": "favicon.png",
 	"license": "MIT",
-	"main": "src/index.js",
+	"main": "out/index.cjs",
 	"name": "intellisense-css-lube",
 	"private": true,
 	"publisher": "Artxe",
@@ -187,10 +189,11 @@
 		"url": "https://github.com/Artxe2/css-lube"
 	},
 	"scripts": {
+		"build": "pnpm rollup -c && vsce package --no-dependencies",
 		"lint": "tsc && eslint --cache --fix **/*.{json,ts}",
-		"package": "vsce package --no-dependencies",
-		"pub": "vsce publish --no-dependencies"
+		"pub": "pnpm rollup -c && vsce publish --no-dependencies",
+		"watch": "pnpm rollup -c --watch"
 	},
 	"type": "commonjs",
-	"version": "0.3.4"
+	"version": "0.3.5"
 }
