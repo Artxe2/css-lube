@@ -1,6 +1,5 @@
 import adapter from "@sveltejs/adapter-static"
 import path from "path"
-import { vitePreprocess } from "@sveltejs/kit/vite"
 
 /** @type {import("@sveltejs/kit").Config} */
 const config = {
@@ -25,8 +24,7 @@ const config = {
 		paths: {
 			base: process.env.NODE_ENV === "production" ? "/css-lube" : ""
 		}
-	},
-	preprocess: vitePreprocess()
+	}
 }
 
 export default config

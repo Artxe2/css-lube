@@ -30,8 +30,8 @@ let index = 0
 let temp = $state(
 	/** @type {string} */(` _${selector}/none`)/**/
 )
-const cursor = ":after/ct='|';c=#000;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
-const dark_cursor = "@dark@:after/ct='|';c=#fff;m=0_-.35_0_-.25;fs=1.5;lh=calc(2em/3)"
+const cursor = ":after/ct='|';c=#000;m=0_-.35em_0_-.25em;fs=1.5em;lh=calc(2em/3)"
+const dark_cursor = "@dark@:after/ct='|';c=#fff;m=0_-.35em_0_-.25em;fs=1.5em;lh=calc(2em/3)"
 const blink = ":after/a=blink_1s_step-end_infinite"
 /** @param {number} ms */
 const sleep = async ms =>
@@ -46,11 +46,11 @@ const get_foldables = () => {
 	const array = []
 	if (orders) {
 		for (let i = 0; i < orders.length; i++) {
-			array[i] = foldables[orders[i]]
+			array[i] = /** @type {Element} */(foldables[/** @type {number} */(orders[i])/**/])/**/
 		}
 	} else {
 		for (let i = 0; i < foldables.length; i++) {
-			array[i] = foldables[i]
+			array[i] = /** @type {Element} */(foldables[i])/**/
 		}
 	}
 
@@ -77,29 +77,29 @@ const animation = async () => {
 		new CustomEvent("endtype", { detail: -1 })
 	)
 	index = 0
-	foldables[0].classList.add(cursor, dark_cursor, blink)
+	;/** @type {Element} */(foldables[0])/**/.classList.add(cursor, dark_cursor, blink)
 	await sleep(duration)
-	foldables[0].classList.remove(blink)
+	;/** @type {Element} */(foldables[0])/**/.classList.remove(blink)
 	while (index < length) {
 		onstarttype?.(
 			new CustomEvent("starttype", { detail: index })
 		)
-		foldables[index].classList.add(
+		;/** @type {Element} */(foldables[index])/**/.classList.add(
 			cursor,
 			dark_cursor,
 			"bg=" + bgc,
 			"@dark@bg=" + dark_bgc
 		)
-		for (const t of texts[index]) {
-			foldables[index].textContent += t
+		for (const t of /** @type {string} */(texts[index])/**/) {
+			/** @type {Element} */(foldables[index])/**/.textContent += t
 			await sleep(30)
 		}
-		foldables[index].classList.add(blink)
+		/** @type {Element} */(foldables[index])/**/.classList.add(blink)
 		onendtype?.(
 			new CustomEvent("endtype", { detail: index })
 		)
 		await sleep(duration)
-		foldables[index].classList.remove(
+		;/** @type {Element} */(foldables[index])/**/.classList.remove(
 			cursor,
 			dark_cursor,
 			blink,
@@ -108,9 +108,9 @@ const animation = async () => {
 		)
 		index++
 	}
-	foldables[index - 1].classList.add(cursor, dark_cursor, blink)
+	/** @type {Element} */(foldables[index - 1])/**/.classList.add(cursor, dark_cursor, blink)
 	await sleep(duration * 2)
-	foldables[index - 1].classList.remove(cursor, dark_cursor, blink)
+	;/** @type {Element} */(foldables[index - 1])/**/.classList.remove(cursor, dark_cursor, blink)
 	animation()
 }
 $effect(

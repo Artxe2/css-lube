@@ -24,13 +24,12 @@ ${html("body", ` ${name("class")}=${string("...")}`, `
 	<div class="h=36"></div>
 	<h3 class="fs=2em bold">VS Code Extension</h3>
 	<div class="h=24"></div>
-	<a class="w=fit-content" href="https://marketplace.visualstudio.com/items?itemName=Artxe.intellisense-css-lube" target="_blank">
-		<button class="h=48 br=24 p=0_12 jc=center
-				bg=--primary-50 :hover/bg=--primary-40
-				:hover/ts=0_0_12
-				:active/bg=--primary-50!">
-			<span class="c=#fff fs=1.5em">VSCE:intellisense.vsix</span>
-		</button>
+	<a class="flex ai=center w=fit-content h=48 br=24 p=0_12 jc=center
+			bg=--primary-50 :hover/bg=--primary-40
+			:hover/ts=0_0_12
+			:active/bg=--primary-50!"
+			href="https://marketplace.visualstudio.com/items?itemName=Artxe.intellisense-css-lube" target="_blank">
+		<span class="c=#fff fs=1.5em">VSCE:intellisense.vsix</span>
 	</a>
 	<div class="h=24"></div>
 	<SafeImg classs="br=24 o=hidden" aspect_ratio={5 / 2} src="https://github.com/Artxe2/css-lube/raw/main/github-pages/static/imgs/intellisense.gif" />

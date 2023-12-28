@@ -23,11 +23,10 @@ import styles from "js/styles.js"
 	<div class="absolute b=36 w=100% flex g=18 jc=center
 			@!sm@tf=scale(.75)">
 		<div class="flex ai=center">
-			<a href="{base}/docs">
-				<button class="p=6_12 br=12 jc=center
-						{styles.index.hero_section.button}">
-					<code class="fs=1.25em bold">Get Started</code>
-				</button>
+			<a class="p=6_12 br=12 jc=center
+					{styles.index.hero_section.button}"
+					href="{base}/docs">
+				<code class="fs=1.25em bold">Get Started</code>
 			</a>
 		</div>
 		<GithubStars />

@@ -65,13 +65,12 @@ $effect.pre(
 	{/if}
 </ul>
 {:else}
-<a href={menu.href}>
-	<button class="w=100% h=48 p=0_12 br=24 flex g=12 ai=center mb=6
-			:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
-			{active && "bg=--primary-50!! c=--primary-90!!"}
-			{classs}">
-		<slot></slot>
-		<span class="fs=1.25em">{menu.name}</span>
-	</button>
+<a class="w=100% h=48 p=0_12 br=24 flex g=12 ai=center mb=6
+		:hover/bg=--gray-70 @dark@:hover/bg=--gray-40
+		{active && "bg=--primary-50!! c=--primary-90!!"}
+		{classs}"
+		href={menu.href} >
+	<slot></slot>
+	<span class="fs=1.25em">{menu.name}</span>
 </a>
 {/if}
