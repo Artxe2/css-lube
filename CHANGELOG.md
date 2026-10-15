@@ -1,5 +1,37 @@
 # Changelog
 
+## 2.0.1
+
+### Fixed
+
+- An `!important` after a custom property stays outside its `var()`. `c=--fg!important` produced
+  `color:var(--fg!important)`, which the browser dropped, and the VSCode extension previewed the
+  same.
+- `\=` in a query is the literal `=` the grammar promises, as it already was in a selector.
+  `@@supports_selector([type\=number])@d=grid` produced `@supports (selector([type\:number]))`,
+  which matches nothing; the escape was read as a `<key>=<value>` condition instead.
+- A page whose storage cannot be read is styled, following the OS as with no `THEME` at all.
+  Reading `localStorage` throws where site data is blocked and in a sandboxed frame without
+  `allow-same-origin`, and every build stopped there, so no rule ever reached the sheet.
+- A `/*` outside quotes is caught by the guard against classes that leave the sheet open.
+  `c=red/*` compiled to `{color:red/*}`, a comment that swallowed every rule written after it.
+  Quoted, as in `ct='/*'`, it is still kept.
+- The reset is in the sheet from startup, as the README says. It arrived with the first class, so
+  markup parsed before any class — a page with none at all, or a plain header ahead of the first
+  classed element — could be painted with the browser's defaults and shift once a class appeared.
+- VSCode extension: a file with no extension is left alone wherever it sits. The extension was
+  read from the last `.` of the whole path, so a `Makefile` or `LICENSE` under a folder such as
+  `first.last` was parsed as HTML.
+- VSCode extension: class tokens are split where the library splits them, on HTML whitespace
+  only. A U+00A0 or U+3000 inside a quoted value cut the token in two, so the class went without
+  underline or preview although the page styled it.
+- VSCode extension: a Markdown code span written with two or more backticks is spaced out like a
+  single-backtick one. ``` ``<style>`` ``` in prose opened a `<style>` element that swallowed
+  every class in the prose after it.
+- VSCode extension: only a line holding nothing but the fence closes a Markdown fence, as in
+  CommonMark. A ```` ```html ```` line inside a `text` fence closed it, and the plain ```` ``` ````
+  after it opened a new fence that hid every class below.
+
 ## 2.0.0
 
 ### Breaking

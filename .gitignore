@@ -2,3 +2,6 @@ node_modules
 .eslintcache
 /extension/out
 *.vsix
+.tmp/
+.claude/settings.local.json
+coverage/

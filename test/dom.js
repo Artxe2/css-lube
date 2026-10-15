@@ -1,4 +1,20 @@
-import { readFileSync } from "node:fs"
+import factory from "../src/click-css.js?factory"
+import { Script } from "node:vm"
+/**
+ * @param {...string} names
+ * @returns {string}
+ */
+export function compile(...names) {
+	const a = load().via_class_change(...names)
+	const b = load().via_insertion(...names)
+	if (a !== b) {
+		throw Error(
+			"the collection paths diverged\n  class change: " + JSON.stringify(a)
+			+ "\n  insertion: " + JSON.stringify(b)
+		)
+	}
+	return a
+}
 /**
  * @param {string} css
  * @returns {string}
@@ -7,7 +23,9 @@ export function declarations(css) {
 	let out = css
 	for (let depth = css[0] == "@" ? 2 : 1; depth--;) {
 		const i = find_brace(out)
-		if (i < 0) return ""
+		if (i < 0) {
+			return ""
+		}
 		out = out.slice(i + 1, out.lastIndexOf("}"))
 	}
 	return out
@@ -29,15 +47,15 @@ function decode_entities(text) {
  * @param {ElementStub[]} [descendants]
  * @returns {ElementStub}
  */
-function element(class_attribute, descendants = []) {
-	return (
-		{
-			contains: () => false,
-			getAttribute: name => name == "class" ? class_attribute : null,
-			nodeType: 1,
-			querySelectorAll: () => descendants.filter(e => e.getAttribute("class") !== null)
-		}
-	)
+export function element(class_attribute, descendants = []) {
+	/** @type {ElementStub} */
+	const stub = {
+		contains: other => other === stub || descendants.includes(other),
+		getAttribute: name => name == "class" ? class_attribute : null,
+		nodeType: 1,
+		querySelectorAll: () => descendants.filter(e => e.getAttribute("class") !== null)
+	}
+	return stub
 }
 /**
  * @param {string} value
@@ -75,10 +93,87 @@ export function escape(value) {
  */
 function find_brace(css) {
 	for (let i = 0; i < css.length; i++) {
-		if (css[i] == "\\") i++
-		else if (css[i] == "{") return i
+		if (css[i] == "\\") {
+			i++
+		} else if (css[i] == "{") {
+			return i
+		}
 	}
 	return -1
+}
+/**
+ * @param {string} [source]
+ * @returns {Instance}
+ */
+export function load(source) {
+	const style = { setAttribute() {}, textContent: "" }
+	/** @type {((records: MutationRecordStub[]) => void)[]} */
+	const observers = []
+	/** @type {string | null} */
+	let theme = null
+	Object.assign(
+		globalThis,
+		{
+			CSS: { escape },
+			MutationObserver: class {
+				/** @param {(records: MutationRecordStub[]) => void} callback */
+				constructor(callback) {
+					observers.push(callback)
+				}
+				observe() {}
+			},
+			click: undefined,
+			document: {
+				createElement: () => style,
+				documentElement: {},
+				head: { append() {} }
+			},
+			localStorage: { getItem: () => theme }
+		}
+	)
+	if (source === undefined) {
+		factory()
+	} else {
+		new Script(source).runInThisContext()
+	}
+	const build = globalThis.click
+	const reset = style.textContent
+	function added() {
+		return style.textContent.slice(reset.length)
+	}
+	const on_attribute = /** @type {(records: MutationRecordStub[]) => void} */(observers[0])/**/
+	const on_child_list = /** @type {(records: MutationRecordStub[]) => void} */(observers[1])/**/
+	return {
+		insert: (...targets) => {
+			on_child_list(targets.map(target => ({ target })))
+			return added()
+		},
+		rebuild: next => {
+			theme = next ?? null
+			build()
+			return style.textContent
+		},
+		reset,
+		via_class_change: (...names) => {
+			on_attribute([ { target: element(names.join(" ")) } ])
+			return added()
+		},
+		via_insertion: (...names) => {
+			const attribute = serialize_attribute(names.join(" "))
+			on_child_list(
+				[
+					{
+						target: parse_html(`<div class="${attribute}"></div>`)
+					}
+				]
+			)
+			return added()
+		},
+		via_insertion_html: outer_html => {
+			on_child_list([ { target: parse_html(outer_html) } ])
+			return added()
+		}
+	}
 }
 /**
  * @param {string} html
@@ -115,87 +210,20 @@ export function serialize_attribute(text) {
 		.replace(/>/g, "&gt;")
 		.replace(/"/g, "&quot;")
 }
-const default_source = readFileSync(
-	new URL("../src/click-css.js", import.meta.url),
-	"utf8"
-)
 /**
- * @param {...string} names
- * @returns {string}
+ * @returns {ElementStub}
  */
-export function compile(...names) {
-	const a = load().via_class_change(...names)
-	const b = load().via_insertion(...names)
-	if (a !== b) {
-		throw Error(
-			"the collection paths diverged\n  class change: " + JSON.stringify(a)
-			+ "\n  insertion: " + JSON.stringify(b)
-		)
-	}
-	return a
-}
-/**
- * @param {string} [source]
- * @returns {Instance}
- */
-export function load(source = default_source) {
-	const style = { setAttribute() {}, textContent: "" }
-	/** @type {((records: MutationRecordStub[]) => void)[]} */
-	const observers = []
-	let theme = /** @type {string | null} */(null)/**/
-	Object.assign(
-		globalThis,
+export function text_node() {
+	return (
 		{
-			CSS: { escape },
-			MutationObserver: class {
-				/** @param {(records: MutationRecordStub[]) => void} callback */
-				constructor(callback) {
-					observers.push(callback)
-				}
-				observe() {}
+			contains: () => false,
+			getAttribute: () => {
+				throw Error("a text node has no attributes")
 			},
-			document: {
-				createElement: () => style,
-				documentElement: {},
-				head: { append() {} }
-			},
-			localStorage: { getItem: () => theme }
+			nodeType: 3,
+			querySelectorAll: () => {
+				throw Error("a text node has no descendants")
+			}
 		}
 	)
-	new Function(source)()
-	const build = globalThis.click
-	build()
-	const reset = style.textContent
-	function added() {
-		return style.textContent.slice(reset.length)
-	}
-	const on_attribute = /** @type {(records: MutationRecordStub[]) => void} */(observers[0])/**/
-	const on_child_list = /** @type {(records: MutationRecordStub[]) => void} */(observers[1])/**/
-	return {
-		rebuild: next => {
-			theme = next ?? null
-			build()
-			return style.textContent
-		},
-		reset,
-		via_class_change: (...names) => {
-			on_attribute([ { target: element(names.join(" ")) } ])
-			return added()
-		},
-		via_insertion: (...names) => {
-			const attribute = serialize_attribute(names.join(" "))
-			on_child_list(
-				[
-					{
-						target: parse_html(`<div class="${attribute}"></div>`)
-					}
-				]
-			)
-			return added()
-		},
-		via_insertion_html: outer_html => {
-			on_child_list([ { target: parse_html(outer_html) } ])
-			return added()
-		}
-	}
 }

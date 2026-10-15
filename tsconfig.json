@@ -22,5 +22,5 @@
 		"target": "esnext",
 		"types": [ "node" ]
 	},
-	"include": [ "build.mjs", "private.d.ts", "src", "test" ]
+	"include": [ "build.js", "private.d.ts", "src", "test" ]
 }

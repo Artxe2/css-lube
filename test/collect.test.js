@@ -1,6 +1,11 @@
-import { load, serialize_attribute } from "./dom.mjs"
+import {
+	element,
+	load,
+	serialize_attribute,
+	text_node
+} from "./dom.js"
 import assert from "node:assert/strict"
-import { describe, it } from "node:test"
+import { describe, it, vi } from "vitest"
 const entity_bearing = [
 	"@sm&dark@c=red",
 	"@max-width=200px&min-width=100px@w=100",
@@ -64,19 +69,18 @@ describe(
 			"is split into tokens once",
 			() => {
 				const app = load()
-				const original = String.prototype.match
+				const match = vi.spyOn(String.prototype, "match")
 				let splits = 0
-				String.prototype.match = function(/** @type {any} */ pattern) {
-					if (pattern instanceof RegExp && pattern.source == String.raw`[^\t\n\f\r ]+`) splits++
-					return original.call(this, pattern)
-				}
 				try {
 					app.via_insertion_html(
 						"<div class=\"w=1 h=2\"><p class=\"w=1 h=2\"></p><p class=\"w=1 h=2\"></p></div>"
 					)
 					app.via_insertion_html("<div class=\"w=1 h=2\"></div>")
+					splits = match.mock.calls.filter(
+						([ pattern ]) => pattern instanceof RegExp && pattern.source == String.raw`[^\t\n\f\r ]+`
+					).length
 				} finally {
-					String.prototype.match = original
+					match.mockRestore()
 				}
 				assert.equal(splits, 1)
 			}
@@ -121,6 +125,50 @@ describe(
 					load().via_insertion(cname),
 					load().via_class_change(cname),
 					"the class-change and insertion paths diverged"
+				)
+			}
+		)
+	}
+)
+describe(
+	"nodes inserted in one batch",
+	() => {
+		const expected = load().via_class_change("flex", "c=red")
+		it(
+			"a node inside another node of the batch is read with it",
+			() => {
+				const child = element("c=red")
+				const parent = element("flex", [ child ])
+				assert.equal(load().insert(parent, child), expected)
+			}
+		)
+		it(
+			"a node that holds an earlier node of the batch replaces it",
+			() => {
+				const child = element("c=red")
+				const parent = element("flex", [ child ])
+				assert.equal(load().insert(child, parent), expected)
+			}
+		)
+		it(
+			"a text node adds nothing and is never read",
+			() => {
+				assert.equal(load().insert(text_node()), "")
+			}
+		)
+		it(
+			"the same node twice is read once",
+			() => {
+				const node = element("flex c=red")
+				assert.equal(load().insert(node, node), expected)
+			}
+		)
+		it(
+			"unrelated nodes are each read",
+			() => {
+				assert.equal(
+					load().insert(element("flex"), element("c=red")),
+					expected
 				)
 			}
 		)
@@ -206,6 +254,17 @@ describe(
 						cname + " must change when serialized for this test to mean anything"
 					)
 				}
+			}
+		)
+	}
+)
+describe(
+	"the reset",
+	() => {
+		it(
+			"is in the sheet at startup, before any class arrives",
+			() => {
+				assert.match(load().reset, /^\*\{margin:0;/)
 			}
 		)
 	}

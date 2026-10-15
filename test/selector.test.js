@@ -1,6 +1,6 @@
-import { compile, declarations, prelude } from "./dom.mjs"
+import { compile, declarations, prelude } from "./dom.js"
 import assert from "node:assert/strict"
-import { describe, it } from "node:test"
+import { describe, it } from "vitest"
 /** @param {Record<string, [string, string]>} cases */
 function rules(cases) {
 	for (const [ cname, [ selector, body ] ] of Object.entries(cases)) {
@@ -29,7 +29,7 @@ describe(
 		it(
 			"leaves the media query alone and follows the OS",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const app = load()
 				app.via_class_change("@dark@c=white")
 				assert.match(
@@ -38,6 +38,64 @@ describe(
 				)
 			}
 		)
+	}
+)
+describe(
+	"THEME when storage cannot be read",
+	() => {
+		it(
+			"still builds the sheet and follows the OS",
+			async () => {
+				const { load } = await import("./dom.js")
+				const app = load()
+				const storage = Reflect.get(globalThis, "localStorage")
+				Object.defineProperty(
+					globalThis,
+					"localStorage",
+					{
+						configurable: true,
+						get() {
+							throw Error(
+								"SecurityError: access is denied for this document"
+							)
+						}
+					}
+				)
+				try {
+					assert.match(
+						app.via_class_change("@dark@c=white"),
+						/@media \(prefers-color-scheme:dark\)\{.+\{color:white\}\}$/
+					)
+				} finally {
+					Object.defineProperty(
+						globalThis,
+						"localStorage",
+						{ configurable: true, value: storage, writable: true }
+					)
+				}
+			}
+		)
+	}
+)
+describe(
+	"\\= in a query is a literal = too",
+	() => {
+		for (
+			const [ cname, at ] of Object.entries(
+				{
+					"@@supports_selector([data-x\\=1])&display=grid@d=grid":
+						"@supports selector([data-x=1]) and (display:grid)",
+					"@@supports_selector([type\\=number])@d=grid": "@supports selector([type=number])"
+				}
+			)
+		) {
+			it(
+				cname + "  →  " + at,
+				() => {
+					assert.equal(prelude(compile(cname)), at)
+				}
+			)
+		}
 	}
 )
 describe(
@@ -81,7 +139,7 @@ describe(
 		it(
 			"THEME=DARK rewrites it to an always-true query",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const app = load()
 				app.via_class_change("@dark@c=white")
 				const css = app.rebuild("DARK")
@@ -92,7 +150,7 @@ describe(
 		it(
 			"THEME=LIGHT rewrites it to a never-matching query",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const app = load()
 				app.via_class_change("@dark@c=white")
 				assert.match(app.rebuild("LIGHT"), /@media \(\)/)
@@ -101,7 +159,7 @@ describe(
 		it(
 			"without THEME, prefers-color-scheme stays as is",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const app = load()
 				app.via_class_change("@dark@c=white")
 				assert.match(
@@ -191,7 +249,7 @@ describe(
 		it(
 			"! on an overlapping media rule raises specificity whatever the discovery order",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				for (const names of [
 					[ "@md@p=32!", "@sm@p=24" ],
 					[ "@sm@p=24", "@md@p=32!" ]
@@ -211,7 +269,7 @@ describe(
 		it(
 			"a build not started by click() still reads THEME",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const app = load()
 				app.rebuild("DARK")
 				assert.match(
@@ -223,7 +281,7 @@ describe(
 		it(
 			"media rules come after plain rules seen earlier",
 			async () => {
-				const { load } = await import("./dom.mjs")
+				const { load } = await import("./dom.js")
 				const css = load().via_class_change("@sm@p=24", "p=16")
 				assert.ok(css.indexOf(".p\\=16") < css.indexOf("@media"))
 			}

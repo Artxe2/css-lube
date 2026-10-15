@@ -5,12 +5,12 @@ paths:
 
 `src/index.js` activates two features; the rest are helpers. `helper/compile_style.js` is a second copy of the library pipeline for hover previews, `helper/parse_dom.js` picks a `dom-eater` parser by file extension, `helper/get_config.js` reads the shorthand Maps from VSCode settings.
 
-Duplication that `test/parity.test.mjs` enforces:
+Parity with the library (root `CLAUDE.md`, `test/parity.test.js`):
 
-- The three shorthand Maps in `package.json` under `click-css.custom.*` equal `src/click-css.js`, and `default_unit` in `helper/get_config.js` equals the library's; both are compared directly.
+- The three shorthand Maps are the defaults of `package.json` `click-css.custom.*`.
 - `helper/compile_style.js` emits the same declarations and at-rule preludes as the library. Selector notation differs on purpose (the extension writes `&` where the class goes), and the hover output is HTML, so `<` must be escaped.
 
-The minimum VSCode version lives in four places that `test/build.test.mjs` compares; `.claude/skills/release` lists them.
+The minimum VSCode version lives in four places that `test/build.test.js` compares; `.claude/skills/release` lists them.
 
 - Recognised attribute names: `class`, `className`, `classs`.
 - In `.cshtml` and `.razor` files a media token is written `@@sm@@`, because Razor reads `@@` as one `@`. Non-Razor files and nested C# strings keep `@@` as-is.

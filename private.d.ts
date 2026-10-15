@@ -1,5 +1,10 @@
 declare var click: () => void
+declare module "*?factory" {
+	const factory: () => void
+	export default factory
+}
 type Instance = {
+	insert: (...targets: ElementStub[]) => string
 	rebuild: (theme?: string) => string
 	reset: string
 	via_class_change: (...names: string[]) => string
@@ -7,9 +12,9 @@ type Instance = {
 	via_insertion_html: (html: string) => string
 }
 type ElementStub = {
-	contains: () => boolean
+	contains: (other: ElementStub) => boolean
 	getAttribute: (name: string) => string | null
-	nodeType: 1
+	nodeType: number
 	querySelectorAll: (selector: string) => ElementStub[]
 }
 type MutationRecordStub = { target: ElementStub }

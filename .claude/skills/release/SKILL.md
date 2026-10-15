@@ -11,14 +11,14 @@ description: Move a Click CSS version number, whether the library/extension rele
 2. `extension/package.json` → `version`
 3. `src/click-css.js` → `style_sheet.setAttribute("click", "v<new>")`
 4. `CHANGELOG.md` → a `## <new>` section; breaking changes first, each with its migration spelled out
-5. `pnpm build` regenerates `docs/min.js` and the extension bundle; `build.mjs` throws if the stamp and the root `package.json` disagree
-6. `pnpm test`: `build.test.mjs` re-asserts the stamp and that `min.js` compiles like the source
+5. `pnpm build` regenerates `docs/min.js` and the extension bundle; `build.js` throws if the stamp and the root `package.json` disagree
+6. `pnpm test`: `build.test.js` re-asserts the stamp and that `min.js` compiles like the source
 
-`docs/min.js` is committed; the `.vsix` is not.
+`docs/min.js` is committed; the `.vsix` is not. The commits since the last version commit fold into one (`git reset --soft <last version commit>`, then commit): `v<new>  - <one-line summary> https://github.com/Artxe/click-css/blob/main/CHANGELOG.md#<new without dots>`.
 
 ## Minimum VSCode version
 
-All four or `build.test.mjs` fails:
+All four or `build.test.js` fails:
 
 - `extension/package.json` → `engines.vscode`: `^X.Y.Z`
 - `extension/package.json` → `devDependencies["@types/vscode"]`: exact `X.Y.Z`, no range, or `tsc` accepts API the floor lacks

@@ -1,6 +1,6 @@
-import { compile, declarations } from "./dom.mjs"
+import { compile, declarations } from "./dom.js"
 import assert from "node:assert/strict"
-import { describe, it } from "node:test"
+import { describe, it } from "vitest"
 /** @param {Record<string, string>} cases */
 function declares(cases) {
 	for (const [ cname, expected ] of Object.entries(cases)) {
@@ -8,7 +8,9 @@ function declares(cases) {
 			cname + "  →  " + (expected || "(ignored)"),
 			() => {
 				const css = compile(cname)
-				if (!expected) return assert.equal(css, "", "should be ignored")
+				if (!expected) {
+					return assert.equal(css, "", "should be ignored")
+				}
 				assert.notEqual(css, "", "no rule was generated")
 				assert.equal(declarations(css), expected)
 			}
@@ -21,8 +23,10 @@ describe(
 		declares(
 			{
 				":not(.a/c=red": "",
+				"@sm@c=red/*": "",
 				"[data-x=y/c=red": "",
 				"bgi=url(a.png": "",
+				"c=red/*": "",
 				"ct=\"a": "",
 				"ct='a": "",
 				"w=)": "",
@@ -45,9 +49,11 @@ describe(
 			{
 				"--gap=10;p=--gap": "--gap:10px;padding:var(--gap)",
 				"bd=1_solid_--line": "border:1px solid var(--line)",
+				"bd=1_solid_--line!important": "border:1px solid var(--line)!important",
 				"bd=var(--w)_solid_--line": "border:var(--w) solid var(--line)",
 				"bgc=rgb(--r,--g,--b)": "background-color:rgb(--r,--g,--b)",
 				"c=--fg": "color:var(--fg)",
+				"c=--fg!important": "color:var(--fg)!important",
 				"t=anchor(--card_bottom)": "top:anchor(--card bottom)",
 				"w=calc(--gap_*_2)": "width:calc(--gap * 2)",
 				"w=calc(100%_-_--gap)": "width:calc(100% - --gap)"
@@ -177,6 +183,7 @@ describe(
 				"ct=\"it's\"": "content:\"it's\"",
 				"ct='('": "content:'('",
 				"ct=')'": "content:')'",
+				"ct='/*'": "content:'/*'",
 				"ct='['": "content:'['",
 				"ct=']'": "content:']'",
 				"ct='it\\'s'": "content:'it\\'s'",
@@ -235,12 +242,19 @@ function leaves_block_open(css) {
 	let depth = 0
 	for (let i = 0; i < css.length; i++) {
 		const c = css[i]
-		if (c == "\\") i++
-		else if (quote) {
-			if (c == quote) quote = ""
-		} else if (c == "'" || c == "\"") quote = c
-		else if (c == "(" || c == "[" || c == "{") depth++
-		else if (c == ")" || c == "]" || c == "}") depth--
+		if (c == "\\") {
+			i++
+		} else if (quote) {
+			if (c == quote) {
+				quote = ""
+			}
+		} else if (c == "'" || c == "\"") {
+			quote = c
+		} else if (c == "(" || c == "[" || c == "{") {
+			depth++
+		} else if (c == ")" || c == "]" || c == "}") {
+			depth--
+		}
 	}
 	return !!quote || depth != 0
 }

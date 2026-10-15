@@ -219,14 +219,11 @@
 	},
 	"description": "Hover previews, highlighting and autocomplete for CSS written in the class attribute.",
 	"devDependencies": {
-		"@rollup/plugin-commonjs": "^29.0.3",
 		"@rollup/plugin-node-resolve": "^16.0.3",
-		"@types/node": "^26.6.1",
 		"@types/vscode": "1.100.0",
-		"@typescript/native": "npm:typescript@^7.0.2",
 		"@vscode/vsce": "^4.0.0",
-		"dom-eater": "^1.0.0",
-		"rollup": "^4.63.3"
+		"dom-eater": "^1.0.1",
+		"rollup": "^4.64.6"
 	},
 	"displayName": "Intellisense Click CSS",
 	"engines": { "vscode": "^1.100.0" },
@@ -261,5 +258,5 @@
 		"watch": "pnpm rollup -c --watch"
 	},
 	"type": "module",
-	"version": "2.0.0"
+	"version": "2.0.1"
 }

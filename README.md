@@ -96,7 +96,7 @@ The complete reference. Hand this file to a model and it has everything it needs
 
 ### Grammar
 
-Every class on the page is parsed and the result injected into one `<style>` tag. A class compiles when it contains `:` or `=` with a character on each side, or a value shorthand. It is skipped when it would leave the sheet open and swallow every rule after it — an unclosed `'`, `"`, `(`, `[` or `{`, a closer that comes before its opener, or a trailing `\`. Quoted text is not a block: `content='('` is kept.
+Every class on the page is parsed and the result injected into one `<style>` tag. A class compiles when it contains `:` or `=` with a character on each side, or a value shorthand. It is skipped when it would leave the sheet open and swallow every rule after it — an unclosed `'`, `"`, `(`, `[` or `{`, a closer that comes before its opener, a `/*` that would open a comment, or a trailing `\`. Quoted text is not a block: `content='('` is kept.
 
 The first character picks the shape:
 
@@ -293,10 +293,10 @@ A family shares one prefix — `bd` borders, `br` radii, `m` margins, `t` text �
 [Properties](./src/click-css.js#L18):
 `ac` align-content · `ai` align-items · `as` align-self · `a` animation · `ar` aspect-ratio · `bf` backdrop-filter · `bg` background · `bgc` background-color · `bgi` background-image · `bgp` background-position · `bgr` background-repeat · `bgs` background-size · `bs` block-size · `bd` border · `bdb` border-bottom · `brbl` border-bottom-left-radius · `brbr` border-bottom-right-radius · `bdc` border-color · `bdi` border-inline · `bdl` border-left · `br` border-radius · `bdr` border-right · `bds` border-style · `bdt` border-top · `brtl` border-top-left-radius · `brtr` border-top-right-radius · `bdw` border-width · `b` bottom · `bsd` box-shadow · `c` color · `csm` color-scheme · `gx` column-gap · `cq` container · `cqn` container-name · `cqt` container-type · `ct` content · `cs` cursor · `d` display · `ft` filter · `f` flex · `fb` flex-basis · `fg` flex-grow · `fsk` flex-shrink · `ff` font-family · `fs` font-size · `fst` font-style · `fw` font-weight · `g` gap · `ga` grid-area · `gaf` grid-auto-flow · `gc` grid-column · `gr` grid-row · `gta` grid-template-areas · `gtc` grid-template-columns · `gtr` grid-template-rows · `h` height · `is` inline-size · `in` inset · `jc` justify-content · `ji` justify-items · `js` justify-self · `l` left · `ls` letter-spacing · `lh` line-height · `m` margin · `my` margin-block · `mb` margin-bottom · `mx` margin-inline · `ml` margin-left · `mr` margin-right · `mt` margin-top · `mah` max-height · `maw` max-width · `mih` min-height · `miw` min-width · `of` object-fit · `op` opacity · `od` order · `ol` outline · `o` overflow · `ow` overflow-wrap · `ox` overflow-x · `oy` overflow-y · `p` padding · `py` padding-block · `pb` padding-bottom · `px` padding-inline · `pl` padding-left · `pr` padding-right · `pt` padding-top · `pcc` place-content · `pci` place-items · `pcs` place-self · `pe` pointer-events · `r` right · `rt` rotate · `gy` row-gap · `sc` scale · `ta` text-align · `td` text-decoration · `to` text-overflow · `ts` text-shadow · `tt` text-transform · `tw` text-wrap · `t` top · `tf` transform · `tr` transition · `tl` translate · `us` user-select · `vs` visibility · `ws` white-space · `w` width · `wb` word-break · `z` z-index
 
-[Values](./src/click-css.js#L112), the whole class:
+[Values](./src/click-css.js#L136), the whole class:
 `block` display:block · `flex` display:flex · `grid` display:grid · `inline` display:inline · `inline-block` display:inline-block · `none` display:none · `column` flex-direction:column · `column-reverse` flex-direction:column-reverse · `row` flex-direction:row · `row-reverse` flex-direction:row-reverse · `nowrap` flex-wrap:nowrap · `wrap` flex-wrap:wrap · `wrap-reverse` flex-wrap:wrap-reverse · `isolate` isolation:isolate · `absolute` position:absolute · `fixed` position:fixed · `relative` position:relative · `static` position:static · `sticky` position:sticky
 
-[Media conditions](./src/click-css.js#L133), inside `@…@`:
+[Media conditions](./src/click-css.js#L159), inside `@…@`:
 `hover` (hover:hover) · `sm` (min-width:640px) · `md` (min-width:768px) · `lg` (min-width:1024px) · `xl` (min-width:1280px) · `2xl` (min-width:1536px) · `landscape` (orientation:landscape) · `portrait` (orientation:portrait) · `coarse` (pointer:coarse) · `fine` (pointer:fine) · `dark` (prefers-color-scheme:dark) · `reduce` (prefers-reduced-motion:reduce)
 
 </details>
@@ -316,7 +316,7 @@ A property counts as a dimension when:
 - its name is, or ends in `-` plus, one of `basis`, `block`, `border`, `bottom`, `gap`, `height`, `indent`, `inline`, `left`, `offset`, `origin`, `outline`, `perspective`, `position`, `radius`, `right`, `shadow`, `size`, `spacing`, `top`, `translate`, `width` or `grid-(auto|template)-(columns|rows)`;
 - or it is `margin`, `padding` or `inset`, with anything after them (`margin-top`, `scroll-padding-left`).
 
-So `border-top-width`, `font-size`, `outline-offset` and `--gap` get the unit; `line-height`, `stroke-width`, `opacity`, `z-index`, `order` and `font-weight` do not. `line-height` and `stroke-width` are excluded by name on purpose, because a bare number is the ordinary way to write them. Change [`default_unit`](./src/click-css.js#L149) for `rem` or anything else.
+So `border-top-width`, `font-size`, `outline-offset` and `--gap` get the unit; `line-height`, `stroke-width`, `opacity`, `z-index`, `order` and `font-weight` do not. `line-height` and `stroke-width` are excluded by name on purpose, because a bare number is the ordinary way to write them. Change [`default_unit`](./src/click-css.js#L177) for `rem` or anything else.
 
 Start a value with `~` — straight after the `=`, ahead of any minus sign — and none of its numbers take the unit. Use it wherever a bare number is not a length, including properties the matcher has never heard of:
 
@@ -362,7 +362,7 @@ Borders other than on `button` stay as the browser draws them, so `input`, `sele
 
 #### Classes you did not write for Click CSS
 
-Value shorthands are ordinary words, and every class goes through the same parse. A class named exactly `block`, `flex`, `grid`, `inline`, `inline-block`, `none`, `column`, `column-reverse`, `row`, `row-reverse`, `nowrap`, `wrap`, `wrap-reverse`, `isolate`, `absolute`, `fixed`, `relative`, `static` or `sticky` gets the declaration whether you meant it or not — Bootstrap's `.row` picks up `flex-direction: row`. Rename the clash, or delete the entry from [`shorthand_for_values`](./src/click-css.js#L112).
+Value shorthands are ordinary words, and every class goes through the same parse. A class named exactly `block`, `flex`, `grid`, `inline`, `inline-block`, `none`, `column`, `column-reverse`, `row`, `row-reverse`, `nowrap`, `wrap`, `wrap-reverse`, `isolate`, `absolute`, `fixed`, `relative`, `static` or `sticky` gets the declaration whether you meant it or not — Bootstrap's `.row` picks up `flex-direction: row`. Rename the clash, or delete the entry from [`shorthand_for_values`](./src/click-css.js#L136).
 
 A class that merely *contains* one, such as `wrapper` or `grid-item`, compiles to a declaration the browser drops, so nothing renders differently.
 
@@ -410,10 +410,10 @@ Each class is compiled once, by a chain of regex passes over its text. Classes a
 
 ## Repository
 
-A pnpm workspace: [`src`](./src) the library, [`test`](./test) node:test suites over the real source through both collection paths plus VSCode-extension parity, [`extension`](./extension) the VSCode extension, [`docs`](./docs) the playground published to GitHub Pages, which also serves the built `min.js`.
+A pnpm workspace: [`src`](./src) the library, [`test`](./test) vitest suites over the real source through both collection paths plus VSCode-extension parity, [`extension`](./extension) the VSCode extension, [`docs`](./docs) the playground published to GitHub Pages, which also serves the built `min.js`.
 
 ```bash
-pnpm test    # node --test
+pnpm test    # vitest, 100% coverage enforced
 pnpm build   # terser → docs/min.js, then the extension bundle; fails if the version stamp disagrees with package.json
 pnpm lint    # eslint --fix, then tsc
 ```

@@ -1,7 +1,12 @@
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
-import { registerHooks } from "node:module"
-import { describe, it } from "node:test"
+import {
+	afterEach,
+	beforeEach,
+	describe,
+	it,
+	vi
+} from "vitest"
 const vsce_root = new URL("../extension/", import.meta.url)
 const src_root = new URL("./src/", vsce_root)
 /** @type {Record<string, { default: [ string, string ][] }>} */
@@ -39,6 +44,10 @@ let active_editor
 let providers = []
 /** @type {{ index: number }[]} */
 let decorators = []
+/** @type {((editor: typeof active_editor) => void)[]} */
+let editor_listeners = []
+/** @type {((event: { document: TextDocument }) => void)[]} */
+let document_listeners = []
 class Range {
 	/**
 	 * @param {{ offset: number }} start
@@ -90,7 +99,14 @@ const vscode = {
 			decorators.push(decorator)
 			return decorator
 		},
-		onDidChangeActiveTextEditor: () => ({ dispose() {} })
+		/**
+		 * @param {(editor: typeof active_editor) => void} listener
+		 * @returns {Disposable}
+		 */
+		onDidChangeActiveTextEditor: listener => {
+			editor_listeners.push(listener)
+			return { dispose() {} }
+		}
 	},
 	workspace: {
 		getConfiguration: () => ({
@@ -99,33 +115,17 @@ const vscode = {
 				/** @type {{ default: [ string, string ][] }} */(configuration[key])/**/
 					.default
 		}),
-		onDidChangeTextDocument: () => ({ dispose() {} })
+		/**
+		 * @param {(event: { document: TextDocument }) => void} listener
+		 * @returns {Disposable}
+		 */
+		onDidChangeTextDocument: listener => {
+			document_listeners.push(listener)
+			return { dispose() {} }
+		}
 	}
 }
 Object.assign(globalThis, { __vscode_mock: vscode })
-const vscode_source = Object.keys(vscode)
-	.map(
-		key => `export const ${key} = globalThis.__vscode_mock[${JSON.stringify(key)}]`
-	)
-	.join("\n")
-registerHooks(
-	{
-		load(url, context, next) {
-			return url == "vscode:mock"
-				? {
-					format: "module",
-					shortCircuit: true,
-					source: vscode_source
-				}
-				: next(url, context)
-		},
-		resolve(specifier, context, next) {
-			return specifier == "vscode"
-				? { shortCircuit: true, url: "vscode:mock" }
-				: next(specifier, context)
-		}
-	}
-)
 /** @type {typeof import("../extension/src/helper/parse_dom.js")} */
 const { default: parse_dom } = await import(
 	new URL("./helper/parse_dom.js", src_root).href
@@ -268,10 +268,37 @@ describe(
 			}
 		)
 		it(
+			"does not suggest after a closed class value",
+			async () => {
+				assert.deepEqual(
+					await complete("a.html", "<p class=\"a\" "),
+					{ media: undefined, properties: undefined }
+				)
+			}
+		)
+		it(
+			"does not suggest after a script that holds no element",
+			async () => {
+				assert.deepEqual(
+					await complete("a.html", "<p class=\"a\"></p>{{ x }}"),
+					{ media: undefined, properties: undefined }
+				)
+			}
+		)
+		it(
 			"does not suggest in a Pug class literal",
 			async () => {
 				assert.deepEqual(
 					await complete("a.pug", "p.bt"),
+					{ media: undefined, properties: undefined }
+				)
+			}
+		)
+		it(
+			"does not suggest in an element without attributes",
+			async () => {
+				assert.deepEqual(
+					await complete("a.html", "<p "),
 					{ media: undefined, properties: undefined }
 				)
 			}
@@ -301,6 +328,46 @@ describe(
 			}
 		)
 		it(
+			"suggests in a JSX expression until it closes",
+			async () => {
+				assert.ok(
+					(await complete("a.jsx", "<p className={")).media?.includes("@md@")
+				)
+				assert.deepEqual(
+					await complete("a.jsx", "<p className={x}"),
+					{ media: undefined, properties: undefined }
+				)
+			}
+		)
+		it(
+			"suggests in an element inside a Razor code block",
+			async () => {
+				assert.ok(
+					(await complete("a.cshtml", "@if (x) { <p class=\"")).media?.includes("@@md@@")
+				)
+			}
+		)
+		it(
+			"suggests in an unquoted value",
+			async () => {
+				assert.ok(
+					(await complete("a.html", "<p class=fl")).media?.includes("@md@")
+				)
+			}
+		)
+		it(
+			"suggests right after class= and not after a bare class",
+			async () => {
+				assert.ok(
+					(await complete("a.html", "<p class=")).media?.includes("@md@")
+				)
+				assert.deepEqual(
+					await complete("a.html", "<p class"),
+					{ media: undefined, properties: undefined }
+				)
+			}
+		)
+		it(
 			"suggests shorthands and @…@ media conditions inside a class value",
 			async () => {
 				let result = await complete("a.html", "<p class=\"")
@@ -317,6 +384,27 @@ describe(
 			"a file with no extension is not parsed",
 			() => {
 				assert.deepEqual(parse_dom("Makefile", "<p class=\"a\"></p>"), [])
+			}
+		)
+		it(
+			"a file with no extension is not parsed when a folder name has a dot",
+			() => {
+				for (const file_name of [
+					"/home/first.last/site/Makefile",
+					"C:\\Users\\first.last\\site\\LICENSE"
+				]) {
+					assert.deepEqual(parse_dom(file_name, "<p class=\"a\"></p>"), [])
+				}
+				assert.equal(
+					narrow(
+						parse_dom(
+							"C:\\Users\\first.last\\site\\a.html",
+							"<p class=\"a\"></p>"
+						)[0],
+						"Element"
+					).name,
+					"p"
+				)
 			}
 		)
 		it(
@@ -444,6 +532,29 @@ describe(
 			}
 		)
 		it(
+			"a selector-like token without a slash underlines only its properties",
+			async () => {
+				const result = await highlight("a.html", "<p class=\"Foo=bar\"></p>")
+				assert.deepEqual(result.tokens, [ "Foo=bar" ])
+				assert.deepEqual(result.selector, [])
+				assert.deepEqual(result.property, [ "Foo=" ])
+				assert.deepEqual(result.value, [ "bar" ])
+			}
+		)
+		it(
+			"a space other than HTML whitespace stays inside the token, as in the library",
+			async () => {
+				for (const space of [ " ", "　" ]) {
+					const result = await highlight(
+						"a.html",
+						"<p class=\"ct='a" + space + "b' c=red\"></p>"
+					)
+					assert.deepEqual(result.tokens, [ "ct='a" + space + "b'", "c=red" ])
+					assert.match(String(result.hover[0]), /content : 'a.b'/)
+				}
+			}
+		)
+		it(
 			"highlights Pug attribute values",
 			async () => {
 				let result = await highlight("a.pug", "ul\n  li(class=\"c=red @md@d=flex\") x")
@@ -465,6 +576,30 @@ describe(
 					String(result.hover[0]),
 					/@supports \(display:grid\)/
 				)
+			}
+		)
+		it(
+			"reads a quoted value that is never closed",
+			async () => {
+				const result = await highlight("a.html", "<p class=\"flex")
+				assert.deepEqual(result.tokens, [ "flex" ])
+			}
+		)
+		it(
+			"reads an element inside a JSX expression",
+			async () => {
+				const result = await highlight(
+					"a.jsx",
+					"<p className={ok ? <i className=\"flex\" /> : null}></p>"
+				)
+				assert.deepEqual(result.tokens, [ "flex" ])
+			}
+		)
+		it(
+			"reads an unquoted value",
+			async () => {
+				const result = await highlight("a.html", "<p class=flex></p>")
+				assert.deepEqual(result.tokens, [ "flex" ])
 			}
 		)
 		it(
@@ -493,6 +628,32 @@ describe(
 					"a.md",
 					"Load it in `<head>` as a classic `<script>`.\n\n"
 					+ "```html\n<p class=\"c=red\"></p>\n```\n"
+				)
+				assert.deepEqual(result.tokens, [ "c=red" ])
+			}
+		)
+		it(
+			"a code span of two or more backticks in prose does not open a tag",
+			async () => {
+				for (const span of [ "``<style>``", "```<script>```", "``a`<style>``" ]) {
+					const result = await highlight(
+						"a.md",
+						"Write " + span + " in the head.\n\n<p class=\"c=red\"></p>\n"
+					)
+					assert.deepEqual(
+						result.tokens,
+						[ "c=red" ],
+						span + " swallowed the prose after it"
+					)
+				}
+			}
+		)
+		it(
+			"a fence line with an info string inside a fence does not close it",
+			async () => {
+				const result = await highlight(
+					"a.md",
+					"```text\n```html\n```\n\n<p class=\"c=red\"></p>\n"
 				)
 				assert.deepEqual(result.tokens, [ "c=red" ])
 			}
@@ -589,6 +750,138 @@ describe(
 				assert.ok(
 					(await complete("a.md", fence + "```html\n<p class=\"")).media?.includes("@md@")
 				)
+			}
+		)
+	}
+)
+/**
+ * @param {string} text
+ */
+function make_editor(text) {
+	/** @type {number[]} */
+	const updates = []
+	return {
+		document: text_document("a.html", text),
+		/**
+		 * @param {{ index: number }} decorator
+		 */
+		setDecorations: decorator => {
+			if (decorator.index == 0) {
+				updates.push(updates.length)
+			}
+		},
+		updates
+	}
+}
+/** @param {ReturnType<typeof make_editor> | undefined} editor */
+async function start_highlighter(editor) {
+	editor_listeners = []
+	document_listeners = []
+	decorators = []
+	active_editor = editor
+	await activate("./extensions/highlighter.js")
+}
+describe(
+	"highlighter lifecycle",
+	() => {
+		beforeEach(
+			() => {
+				vi.useFakeTimers()
+			}
+		)
+		afterEach(
+			() => {
+				vi.useRealTimers()
+			}
+		)
+		it(
+			"a pending edit does nothing when the editor closes before it fires",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				await start_highlighter(editor)
+				document_listeners[0]?.({ document: editor.document })
+				editor_listeners[0]?.(undefined)
+				vi.advanceTimersByTime(1000)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"activating the extension registers completion and highlighting",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				active_editor = editor
+				decorators = []
+				providers = []
+				/** @type {{ activate: (context: { subscriptions: Disposable[] }) => void }} */
+				const index = await import(new URL("./index.js", src_root).href)
+				index.activate({ subscriptions: [] })
+				assert.equal(providers.length, 2)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"an edit in another document is ignored",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				await start_highlighter(editor)
+				document_listeners[0]?.({ document: make_editor("").document })
+				vi.advanceTimersByTime(1000)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"an edit is highlighted once, after a quiet 250 ms",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				await start_highlighter(editor)
+				document_listeners[0]?.({ document: editor.document })
+				vi.advanceTimersByTime(200)
+				document_listeners[0]?.({ document: editor.document })
+				vi.advanceTimersByTime(249)
+				assert.equal(editor.updates.length, 1)
+				vi.advanceTimersByTime(1)
+				assert.equal(editor.updates.length, 2)
+			}
+		)
+		it(
+			"an edit is ignored once the editor is closed",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				await start_highlighter(editor)
+				editor_listeners[0]?.(undefined)
+				document_listeners[0]?.({ document: editor.document })
+				vi.advanceTimersByTime(1000)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"highlights nothing at start when no editor is open, then the editor that opens",
+			async () => {
+				await start_highlighter(undefined)
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				editor_listeners[0]?.(editor)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"highlights the editor that is active when the extension starts",
+			async () => {
+				const editor = make_editor("<p class=\"c=red\"></p>")
+				await start_highlighter(editor)
+				assert.equal(editor.updates.length, 1)
+			}
+		)
+		it(
+			"switching editors highlights the new one and drops the pending edit",
+			async () => {
+				const first = make_editor("<p class=\"c=red\"></p>")
+				const second = make_editor("<p class=\"d=flex\"></p>")
+				await start_highlighter(first)
+				document_listeners[0]?.({ document: first.document })
+				editor_listeners[0]?.(second)
+				vi.advanceTimersByTime(1000)
+				assert.equal(first.updates.length, 1)
+				assert.equal(second.updates.length, 1)
 			}
 		)
 	}

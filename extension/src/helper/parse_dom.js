@@ -7,7 +7,9 @@ import {
 	parseScript
 } from "dom-eater"
 const blank_regex = /[^\n\r]/g
-const code_span_regex = /`[^`\n]*`/g
+const closing_fence_regex = /^(?:`+|~+)$/
+const code_span_regex = /(?<!`)(`+)(?!`)[^\n]*?(?<!`)\1(?!`)/g
+const extension_regex = /\.([^./\\]*)$/
 const fence_regex = /^[ \t]{0,3}(`{3,}|~{3,})[ \t]*([^\s`]*)/
 const line_regex = /[^\n]*\n?/g
 const markdown_extensions = new Set([ "markdown", "md" ])
@@ -53,10 +55,15 @@ function mask_markdown(text) {
 	let start = 0
 	let index = 0
 	for (let [ line ] of text.matchAll(line_regex)) {
-		if (!line) break
+		if (!line) {
+			break
+		}
 		if (fence) {
-			if (line.trimStart().startsWith(fence)) {
-				if (start) fences.push([ start, index ])
+			let rest = line.trim()
+			if (rest.startsWith(fence) && closing_fence_regex.test(rest)) {
+				if (start) {
+					fences.push([ start, index ])
+				}
 				fence = ""
 				start = 0
 			}
@@ -78,7 +85,9 @@ function mask_markdown(text) {
 		}
 		index += line.length
 	}
-	if (fence && start) fences.push([ start, index ])
+	if (fence && start) {
+		fences.push([ start, index ])
+	}
 	return [
 		{ end: prose_end, source: prose },
 		...fences.map(
@@ -101,18 +110,30 @@ function mask_markdown(text) {
  * @returns {import("dom-eater").AstNode[]}
  */
 export default (file_name, text) => {
-	const index = file_name.lastIndexOf(".")
-	if (index < 0) return []
-	const extension = file_name.slice(index + 1).toLowerCase()
-	if (extension == "cshtml") return parseRazor(text).ast
-	if (extension == "razor") return parseRazorComponent(text).ast
-	if (jsx_extensions.has(extension)) return parseJsx(text).ast
+	const match = extension_regex.exec(file_name)
+	if (!match) {
+		return []
+	}
+	const extension = /** @type {string} */(match[1])/**/.toLowerCase()
+	if (extension == "cshtml") {
+		return parseRazor(text).ast
+	}
+	if (extension == "razor") {
+		return parseRazorComponent(text).ast
+	}
+	if (jsx_extensions.has(extension)) {
+		return parseJsx(text).ast
+	}
 	if (markdown_extensions.has(extension)) {
 		return mask_markdown(text).flatMap(
 			masked => parseHtml(masked).ast
 		)
 	}
-	if (pug_extensions.has(extension)) return parsePug(text).ast
-	if (script_extensions.has(extension)) return parseScript(text).ast
+	if (pug_extensions.has(extension)) {
+		return parsePug(text).ast
+	}
+	if (script_extensions.has(extension)) {
+		return parseScript(text).ast
+	}
 	return parseHtml(text).ast
 }

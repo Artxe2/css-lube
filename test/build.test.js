@@ -1,8 +1,8 @@
-import { load } from "./dom.mjs"
+import { load } from "./dom.js"
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
-import { describe, it } from "node:test"
 import { gzipSync } from "node:zlib"
+import { describe, it } from "vitest"
 const targets = {
 	"docs/min.js": new URL("../docs/min.js", import.meta.url)
 }
@@ -264,6 +264,34 @@ describe(
 					)
 				)
 				assert.equal(extension.version, root.version)
+			}
+		)
+	}
+)
+describe(
+	"the source as a classic script",
+	() => {
+		const source = readFileSync(
+			new URL("../src/click-css.js", import.meta.url),
+			"utf8"
+		)
+		it(
+			"builds the same CSS as the copy the other suites run",
+			() => {
+				assert.equal(
+					load(source).via_class_change(...corpus),
+					expected_class_change
+				)
+				assert.equal(
+					load(source).via_insertion(...corpus),
+					expected_insertion
+				)
+			}
+		)
+		it(
+			"has no import or export",
+			() => {
+				assert.doesNotMatch(source, /^\s*(?:import|export)\b/m)
 			}
 		)
 	}

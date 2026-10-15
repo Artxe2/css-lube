@@ -3,7 +3,7 @@ paths:
   - docs/**
 ---
 
-GitHub Pages serves `docs`, which is also where the built `min.js` lives. `min.js` is generated, never edit it; `build.test.mjs` compares it with the source.
+GitHub Pages serves `docs`, which is also where the built `min.js` lives. `min.js` is generated, never edit it; `build.test.js` compares it with the source.
 
 `index.html` is styled with Click CSS itself; `app.css` holds only two `@keyframes`.
 

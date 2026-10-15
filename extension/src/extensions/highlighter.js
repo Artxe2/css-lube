@@ -11,7 +11,7 @@ export default context => {
 	let timeout
 	let active_editor = vscode.window.activeTextEditor
 	const razor_file_regex = /\.(?:cshtml|razor)$/i
-	const token_regex = /\S+/g
+	const token_regex = /[^\t\n\f\r ]+/g
 	const token_decorator = decorator({})
 	const media_query_decorator = decorator(
 		{
@@ -90,7 +90,9 @@ export default context => {
 	function dfs_ast(text, node, class_names, razor) {
 		if (node.type == "Element") {
 			for (const attr of node.attributes) {
-				if (typeof attr.value == "boolean") continue
+				if (typeof attr.value == "boolean") {
+					continue
+				}
 				if (attr.name == "class" || attr.name == "className" || attr.name == "classs") {
 					if (attr.value.type == "String") {
 						analysis_class_name(text, attr.value, class_names, razor)
@@ -142,7 +144,9 @@ export default context => {
 		for (let i = start; i < end; i++) {
 			offsets.push(i)
 			unescaped += text[i]
-			if (text[i] == "@" && text[i + 1] == "@" && i + 1 < end) i++
+			if (text[i] == "@" && text[i + 1] == "@" && i + 1 < end) {
+				i++
+			}
 		}
 		offsets.push(end)
 		class_names.push(
@@ -161,7 +165,9 @@ export default context => {
 		}
 	}
 	async function update_decorations() {
-		if (!active_editor) return
+		if (!active_editor) {
+			return
+		}
 		const document = active_editor.document
 		const text = document.getText()
 		const ast = parse_dom(document.fileName, text)
@@ -191,7 +197,9 @@ export default context => {
 			while ((match = token_regex.exec(class_name))) {
 				const cname = match[0]
 				const style = compile_style(cname)
-				if (!style) continue
+				if (!style) {
+					continue
+				}
 				const cname_index = match.index
 				/**
 				 * @param {number} offset
@@ -209,17 +217,15 @@ export default context => {
 				let parse_index = 0
 				if (cname[0] == "@") {
 					const index = cname.indexOf("@", 2)
-					if (index >= 0) {
-						const media_query_start = position(0)
-						const media_query_end = position(index + 1)
-						media_query_array.push(
-							new vscode.Range(
-								media_query_start,
-								media_query_end
-							)
+					const media_query_start = position(0)
+					const media_query_end = position(index + 1)
+					media_query_array.push(
+						new vscode.Range(
+							media_query_start,
+							media_query_end
 						)
-						parse_index = index + 1
-					}
+					)
+					parse_index = index + 1
 				}
 				if (check_is_special(cname, parse_index)) {
 					const offset = get_selector_end(cname.slice(parse_index))
@@ -238,7 +244,9 @@ export default context => {
 				let index = cname.indexOf("=", parse_index)
 				if (index >= 0) {
 					do {
-						if (cname[index - 1] != "\\") index_array.push(index)
+						if (cname[index - 1] != "\\") {
+							index_array.push(index)
+						}
 						index = cname.indexOf("=", index + 1)
 					} while (index >= 0)
 				}

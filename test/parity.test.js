@@ -1,8 +1,7 @@
-import { compile, declarations, prelude } from "./dom.mjs"
+import { compile, declarations, prelude } from "./dom.js"
 import assert from "node:assert/strict"
 import { readFileSync } from "node:fs"
-import { registerHooks } from "node:module"
-import { describe, it } from "node:test"
+import { describe, it } from "vitest"
 const vsce_root = new URL("../extension/", import.meta.url)
 /** @type {Record<string, { default: [ string, string ][] }>} */
 const configuration = {}
@@ -25,24 +24,6 @@ Object.assign(
 							.default
 				})
 			}
-		}
-	}
-)
-registerHooks(
-	{
-		load(url, context, next) {
-			return url == "vscode:mock"
-				? {
-					format: "module",
-					shortCircuit: true,
-					source: "export const workspace = globalThis.__vscode_mock.workspace"
-				}
-				: next(url, context)
-		},
-		resolve(specifier, context, next) {
-			return specifier == "vscode"
-				? { shortCircuit: true, url: "vscode:mock" }
-				: next(specifier, context)
 		}
 	}
 )
@@ -126,17 +107,25 @@ const corpus = [
 	"@print,dark@c=red",
 	"ct=a{b",
 	"ct=)(",
+	"c=red/*",
+	"ct='/*'",
 	"@color=red",
 	"@@supports_display=grid@",
 	"bgi=url(/img/w=100/a.png)",
 	"ct='a/b=c'",
 	"f=1_1_0/none",
 	"[data-x\\=1]/c=red",
+	"@@supports_selector([type\\=number])@d=grid",
 	"text-indent=10",
 	"flex-basis=100",
 	"translate=10_20",
 	"grid-auto-rows=100",
-	"stroke-dashoffset=4"
+	"stroke-dashoffset=4",
+	"c=red;",
+	"c=~--muted",
+	"c=--fg!important",
+	"Foo=bar",
+	"ct=a\\;b"
 ]
 describe(
 	"extension settings defaults ↔ library",
@@ -208,11 +197,13 @@ describe(
 				() => {
 					const lib = compile(cname)
 					const vsce = plain(compile_vsce(cname))
-					if (!lib) return assert.equal(
-						vsce,
-						"",
-						"the extension shows a class the library dropped"
-					)
+					if (!lib) {
+						return assert.equal(
+							vsce,
+							"",
+							"the extension shows a class the library dropped"
+						)
+					}
 					assert.equal(
 						normalize(declarations(vsce)),
 						normalize(declarations(lib)),
